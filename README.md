@@ -1,37 +1,4 @@
-## Welcome to GitHub Pages
+#Course Overview
 
-You can use the [editor on GitHub](https://github.com/sbkellogg/eci-588/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+As the use of digital resources continues expand in education, an unprecedented amount of new data is becoming available to educational researchers and practitioners. Among these new data sources, unstructured data such as text represents a significant share. This introductory course to text mining is designed to prepare researchers and practitioners to use this data more efficiently, effectively, and ethically. This course will provide students with an overview of text mining as an analytical approach, examples of its use in educational contexts, and applied experience with widely adopted tools and techniques. As participants gain experience in the collection, analysis, and reporting of data throughout the course, they will be better prepared help educational organizations understand and improve both online and blended learning environments.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sbkellogg/eci-588/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
