@@ -44,7 +44,7 @@ c. **Project Setup** We revisit Chapter 6 from DSIEUR to set up a Project in RSt
 
 ### a. Little Context 
 
-**RTT Online Professional Development Evaluation**
+####RTT Online Professional Development Evaluation
 
 ![](img/opd.png){width=30%}
 
@@ -54,7 +54,7 @@ North Carolina was one of 12 recipients of the 2010 federal Race to the Top (Rtt
 
 The North Carolina Race to the Top (RttT) proposal (North Carolina Office of the Governor, 2010) specifies that the state’s Professional Development Initiative will focus on the “use of e- learning tools to meet the professional development needs of teachers, schools, and districts” (p. 191). It points to research demonstrating that “well-designed and -implemented online professional development programs are not only valued by teachers but also positively impact classroom practices and student learning.” 
 
-*Data Source & Analysis* 
+**Data Source & Analysis** 
 
 The evaluation used a wide range of data sources including interviews, document review, site analytics, and surveys, which we'll focus on for this walkthrough. Survey protocols were designed in cooperation with NCDPI to systematically collect information about local professional development, state-level supports, use of available RttT professional development resources, and organizational and classroom practices in the schools, which will serve as a baseline to assess changes over the period of the North Carolina RttT initiatives. 
 
@@ -62,7 +62,7 @@ Quantitative analyses focused primarily on descriptive analysis of item-level re
 
 Note that the dataset we'll be using for analysis in this walkthrough is exported as is from Qualtrics with personal identifiers, select demographics, metadata, and closed-ended responses removed.
 
-*Summary of Findings*
+**Summary of Findings**
 
 Approximately half of the state’s educators completed at least one online module by the end of the 2011-12 school year. Overall, most participants agreed that the webinars and modules were relevant to their professional development needs, though some content was redundant with prior PD activities and not always content- or grade-specific, and some modules did not meet national standards. Most online modules were completed independently and not in Professional Learning Community groups.
 
