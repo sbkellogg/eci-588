@@ -11,32 +11,171 @@ Text Mining with R: A Tidy Approach
 <https://www.tidytextmining.com>
 
 
+What's a Walkthrough?
+========================================================
+Each unit, we'll **walk through** a basic research workflow, or process for analysis, modeled after Krumm et al. (2018): 
+
+![Caption](img/workflow.png)
+<small>Figure 2.2 Steps of Data-Intensive Research Workflow</small>
+
+
+<!--
+Notes... 
+-->
+
+In reality... 
+========================================================
+
+ 
+![Caption](img/overlap.png)
+<small>Figure 2.3 Overlapping Activities Within the Data-Intensive Research Workflow</small>
+
+<!--
+Notes... 
+--> 
+
 
 Today's Walkthrough
 ========================================================
 
-1. **Prepare**: Context, Questions, & Data 
+1. **Prepare**: Context, Data, & Questions  
+  
 2. **Wrangle**: Tidy & Tokenize!
 3. **Explore**: Counts, Frequencies, & TF-IDF
-4. **Model**: Nope, not this unit. 
-5. **Communicate**:  
-
-
-
+4. **Model**: Not until Unit 3 
+5. **Communicate**: Week 3: Data Products 
 
 <!--
 Notes... 
 -->
 
-Today's Agenda
+1. PREPARE
+========================================================
+type: section
+
+a) Context - Race to the Top (RttT) Online PD  
+  
+b) Data -  `read` and `view` at our Data
+
+c) Questions - Formulate a Question(s)
+
+<!--
+Notes... 
+-->
+
+
+(a) Little Context
 ========================================================
 
-1. **Prepare**: dfd
-2. Wrangle
-3. Functions & Arguments
-4. Packages
-5. RStudio Projects 
+**Questions** 
+
+**Data Sources** 
+
+Survey
+
+**Findings**
+
+
+---
+
+![Caption](img/opd.png)
 
 <!--
 Notes... 
 -->
+
+(b) Reading and Viewing Data
+========================================================
+Functions Introduced:
+
+
+```r
+#### read data into R #####
+
+dplyr::read_csv()  # read csv files into R
+
+#### view data in R #####
+
+utils::view() # view an object
+
+tibble::glimpse() # like view but transposed
+
+utils::head() # view first 6 rows of your df
+
+utils::tail() # view last 6 rows of your df
+```
+
+<!--
+Notes... 
+-->
+
+
+Let's "read" in some data... 
+========================================================
+
+
+
+Load the `readr` package and use the `read_csv()` function to:
+- read in the `opd_survey.csv` file in the unit-1 data folder and 
+- save it as an object using the `<-` assignment operator
+
+
+```r
+library(readr)
+
+opd_survey <- read_csv("unit-1/data/opd_survey .csv")
+```
+  
+Use `?read_csv` to answer the answer the following questions: 
+ 1. What is the first input or "argument" `read_csv()` expects?   
+ 2. What `read_csv()` arguments are `TRUE` by default?   
+ 3. Can you read in a .csv file from the web?   
+
+<!--
+Notes... 
+-->
+
+
+Alternatively... 
+========================================================
+
+
+
+<!--
+Notes... 
+-->
+
+
+
+Let's "view" our data... 
+========================================================
+
+
+
+<!--
+Notes... 
+-->
+
+c. Questions
+========================================================
+
+How do we quantify 
+
+
+<!--
+Notes... 
+-->
+
+
+
+WRANGLE
+========================================================
+type: section
+
+Context: df 
+
+<!--
+Notes... 
+-->
+
+  
