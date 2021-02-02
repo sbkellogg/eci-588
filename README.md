@@ -1,4 +1,4 @@
-#Course Overview
+# Course Overview
 
 As the use of digital resources continues expand in education, an unprecedented amount of new data is becoming available to educational researchers and practitioners. Among these new data sources, unstructured data such as text represents a significant share. This introductory course to text mining is designed to prepare researchers and practitioners to use this data more efficiently, effectively, and ethically. This course will provide students with an overview of text mining as an analytical approach, examples of its use in educational contexts, and applied experience with widely adopted tools and techniques. As participants gain experience in the collection, analysis, and reporting of data throughout the course, they will be better prepared help educational organizations understand and improve both online and blended learning environments.
 
