@@ -64,20 +64,21 @@ Notes...
 -->
 
 
-(a) Little Context
+1a. Little Context
 ========================================================
 
 **Race to the Top** 
 
-NCDPI recieved $400M implement activities and policy reforms to improve education.
+NCDPI received $400M for activities and policy reforms to improve education in NC.
 
 
 **Data Sources** 
 
-Survey of over 15,000 educators 
+Survey of over 15,000 educators participating in online PD. 
 
 **Findings**
 
+Teachers valued convenience, information, and resources. 
 
 ---
 
@@ -87,9 +88,89 @@ Survey of over 15,000 educators
 Notes... 
 -->
 
-(b) Reading and Viewing Data
+
+1b. Guiding Questions
 ========================================================
-Functions Introduced:
+
+**How do we to quantify what a document or collection of documents is about?**  
+  
+
+- What aspects of online professional development offerings do teachers find most valuable?
+
+- How might resources differ in the value they afford teachers?
+
+
+
+<!--
+Notes... 
+-->
+
+
+1c. Project Setup
+========================================================
+
+![Create New File](img/file.png)
+
+
+
+<!--
+Notes... 
+-->
+
+
+2. WRANGLE
+========================================================
+type: section
+
+a. Read, View, Write
+
+b. Reduce Data
+
+c. Tidy Text
+
+
+2a. Read, View, Write Data
+========================================================
+
+**Reading Data into R**
+- `dplyr::read_csv()`
+
+**Viewing Data in RStudio**
+- `utils::view()`
+- `utils::head()`
+- `tibble::glimpse()`
+
+**Writing Data to Project Folder**
+- `dplyr::write_csv()`
+
+
+
+Reading Data into R (Part 1)
+========================================================
+
+1. Download the `opd_survey.csv` file we'll be using for this Unit from our NCSU Moodle course site.
+2. Create a folder in directory on your computer where you stored your R Project and name it "data". 
+3. Add the file to your data folder.
+4. Check your Files tab in R Studio to verify that your file is indeed in your data folder.
+
+Reading Data into R (Part 2)
+========================================================
+
+
+```r
+opd_survey <- read_csv("data/opd_survey.csv")
+```
+
+Notice that read_csv() dealt with the issues of duplicate column names for us!!
+
+Reading Data into R (Part 3)
+========================================================
+The lazy way...
+
+![](img/import.png)
+
+2b. Viewing Data
+========================================================
 
 
 ```r
@@ -113,16 +194,26 @@ Notes...
 -->
 
 
-Let's "read" in some data... 
+2c. Writing Data to Project Folders
 ========================================================
 
+The **first argument** is the data frame we created earlier
+
+The **second argument** is the file name you plan to give it, including (if necessary) the file path for where it should go. 
 
 
-
-
+```r
+write_csv(opd_survey, "data/opd_survey_copy.csv")
 ```
-processing file: unit-1-presentation.Rpres
-Quitting from lines 120-122 (unit-1-presentation.Rpres) 
-Error: 'data/opd_survey.csv' does not exist in current working directory ('/Volumes/GoogleDrive/My Drive/College of Ed/Learning Analytics/Courses/ECI 588 Text Mining/R/eci-588/unit-1').
-Execution halted
-```
+
+2. WRANGLE
+========================================================
+type: section
+
+Context: df 
+
+<!--
+Notes... 
+-->
+
+  

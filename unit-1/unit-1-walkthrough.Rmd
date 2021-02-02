@@ -136,7 +136,8 @@ The Reading Data section introduces the following functions for reading data int
 - `utils::view()` View your data frame in the Source Pane
 - `tibble::glimpse()` Like print, but transposed so you can see all columns
 - `utils::head()` View the first 6 rows of your data. 
-- `utils::tail()` View last 6 rows of your data.   
+- `utils::tail()` View last 6 rows of your data.
+- `dplyr::write_csv()` writing .csv files to directory. 
 
 Remember, the name before the double colon indicates the package the function comes from. For example, `read_csv` comes from the `readr`` package.
 
