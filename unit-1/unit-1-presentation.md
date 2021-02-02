@@ -67,11 +67,14 @@ Notes...
 (a) Little Context
 ========================================================
 
-**Questions** 
+**Race to the Top** 
+
+NCDPI recieved $400M implement activities and policy reforms to improve education.
+
 
 **Data Sources** 
 
-Survey
+Survey of over 15,000 educators 
 
 **Findings**
 
@@ -119,7 +122,7 @@ Let's "read" in some data...
 
 ```
 processing file: unit-1-presentation.Rpres
-Quitting from lines 117-119 (unit-1-presentation.Rpres) 
+Quitting from lines 120-122 (unit-1-presentation.Rpres) 
 Error: 'data/opd_survey.csv' does not exist in current working directory ('/Volumes/GoogleDrive/My Drive/College of Ed/Learning Analytics/Courses/ECI 588 Text Mining/R/eci-588/unit-1').
 Execution halted
 ```
