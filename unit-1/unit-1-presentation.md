@@ -1,4 +1,4 @@
-Word Counts & TF-IDF
+Tidy Text & Word Counts
 ========================================================
 author: ECI 588: Text Mining in Education
 date: Unit 1 Guided Walkthrough
@@ -115,67 +115,11 @@ Let's "read" in some data...
 
 
 
-Load the `readr` package and use the `read_csv()` function to:
-- read in the `opd_survey.csv` file in the unit-1 data folder and 
-- save it as an object using the `<-` assignment operator
 
 
-```r
-library(readr)
-
-opd_survey <- read_csv("unit-1/data/opd_survey .csv")
 ```
-  
-Use `?read_csv` to answer the answer the following questions: 
- 1. What is the first input or "argument" `read_csv()` expects?   
- 2. What `read_csv()` arguments are `TRUE` by default?   
- 3. Can you read in a .csv file from the web?   
-
-<!--
-Notes... 
--->
-
-
-Alternatively... 
-========================================================
-
-
-
-<!--
-Notes... 
--->
-
-
-
-Let's "view" our data... 
-========================================================
-
-
-
-<!--
-Notes... 
--->
-
-c. Questions
-========================================================
-
-How do we quantify 
-
-
-<!--
-Notes... 
--->
-
-
-
-WRANGLE
-========================================================
-type: section
-
-Context: df 
-
-<!--
-Notes... 
--->
-
-  
+processing file: unit-1-presentation.Rpres
+Quitting from lines 117-119 (unit-1-presentation.Rpres) 
+Error: 'data/opd_survey.csv' does not exist in current working directory ('/Volumes/GoogleDrive/My Drive/College of Ed/Learning Analytics/Courses/ECI 588 Text Mining/R/eci-588/unit-1').
+Execution halted
+```

@@ -28,7 +28,7 @@ This week, we will focus on analysis of open-ended survey items from an evaluati
 For Unit 1, our focus will be on getting our text "tidy" so we can perform some basic word counts, look at words that occur at a higher rate in a group of documents, and examine words that are unique to those document groups. Specifically, the Unit 1 Walkthrough will cover the following workflow topics: 
 
 1. **Prepare**: Prior to analysis, it's critical to understand the context and data sources you're working with so you can formulate useful and answerable questions. You'll also need to set up a "Project" for our Unit 1 walkthrough. 
-2. **Wrangle**: Wrangling data entails the work of manipulating, cleaning, transforming, and merging data. In section 2 we focus on reading, reducing, and tidying our data.  
+2. **Wrangle**: Wrangling data entails the work of manipulating, cleaning, transforming, and merging data. In section 2 we focus on reading, reducing, and tidying our data.
 3. **Explore**: In section 3, we use simple summary statistics, more sophisticated approaches like term frequency-inverse document frequency (tf-idf), and basic data visualization to explore our data and see what insight it provides in response to our question.  
 
 While we won't investigate approaches to **Model** our data until Unit 3 when we learn about topic models, we will be developing "data products" next week to **Communicate** our findings and insights. 
@@ -39,7 +39,7 @@ While we won't investigate approaches to **Model** our data until Unit 3 when we
 Prior to analysis, it's critical to understand the context and data sources available so you can formulate useful questions that can be feasibly addressed by your data. For this section, we'll focus on the following topics: 
 
 a. **Context**. We learn a little bit about the North Carolina Race to the Top grant and the evaluation of the online professional development work, including questions and findings from the 2012 report.  
-b. **Questions** We're interested in see what some basic text mining might be able to What aspects of online professional development offerings do *teachers* find most valuable? 
+b. **Questions** What aspects of online professional development offerings do **teachers** find most valuable? 
 c. **Project Setup** We revisit Chapter 6 from DSIEUR to set up a Project in RStudio and ready and R script for analysis. 
 
 ### a. Little Context 
