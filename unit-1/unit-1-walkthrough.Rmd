@@ -396,7 +396,7 @@ opd_tidy <- opd_survey %>%
 
 head(opd_tidy)
 ```
-There is A LOT to unpack with this function. First notice that `unnest_tokens` expects a data frame as the first argument, followed by two column names. The first is an output column name that that doesn't currently exist but will be created as the text is unnested into it (`word`, in this case). This if followed by the input column that the text comes from which we uncreatively named `text`. Also notice:
+There is A LOT to unpack with this function. First notice that `unnest_tokens` expects a data frame as the first argument, followed by two column names. The first is an output column name that doesn't currently exist but will be created as the text is unnested into it (`word`, in this case). This if followed by the input column that the text comes from which we uncreatively named `text`. Also notice:
 
 - Other columns, such as `Role` and `Resource`, are retained.
 - All punctuation has been removed.
