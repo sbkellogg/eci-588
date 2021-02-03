@@ -570,7 +570,7 @@ total_words <- opd_words %>%
 view(total_words)
 ```
 
-3. Join totals to Word Counts
+3. Join totals to word counts
 ========================================================
 ```{r}
 opd_totals <- left_join(opd_words, total_words)
