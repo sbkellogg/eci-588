@@ -602,26 +602,26 @@ sample_n(opd_quotes, 20)
 # A tibble: 20 x 1
    text                                                                         
    <chr>                                                                        
- 1 "I appreciated the flexibility of the online format."                        
- 2 "The most beneficial aspects of this online resource was that the vast amoun…
- 3 "That I can still refer back to it as needed. It is also easier to complete …
- 4 "Dr Anderson's presentation of the material was interesting, and logical.Out…
- 5 "I can refer back to it as the resource is available online."                
- 6 "The ability to complete it online, on my own time."                         
- 7 "The online resource made it easy to access anywhere and any time"           
- 8 "All the online resources"                                                   
- 9 "resources online"                                                           
-10 "By having it online, I was able to complete it in my own time frame."       
-11 "The most benefical aspect of this online resource was gaining more understa…
-12 "the fact that it is online and I can refer back to it."                     
-13 "online learning module"                                                     
-14 "reading online information is not the same as reading a book"               
-15 "The online resource made me more knowledgeable."                            
-16 "The information on the voicethreads and the valuable list of online resourc…
-17 "The use of outside web tools integrated with the online modules."           
-18 "was not online, online site not user friendly"                              
-19 "The flexibility of online learning was very valuable."                      
-20 "The information presented, the organization of the information, the example…
+ 1 The online resource and explination.                                         
+ 2 online                                                                       
+ 3 The most beneficial aspect of this online resource was learning about the di…
+ 4 The most beneficial aspect of this online resource was the convenience for m…
+ 5 Information about online safety                                              
+ 6 The online videos.                                                           
+ 7 The most beneficial aspect of this online resource is being able to save tim…
+ 8 I appreciate the opportunity to receive professinal development online that …
+ 9 online communication                                                         
+10 online use                                                                   
+11 that it was online                                                           
+12 It was online and self-paced.                                                
+13 The most beneficial aspect of this online resource was being able to see stu…
+14 Having it online.                                                            
+15 That it was online and easily available.                                     
+16 This module showed me that I have a lot to learn when it comes to my own Dig…
+17 The visual online explanation of Blooms                                      
+18 online and not having to be in classroom                                     
+19 The online wikis where you could share lessons and ideas.                    
+20 The most benefitical/valuable aspect of this online resources was general in…
 ```
 
 

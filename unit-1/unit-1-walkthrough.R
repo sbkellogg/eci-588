@@ -16,7 +16,10 @@ library(readr)
 
 #### Read Data into R ####
 
-opd_survey <- read_csv("unit-1/data/opd_survey.csv")
+#opd_survey <- read_csv("unit-1/data/opd_survey.csv")
+
+opd_survey <- read_csv("/Volumes/GoogleDrive/My Drive/College of Ed/Data/opd_survey.csv")
+View(opd_survey)
 
 ?read_csv
 
@@ -117,6 +120,10 @@ opd_resource_counts <- opd_clean %>%
 
 view(opd_resource_counts)
 
+resource_counts <- count(opd_clean, Resource, sort = T)
+resource_counts
+
+
 ### word search ####
 view(filter(opd_teacher, grepl('examp*', text)))
 
@@ -155,7 +162,7 @@ view(opd_tf_idf)
 
 ## b) Data Viz #### 
 
-### bar plot counts ###
+### bar plot counts ####
 
 library(ggplot2)
 
@@ -174,7 +181,11 @@ library(wordcloud2)
 opd_counts %>%
   with(wordcloud(word, n, max.words = 100))
 
-wordcloud2(opd_counts)
+colorVec = rep(c('black', 'gray'), length.out=nrow(opd_counts))
+wordcloud2(opd_counts, color = colorVec, fontWeight = "bold")
+
+wordcloud2(opd_counts,
+           color = ifelse(opd_counts[, 2] > 1000, 'black', 'gray'))
 
 ### facets ####
 
@@ -188,6 +199,25 @@ opd_frequencies %>%
   geom_col(show.legend = FALSE) +
   facet_wrap(~Resource, ncol = 3, scales = "free")
 
+opd_frequencies %>%
+  group_by(Resource) %>%
+  slice_max(proportion, n = 4) %>%
+  ungroup() %>%
+  ggplot(aes(proportion, word, fill = Resource)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~Resource, ncol = 3, scales = "free")
+
+opd_frequencies %>%
+  filter(Resource == "Online Learning Module (e.g. Call for Change, Understanding the Standards, NC Falcon)") %>%
+  slice_max(proportion, n = 10) %>%
+  ggplot(aes(proportion, fct_reorder(word, proportion))) +
+  geom_col(show.legend = FALSE)
+
+opd_frequencies %>%
+  filter(Resource == "Online Learning Module (e.g. Call for Change, Understanding the Standards, NC Falcon)") %>%
+  slice_max(proportion, n = 10) %>%
+  ggplot(aes(proportion, word)) +
+  geom_col()
 
 
 ### tf-idf ####
@@ -195,12 +225,13 @@ opd_frequencies %>%
 library(forcats)
 
 opd_tf_idf %>%
+  filter(Resource != "Calendar") %>%
   group_by(Resource) %>%
-  slice_max(tf_idf, n = 10) %>%
+  slice_max(tf_idf, n = 5) %>%
   ungroup() %>%
   ggplot(aes(tf_idf, fct_reorder(word, tf_idf), fill = Resource)) +
   geom_col(show.legend = FALSE) +
-  facet_wrap(~Resource, ncol = 2, scales = "free") +
+  facet_wrap(~Resource, ncol = 3, scales = "free") +
   labs(x = "tf-idf", y = NULL)
 
 
