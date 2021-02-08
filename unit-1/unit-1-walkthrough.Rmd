@@ -1198,7 +1198,11 @@ create a slide deck or short report that documents our independent
 analysis. R Markdown files can also be used to create a [wide range of
 outputs and formats](https://rmarkdown.rstudio.com/gallery.html),
 including polished PDF or Word documents, websites, web apps, journal
-articles, online books, interactive tutorials and more.
+articles, online books, interactive tutorials and more. And to make this
+process even more user-friendly, R Studio now includes [a visual
+editor](https://rstudio.github.io/visual-markdown-editing/#/)! This lets
+you create R Markdown files like you would with a standard word
+processing tool.
 
 An additional advantage of R Markdown compared to the alternative of
 copying and pasting tables and charts created from an R script to Word
