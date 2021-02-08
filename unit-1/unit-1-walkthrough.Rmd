@@ -850,7 +850,7 @@ term (n in this example).
 Because tf-idf can account through weighting for "too common" words like
 "and" or "but", when calculating tf-idf it is not necessary to remove
 stop words. However, we will need add a column for total words for each
-`Resource` type which can be accomplished in a couples steps.
+`Resource` type which can be accomplished in a couple of steps.
 
 First, let's recycle our `opd_teacher` data frame and calculate counts
 for each word again, but this time instead of word counts for the total
@@ -1102,3 +1102,248 @@ Research Workflow from Chapter 2 of Learning Analytics Goes to school.
 
 ------------------------------------------------------------------------
 
+## 5. COMMUNICATE
+
+The final(ish) step in our workflow/process is sharing the results of
+analysis with wider audience. Krumm et al. (2018) have outline the
+following 3-step process for communicating with education stakeholders
+what you have learned through analysis:
+
+1.  **Select**. Communicating what one has learned involves selecting
+    among those analyses that are most important and most useful to an
+    intended audience, as well as selecting a form for displaying that
+    information, such as a graph or table in static or interactive form,
+    i.e. a "data product."
+2.  **Polish**. After creating initial versions of data products,
+    research teams often spend time refining or polishing them, by
+    adding or editing titles, labels, and notations and by working with
+    colors and shapes to highlight key points.
+3.  **Narrate**. Writing a narrative to accompany the data products
+    involves, at a minimum, pairing a data product with its related
+    research question, describing how best to interpret the data
+    product, and explaining the ways in which the data product helps
+    answer the research question.
+
+In this particular walkthrough, our target audience is developers of
+online professional learning opportunities who are looking to receive
+feedback on what's working well and potential areas for improvement.
+This lets us assume a good deal of prior knowledge on their end about
+the context of the evaluation, a high level of familiarly with the
+online professional development resources being assessed, and fairly
+literate at reading and interpreting data and charts. This also lets us
+simplify our data products and narrative and reduce the level of detail
+needed to communicate useful information.
+
+For summative evaluation, typically at the end of a school year or grant
+period when the emphasis is on assessing program outcomes and impact,
+our audience would extend to those less familiar with the program but
+with a vested interest in program's success, such as the NC State Board
+of Education or those directly impacted by the program including NC
+educators is general. In that case, our data product would need to
+include much more narrative to provide context and greater detail in
+charts and graphs in order to help interpret the data presented.
+
+### 5a. Select
+
+#### **Analyses**
+
+For analyses to present, I'm going to focus primarily on:
+
+1.  **Word Counts**. One of the first things I'll share with my audience
+    is my analysis of word counts since these are very easy to interpret
+    will provide online PD developers with some instant insight.
+2.  **Word Search**. I also think it's important to include some actual
+    participant responses for select key words in order to provide
+    additional information about how those words are being used on
+    context. I may handpick some select quotes or present a random
+    selection of quotes.
+3.  **TF-IDF**. Finally, as a way to potentially help them weed through
+    words unique to specific resources, as well as potentially identify
+    some areas for potential follow-up and to dig deeper, I'll discuss
+
+I've decided to exclude analyses of just term frequency because I feel
+like simply counts are easier to quickly interpret while tf-idf provides
+more nuance. I also want to be careful not to overwhelm my audience.
+
+#### **Data Products**
+
+In terms of "data products" and form, and because this is a simple
+demonstration for sharing analyses and our first experience in this
+course with independently analysis, I'll prepare my data product as a
+basic slide show that includes the following charts:
+
+1.  **Word Cloud**. This is really as much decorative as it is a means
+    to communicate key findings. I'll probably include this on my title
+    slide as a way to immediately engage my audience and provide a
+    preview of findings I'll share. It's also a way to include common
+    words that may not make the cut in my bar chart.
+2.  **Bar Chart**. I'll definitely share with them the bar chart I
+    created earlier as a means to focus on the most common words used by
+    teachers across all resources. Also, this is a little less busy than
+    a word cloud and allows them to quickly see the top words in order.
+3.  **Quotes**. As noted above, I also feel it's important to provide
+    some participants responses that help explain how the common words
+    are being used in context.
+4.  **Small Multiples**. Although at this point a little skeptical about
+    how meaningful the tf-idf analysis was due to issues such as
+    spelling as well as the limited number of responses for many
+    resources, I think the small multiples chart will help to spark
+    discussion among PD developers about specific aspects of each
+    resource type that teachers' value.
+
+#### Sharing Format
+
+For Unit 1 we'll be using [R Markdown](https://rmarkdown.rstudio.com) to
+create a slide deck or short report that documents our independent
+analysis. R Markdown files can also be used to create a [wide range of
+outputs and formats](https://rmarkdown.rstudio.com/gallery.html),
+including polished PDF or Word documents, websites, web apps, journal
+articles, online books, interactive tutorials and more.
+
+An additional advantage of R Markdown compared to the alternative of
+copying and pasting tables and charts created from an R script to Word
+or PowerPoint is that you can embed your R code directly in your R
+Markdown file making it easy to updated your charts as needed and share
+your R Markdown file with others so they can inspect your code and
+reproduce your analysis, i.e. [reproducible
+research](https://vickysteeves.gitlab.io/repro-papers/r-markdown-in-reproducible-research.html).
+
+I'll also be providing an R Markdown template for your Unit 1
+Independent Analysis assignment and you can choose to create a
+presentation to share and walk us through at one of our optional
+meetings during Week 5 or create a report that includes information and
+details you would have shared with us in person. If you'd like to extend
+your knowledge and skills beyond what we'll cover in Unit 1, I recommend
+taking a look at [R Markdown: The Definitive
+Guide](https://bookdown.org/yihui/rmarkdown/).
+
+### 5b. Polish
+
+#### Word Cloud
+
+To make the word cloud a little less busy and a little more useful, I
+removed the multitude of colors from the default setting, and using some
+modified code form the `?wordclouds2` help file, I've included an
+argument in the `wordclouds2( )` function to use the color black for
+words that occur more than 1000 times, and gray for the rest.
+
+```{r, eval=F}
+library(wordcloud2)
+
+wordcloud2(opd_counts,
+           color = ifelse(opd_counts[, 2] > 1000, 'black', 'gray'))
+```
+
+![](img/cloud-clean.png){width="70%"}
+
+#### Bar Chart
+
+For my bar chart, I did some minor clean up, including editing the
+x-axis title, removing the redundant y axis by setting it to `NULL`, and
+adding a title. I also used the built-in `theme_minimal( )` function
+layer to simplify the look. If this were something for a more formal
+report, I'd probably finesse it even more, but it gets the point across.
+
+```{r}
+
+opd_counts %>%
+  filter(n > 500) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(n, word)) +
+  geom_col() + 
+  labs(x = "Word Counts", y = NULL, title = "20 Most Frequently Used Words to Describe the Value of Online Resources") + 
+  theme_minimal()
+
+```
+
+Finally, two related issues that I want to clean up a little with
+respect to tf-idf before sharing with an outside audience are the
+appearance of stop words and too few responses for the Calendar online
+learning resources.
+
+First, I'll reuse my `opd_clean` data frame which had my stop words
+removed to create my new `opd_tf_idf` data frame.
+
+```{r}
+
+opd_resource_counts <- opd_clean %>%
+  count(Resource, word)
+
+total_words <- opd_resource_counts %>%
+  group_by(Resource) %>%
+  summarize(total = sum(n))
+
+opd_words <- left_join(opd_resource_counts, total_words)
+
+opd_tf_idf <- opd_words %>%
+  bind_tf_idf(word, Resource, n)
+```
+
+Then I'll use the `filter()` function to remove any response pertaining
+to Calendar and add some labels using the `labs()` function. Again, if
+this were a chart destined for a more formal report, I'd also clean up
+the Resource names to make them more readable and fit properly on each
+bar plot.
+
+Finally, with the help of [Soraya
+Campbell](https://twitter.com/sorayaworldwide), I've fixed the pesky
+issue with the charts not ordering by tf-idf value properly by changing
+`Resource` from a character to a factor and using the `reorder_within`
+function.
+
+```{r}
+opd_tf_idf %>%
+  filter(Resource != "Calendar") %>%
+  group_by(Resource) %>%
+  slice_max(tf_idf, n = 5) %>%
+  ungroup() %>%
+  mutate(Resource=as.factor(Resource),
+         word=reorder_within(word, tf_idf, Resource)) %>%
+  ggplot(aes(word, tf_idf, fill = Resource)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~Resource, ncol = 3, scales = "free") +
+  coord_flip() +
+  scale_x_reordered() +
+  labs(title = "Words Unique to Each Online Learning Resurcecs", x = "tf-idf value", y = NULL)
+
+```
+
+### 5c. Narrate
+
+With our "data products" cleanup complete, we'll start pulling together
+a
+quick presentation to share with our education partners. We've already
+seen
+what a more formal report looks like in the PREPARE section of this
+walkthrough. For your Independent Analysis assignment for Unit 1, we'll
+be
+creating either a simple report or slide deck to share out some key
+findings
+from our analysis.
+
+Regardless of whether you plan to talk us through your analysis and
+findings with a presentation or walk us through with a brief written
+report, your assignment should address the following questions:
+
+1.  **Purpose**. What question or questions are guiding your analysis?
+    What did you hope to learn by answering these questions and why
+    should your audience care about your findings?
+2.  **Methods**. What data did you selected for analysis? What steps did
+    you take took to prepare your data for analysis and what techniques
+    you used to analyze your data? These should be fairly explicit with
+    your embedded code.
+3.  **Findings**. What did you ultimately find? How do your "data
+    products" help to illustrate these findings? What conclusions can
+    you draw from your analysis?
+4.  **Discussion**. What were some of the strengths and weaknesses of
+    your analysis? How might your audience use this information? How
+    might you revisit or improve upon this analysis in the future?
+
+#### Examples and Templates
+
+You can view my example presentation here: COMING SOON!
+
+I've also included an example of a brief written report here: COMING
+SOON!
+
+Finally, you can access the R Markdown Template here: COMING SOON!
