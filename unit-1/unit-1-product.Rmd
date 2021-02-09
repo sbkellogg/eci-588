@@ -3,8 +3,8 @@ title: "What Teachers Value About Online PD"
 author: "Shaun Kellogg"
 date: "February 9, 2021"
 output:
-  beamer_presentation: default
   ioslides_presentation: default
+  beamer_presentation: default
 subtitle: A Text Analysis of Open-Ended Survey Reponses
 ---
 
@@ -170,7 +170,7 @@ opd_tf_idf %>%
 
 1. Teachers found the **information** shared beneficial, such as new terminology, the common core standards, and types of data. 
 2. Teachers appreciated the **resources and videos** provided including lesson plans and printable materials.
-3. A broad theme to emerge was the **convenience** of online professional development with respect to time, pace, and format. 
+3. Use of words like time, pace, and format suggests teachers valued the **convenience** of online professional development. 
 
 
 ## Discussion
