@@ -94,7 +94,7 @@ select(opd_teacher, text) %>%
 
 "This has already been implemented; I do not need to know this information at this point."
 
-## Videos and Resource Provided
+## Videos and Resources Provided
 
 ```{r, eval=F}
 
