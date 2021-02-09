@@ -1243,7 +1243,10 @@ wordcloud2(opd_counts,
 #### Bar Chart
 
 For my bar chart, I did some minor clean up, including editing the
-x-axis title, removing the redundant y axis by setting it to `NULL`, and adding a title. I also used the built-in `theme_minimal( )` function layer to simplify the look. If this were something for a more formal report, I'd probably finesse it even more, but it gets the point across.
+x-axis title, removing the redundant y axis by setting it to `NULL`, and
+adding a title. I also used the built-in `theme_minimal( )` function
+layer to simplify the look. If this were something for a more formal
+report, I'd probably finesse it even more, but it gets the point across.
 
 ```{r}
 
@@ -1340,9 +1343,11 @@ report, your assignment should address the following questions:
 
 #### Examples and Templates
 
-You can view my example presentation here: COMING SOON!
+You can view my example presentation here:
+<https://sbkellogg.github.io/eci-588/unit-1/unit-1-product.html>
+
+And use my R Markdown presentation file as a template:
+<https://github.com/sbkellogg/eci-588/blob/main/unit-1/unit-1-product.Rmd>
 
 I've also included an example of a brief written report here: COMING
 SOON!
-
-Finally, you can access the R Markdown Template here: COMING SOON!
