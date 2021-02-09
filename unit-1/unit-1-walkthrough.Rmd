@@ -1243,10 +1243,7 @@ wordcloud2(opd_counts,
 #### Bar Chart
 
 For my bar chart, I did some minor clean up, including editing the
-x-axis title, removing the redundant y axis by setting it to `NULL`, and
-adding a title. I also used the built-in `theme_minimal( )` function
-layer to simplify the look. If this were something for a more formal
-report, I'd probably finesse it even more, but it gets the point across.
+x-axis title, removing the redundant y axis by setting it to `NULL`, and adding a title. I also used the built-in `theme_minimal( )` function layer to simplify the look. If this were something for a more formal report, I'd probably finesse it even more, but it gets the point across.
 
 ```{r}
 
@@ -1259,6 +1256,8 @@ opd_counts %>%
   theme_minimal()
 
 ```
+
+#### Small Multiples
 
 Finally, two related issues that I want to clean up a little with
 respect to tf-idf before sharing with an outside audience are the
@@ -1315,15 +1314,11 @@ opd_tf_idf %>%
 ### 5c. Narrate
 
 With our "data products" cleanup complete, we'll start pulling together
-a
-quick presentation to share with our education partners. We've already
-seen
-what a more formal report looks like in the PREPARE section of this
+a quick presentation to share with our education partners. We've already
+seen what a more formal report looks like in the PREPARE section of this
 walkthrough. For your Independent Analysis assignment for Unit 1, we'll
-be
-creating either a simple report or slide deck to share out some key
-findings
-from our analysis.
+be creating either a simple report or slide deck to share out some key
+findings from our analysis.
 
 Regardless of whether you plan to talk us through your analysis and
 findings with a presentation or walk us through with a brief written
