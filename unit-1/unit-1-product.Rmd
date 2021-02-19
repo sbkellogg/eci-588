@@ -1,11 +1,9 @@
 ---
 title: "What Teachers Value About Online PD"
+subtitle: A Text Analysis of Open-Ended Survey Reponses
 author: "Shaun Kellogg"
 date: "February 9, 2021"
-output:
-  ioslides_presentation: default
-  beamer_presentation: default
-subtitle: A Text Analysis of Open-Ended Survey Reponses
+output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
@@ -29,13 +27,11 @@ opd_clean <- read_csv("/Volumes/GoogleDrive/My Drive/College of Ed/Data/opd_surv
 opd_counts <- count(opd_clean, word, sort = TRUE)
 ```
 
+## Questions
 
-## Questions 
+1.  What aspects of online professional learning resources do teachers find most valuable?
 
-1. What aspects of online professional learning resources do teachers find most valuable?
-
-2. How might online learning resources differ in the value they afford teachers?
-
+2.  How might online learning resources differ in the value they afford teachers?
 
 ## Methods
 
@@ -45,10 +41,7 @@ opd_counts <- count(opd_clean, word, sort = TRUE)
 
 **Data Analysis**: Word Counts & Term Frequency-Inverse Document Frequency
 
-
 # Findings
-
-
 
 ## Words Used to Describe Benefits
 
@@ -84,6 +77,7 @@ select(opd_teacher, text) %>%
   filter(grepl('inform*', text)) %>%
   sample_n(10)
 ```
+
 "It could be completed at home in my free time. It had lots of good information that helped me understand the **terminology**."
 
 "the information about the way our **common core** was created for our system"
@@ -119,14 +113,14 @@ select(opd_teacher, text) %>%
 ```{r, eval=F}
 
 select(opd_teacher, text) %>% 
-  filter(grepl('pac*', text)) %>%
+  filter(grepl('time', text)) %>%
   sample_n(10)
 
 ```
 
 "The **ability to schedule the time to work** on the module so that it does not interfere with my commitments as an educator."
 
-"time to **talk with peers**" 
+"time to **talk with peers**"
 
 "The most valuable aspect was the time factor. This online module was my first. I did not realize I could **walk away and work on it at another time**, so this is a tremendous aspect for the online learner."
 
@@ -168,18 +162,12 @@ opd_tf_idf %>%
 
 ## Conclusions
 
-1. Teachers found the **information** shared beneficial, such as new terminology, the common core standards, and types of data. 
-2. Teachers appreciated the **resources and videos** provided including lesson plans and printable materials.
-3. Use of words like time, pace, and format suggests teachers valued the **convenience** of online professional development. 
-
+1.  Teachers found the **information** shared beneficial, such as new terminology, the common core standards, and types of data.
+2.  Teachers appreciated the **resources and videos** provided including lesson plans and printable materials.
+3.  Use of words like time, pace, and format suggests teachers valued the **convenience** of online professional development.
 
 ## Discussion
 
-- **Limitations**: While able to provide quick insight into a large number of responses, analysis raised as many questions as it answered.  
-- **Implications**: Validation of design decisions such use of videos and inclusion of practical resources.  
-- **Next Steps for Analysis**: Dig into recommendations for improvement.  
-
-
-
-
-
+-   **Limitations**: While able to provide quick insight into a large number of responses, analysis raised as many questions as it answered.\
+-   **Implications**: Validation of design decisions such use of videos and inclusion of practical resources.\
+-   **Next Steps for Analysis**: Dig into recommendations for improvement.
