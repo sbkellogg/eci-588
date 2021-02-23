@@ -53,23 +53,23 @@ get_token()
 ### search_tweets ####
 
 
-ngss_all_tweets <- search_tweets("#NGSS", n=1000)
+ngss_all_tweets <- search_tweets("#NGSSchat", n=1000)
 
 # include_rts = FALSE
 
-ngss_non_retweets <- search_tweets("#NGSS", 
+ngss_non_retweets <- search_tweets("#NGSSchat", 
                              n=1000, 
                              include_rts = FALSE)
 
 # include multiple search terms
 
-ngss_or_tweets <- search_tweets("#NGSS OR #NGSSchat OR ngss", 
+ngss_or_tweets <- search_tweets("#NGSSchat OR ngss", 
                              n=5000,
                              include_rts = FALSE)
 
 ### search_tweets2 ####
 
-ngss_tweets <- search_tweets2(c("#NGSS OR #NGSSchat OR ngss",
+ngss_tweets <- search_tweets2(c("#NGSSchat OR ngss",
                                    "\"next generation science standard\"",
                                    "\"next generation science standards\"",
                                    "\"next gen science standard\"",
@@ -144,6 +144,8 @@ my_timeline <- get_my_timeline(n = 500)
 
 ## Tidy Tweets ####
 
+
+
 ngss_text <-
   ngss_tweets %>%
   filter(lang == "en") %>% #filter for English tweets
@@ -160,7 +162,7 @@ ccss_text <-
   select(standards, screen_name, status_id, text)
 
 
-## Combine Data Sets #### 
+### Combine Data Sets #### 
 
 tweets <- bind_rows(ngss_text, ccss_text)
 
