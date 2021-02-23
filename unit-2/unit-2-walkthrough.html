@@ -480,16 +480,16 @@ fi_tweets &lt;- fi %&gt;%
 <pre><code>## # A tibble: 10 x 2
 ##    screen_name     text                                                         
 ##    &lt;chr&gt;           &lt;chr&gt;                                                        
-##  1 mjsamberg       &quot;@EbWatchesTrek Also this is why First Flight was one of my …
-##  2 mjsamberg       &quot;@greggarner87 https://t.co/PAirJgODqD&quot;                      
-##  3 tarheel93       &quot;Join @FridayInstitute and @NCDPI TODAY in a free webinar.  …
-##  4 drcallie_tweets &quot;Love it! 😍💁🏾‍♀️ https://t.co/JuEmE9Pb1u&quot;                      
-##  5 AlexDreier      &quot;Why does Josh Hawley have to look like a great guy like @gr…
-##  6 drcallie_tweets &quot;Looking forward to this opportunity! 💻 Registration availab…
-##  7 AlexDreier      &quot;@greggarner87 Lol. This one made me do a double-take. https…
-##  8 mjsamberg       &quot;@soundslikepuget https://t.co/M0n2D3URUp&quot;                   
-##  9 drcallie_tweets &quot;@AlexDreier Thank you so much, Alex! 😊 https://t.co/AFx6wKb…
-## 10 drcallie_tweets &quot;@maryannwolfed @FridayInstitute Thank you so much Mary Ann!…</code></pre>
+##  1 AlexDreier      This is leadership and how you instill trust. I want to work…
+##  2 drcallie_tweets @jlvanden @mjsamberg It&#39;s pizza night for us. #ElectionDayCa…
+##  3 haspires        @CTruittNCDPI @ncpublicschools Thank you for your leadership!
+##  4 sbkellogg       @mjsamberg Then jeans regularly, regular pants rarely. I thi…
+##  5 AlexDreier      Please share this far and wide! We&#39;re looking for an amazing…
+##  6 drcallie_tweets Whew! This thread #AllTheFeels I reflect often. It has defin…
+##  7 AlexDreier      “College and Career Ready” https://t.co/QffqPFGTDD           
+##  8 drcallie_tweets @sbkellogg Thanks so much, Shaun! https://t.co/gTEk63ay84    
+##  9 AlexDreier      @PeterHamby There would be no faster route to vast riches th…
+## 10 drcallie_tweets Love it! 😍💁🏾‍♀️ https://t.co/JuEmE9Pb1u</code></pre>
 <p>We’ve only scratched the surface of the number of functions available in the <code>rtweets</code> package for searching Twitter. Use the following function to</p>
 <pre class="r"><code>vignette(&quot;intro&quot;, package=&quot;rtweet&quot;)</code></pre>
 <div id="comprehension-check-3" class="section level5">
@@ -574,29 +574,102 @@ ccss_tweets &lt;- read_xlsx(&quot;data/csss_tweets.xlsx&quot;)</code></pre>
 <p>And let’s take a quick look at both the <code>head()</code> and the <code>tail()</code> of this new <code>tweets</code> data frame to make sure it contains both “ngss” and “ccss” standards:</p>
 <pre class="r"><code>head(tweets)</code></pre>
 <pre><code>## # A tibble: 6 x 4
-##   standards screen_name created_at          text                                
-##   &lt;chr&gt;     &lt;chr&gt;       &lt;dttm&gt;              &lt;chr&gt;                               
-## 1 ngss      KelliBuxton 2021-02-23 01:30:48 #Collaborating with #Kindergarten #…
-## 2 ngss      KelliBuxton 2021-02-16 04:30:00 #Inquiry in our professional practi…
-## 3 ngss      hhereau     2021-02-23 00:51:17 Wonderful to listen to Deborah Peek…
-## 4 ngss      SRVUSD_NGSS 2021-02-23 00:32:10 Amazing panel of educators on this …
-## 5 ngss      SRVUSD_NGSS 2021-02-20 17:47:41 @sraser88 @NCWITAIC Congratulations…
-## 6 ngss      SRVUSD_NGSS 2021-02-22 15:14:44 So many great suggestions from Edu-…</code></pre>
-<pre class="r"><code>tail(tweets)</code></pre>
-<pre><code>## # A tibble: 6 x 4
 ##   standards screen_name   created_at          text                              
 ##   &lt;chr&gt;     &lt;chr&gt;         &lt;dttm&gt;              &lt;chr&gt;                             
-## 1 ccss      IcelandVanes… 2021-02-15 00:13:59 @Zaphods50 @RayvenMoon @notcapnam…
-## 2 ccss      jesusga46680… 2021-02-14 23:54:38 @mnbookman @catturd2 Meh that’s t…
-## 3 ccss      MrsHLevine    2021-02-14 23:41:50 Spend today researching the mess …
-## 4 ccss      AngelEyez2469 2021-02-14 23:40:29 @WatchTheBreaks When common core …
-## 5 ccss      BJCollins131  2021-02-14 23:33:22 They’re either using common core …
-## 6 ccss      gangstagelfl… 2021-02-14 23:17:30 I love my coworkers so much!!! Wo…</code></pre>
+## 1 ngss      MsMagaryPhys… 2021-02-23 02:56:40 &quot;My math ed PhD friend just sent …
+## 2 ngss      segscience    2021-02-23 02:19:00 &quot;https://t.co/V3aFanvKSN\n\nOne i…
+## 3 ngss      sbottasulliv… 2021-02-15 15:22:47 &quot;@NGSS_tweeps @ngssSfocus Thanks …
+## 4 ngss      sbottasulliv… 2021-02-19 01:43:05 &quot;@NewhouseBiology @NGSS_tweeps @N…
+## 5 ngss      KelliBuxton   2021-02-23 01:30:48 &quot;#Collaborating with #Kindergarte…
+## 6 ngss      KelliBuxton   2021-02-16 04:30:00 &quot;#Inquiry in our professional pra…</code></pre>
+<pre class="r"><code>tail(tweets)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   standards screen_name  created_at          text                               
+##   &lt;chr&gt;     &lt;chr&gt;        &lt;dttm&gt;              &lt;chr&gt;                              
+## 1 ccss      KMcConville… 2021-02-15 12:26:14 &quot;@ian_mckelvey Isn&#39;t that like $9 …
+## 2 ccss      AuthorLabin… 2021-02-15 12:01:20 &quot;I do have some good news though…\…
+## 3 ccss      Kristina1776 2021-02-15 11:27:24 &quot;@Breaking911 Whoever came up with…
+## 4 ccss      Col_Schaefer 2021-02-15 10:45:22 &quot;@FOX59 If common core serves us c…
+## 5 ccss      Drew_Tality  2021-02-15 10:41:31 &quot;@TimesUp3_2_1 Dont leave out mask…
+## 6 ccss      trav1856     2021-02-15 10:21:39 &quot;...and this is why Common Core is…</code></pre>
+</div>
+<div id="tokenize-text" class="section level4">
+<h4>Tokenize Text</h4>
+<p>We have a couple remaining steps to tidy our text that hopefully should feel familiar by this point. If you recall from <a href="https://www.tidytextmining.com/tidytext.html">Chapter 1 of Text Mining With R</a>, Silge &amp; Robinson describe <strong>tokens</strong> as:</p>
+<blockquote>
+<p>A meaningful unit of text, such as a word, that we are interested in using for analysis, and tokenization is the process of splitting text into tokens. This one-token-per-row structure is in contrast to the ways text is often stored in current analyses, perhaps as strings or in a document-term matrix.</p>
+</blockquote>
+<p>First, let’s tokenize our tweets by using the <code>unnest_tokens()</code> function to split each tweet into a single row to make it easier to analyze:</p>
+<pre class="r"><code>tweet_tokens &lt;- 
+  tweets %&gt;%
+  unnest_tokens(output = word, 
+                input = text, 
+                token = &quot;tweets&quot;)</code></pre>
+<pre><code>## Using `to_lower = TRUE` with `token = &#39;tweets&#39;` may not preserve URLs.</code></pre>
+<p>Notice that we’ve included an additional argument in the call to <code>unnest_tokens()</code>. Specifically, we used the specialized <code>“tweets”</code> tokenizer in the <code>tokens =</code> argument that is very useful for dealing with Twitter text or other text from online forums in that it retains hashtags and mentions of usernames with the @ symbol.</p>
+</div>
+<div id="remove-stop-words" class="section level4">
+<h4>Remove Stop Words</h4>
+<p>Now let’s remove stop words like “the” and “a” that don’t help us learn much about what people are tweeting about the state standards.</p>
+<pre class="r"><code>tidy_tweets &lt;-
+  tweet_tokens %&gt;%
+  anti_join(stop_words, by = &quot;word&quot;)</code></pre>
+<p>Notice that we’ve specified the <code>by =</code> argument to look for matching words in the <code>word</code> column for both data sets and remove any rows from the <code>tweet_tokens</code> dataset that match the <code>stop_words</code> dataset. Remember when we first tokenized our dataset I conveniently chose <code>output = word</code> as the column name because it matches the column name <code>word</code> in the <code>stop_words</code> dataset contained in the <code>tidytext</code> package. This makes our call to <code>anti_join()</code>simpler because <code>anti_join()</code> knows to look for the column named <code>word</code> in each dataset. However this wasn’t really necessary since <code>word</code> is the only matching column name in both datasets and it would have matched those columns by default.</p>
+</div>
+<div id="custom-stop-words" class="section level4">
+<h4>Custom Stop Words</h4>
+<p>Before wrapping up, let’s take a quick count of the most common words in <code>tidy_tweets</code> data frame:</p>
+<pre class="r"><code>count(tidy_tweets, word, sort = T)</code></pre>
+<pre><code>## # A tibble: 8,051 x 2
+##    word            n
+##    &lt;chr&gt;       &lt;int&gt;
+##  1 core         1089
+##  2 common       1086
+##  3 math          440
+##  4 students      158
+##  5 #ngss         141
+##  6 science       131
+##  7 amp           129
+##  8 education     120
+##  9 standards     116
+## 10 @ngsstweeps   111
+## # … with 8,041 more rows</code></pre>
+<p>Notice that the nonsense word “amp” is in our top tens words. If we use the <code>filter()</code> function and `grep() query from Unit 1 on our <code>tweets</code> data frame, we can see that “amp” seems to be some sort of html residue that we might want to get rid of.</p>
+<pre class="r"><code>filter(tweets, grepl(&#39;amp&#39;, text))</code></pre>
+<pre><code>## # A tibble: 129 x 4
+##    standards screen_name   created_at          text                             
+##    &lt;chr&gt;     &lt;chr&gt;         &lt;dttm&gt;              &lt;chr&gt;                            
+##  1 ngss      MsMagaryPhys… 2021-02-23 02:56:40 &quot;My math ed PhD friend just sent…
+##  2 ngss      tjscience     2021-02-17 00:49:48 &quot;We’d (@Dora_Kastel) like to inv…
+##  3 ngss      tjscience     2021-02-22 15:43:35 &quot;Interesting that while adults i…
+##  4 ngss      TroyDSadler   2021-02-22 14:29:46 &quot;Great video linking climate cha…
+##  5 ngss      nextgenscien… 2021-02-17 22:56:33 &quot;We already have a unit on this …
+##  6 ngss      Jas21500947   2021-02-22 12:47:27 &quot;MYY!!!! BladYY!!!! ATTN!!!! CCC…
+##  7 ngss      DigitalPromi… 2021-02-18 19:14:03 &quot;Calling all BIPOC STEM designer…
+##  8 ngss      CTSKeeley     2021-02-21 21:50:04 &quot;Today I was thinking about the …
+##  9 ngss      CTSKeeley     2021-02-16 17:48:51 &quot;Tonight at Interface Conf I wil…
+## 10 ngss      CTSKeeley     2021-02-17 23:26:31 &quot;Last night was a great night on…
+## # … with 119 more rows</code></pre>
+<p>Let’s rewrite our stop word code to add a custom stop word to filter out rows with “amp” in them:</p>
+<pre class="r"><code>tidy_tweets &lt;-
+  tweet_tokens %&gt;%
+  anti_join(stop_words, by = &quot;word&quot;) %&gt;%
+  filter(!word == &quot;amp&quot;)</code></pre>
+<p>Note that we could extend this filter to weed out any additional words that don’t carry much meaning but skew our data by being so prominent.</p>
+<div id="comprehension-check-5" class="section level5">
+<h5>✅ Comprehension Check</h5>
+<p>We’ve created some unnecessarily lengthy code to demonstrate some of the steps in the tidying process. Rewrite the tokenization and removal of stop words processes into a more compact series of commands and save your data frame as <code>tidy_tweets</code>.</p>
+</div>
 </div>
 </div>
 <div id="c.-get-sentiments" class="section level3">
 <h3>2c. Get Sentiments</h3>
-<p>Now that we’ve tidFor this part of our workflow we focus on the following functions from the <a href="https://cran.r-project.org/web/packages/tidytext/"><code>tidytext</code></a> and <code>dplyr</code> packages respectively:</p>
+<p>Now that we have our tweets nice and tidy, we’re ready almost ready to begin exploring public sentiment (at least for the past week) around the CCSS and NGSS standards.</p>
+<p>Recall from our readings that sentiment analysis tries to evaluate words for their emotional association. Silge &amp; Robinson point out that, “one way to analyze the sentiment of a text is to consider the text as a combination of its individual words and the sentiment content of the whole text as the sum of the sentiment content of the individual words.” As our reading from last week illustrated, this isn’t the only way to approach sentiment analysis, but it is an often-used approach.</p>
+<p>In the previous section, we used <code>anti_join()</code> to remove stop words in our dataset. For sentiment analysis, we’re going use the <code>inner_join()</code> function to do something similar. However, instead of removing rows that contain words matching those in our stop words dictionary, <code>inner_join()</code> allows us to keep only the rows with words that match words in our sentiment lexicons, or dictionaries, along with the sentiment value of that is</p>
+<p>here to reduce our <code>tokens</code> dataset to only words that have a positive association. We’ll use a dataset called the NRC Word-Emotion Association Lexicon to help us identify words with a positive association. This dataset was published in a work called Crowdsourcing a Word-Emotion Association Lexicon (Mohammad &amp; Turney, <a href="https://datascienceineducation.com/references.html#ref-mohammad2013">2013</a>)</p>
+<p>We need to install a package called {textdata} to make sure we have the NRC Word-Emotion Association Lexicon dataset available to us. Note that you only need to have this package installed. You do not need to load it with the <code>library(textdata)</code> command.</p>
+<p>Now that we’ve tidied our text, For this part of our workflow we focus on the following functions from the <a href="https://cran.r-project.org/web/packages/tidytext/"><code>tidytext</code></a> and <code>dplyr</code> packages respectively:</p>
 <ul>
 <li><code>unnest_tokens()</code> splits a column into tokens</li>
 <li><code>anti_join()</code> returns all rows from x without a match in y.</li>

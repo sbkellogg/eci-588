@@ -498,11 +498,76 @@ tail(tweets)
 
 #### Tokenize Text
 
-We have one last step to tidy our text that hopefully should feel familiar familiar by this point.
+We have a couple remaining steps to tidy our text that hopefully should feel familiar by this point. If you recall from [Chapter 1 of Text Mining With R](https://www.tidytextmining.com/tidytext.html), Silge & Robinson describe **tokens** as:
+
+> A meaningful unit of text, such as a word, that we are interested in using for analysis, and tokenization is the process of splitting text into tokens. This one-token-per-row structure is in contrast to the ways text is often stored in current analyses, perhaps as strings or in a document-term matrix.
+
+First, let's tokenize our tweets by using the `unnest_tokens()` function to split each tweet into a single row to make it easier to analyze:
+
+```{r}
+tweet_tokens <- 
+  tweets %>%
+  unnest_tokens(output = word, 
+                input = text, 
+                token = "tweets")
+```
+
+Notice that we've included an additional argument in the call to `unnest_tokens()`. Specifically, we used the specialized `“tweets”` tokenizer in the `tokens =` argument that is very useful for dealing with Twitter text or other text from online forums in that it retains hashtags and mentions of usernames with the @ symbol.
+
+#### Remove Stop Words
+
+Now let's remove stop words like "the" and "a" that don't help us learn much about what people are tweeting about the state standards.
+
+```{r}
+tidy_tweets <-
+  tweet_tokens %>%
+  anti_join(stop_words, by = "word")
+```
+
+Notice that we've specified the `by =` argument to look for matching words in the `word` column for both data sets and remove any rows from the `tweet_tokens` dataset that match the `stop_words` dataset. Remember when we first tokenized our dataset I conveniently chose `output = word` as the column name because it matches the column name `word` in the `stop_words` dataset contained in the `tidytext` package. This makes our call to `anti_join()`simpler because `anti_join()` knows to look for the column named `word` in each dataset. However this wasn't really necessary since `word` is the only matching column name in both datasets and it would have matched those columns by default.
+
+#### Custom Stop Words
+
+Before wrapping up, let's take a quick count of the most common words in `tidy_tweets` data frame:
+
+```{r}
+count(tidy_tweets, word, sort = T)
+```
+
+Notice that the nonsense word "amp" is in our top tens words. If we use the `filter()` function and \`grep() query from Unit 1 on our `tweets` data frame, we can see that "amp" seems to be some sort of html residue that we might want to get rid of.
+
+```{r}
+filter(tweets, grepl('amp', text))
+```
+
+Let's rewrite our stop word code to add a custom stop word to filter out rows with "amp" in them:
+
+```{r}
+tidy_tweets <-
+  tweet_tokens %>%
+  anti_join(stop_words, by = "word") %>%
+  filter(!word == "amp")
+```
+
+Note that we could extend this filter to weed out any additional words that don't carry much meaning but skew our data by being so prominent.
+
+##### ✅ Comprehension Check
+
+We've created some unnecessarily lengthy code to demonstrate some of the steps in the tidying process. Rewrite the tokenization and removal of stop words processes into a more compact series of commands and save your data frame as `tidy_tweets`.
 
 ### 2c. Get Sentiments
 
-Now that we've tidFor this part of our workflow we focus on the following functions from the [`tidytext`](https://cran.r-project.org/web/packages/tidytext/) and `dplyr` packages respectively:
+Now that we have our tweets nice and tidy, we're ready almost ready to begin exploring public sentiment (at least for the past week) around the CCSS and NGSS standards.
+
+Recall from our readings that sentiment analysis tries to evaluate words for their emotional association. Silge & Robinson point out that, "one way to analyze the sentiment of a text is to consider the text as a combination of its individual words and the sentiment content of the whole text as the sum of the sentiment content of the individual words." As our reading from last week illustrated, this isn't the only way to approach sentiment analysis, but it is an often-used approach.
+
+In the previous section, we used `anti_join()` to remove stop words in our dataset. For sentiment analysis, we're going use the `inner_join()` function to do something similar. However, instead of removing rows that contain words matching those in our stop words dictionary, `inner_join()` allows us to keep only the rows with words that match words in our sentiment lexicons, or dictionaries, along with the sentiment value of that is
+
+here to reduce our `tokens` dataset to only words that have a positive association. We'll use a dataset called the NRC Word-Emotion Association Lexicon to help us identify words with a positive association. This dataset was published in a work called Crowdsourcing a Word-Emotion Association Lexicon (Mohammad & Turney, [2013](https://datascienceineducation.com/references.html#ref-mohammad2013))
+
+We need to install a package called {textdata} to make sure we have the NRC Word-Emotion Association Lexicon dataset available to us. Note that you only need to have this package installed. You do not need to load it with the `library(textdata)` command.
+
+Now that we've tidied our text, For this part of our workflow we focus on the following functions from the [`tidytext`](https://cran.r-project.org/web/packages/tidytext/) and `dplyr` packages respectively:
 
 -   `unnest_tokens()` splits a column into tokens
 -   `anti_join()` returns all rows from x without a match in y.
