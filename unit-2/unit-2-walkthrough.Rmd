@@ -18,7 +18,11 @@ This week, our walkthough is guided by my colleague Josh Rosenberg's recent arti
 
 ### Walkthrough Focus
 
-For Unit 2, our focus will be on using the Twitter API to import data on topics or tweets of interest and using sentiment lexicons to help gauge public opinion about those topics or tweets. Specifically, our Unit 2 Walkthrough will cover the following workflow topics:
+For Unit 2, our focus will be on using the Twitter API to import data on topics or tweets of interest and using sentiment lexicons to help gauge public opinion about those topics or tweets. Silge & Robinson nicely illustrate the tools of text mining to approach the emotional content of text programmatically, in the following diagram:  
+
+[![Figure 2.1: A flowchart of a typical text analysis that uses tidytext for sentiment analysis.](img/sentiment-flow.png "Figure 2.1: A flowchart of a typical text analysis that uses tidytext for sentiment analysis. This chapter shows how to implement sentiment analysis using tidy data principles."){width="90%"}](https://www.tidytextmining.com/sentiment.html#sentiment)
+
+For Unit 2, our walkthrough will cover the following topics:
 
 1.  **Prepare**: Prior to analysis, it's critical to understand the context and data sources you're working with so you can formulate useful and answerable questions. We'll take a quick look at Dr. Rosenberg's study as well as data available through Twitter's API.
 2.  **Wrangle**: In section 2 we revisit tidying and tokenizing text from Unit 1, and and learn some new functions for appending sentiment scores to our tweets using the AFFIN, bing, and nrc sentiment lexicons.
@@ -96,6 +100,7 @@ library(rtweet)
 library(writexl)
 library(readxl)
 library(tidytext)
+library(textdata)
 library(ggplot2)
 library(textdata)
 library(scales)
@@ -555,21 +560,87 @@ Note that we could extend this filter to weed out any additional words that don'
 
 We've created some unnecessarily lengthy code to demonstrate some of the steps in the tidying process. Rewrite the tokenization and removal of stop words processes into a more compact series of commands and save your data frame as `tidy_tweets`.
 
-### 2c. Get Sentiments
+### 2c. Add Sentiment Values
 
-Now that we have our tweets nice and tidy, we're ready almost ready to begin exploring public sentiment (at least for the past week) around the CCSS and NGSS standards.
+Now that we have our tweets nice and tidy, we're almost ready to begin exploring public sentiment (at least for the past week due to Twitter API rate limits) around the CCSS and NGSS standards. For this part of our workflow we introduce two new functions from the [`tidytext`](https://github.com/juliasilge/tidytext) and `dplyr` packages respectively:
 
-Recall from our readings that sentiment analysis tries to evaluate words for their emotional association. Silge & Robinson point out that, "one way to analyze the sentiment of a text is to consider the text as a combination of its individual words and the sentiment content of the whole text as the sum of the sentiment content of the individual words." As our reading from last week illustrated, this isn't the only way to approach sentiment analysis, but it is an often-used approach.
+-   `get_sentiments()` returns specific sentiment lexicons with the associated measures for each word in the lexicon
+-   `inner_join()` return all rows from `x` where there are matching values in `y`, and all columns from `x` and `y`.
 
-In the previous section, we used `anti_join()` to remove stop words in our dataset. For sentiment analysis, we're going use the `inner_join()` function to do something similar. However, instead of removing rows that contain words matching those in our stop words dictionary, `inner_join()` allows us to keep only the rows with words that match words in our sentiment lexicons, or dictionaries, along with the sentiment value of that is
+For a quick overview of the different join functions with helpful visuals, visit: <https://statisticsglobe.com/r-dplyr-join-inner-left-right-full-semi-anti>
 
-here to reduce our `tokens` dataset to only words that have a positive association. We'll use a dataset called the NRC Word-Emotion Association Lexicon to help us identify words with a positive association. This dataset was published in a work called Crowdsourcing a Word-Emotion Association Lexicon (Mohammad & Turney, [2013](https://datascienceineducation.com/references.html#ref-mohammad2013))
+#### Get Sentiments
 
-We need to install a package called {textdata} to make sure we have the NRC Word-Emotion Association Lexicon dataset available to us. Note that you only need to have this package installed. You do not need to load it with the `library(textdata)` command.
+Recall from our readings that sentiment analysis tries to evaluate words for their emotional association. Silge & Robinson point out that, "one way to analyze the sentiment of a text is to consider the text as a combination of its individual words and the sentiment content of the whole text as the sum of the sentiment content of the individual words." As our readings from last week illustrated, this isn't the only way to approach sentiment analysis, but it is an easier entry point into sentiment analysis and often-used.
 
-Now that we've tidied our text, For this part of our workflow we focus on the following functions from the [`tidytext`](https://cran.r-project.org/web/packages/tidytext/) and `dplyr` packages respectively:
+The tidytext package provides access to several sentiment lexicons based on unigrams, i.e., single words. These lexicons contain many English words and the words are assigned scores for positive/negative sentiment, and also possibly emotions like joy, anger, sadness, and so forth.
 
--   `unnest_tokens()` splits a column into tokens
--   `anti_join()` returns all rows from x without a match in y.
+The three general-purpose lexicons we'll focus on are:
 
-#### Tidy Data Principles
+-   `AFINN` assigns words with a score that runs between -5 and 5, with negative scores indicating negative sentiment and positive scores indicating positive sentiment.
+
+-   `bing` categorizes words in a binary fashion into positive and negative categories.
+
+-   `nrc` categorizes words in a binary fashion ("yes"/"no") into categories of positive, negative, anger, anticipation, disgust, fear, joy, sadness, surprise, and trust.
+
+Note that if this is your first time using the AFINN and NRC lexicons, you'll be prompted to download both Respond yes to the prompt by entering "1" and the NRC and AFINN lexicons will download. You'll only have to do this the first time you use the NRC lexicon.
+
+Let's take a quick look at each of these lexicons using the `get_sentiments()` function and assign them to their respective names for later use:
+
+```{r}
+afinn <- get_sentiments("afinn")
+
+afinn
+```
+
+```{r}
+bing <- get_sentiments("bing")
+
+bing
+```
+
+```{r}
+nrc <- get_sentiments("nrc")
+
+nrc
+```
+
+##### ✅ Comprehension Check
+
+1.  How were these sentiment lexicons put together and validated? Hint: take a look at Chapter 2 from Text Mining with R.
+2.  Why should we be cautious when using and interpreting them?
+
+#### Join Sentiments
+
+We've reached the final step in our data wrangling process before we can begin exploring our data to address our questions.
+
+In the previous section, we used `anti_join()` to remove stop words in our dataset. For sentiment analysis, we're going use the `inner_join()` function to do something similar. However, instead of removing rows that contain words matching those in our stop words dictionary, `inner_join()` allows us to keep only the rows with words that match words in our sentiment lexicons, or dictionaries, along with the sentiment measure for that word from the sentiment lexicon.
+
+Let's use `inner_join()` to combine our two `tidy_tweets` and `afinn` data frames, keeping only rows with matching data in the `word` column:
+
+```{r}
+sentiment_afinn <- inner_join(tidy_tweets, afinn, by = "word")
+
+sentiment_afinn
+```
+
+Notice that each word in your `sentiment_afinn` data frame now contains a value ranging from -5 (very negative) to 5 (very positive).
+
+```{r}
+sentiment_bing <- inner_join(tidy_tweets, bing, by = "word")
+
+sentiment_bing
+```
+
+```{r, echo=F, results=F}
+sentiment_nrc <- inner_join(tidy_tweets, nrc, by = "word")
+
+sentiment_nrc
+```
+
+##### ✅ Comprehension Check
+
+1.  Create a `sentiment_nrc` data frame using the code above.
+2.  What do you notice about the change in the number of observations (i.e. words) between the `tidy_tweets` and data frames with sentiment values attached? Why did this happen?
+
+**Note:** To complete to the following section, you'll need the `sentiment_nrc` data frame.

@@ -235,8 +235,6 @@ get_sentiments("loughran")
 sentiment_afinn <- tidy_tweets %>% 
   inner_join(get_sentiments("afinn"))
 
-1
-
 sentiment_bing <- tidy_tweets %>% 
   inner_join(get_sentiments("bing"))
 
