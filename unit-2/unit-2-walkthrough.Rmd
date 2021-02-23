@@ -483,15 +483,26 @@ ccss_text <-
 
 #### Combine Data Frames
 
-Finally, before
+Finally, let's combine our `ccss_text` and `ngss_text` into a single data frame by using the `bind_rows()` function from `dplyr` to simply supplying the data frames that you want to combine as arguments:
 
 ```{r}
 tweets <- bind_rows(ngss_text, ccss_text)
 ```
 
+And let's take a quick look at both the `head()` and the `tail()` of this new `tweets` data frame to make sure it contains both "ngss" and "ccss" standards:
+
+```{r}
+head(tweets)
+tail(tweets)
+```
+
+#### Tokenize Text
+
+We have one last step to tidy our text that hopefully should feel familiar familiar by this point.
+
 ### 2c. Get Sentiments
 
-For this part of our workflow we focus on the following functions from the [`tidytext`](https://cran.r-project.org/web/packages/tidytext/) and `dplyr` packages respectively:
+Now that we've tidFor this part of our workflow we focus on the following functions from the [`tidytext`](https://cran.r-project.org/web/packages/tidytext/) and `dplyr` packages respectively:
 
 -   `unnest_tokens()` splits a column into tokens
 -   `anti_join()` returns all rows from x without a match in y.

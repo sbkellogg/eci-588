@@ -480,16 +480,16 @@ fi_tweets &lt;- fi %&gt;%
 <pre><code>## # A tibble: 10 x 2
 ##    screen_name     text                                                         
 ##    &lt;chr&gt;           &lt;chr&gt;                                                        
-##  1 AlexDreier      &quot;@mjsamberg I was just watching C-SPAN... https://t.co/7gsET…
-##  2 mjsamberg       &quot;Awww… https://t.co/myWZj2IKZK&quot;                              
-##  3 sbkellogg       &quot;We’ve got a website! Now recruiting for our @NSF funded #Le…
-##  4 tarheel93       &quot;Parents are scheduled for COVID vaccine early tomorrow morn…
-##  5 sbkellogg       &quot;I’ll have to give these a try @yanecnu https://t.co/HgW1BcE…
-##  6 AlexDreier      &quot;Good meta-analysis on the flipped classroom from @UtrechtUn…
-##  7 drcallie_tweets &quot;🗓️It&#39;s #ThankgivingWeek 🦃 which is a great reminder that th…
-##  8 haspires        &quot;Please join us Wednesday, Jan. 27 at 11:00 ET for a great d…
-##  9 AlexDreier      &quot;@dylanmatt One of my favorite stories is Noel Gallagher (th…
-## 10 haspires        &quot;Thank you to all those who taught our children today and di…</code></pre>
+##  1 mjsamberg       &quot;@EbWatchesTrek Also this is why First Flight was one of my …
+##  2 mjsamberg       &quot;@greggarner87 https://t.co/PAirJgODqD&quot;                      
+##  3 tarheel93       &quot;Join @FridayInstitute and @NCDPI TODAY in a free webinar.  …
+##  4 drcallie_tweets &quot;Love it! 😍💁🏾‍♀️ https://t.co/JuEmE9Pb1u&quot;                      
+##  5 AlexDreier      &quot;Why does Josh Hawley have to look like a great guy like @gr…
+##  6 drcallie_tweets &quot;Looking forward to this opportunity! 💻 Registration availab…
+##  7 AlexDreier      &quot;@greggarner87 Lol. This one made me do a double-take. https…
+##  8 mjsamberg       &quot;@soundslikepuget https://t.co/M0n2D3URUp&quot;                   
+##  9 drcallie_tweets &quot;@AlexDreier Thank you so much, Alex! 😊 https://t.co/AFx6wKb…
+## 10 drcallie_tweets &quot;@maryannwolfed @FridayInstitute Thank you so much Mary Ann!…</code></pre>
 <p>We’ve only scratched the surface of the number of functions available in the <code>rtweets</code> package for searching Twitter. Use the following function to</p>
 <pre class="r"><code>vignette(&quot;intro&quot;, package=&quot;rtweet&quot;)</code></pre>
 <div id="comprehension-check-3" class="section level5">
@@ -541,10 +541,7 @@ ccss_tweets &lt;- read_xlsx(&quot;data/csss_tweets.xlsx&quot;)</code></pre>
 <li><code>created_at</code> timestamp for examining changes in sentiment over time</li>
 <li><code>text</code> containing the tweet which is our primary data source of interestt</li>
 </ol>
-<pre class="r"><code>ngss_text &lt;- select(ngss_text, 
-                    screen_name, 
-                    created_at, 
-                    text)</code></pre>
+<pre class="r"><code>ngss_text &lt;- select(ngss_text,screen_name, created_at, text)</code></pre>
 </div>
 <div id="add-reorder-columns" class="section level4">
 <h4>Add &amp; Reorder Columns</h4>
@@ -564,21 +561,42 @@ ccss_tweets &lt;- read_xlsx(&quot;data/csss_tweets.xlsx&quot;)</code></pre>
   relocate(standards)</code></pre>
 <div id="comprehension-check-4" class="section level5">
 <h5>✅ Comprehension Check</h5>
-<p>To progress to the Combine Data Frame section :</p>
+<p><strong>WARNING:</strong> You will not be able to progress to the next section until you have completed the following task:</p>
 <ol style="list-style-type: decimal">
-<li>Try using the <code>select()</code> function to reorder the columns instead of <code>relocate()</code></li>
-<li>Use the code from our</li>
+<li>Create an new <code>ccss_text</code> data frame for our <code>ccss_tweets</code> Common Core tweets by modifying code above.</li>
 </ol>
 </div>
 </div>
 <div id="combine-data-frames" class="section level4">
 <h4>Combine Data Frames</h4>
+<p>Finally, let’s combine our <code>ccss_text</code> and <code>ngss_text</code> into a single data frame by using the <code>bind_rows()</code> function from <code>dplyr</code> to simply supplying the data frames that you want to combine as arguments:</p>
 <pre class="r"><code>tweets &lt;- bind_rows(ngss_text, ccss_text)</code></pre>
+<p>And let’s take a quick look at both the <code>head()</code> and the <code>tail()</code> of this new <code>tweets</code> data frame to make sure it contains both “ngss” and “ccss” standards:</p>
+<pre class="r"><code>head(tweets)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   standards screen_name created_at          text                                
+##   &lt;chr&gt;     &lt;chr&gt;       &lt;dttm&gt;              &lt;chr&gt;                               
+## 1 ngss      KelliBuxton 2021-02-23 01:30:48 #Collaborating with #Kindergarten #…
+## 2 ngss      KelliBuxton 2021-02-16 04:30:00 #Inquiry in our professional practi…
+## 3 ngss      hhereau     2021-02-23 00:51:17 Wonderful to listen to Deborah Peek…
+## 4 ngss      SRVUSD_NGSS 2021-02-23 00:32:10 Amazing panel of educators on this …
+## 5 ngss      SRVUSD_NGSS 2021-02-20 17:47:41 @sraser88 @NCWITAIC Congratulations…
+## 6 ngss      SRVUSD_NGSS 2021-02-22 15:14:44 So many great suggestions from Edu-…</code></pre>
+<pre class="r"><code>tail(tweets)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   standards screen_name   created_at          text                              
+##   &lt;chr&gt;     &lt;chr&gt;         &lt;dttm&gt;              &lt;chr&gt;                             
+## 1 ccss      IcelandVanes… 2021-02-15 00:13:59 @Zaphods50 @RayvenMoon @notcapnam…
+## 2 ccss      jesusga46680… 2021-02-14 23:54:38 @mnbookman @catturd2 Meh that’s t…
+## 3 ccss      MrsHLevine    2021-02-14 23:41:50 Spend today researching the mess …
+## 4 ccss      AngelEyez2469 2021-02-14 23:40:29 @WatchTheBreaks When common core …
+## 5 ccss      BJCollins131  2021-02-14 23:33:22 They’re either using common core …
+## 6 ccss      gangstagelfl… 2021-02-14 23:17:30 I love my coworkers so much!!! Wo…</code></pre>
 </div>
 </div>
 <div id="c.-get-sentiments" class="section level3">
 <h3>2c. Get Sentiments</h3>
-<p>For this part of our workflow we focus on the following functions from the <a href="https://cran.r-project.org/web/packages/tidytext/"><code>tidytext</code></a> and <code>dplyr</code> packages respectively:</p>
+<p>Now that we’ve tidFor this part of our workflow we focus on the following functions from the <a href="https://cran.r-project.org/web/packages/tidytext/"><code>tidytext</code></a> and <code>dplyr</code> packages respectively:</p>
 <ul>
 <li><code>unnest_tokens()</code> splits a column into tokens</li>
 <li><code>anti_join()</code> returns all rows from x without a match in y.</li>
