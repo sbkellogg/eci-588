@@ -517,7 +517,7 @@ tweet_tokens <-
                 token = "tweets")
 ```
 
-Notice that we've included an additional argument in the call to `unnest_tokens()`. Specifically, we used the specialized `“tweets”` tokenizer in the `tokens =` argument that is very useful for dealing with Twitter text or other text from online forums in that it retains hashtags and mentions of usernames with the @ symbol.
+Notice that we've included an additional argument in the call to `unnest_tokens()`. Specifically, we used the specialized `“tweets”` tokenizer in the `tokens =` argument that is very useful for dealing with Twitter text or other text from online forums in that it retains hashtags and mentions of usernames with the \@ symbol.
 
 #### Remove Stop Words
 
@@ -605,6 +605,14 @@ nrc <- get_sentiments("nrc")
 nrc
 ```
 
+And just out of curiosity, let's take a look at the `loughran` lexicon as well:
+
+```{r}
+loughran <- get_sentiments("loughran")
+
+loughran
+```
+
 ##### ✅ Comprehension Check
 
 1.  How were these sentiment lexicons put together and validated? Hint: take a look at Chapter 2 from Text Mining with R.
@@ -636,6 +644,10 @@ sentiment_bing
 sentiment_nrc <- inner_join(tidy_tweets, nrc, by = "word")
 
 sentiment_nrc
+
+sentiment_loughran <- inner_join(tidy_tweets, loughran, by = "word")
+
+sentiment_loughran
 ```
 
 ##### ✅ Comprehension Check
@@ -644,3 +656,140 @@ sentiment_nrc
 2.  What do you notice about the change in the number of observations (i.e. words) between the `tidy_tweets` and data frames with sentiment values attached? Why did this happen?
 
 **Note:** To complete to the following section, you'll need the `sentiment_nrc` data frame.
+
+## 3. EXPLORE
+
+Now that we have our tweets tidied and sentiments joined, we're ready for a little data exploration. As highlighted in Unit 1, calculating summary statistics, data visualization, and feature engineering (the process of creating new variables from a dataset) are a key part of exploratory data analysis. One goal in this phase is explore questions that drove the original analysis and develop new questions and hypotheses to test in later stages. Topics addressed in Section 3 include:
+
+a.  **Time Series**. We take a quick look at the date range of our tweets and compare number of postings by standards.
+b.  **Sentiment Summaries**. We put together some basic summaries of our sentiment values in order to compare public sentiment
+
+### 3a. Time Series
+
+Before we dig into sentiment, let's use the handy `ts_plot` function built into `rtweet` to take a very quick look at how far back our tidied `tweets` data set goes:
+
+```{r}
+ts_plot(tweets, by = "days")
+```
+
+Notice that this effectively creates a `ggplot` time series plot for us. I've included the `by =` argument which by default is set to "days". It looks like tweets go back 9 days which the rate limit set by Twitter.
+
+Try changing it to "hours" and see what happens.
+
+##### ✅ Comprehension Check
+
+1.  Use `ts_plot` with the `group_by` function to compare the number of tweets over time by Next Gen and Common Core `standards`
+2.  Which set of standards is Twitter users talking about the most?
+
+Hint: use the `?ts_plot` help function to check the examples to see how this can be done.
+
+Your line graph should look something like this:
+
+```{r, echo=F}
+tweets %>%
+  group_by(standards) %>%
+  ts_plot(by = "days")
+```
+
+### 3b. Sentiment Summaries
+
+Since our primary goals is to compare public sentiment around the NGSS and CCSS state standards, in this section we put together some basic numerical summaries using our different lexicons to see whether tweets are generally more positive or negative for each standard as well as differences between the two. To do this, we revisit the following `dplyr` functions:
+
+-   [`count()`](https://dplyr.tidyverse.org/reference/count.html?q=count) lets you quickly count the unique values of one or more variables
+
+-   [`group_by()`](https://dplyr.tidyverse.org/articles/grouping.html?q=group) takes a data frame and one or more variables to group by
+
+-   [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html) creates a numerical summary of data using arguments like [`mean()`](https://rdrr.io/r/base/mean.html) and [`median()`](https://rdrr.io/r/stats/median.html)
+
+-   [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) adds new variables and preserves existing ones
+
+And introduce one new function:
+
+-   `spread()`
+
+#### Sentiment Counts
+
+Let's start with `bing`, our simplest sentiment lexicon, and use the `count` function to count how many times in our `sentiment_bing` data frame "positive" and "negative" occur in `sentiment` column and :
+
+```{r}
+summary_bing <- count(sentiment_bing, sentiment, sort = TRUE)
+```
+
+Collectively, it looks like our combined dataset has more positive words than negative words.
+
+```{r}
+summary_bing
+```
+
+Since our main goal is to compare positive and negative sentiment between CCSS and NGSS, let's use the `group_by` function again to get `sentiment` summaries for NGSS and CCSS separately:
+
+```{r}
+summary_bing <- sentiment_bing %>% 
+  group_by(standards) %>% 
+  count(sentiment) 
+
+summary_bing
+```
+
+Looks like CCSS have far more negative words than positive, while NGSS skews much more positive. So far, pretty consistent with Rosenberg et al. findings!!!
+
+#### Compute Sentiment Value
+
+Our last step will be calculate a single sentiment "score" for our tweets that we can use for quick comparison and create a new variable indicating which lexicon we used.
+
+First, let's untidy our data a little by using the `spread` function from the `tidyr` package to transform our `sentiment` column into separate columns for `negative` and `positive` that contains the `n` counts for each:
+
+```{r}
+summary_bing <- sentiment_bing %>% 
+  group_by(standards) %>% 
+  count(sentiment, sort = TRUE) %>% 
+  spread(sentiment, n) 
+
+summary_bing
+```
+
+Finally, we'll use the `mutate` function to create two new variables: `sentiment` and `lexicon` so we have a single sentiment score and the lexicon from which it was derived:
+
+```{r}
+summary_bing <- sentiment_bing %>% 
+  group_by(standards) %>% 
+  count(sentiment, sort = TRUE) %>% 
+  spread(sentiment, n) %>%
+  mutate(sentiment = positive - negative) %>%
+  mutate(lexicon = "bing") %>%
+  relocate(lexicon)
+
+summary_bing
+```
+
+There we go, now we can see that CCSS scores negative, while NGSS is overall positive.
+
+Let's calculate a quick score for using the `afinn` lexicon now. Remember that AFINN provides a value from -5 to 5 for each:
+
+```{r}
+head(sentiment_afinn)
+```
+
+To calculate late a summary score, we will need to first group our data by `standards` again and then use the `summarise` function to create a new `sentiment` variable by adding all the positive and negative scores in the `value` column:
+
+```{r}
+summary_afinn <- sentiment_afinn %>% 
+  group_by(standards) %>% 
+  summarise(sentiment = sum(value)) %>% 
+  mutate(lexicon = "AFINN") %>%
+  relocate(lexicon)
+
+summary_afinn
+```
+
+Again, CCSS is overall negative while NGSS is overall positive!
+
+##### ✅ Comprehension Check
+
+For your final task for this walkthough, calculate a single sentiment score for NGSS and CCSS using the remaining `nrc` and `loughan` lexicons and answer the following questions. Are these findings above still consistent?
+
+Hint: The `nrc` lexicon contains "positive" and "negative" values just like `bing` and `loughan`, but also includes values like "trust" and "sadness" as shown below. You will need to use the `filter()` function to select rows that only contain "positive" and "negative."
+
+```{r}
+nrc
+```

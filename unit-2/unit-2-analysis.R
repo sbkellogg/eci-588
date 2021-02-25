@@ -151,7 +151,7 @@ ngss_text <-
   filter(lang == "en") %>% #filter for English tweets
   mutate(status_id = as.character(status_id)) %>% # Convert the ID field to the character data type 
   mutate(standards = "ngss") %>%
-  select(standards, screen_name, status_id, text)
+  select(standards, screen_name, created_at, text)
 
 
 ccss_text <-
@@ -396,9 +396,12 @@ summary_sentiment <- bind_rows(summary_afinn2,
                                summary_nrc3,
                                summary_loughran3) %>%
   arrange(method, standards) %>%
-  mutate(positive_ratio = positive/negative )
+  mutate(positive_ratio = positive/negative)
 
 ### over time ####
+
+
+
 
 
 
