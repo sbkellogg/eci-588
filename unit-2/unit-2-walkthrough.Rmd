@@ -1030,11 +1030,13 @@ Now that I have my sentiment percent summaries for each lexicon, I'm going great
 ```{r}
 sentiment_percents %>%
   ggplot(aes(x = standards, y = percent, fill=sentiment)) +
-  geom_bar(width = .6, stat = "identity") +
+  geom_bar(width = .8, stat = "identity") +
   facet_wrap(~method, ncol = 1) +
   coord_flip() +
-  labs(title = "Word Sentiment by Lexicon", 
-       x = "State Standards", y = "Percentage of Words")
+  labs(title = "Public Sentiment on Twitter", 
+       subtitle = "The Common Core & Next Gen Science Standards",
+       x = "State Standards", 
+       y = "Percentage of Words")
 ```
 
 And finished! The chart above clearly illustrates that regardless of sentiment lexicon used, the NGSS contains more positive words than the CCSS lexicon.
