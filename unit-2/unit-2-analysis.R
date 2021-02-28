@@ -391,12 +391,14 @@ summary_loughran3 <- sentiment_loughran %>%
   spread(sentiment, n) %>%
   mutate(sentiment = positive - negative)
 
-summary_sentiment <- bind_rows(summary_afinn2,
-                               summary_bing3,
+summary_sentiment <- bind_rows(summary_bing3,
                                summary_nrc3,
                                summary_loughran3) %>%
   arrange(method, standards) %>%
   mutate(positive_ratio = positive/negative)
+
+summary_sentiment
+
 
 ### over time ####
 

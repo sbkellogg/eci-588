@@ -1349,5 +1349,5 @@ You can view my example presentation here:
 And use my R Markdown presentation file as a template:
 <https://github.com/sbkellogg/eci-588/blob/main/unit-1/unit-1-product.Rmd>
 
-I've also included an example of a brief written report here: COMING
-SOON!
+You can also find an example of a brief written report here:
+<https://moodle-courses2021.wolfware.ncsu.edu/pluginfile.php/1719158/mod_forum/intro/Vandenberg%20Summary.pdf>
