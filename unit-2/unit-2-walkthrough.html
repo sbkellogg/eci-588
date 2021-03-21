@@ -205,7 +205,7 @@ pre code {
 
 <div id="introduction" class="section level2">
 <h2>0. INTRODUCTION</h2>
-<p>This week, our walkthough is guided by my colleague Josh Rosenberg’s recent article, <strong>Advancing new methods for understanding public sentiment about educational reforms: The case of Twitter and the Next Generation Science Standards.</strong> We will focus on conducting a very simplistic “replication study” by comparing the sentiment of tweets about the <a href="https://www.nextgenscience.org">Next Generation Science Standards</a> (NGSS) and <a href="http://www.corestandards.org">Common Core State Standards</a> (CCSS) in order to better understand public reaction to these two curriculum reform efforts. I highly recommend you watch the quick 3-minute overview of this work at <a href="https://stanford.app.box.com/s/i5ixkj2b8dyy8q5j9o5ww4nafznb497x" class="uri">https://stanford.app.box.com/s/i5ixkj2b8dyy8q5j9o5ww4nafznb497x</a></p>
+<p>This week, our walkthrough is guided by my colleague Josh Rosenberg’s recent article, <strong>Advancing new methods for understanding public sentiment about educational reforms: The case of Twitter and the Next Generation Science Standards.</strong> We will focus on conducting a very simplistic “replication study” by comparing the sentiment of tweets about the <a href="https://www.nextgenscience.org">Next Generation Science Standards</a> (NGSS) and <a href="http://www.corestandards.org">Common Core State Standards</a> (CCSS) in order to better understand public reaction to these two curriculum reform efforts. I highly recommend you watch the quick 3-minute overview of this work at <a href="https://stanford.app.box.com/s/i5ixkj2b8dyy8q5j9o5ww4nafznb497x" class="uri">https://stanford.app.box.com/s/i5ixkj2b8dyy8q5j9o5ww4nafznb497x</a></p>
 <div id="walkthrough-focus" class="section level3">
 <h3>Walkthrough Focus</h3>
 <p>For Unit 2, our focus will be on using the Twitter API to import data on topics or tweets of interest and using sentiment lexicons to help gauge public opinion about those topics or tweets. Silge &amp; Robinson nicely illustrate the tools of text mining to approach the emotional content of text programmatically, in the following diagram:  </p>
@@ -239,14 +239,14 @@ pre code {
 <p>While the Next Generation Science Standards (NGSS) are a long-standing and widespread standards-based educational reform effort, they have received less public attention, and no studies have explored the sentiment of the views of multiple stakeholders toward them. To establish how public sentiment about this reform might be similar to or different from past efforts, we applied a suite of data science techniques to posts about the standards on Twitter from 2010-2020 (N = 571,378) from 87,719 users. Applying data science techniques to identify teachers and to estimate tweet sentiment, we found that the public sentiment towards the NGSS is overwhelmingly positive—33 times more so than for the CCSS. Mixed effects models indicated that sentiment became more positive over time and that teachers, in particular, showed a more positive sentiment towards the NGSS. We discuss implications for educational reform efforts and the use of data science methods for understanding their implementation.</p>
 <p><strong>Data Source &amp; Analysis</strong></p>
 <p>Similar to what we’ll be learning in this walkthrough, Rosenberg et al. used publicly accessible data from Twitter collected using the Full-Archive Twitter API and the <code>rtweet</code> package in R. Specifically, the authors accessed tweets and user information from the hashtag-based #NGSSchat online community, all tweets that included any of the following phrases, with “/” indicating an additional phrase featuring the respective plural form: “ngss”, “next generation science standard/s”, “next gen science standard/s”.</p>
-<p>Unlike this walkthough, however, the authors determined Tweet sentiment using the Java version of SentiStrength to assign tweets to two 5-point scales of sentiment, one for positivity and one for negativity, because SentiStrength is a validated measure for sentiment in short informal texts (Thelwall et al., 2011). In addition, we used this tool because Wang and Fikis (2019) used it to explore the sentiment of CCSS-related posts. We’ll be using the AFINN sentiment lexicon which also assigns words in a tweet to two 5-point scales, in addition to explore some other sentiment lexicons.</p>
-<p>Note that the authors also used the <code>lme4</code> package in R to run a mixed effects model to determine if sentiment changes over time and differs between teachers and non-teacher. We will not attempt replicated that aspect of the analysis, but if you are interested in a guided walkthough of how modeling can be used to understand changes in Twitter word use, see <a href="https://www.tidytextmining.com/twitter.html#changes-in-word-use">Chapter 7 of Text Mining with R</a>.</p>
+<p>Unlike this walkthrough, however, the authors determined Tweet sentiment using the Java version of SentiStrength to assign tweets to two 5-point scales of sentiment, one for positivity and one for negativity, because SentiStrength is a validated measure for sentiment in short informal texts (Thelwall et al., 2011). In addition, we used this tool because Wang and Fikis (2019) used it to explore the sentiment of CCSS-related posts. We’ll be using the AFINN sentiment lexicon which also assigns words in a tweet to two 5-point scales, in addition to explore some other sentiment lexicons.</p>
+<p>Note that the authors also used the <code>lme4</code> package in R to run a mixed effects model to determine if sentiment changes over time and differs between teachers and non-teacher. We will not attempt replicated that aspect of the analysis, but if you are interested in a guided walkthrough of how modeling can be used to understand changes in Twitter word use, see <a href="https://www.tidytextmining.com/twitter.html#changes-in-word-use">Chapter 7 of Text Mining with R</a>.</p>
 <p><strong>Summary of Key Findings</strong></p>
 <ol style="list-style-type: decimal">
 <li>Contrasting with sentiment about CSSS, sentiment about the NGSS science education reform effort is overwhelmingly positive, with approximately 9 positive tweets for every negative tweet.</li>
 <li>Teachers were more positive than non-teachers, and sentiment became substantially more positive over the ten years of NGSS-related posts.</li>
 <li>Differences between the context of the tweets were small, but those that did not include the #NGSSchat hashtag became more positive over time than those posts that did not include the hashtag.</li>
-<li>Individuals posted more tweets during #NGSSchat chats, the sentiment of their posts was more positive, suggesting that while the context of individual tweets has a small effect (with posts not including the hashtag becoming morepositive over time), the effect upon individuals of being involved in the #NGSSchat was positive.</li>
+<li>Individuals posted more tweets during #NGSSchat chats, the sentiment of their posts was more positive, suggesting that while the context of individual tweets has a small effect (with posts not including the hashtag becoming more positive over time), the effect upon individuals of being involved in the #NGSSchat was positive.</li>
 </ol>
 </div>
 </div>
@@ -495,16 +495,16 @@ fi_tweets &lt;- fi %&gt;%
 <pre><code>## # A tibble: 10 x 2
 ##    screen_name     text                                                         
 ##    &lt;chr&gt;           &lt;chr&gt;                                                        
-##  1 mjsamberg       &quot;@prettysqueaky @DrJackson06 @ncvps No, it&#39;s a set of small …
-##  2 drcallie_tweets &quot;Looking forward to this opportunity! 💻 Registration availab…
-##  3 drcallie_tweets &quot;@HTrentEvans1 @ThomasCooperIII Awesome memory! 📸Thanks for …
-##  4 tarheel93       &quot;Join @FridayInstitute and @NCDPI NEXT WEEK for free webinar…
-##  5 drcallie_tweets &quot;Finish your dissertation in 2021! I&#39;m accepting new clients…
-##  6 drcallie_tweets &quot;@DisruptivPeace Me too! 🙃😳🙏🏾&quot;                             
-##  7 AlexDreier      &quot;This is very sad news. RIP. https://t.co/B378Y3I4rn&quot;        
-##  8 drcallie_tweets &quot;Many thanks to the three amazing districts @ECPSchools_NC @…
-##  9 drcallie_tweets &quot;@blessedjsc7 Aww! 💕💕💕&quot;                                   
-## 10 mjsamberg       &quot;Something something #eduCelebrities something something. ht…</code></pre>
+##  1 haspires        Great discussion and insight on advanced teaching roles. Man…
+##  2 mjsamberg       Some meetings can be phone calls. https://t.co/QyMAMX3xgC    
+##  3 sbkellogg       @markjotter @SenorG Good read. And this paragraph would make…
+##  4 AlexDreier      UPDATE: I mixed up the dates on NCTIES: It&#39;s going to be hel…
+##  5 AlexDreier      @DocAngMullennix @mjsamberg We took yesterday as a day to pu…
+##  6 mjsamberg       @TrekCore Forget the last half of season 7, this would have …
+##  7 drcallie_tweets @DisruptivPeace Me too! 🙃😳🙏🏾                               
+##  8 drcallie_tweets Thank you so much, Shaun! I&#39;m very glad to be a part of such…
+##  9 haspires        My heart breaks for the victims of last night&#39;s violence in …
+## 10 sbkellogg       One cheatsheet to rule them all. The Data Science workflow w…</code></pre>
 <p>We’ve only scratched the surface of the number of functions available in the <code>rtweets</code> package for searching Twitter. Use the following function to</p>
 <pre class="r"><code>vignette(&quot;intro&quot;, package=&quot;rtweet&quot;)</code></pre>
 <div id="comprehension-check-3" class="section level5">
