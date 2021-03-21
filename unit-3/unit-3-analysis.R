@@ -151,6 +151,6 @@ findingk <- searchK(out$documents,
 
 
 
-
+toLDAvis(mod = forums_stm, docs = out$documents)
 
 
