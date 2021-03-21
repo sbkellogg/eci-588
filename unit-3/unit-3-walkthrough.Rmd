@@ -11,13 +11,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 0. INTRODUCTION
 
-This week, our walkthrough is guided by my colleague Josh Rosenberg's recent article, **Advancing new methods for understanding public sentiment about educational reforms: The case of Twitter and the Next Generation Science Standards.** We will focus on conducting a very simplistic "replication study" by comparing the sentiment of tweets about the [Next Generation Science Standards](https://www.nextgenscience.org) (NGSS) and [Common Core State Standards](http://www.corestandards.org) (CCSS) in order to better understand public reaction to these two curriculum reform efforts. I highly recommend you watch the quick 3-minute overview of this work at <https://stanford.app.box.com/s/i5ixkj2b8dyy8q5j9o5ww4nafznb497x>
+The Unit 3 walkthrough extends previous research and evaluation work by myself and colleagues at the Friday Institute. Specifically, this work was aimed at understanding and improving peer interaction and discussion in the Friday Institute's Massively Open Online Courses for Educators (MOOC-Ed) and Online Professional Learning programs. To learn more about these courses and programs, visit: <https://place.fi.ncsu.edu>
 
 ### Walkthrough Focus
 
-For Unit 2, our focus will be on using the Twitter API to import data on topics or tweets of interest and using sentiment lexicons to help gauge public opinion about those topics or tweets. Silge & Robinson nicely illustrate the tools of text mining to approach the emotional content of text programmatically, in the following diagram:  
+This week will be our first introduction to the "Model" process our out data intensive workflow introduced in Unit. Our focus will be on identifying "topics of
 
-[![Figure 2.1: A flowchart of a typical text analysis that uses tidytext for sentiment analysis.](img/sentiment-flow.png "Figure 2.1: A flowchart of a typical text analysis that uses tidytext for sentiment analysis. This chapter shows how to implement sentiment analysis using tidy data principles."){width="90%"}](https://www.tidytextmining.com/sentiment.html#sentiment)
+. Silge & Robinson nicely illustrate the tools of text mining to approach the emotional content of text programmatically, in the following diagram:  
+
+[![Figure source: Silge, J., & Robinson, D. (2017). Text mining with R: A tidy approach. O'Reilly Media, Inc.](img/tm_flow.png "A flowchart of a text analysis that incorporates topic modeling. The topicmodels package takes a Document-Term Matrix as input and produces a model that can be tided by tidytext, such that it can be manipulated and visualized with dplyr and ggplot2."){width="90%"}](https://www.tidytextmining.com/topicmodeling.html)
 
 For Unit 2, our walkthrough will cover the following topics:
 
@@ -26,6 +28,3 @@ For Unit 2, our walkthrough will cover the following topics:
 3.  **Explore**: In section 3, we use simple summary statistics and basic data visualization to compare sentiment between NGSS and CCSS tweets.
 4.  **Model**: While we won't leverage modeling approaches until Unit 3, we will examine the mixed effects model used by Rosenberg et al. to analyze the sentiment of tweets
 5.  **Communicate:** Finally, in Week 7 we'll create a basic presentation, report, or other data product for sharing findings and insights from our analysis.
-
-------------------------------------------------------------------------
-

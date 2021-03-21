@@ -18,7 +18,7 @@ This week, our walkthrough is guided by my colleague Josh Rosenberg's recent art
 
 ### Walkthrough Focus
 
-For Unit 2, our focus will be on using the Twitter API to import data on topics or tweets of interest and using sentiment lexicons to help gauge public opinion about those topics or tweets. Silge & Robinson nicely illustrate the tools of text mining to approach the emotional content of text programmatically, in the following diagram:  
+For Unit 2, our focus will be on using the Twitter API to import data on topics or tweets of interest and using sentiment lexicons to help gauge public opinion about those topics or tweets. Silge & Robinson nicely illustrate the tools of text mining to approach the emotional content of text programmatically, in the following diagram:
 
 [![Figure 2.1: A flowchart of a typical text analysis that uses tidytext for sentiment analysis.](img/sentiment-flow.png "Figure 2.1: A flowchart of a typical text analysis that uses tidytext for sentiment analysis. This chapter shows how to implement sentiment analysis using tidy data principles."){width="90%"}](https://www.tidytextmining.com/sentiment.html#sentiment)
 
