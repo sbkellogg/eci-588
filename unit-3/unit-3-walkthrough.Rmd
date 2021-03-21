@@ -57,31 +57,42 @@ Massive open online course for educators (MOOC-Ed) provide opportunities for usi
 
 **Data Source & Analysis**
 
+All peer interaction, including peer discussion, take place within discussion forums of MOOC-Eds, which are hosted using the Moodle Learning Management System. To build the dataset you'll be using for this walkthrough, I wrote a query for Moodle's MySQL database, which records par-
+ticipants' user-logs of activity in the online forums. This sql query combines separate database tables containing postings and comments including participant IDs, timestamps, discussion text and other attributes or "metadata."
+
+For further description of the forums and data retrieval process, see also the following papers:
+
+Kellogg, S., & Edelmann, A. (2015). [Massively Open Online Course for Educators (MOOC‐E d) network dataset](https://bera-journals.onlinelibrary.wiley.com/doi/pdfdirect/10.1111/bjet.12312). *British journal of educational technology*, *46*(5), 977-983.
+
+Ezen-Can, A., Boyer, K. E., Kellogg, S., & Booth, S. (2015, March). [Unsupervised modeling for understanding MOOC discussion forums: a learning analytics approach](https://dl.acm.org/doi/pdf/10.1145/2723576.2723589). In *Proceedings of the fifth international conference on learning analytics and knowledge* (pp. 146-150).
+
+Kellogg, S., Booth, S., & Oliver, K. (2014). [A social network perspective on peer supported learning in MOOCs for educators.](https://www.erudit.org/en/journals/irrodl/1900-v1-n1-irrodl04945/1065545ar.pdf) *International Review of Research in Open and Distributed Learning*, *15*(5), 263-289.
+
 **Summary of Key Findings**
 
-1.  Contrasting with sentiment about CSSS, sentiment about the NGSS science education reform effort is overwhelmingly positive, with approximately 9 positive tweets for every negative tweet.
-2.  Teachers were more positive than non-teachers, and sentiment became substantially more positive over the ten years of NGSS-related posts.
-3.  Differences between the context of the tweets were small, but those that did not include the \#NGSSchat hashtag became more positive over time than those posts that did not include the hashtag.
-4.  Individuals posted more tweets during \#NGSSchat chats, the sentiment of their posts was more positive, suggesting that while the context of individual tweets has a small effect (with posts not including the hashtag becoming more positive over time), the effect upon individuals of being involved in the \#NGSSchat was positive.
+The following highlight some key findings related to the discussion forums in the papers cited above:
+
+1.  MOOCs designed specifically for K-12 teachers can provide positive self-directed
+    learning experiences and rich engagement in discussion forums that help
+    form online communities for educators.
+2.  Analysis of discussion forum data in TSDI provided a very clear picture of how enthusiastic many PLT members and leaders were to talk to others in the online community. They posed their questions and shared ideas with others about teaching statistics throughout the units, even though they were also meeting synchronously several times with their colleagues in small group PLTs.
+3.  Findings on knowledge construction demonstrated that over half of the discussions in both courses moved beyond sharing information and statements of agreement and entered a process of dissonance, negotiation and co-construction of knowledge, but seldom moved beyond this phase in which new knowledge was tested or applied. These findings echo similar research on difficulties in promoting knowledge construction in online settings.
+4.  Topic modeling provides more interpretable and cohesive models for discussion forums than other popular unsupervised modeling techniques such as k-means and k-medoids clustering algorithms.
 
 ### 1b. Guiding Questions
 
-The Rosenberg et al. study was guided by the following five research questions:
+For the paper, Participating in a MOOC and Professional Learning Team: How a Blended Approach to Professional Development Makes a Difference, we were interested in unpacking how participants who enroll in an online course for the purpose of professional development may benefit from also being in a smaller group of professionals committed to engaging in the same PD. Our focused specific research question for this paper was:
 
-1.  What is the public sentiment expressed toward the NGSS?
-2.  How does sentiment for teachers differ from non-teachers?
-3.  How do tweets posted to \#NGSSchat differ from those without the hashtag?
-4.  How does participation in \#NGSSchat relate to the public sentiment individuals express?
-5.  How does public sentiment vary over time?
+> What are the similarities and differences between how PLT members and Non-PLT online participants engage and meet course goals in a MOOC-Ed designed for educators in secondary and
+> collegiate settings?
 
-For this walkthrough, we'll use a similar approach used by the authors to guage public sentiment around the NGSS, by compare how much more positive or negative NGSS tweets are relative to CSSS tweets.
+Dr. Hollylynne Lee and the TSDI team also developed a facilitation guide designed specifically for PLT teams to help groups synthesize the ideas in the course and make plans for how to implement new strategies in their classroom in order to impact students' learning of statistics. One question
 
-Our (very) specific questions of interest for this walkthrough are:
+> What ideas or issues emerged in the discussion forums this past week?
 
-1.  What is the public sentiment expressed toward the NGSS?
-2.  How does sentiment for NGSS compare to sentiment for CCSS?
+For this walkthrough, we will further examine that question through the use of topic modeling.
 
-And just to reiterate from Unit 1, one overarching question we'll explore throughout this course, and that Silge and Robinson (2018) identify as a central question to text mining and natural language processing, is:
+And just to reiterate yet again from Unit 1, one overarching question we'll explore throughout this course, and that Silge and Robinson (2018) identify as a central question to text mining and natural language processing, is:
 
 > How do we to **quantify** what a document or collection of documents is about?
 
