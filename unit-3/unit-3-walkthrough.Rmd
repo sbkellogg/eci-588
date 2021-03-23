@@ -1,5 +1,5 @@
 ---
-title: "Unit 3 Walkthrough: Topic Modeling"
+title: "Unit 3 Walkthrough: Topic Modeling in MOOC-Eds"
 author: "Shaun Kellogg"
 date: "3/21/2021"
 output: 
