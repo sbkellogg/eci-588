@@ -2,7 +2,13 @@
 title: "Unit 3 Walkthrough: Topic Modeling"
 author: "Shaun Kellogg"
 date: "3/21/2021"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -11,109 +17,440 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 0. INTRODUCTION
 
-The Unit 3 walkthrough extends previous research and evaluation work by myself and colleagues at the Friday Institute for Educational Innovation at North Carolina State University. In addition to may other areas inquiry, our work was aimed at understanding and improving peer interaction and discussion in the Friday Institute's Massively Open Online Courses for Educators (MOOC-Ed) and Online Professional Learning programs. To learn more about these courses and programs, visit: <https://place.fi.ncsu.edu>
+The Unit 3 walkthrough extends previous research and evaluation work by
+myself and colleagues at the Friday Institute for Educational Innovation
+at North Carolina State University. In addition to may other areas
+inquiry, our work was aimed at understanding and improving peer
+interaction and discussion in the Friday Institute's Massively Open
+Online Courses for Educators (MOOC-Ed) and Online Professional Learning
+programs. To learn more about these courses and programs, visit:
+<https://place.fi.ncsu.edu>
 
 ### Walkthrough Focus
 
-Our focus this week will be on identifying "topics" by examining how words cohere into different latent themes based on patterns of co-occurrence of words within documents. With a bit of tongue-in-cheek, [Meeks and Weingart (2012)](http://journalofdigitalhumanities.org/2-1/dh-contribution-to-topic-modeling/) describe topic modeling as: 
+Our focus this week will be on identifying "topics" by examining how
+words cohere into different latent themes based on patterns of
+co-occurrence of words within documents. With a bit of
+tongue-in-cheek, [Meeks and Weingart
+(2012)](http://journalofdigitalhumanities.org/2-1/dh-contribution-to-topic-modeling/) describe
+topic modeling as: 
 
-> *"...focused on corpora and not individual texts, treating the works themselves as unceremonious 'buckets of words,' and providing seductive but obscure results in the forms of easily interpreted (and manipulated) 'topics'.... To achieve its results, it leverages occult statistical methods like 'dirichlet priors' and 'bayesian models.'"*
+> *"...focused on corpora and not individual texts, treating the works
+> themselves as unceremonious 'buckets of words,' and providing
+> seductive but obscure results in the forms of easily interpreted (and
+> manipulated) 'topics'.... To achieve its results, it leverages occult
+> statistical methods like 'dirichlet priors' and 'bayesian models.'"*
 
-That being said, [Weingart](Topic%20Modeling%20for%20Humanists%20post(opens%20in%20new%20window):) also noted that "a topic model is a "clever and exceptionally versatile little algorithm that can be customized to all sorts of applications, and a tool that many digital humanists would do well to have in their toolbox."
+That being said,
+[Weingart](Topic%20Modeling%20for%20Humanists%20post(opens%20in%20new%20window):)
+also noted that "a topic model is a "clever and exceptionally versatile
+little algorithm that can be customized to all sorts of applications,
+and a tool that many digital humanists would do well to have in their
+toolbox."
 
-With respect to the actual R workflow of applying topic models to documents and text of interests, Silge & Robinson and a new bottom row their flowchart consisting new data structures (i.e. a corpus object and document-term matrix) and and the LDA model:  
+With respect to the actual R workflow of applying topic models to
+documents and text of interests, Silge & Robinson and a new bottom row
+their flowchart consisting new data structures (i.e. a corpus object and
+document-term matrix) and and the LDA model:  
 
-[![Figure source: Silge, J., & Robinson, D. (2017). Text mining with R: A tidy approach. O'Reilly Media, Inc. Retrieved from: https://www.tidytextmining.com/topicmodeling.html](img/tm_flow.png "A flowchart of a text analysis that incorporates topic modeling. The topicmodels package takes a Document-Term Matrix as input and produces a model that can be tided by tidytext, such that it can be manipulated and visualized with dplyr and ggplot2."){width="90%"}](https://www.tidytextmining.com/topicmodeling.html)
+[![Figure source: Silge, J., & Robinson, D. (2017). Text mining with R: A tidy approach. O'Reilly Media, Inc.
+Retrieved from:
+https://www.tidytextmining.com/topicmodeling.html](img/tm_flow.png "A flowchart of a text analysis that incorporates topic modeling. The topicmodels package takes a Document-Term Matrix as input and produces a model that can be tided by tidytext, such that it can be manipulated and visualized with dplyr and ggplot2."){width="90%"}](https://www.tidytextmining.com/topicmodeling.html)
 
-This week will be also be our first introduction to the "Model" process of the data-intensive workflow described in our course text, [*Learning Analytics Goes to School*](https://catalog.lib.ncsu.edu/catalog/NCSU4862134)*.* As noted by Krumm and Means, this workflow is not always a linear process and there is often a great deal of iteration that occurs from wrangling to exploring to modeling. As illustrated below by our workflow below, this week we will explore our data post modeling in order to gain some additional insight into the topics generated by our model and cover the following concepts and skills:
+This week will be also be our first introduction to the "Model" process
+of the data-intensive workflow described in our course text, [*Learning
+Analytics Goes to
+School*](https://catalog.lib.ncsu.edu/catalog/NCSU4862134)*.* As noted
+by Krumm and Means, this workflow is not always a linear process and
+there is often a great deal of iteration that occurs from wrangling to
+exploring to modeling. As illustrated below by our workflow below, this
+week we will explore our data post modeling in order to gain some
+additional insight into the topics generated by our model and cover the
+following concepts and skills:
 
-1.  **Prepare**: Prior to analysis, we'll take a quick look at some of the related MOOC-Ed research and evaluation work to gain some context for out analysis. This should aid in the interpretation of our results and help guide some decisions as we tidy, model, and visualize our data.
-2.  **Wrangle**: In section 2 we again revisit tidying and tokenizing text using the `tidytext` package, but are also introduced to the the `stm` package. This package makes use of `tm` text mining package to preprocess text and will also be our first introduction to word stemming.
-3.  **Model**: For Unit 3, were take a look at two different approaches to topic modeling: Latent Dirichlet Allocation (LDA) and Structural Topic Modeling (STM), which is very similar to LDA but can use metadata about documents to improve the assignment of words to latent themes or "topics" in a corpus. 
-4.  **Explore**: To further explore the results of our topic model, we use two handy functions included the `stm` package. The `findThoughts` function for viewing documents assigned to a given topic and the `toLDAvis` function for exploring topic and word distributions using topic browser from the `LDAvis` package.
-5.  **Communicate:** Finally, in Week 10 we'll create a basic presentation, report, or other data product for sharing findings and insights from our analysis.
+1.  **Prepare**: Prior to analysis, we'll take a quick look at some of
+    the related MOOC-Ed research and evaluation work to gain some
+    context for out analysis. This should aid in the interpretation of
+    our results and help guide some decisions as we tidy, model, and
+    visualize our data.
+2.  **Wrangle**: In section 2 we again revisit tidying and tokenizing
+    text using the `tidytext` package, but are also introduced to the
+    the `stm` package. This package makes use of `tm` text mining
+    package to preprocess text and will also be our first introduction
+    to word stemming.
+3.  **Model**: For Unit 3, were take a look at two different approaches
+    to topic modeling: Latent Dirichlet Allocation (LDA) and Structural
+    Topic Modeling (STM), which is very similar to LDA but can use
+    metadata about documents to improve the assignment of words to
+    latent themes or "topics" in a corpus. 
+4.  **Explore**: To further explore the results of our topic model, we
+    use two handy functions included the `stm` package. The
+    `findThoughts` function for viewing documents assigned to a given
+    topic and the `toLDAvis` function for exploring topic and word
+    distributions using topic browser from the `LDAvis` package.
+5.  **Communicate:** Finally, in Week 10 we'll create a basic
+    presentation, report, or other data product for sharing findings and
+    insights from our analysis.
 
 ------------------------------------------------------------------------
 
 ## 1. PREPARE
 
-To help us better understand the context, questions, and data sources we'll be using in Unit 3, this section will focus on the following topics:
+To help us better understand the context, questions, and data sources
+we'll be using in Unit 3, this section will focus on the following
+topics:
 
-a.  **Context**. We take a quick look at the Rosenberg et al. (2021) article, *Advancing new methods for understanding public sentiment about educational reforms*, including the purpose of the study, questions explored, and findings.
-b.  **Questions.** We'll formulate some basic questions that we'll use to guide our analysis, attempting to replicate some of the findings by Rosenberg et al.
-c.  **Twitter Setup** We walkthrough the process of setting up R to pull data from our Twitter developer account created during the first week of the course.
+a.  **Context**. As context for our analysis this week, we'll reviews
+    several related papers by myself and current and former colleagues
+    relevant to our analysis of MOOC-Ed discussion forums.
+b.  **Questions.** We'll also examine what insight topic modeling can
+    provide to a question we asked participants answer in their
+    professional learning teams (PLT).
+c.  **Project Setup.** This should be very familiar by now, but we'll
+    set up a new R project and install and load the required packages
+    for the topic modeling walkthrough.
 
 ### 1a. Context
 
 #### Participating in a MOOC and Professional Learning Team: How a Blended Approach to Professional Development Makes a Difference
 
-[![Teaching Statistics Through Data Investigations MOOC-Ed](img/tsdi.png "Our world is rich with data sources, and technology makes data more accessible than ever before! To help ensure students are future ready to use data for making informed decisions, many countries around the world have increased the emphasis on statistics and data analysis in school curriculum–from elementary/primary grades through college. This course allows you to learn, along with colleagues from other schools, an investigation cycle to teach statistics and to help students explore data to make evidence-based claims. To learn more about engaging learners in making inferences and claims supported by data and how to emphasize inferential reasoning in teaching statistics through posing different types of investigative questions, enroll in our Teaching Statistics through Inferential Reasoning MOOC-Ed."){width="50%"}](https://place.fi.ncsu.edu/local/catalog/course.php?id=4&ref=1)
+[![Teaching Statistics Through Data Investigations
+MOOC-Ed](img/tsdi.png "Our world is rich with data sources, and technology makes data more accessible than ever before! To help ensure students are future ready to use data for making informed decisions, many countries around the world have increased the emphasis on statistics and data analysis in school curriculum–from elementary/primary grades through college. This course allows you to learn, along with colleagues from other schools, an investigation cycle to teach statistics and to help students explore data to make evidence-based claims. To learn more about engaging learners in making inferences and claims supported by data and how to emphasize inferential reasoning in teaching statistics through posing different types of investigative questions, enroll in our Teaching Statistics through Inferential Reasoning MOOC-Ed."){width="50%"}](https://place.fi.ncsu.edu/local/catalog/course.php?id=4&ref=1)
 
 Full text: <https://www.learntechlib.org/p/195234/>
 
 **Abstract**
 
-Massive open online course for educators (MOOC-Ed) provide opportunities for using research-based learning and teaching practices, along with new technological tools and facilitation approaches for delivering quality online professional development. The Teaching Statistics Through Data Investigations MOOC-Ed was built for preparing teachers in pedagogy for teaching statistics, and it has been offered to participants from around the world. During 2016-2017, professional learning teams (PLTs) were formed from a subset of MOOC-Ed participants. These teams met several times to share and discuss their learning and experiences. This study focused on examining the ways that a blended approach to professional development may result in similar or different patterns of engagement to those who only participate in a large-scale online course. Results show the benefits of a blended learning environment for retention, engagement with course materials, and connectedness within the online community of learners in an online professional development on teaching statistics. The findings suggest the use of self-forming autonomous PLTs for supporting a deeper and more comprehensive experience with self-directed online professional developments such as MOOCs. Other online professional development courses, such as MOOCs, may benefit from purposely suggesting and advertising, and perhaps facilitating, the formation of small face-to-face or virtual PLTs who commit to engage in learning together.
+Massive open online course for educators (MOOC-Ed) provide opportunities
+for using research-based learning and teaching practices, along with new
+technological tools and facilitation approaches for delivering quality
+online professional development. The Teaching Statistics Through Data
+Investigations MOOC-Ed was built for preparing teachers in pedagogy for
+teaching statistics, and it has been offered to participants from around
+the world. During 2016-2017, professional learning teams (PLTs) were
+formed from a subset of MOOC-Ed participants. These teams met several
+times to share and discuss their learning and experiences. This study
+focused on examining the ways that a blended approach to professional
+development may result in similar or different patterns of engagement to
+those who only participate in a large-scale online course. Results show
+the benefits of a blended learning environment for retention, engagement
+with course materials, and connectedness within the online community of
+learners in an online professional development on teaching statistics.
+The findings suggest the use of self-forming autonomous PLTs for
+supporting a deeper and more comprehensive experience with self-directed
+online professional developments such as MOOCs. Other online
+professional development courses, such as MOOCs, may benefit from
+purposely suggesting and advertising, and perhaps facilitating, the
+formation of small face-to-face or virtual PLTs who commit to engage in
+learning together.
 
 **Data Source & Analysis**
 
-All peer interaction, including peer discussion, take place within discussion forums of MOOC-Eds, which are hosted using the Moodle Learning Management System. To build the dataset you'll be using for this walkthrough, I wrote a query for Moodle's MySQL database, which records par-
-ticipants' user-logs of activity in the online forums. This sql query combines separate database tables containing postings and comments including participant IDs, timestamps, discussion text and other attributes or "metadata."
+All peer interaction, including peer discussion, take place within
+discussion forums of MOOC-Eds, which are hosted using the Moodle
+Learning Management System. To build the dataset you'll be using for
+this walkthrough, I wrote a query for Moodle's MySQL database, which
+records participants' user-logs of activity in the online forums. This
+sql query combines separate database tables containing postings and
+comments including participant IDs, timestamps, discussion text and
+other attributes or "metadata."
 
-For further description of the forums and data retrieval process, see also the following papers:
+For further description of the forums and data retrieval process, see
+also the following papers:
 
-Kellogg, S., & Edelmann, A. (2015). [Massively Open Online Course for Educators (MOOC‐E d) network dataset](https://bera-journals.onlinelibrary.wiley.com/doi/pdfdirect/10.1111/bjet.12312). *British journal of educational technology*, *46*(5), 977-983.
+-   Kellogg, S., & Edelmann, A. (2015). [Massively Open Online Course
+    for Educators (MOOC‐Ed) network
+    dataset](https://bera-journals.onlinelibrary.wiley.com/doi/pdfdirect/10.1111/bjet.12312). *British
+    journal of educational technology*, *46*(5), 977-983.
 
-Ezen-Can, A., Boyer, K. E., Kellogg, S., & Booth, S. (2015, March). [Unsupervised modeling for understanding MOOC discussion forums: a learning analytics approach](https://dl.acm.org/doi/pdf/10.1145/2723576.2723589). In *Proceedings of the fifth international conference on learning analytics and knowledge* (pp. 146-150).
+-   Ezen-Can, A., Boyer, K. E., Kellogg, S., & Booth, S. (2015, March).
+    [Unsupervised modeling for understanding MOOC discussion forums: a
+    learning analytics
+    approach](https://dl.acm.org/doi/pdf/10.1145/2723576.2723589).
+    In *Proceedings of the fifth international conference on learning
+    analytics and knowledge* (pp. 146-150).
 
-Kellogg, S., Booth, S., & Oliver, K. (2014). [A social network perspective on peer supported learning in MOOCs for educators.](https://www.erudit.org/en/journals/irrodl/1900-v1-n1-irrodl04945/1065545ar.pdf) *International Review of Research in Open and Distributed Learning*, *15*(5), 263-289.
+-   Kellogg, S., Booth, S., & Oliver, K. (2014). [A social network
+    perspective on peer supported learning in MOOCs for
+    educators.](https://www.erudit.org/en/journals/irrodl/1900-v1-n1-irrodl04945/1065545ar.pdf) *International
+    Review of Research in Open and Distributed Learning*, *15*(5),
+    263-289.
 
 **Summary of Key Findings**
 
-The following highlight some key findings related to the discussion forums in the papers cited above:
+The following highlight some key findings related to the discussion
+forums in the papers cited above:
 
-1.  MOOCs designed specifically for K-12 teachers can provide positive self-directed
-    learning experiences and rich engagement in discussion forums that help
-    form online communities for educators.
-2.  Analysis of discussion forum data in TSDI provided a very clear picture of how enthusiastic many PLT members and leaders were to talk to others in the online community. They posed their questions and shared ideas with others about teaching statistics throughout the units, even though they were also meeting synchronously several times with their colleagues in small group PLTs.
-3.  Findings on knowledge construction demonstrated that over half of the discussions in both courses moved beyond sharing information and statements of agreement and entered a process of dissonance, negotiation and co-construction of knowledge, but seldom moved beyond this phase in which new knowledge was tested or applied. These findings echo similar research on difficulties in promoting knowledge construction in online settings.
-4.  Topic modeling provides more interpretable and cohesive models for discussion forums than other popular unsupervised modeling techniques such as k-means and k-medoids clustering algorithms.
+1.  MOOCs designed specifically for K-12 teachers can provide positive
+    self-directed learning experiences and rich engagement in discussion
+    forums that help form online communities for educators.
+2.  Analysis of discussion forum data in TSDI provided a very clear
+    picture of how enthusiastic many PLT members and leaders were to
+    talk to others in the online community. They posed their questions
+    and shared ideas with others about teaching statistics throughout
+    the units, even though they were also meeting synchronously several
+    times with their colleagues in small group PLTs.
+3.  Findings on knowledge construction demonstrated that over half of
+    the discussions in both courses moved beyond sharing information and
+    statements of agreement and entered a process of dissonance,
+    negotiation and co-construction of knowledge, but seldom moved
+    beyond this phase in which new knowledge was tested or applied.
+    These findings echo similar research on difficulties in promoting
+    knowledge construction in online settings.
+4.  Topic modeling provides more interpretable and cohesive models for
+    discussion forums than other popular unsupervised modeling
+    techniques such as k-means and k-medoids clustering algorithms.
 
 ### 1b. Guiding Questions
 
-For the paper, Participating in a MOOC and Professional Learning Team: How a Blended Approach to Professional Development Makes a Difference, we were interested in unpacking how participants who enroll in an online course for the purpose of professional development may benefit from also being in a smaller group of professionals committed to engaging in the same PD. Our focused specific research question for this paper was:
+For the paper, [*Participating in a MOOC and Professional Learning Team:
+How a Blended Approach to Professional Development Makes a
+Difference*](https://www.learntechlib.org/p/195234/), we were interested
+in unpacking how participants who enrolled in the Teaching Statistics
+through Data Investigations MOOC-Ed might benefit from also being in a
+smaller group of professionals committed to engaging in the same
+professional development. Our specific research question for this paper
+was:
 
-> What are the similarities and differences between how PLT members and Non-PLT online participants engage and meet course goals in a MOOC-Ed designed for educators in secondary and
-> collegiate settings?
+> What are the similarities and differences between how PLT members and
+> Non-PLT online participants engage and meet course goals in a MOOC-Ed
+> designed for educators in secondary and collegiate settings?
 
-Dr. Hollylynne Lee and the TSDI team also developed a facilitation guide designed specifically for PLT teams to help groups synthesize the ideas in the course and make plans for how to implement new strategies in their classroom in order to impact students' learning of statistics. One question
+Dr. Hollylynne Lee and the TSDI team also developed a facilitation guide
+designed specifically for PLT teams to help groups synthesize the ideas
+in the course and make plans for how to implement new strategies in
+their classroom in order to impact students' learning of statistics. One
+question PLT members were asked to address was:
 
 > What ideas or issues emerged in the discussion forums this past week?
 
-For this walkthrough, we will further examine that question through the use of topic modeling.
+For this walkthrough, we will further examine that question through the
+use of topic modeling.
 
-And just to reiterate yet again from Unit 1, one overarching question we'll explore throughout this course, and that Silge and Robinson (2018) identify as a central question to text mining and natural language processing, is:
+And just to reiterate yet again from Unit 1, one overarching question
+we'll explore throughout this course, and that Silge and Robinson (2018)
+identify as a central question to text mining and natural language
+processing, is:
 
-> How do we to **quantify** what a document or collection of documents is about?
+> How do we to **quantify** what a document or collection of documents
+> is about?
 
 ### 1c. Set Up
 
-As highlighted in [Chapter 6 of Data Science in Education Using R](https://datascienceineducation.com/c06.html) (DSIEUR), one of the first steps of every workflow should be to set up a "Project" within RStudio. This will be your "home" for any files and code used or created in Unit 2. You are welcome to continue using the same project created for Unit 1, or create an entirely new project for Unit 2. However, after you've created your project open up a new R script, and load the following packages that we'll be needing for this walkthrough:
+As highlighted in [Chapter 6 of Data Science in Education Using
+R](https://datascienceineducation.com/c06.html) (DSIEUR), one of the
+first steps of every workflow should be to set up a "Project" within
+RStudio. This will be your "home" for any files and code used or created
+in Unit 2.
+
+You are welcome to continue using the same project created for Unit 1,
+or create an entirely new project for Unit 2. However, after you've
+created your project open up a new R script, and load the following
+packages that we'll be needing for this walkthrough:
 
 ```{r, message=FALSE}
-library(dplyr)
-library(readr)
-library(tidyr)
-library(rtweet)
-library(writexl)
-library(readxl)
+library(tidyverse)
 library(tidytext)
-library(textdata)
-library(ggplot2)
-library(textdata)
-library(scales)
+library(topicmodels)
+library(stm)
+library(LDAvis)
 ```
 
-At the end of this week, I'll ask that you share with me your r script as evidence that you have complete the walkthrough. Although I highly recommend that that you manually type the code shared throughout this walkthrough, for large blocks of text it may be easier to copy and paste.
+At the end of this week, I'll ask that you share with me your R script
+as evidence that you have complete the walkthrough. Although I highly
+recommend that that you manually type the code shared throughout this
+walkthrough, for large blocks of text it may be easier to copy and
+paste.
 
 ------------------------------------------------------------------------
+
+## 2. WRANGLE
+
+As noted previously, data wrangling involves some combination of
+cleaning, reshaping, transforming, and merging data (Wickham &
+Grolemund, 2017). This week we'll revisit tidying and tokenizing text
+using the `tidytext` package, but are also introduced to the the `stm`
+package. This package makes use of `tm` text mining package to
+preprocess text (e.g. removing punctuation, stop words, etc.) and will
+also be our first introduction to word stemming.
+
+a.  **Import Data**. We'll be working with .csv files this week and the
+    `read_csv()` function but will introduce a new argument for changing
+    column types.
+b.  **Tidy & Transform Text**. We revisit the `tidytext` package to
+    "tidy" and tokenize our forum data and introduce the `cast_dtm()`
+    function to create the document term matrix need for topic modeling.
+c.  **Word Stemming**. We conclude our data wrangling by also
+    introducing the `textProcessor()` function for preprocessing and
+    word stemming.
+
+### 2a. Import Forum Data
+
+To get started, we need to import, or "read", our data into R. The
+function used to import your data will depend on the file format of the
+data you are trying to import. First, however, you'll need to do the
+following:
+
+1.  Download the `ts_forum_data.csv` file we'll be using for this Unit
+    from our NCSU Moodle course site.
+2.  Create a folder in the directory on your computer where you stored
+    your R Project and name it "data".
+3.  Add the file to your data folder.
+4.  Check your Files tab in RStudio to verify that your file is indeed
+    in your data folder.
+
+Now let's read our data into our Environment using the `read_csv()`
+function and assign it to a variable name so we can work with it like
+any other object in R.
+
+```{r}
+ts_forum_data <- read_csv("data/ts_forum_data.csv", 
+  col_types = cols(course_id = col_character(),
+                   forum_id = col_character(), 
+                   discussion_id = col_character(), 
+                   post_id = col_character()
+                   )
+    )
+```
+
+By default, many of the columns like `course_id` and `forum_id` are read
+in as numeric data. For our purposes, we plan to treat them as unique
+identifiers or names for out courses, forums, discussions, and posts.
+The `read_csv()` function has a handy `col_types =` argument changing
+the column types from numeric to characters.
+
+##### ✅ Comprehension Check
+
+Try importing directly from the ECI 588 Github repository. The data for
+Unit 3 is located in this folder:
+<https://github.com/sbkellogg/eci-588/tree/main/unit-3/data>
+
+**Hint**: Check the examples from the `?read_csv` help file.
+
+### 2b. Tidy Text For Topic Modeling
+
+In this section we'll revisit some familiar `tidytext` functions used in
+Units 1 & 2 for tidying and tokenizing text and introduce a some new
+functions from the `stm` package for processing text and transforming
+our data frames into new data structures required for topic modeling.
+
+#### Functions Used
+
+**`tidytext` functions**
+
+-   `unnest_tokens()` splits a column into tokens
+-   `anti_join()` returns all rows from x with**out** a match in y and
+    used to remove `stop words` from out data.
+-   `cast_dtm()` takes a tidied data frame take and "casts" it into a
+    document-term matrix (dtm)
+
+**`dplyr`** **functions**
+
+-   `count()` lets you quickly count the unique values of one or more
+    variables
+-   `group_by()` takes a data frame and one or more variables to group
+    by
+-   `summarise()` creates a summary of data using arguments like sum and
+    mean
+
+**`stm` functions**
+
+-   `textProcessor()` takes in a vector or column of raw texts and
+    performs text processing like removing punctuation and word
+    stemming.
+-   `prepDocuments()` performs several corpus manipulations including
+    removing words and renumbering word indices
+
+#### Tidying Text
+
+Prior to topic modeling, we have a few remaining steps to tidy our text
+that hopefully should feel familiar by this point. If you recall from
+[Chapter 1 of Text Mining With
+R](https://www.tidytextmining.com/tidytext.html), these preprocessing
+steps include:
+
+1.  Transforming our text into "tokens"
+2.  Removing unnecessary characters, punctuation, and whitespace
+3.  Converting all text to lowercase
+4.  Removing stop words such as "the", "of", and "to"
+
+Let's tokenize our forum text and by using the familiar
+`unnest_tokens()` and remove stop words per usual:
+
+```{r}
+forums_tidy <- ts_forum_data %>%
+  unnest_tokens(output = word, input = post_content) %>%
+  anti_join(stop_words, by = "word")
+
+forums_tidy
+```
+
+Now let's do a quick count to see some of the most common words used
+throughout the forums just to get a sense of what we're working with and
+also because we'll need these word counts later for creating our
+document term matrix for topic modeling:
+
+```{r}
+forums_tidy %>%
+  count(word, sort = TRUE)
+```
+
+Words like "students," "data," and "statistics" were clearly expected
+but words like "span," "font," and "style" definitely were not.
+
+Let's take a quick view of the posts in our imported data frame and see
+if we can find out what's going on:
+
+```{r}
+view(ts_forum_data$post_content)
+```
+
+Yep, filtering out posts with the word "span" in them shows a number of
+posts that include HTML tags that were probably exported when the data
+was pulled from the mySQL database. These are probably posts where
+participants used the rich text editor to format their text.
+
+![](img/html.png){width="100%"}
+
+Fortunately, the `unnest_tokens()` function has a useful argument for
+dealing with HTML. Let's include the `format =` argument to help clean
+up this HTML residue and take a look the top words again. This may take
+a little time to process so be patient.
+
+```{r}
+forums_tidy <- ts_forum_data %>%
+  unnest_tokens(output = word, 
+                input = post_content, 
+                format =  "html") %>%
+  anti_join(stop_words, by = "word") 
+
+forums_tidy %>%
+  count(word, sort = TRUE)
+```
+
+Ah, that is much better! Note also the reduction in the term "class."
+References to class as is school have been retained by HTML tags using
+"class" have been removed.
+
+#### Creating a Document Term Matrix
+
+As highlighted in [Chapter 5 of Text Mining with
+R](https://www.tidytextmining.com/dtm.html#cast-dtm), some text mining
+packages like `topicmodels` and the algorithms and functions they use,
+like [Latent Dirichlet allocation
+(LDA)](https://www.tidytextmining.com/topicmodeling.html#latent-dirichlet-allocation)
+and the `LDA()` function, expect document-term matrices as inputs.  
+
+Before we create a our document-term matrix, however, we have an
+important decision to make:
+
+> What do we consider to be a "document" in a MOOC-Ed discussion forums?
+
+For example, we could consider each individual discussion post as a
+document. It might also make sense to consider posts within each
+discussion as a document since they are often interconnected an build
+off one another.
+
+For consistency
+
+### 2c. Process Text For Structural Topic Modeling
