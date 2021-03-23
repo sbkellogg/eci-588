@@ -395,43 +395,6 @@ forums_tidy %>%
   count(word, sort = TRUE)
 ```
 
-Words like "students," "data," and "statistics" were clearly expected
-but words like "span," "font," and "style" definitely were not.
-
-Let's take a quick view of the posts in our imported data frame and see
-if we can find out what's going on:
-
-```{r}
-view(ts_forum_data$post_content)
-```
-
-Yep, filtering out posts with the word "span" in them shows a number of
-posts that include HTML tags that were probably exported when the data
-was pulled from the mySQL database. These are probably posts where
-participants used the rich text editor to format their text.
-
-![](img/html.png){width="100%"}
-
-Fortunately, the `unnest_tokens()` function has a useful argument for
-dealing with HTML. Let's include the `format =` argument to help clean
-up this HTML residue and take a look the top words again. This may take
-a little time to process so be patient.
-
-```{r}
-forums_tidy <- ts_forum_data %>%
-  unnest_tokens(output = word, 
-                input = post_content, 
-                format =  "html") %>%
-  anti_join(stop_words, by = "word") 
-
-forums_tidy %>%
-  count(word, sort = TRUE)
-```
-
-Ah, that is much better! Note also the reduction in the term "class."
-References to class as is school have been retained by HTML tags using
-"class" have been removed.
-
 #### Creating a Document Term Matrix
 
 As highlighted in [Chapter 5 of Text Mining with
