@@ -9,7 +9,8 @@
 # 
 # ___________________________
 
-
+library(newsanchor)
+library(dplyr)
 
 set_api_key(tempdir())
 
@@ -20,7 +21,7 @@ search_terms <- c()
 sources <- get_sources()
 sources <- sources$results_df
 
-view(sources)
+View(sources)
 
 publications <- sources %>%
   filter(country == "us", 
@@ -38,17 +39,17 @@ publications <- publications$id
 
 publications <- c("the-washington-post", "fox-news", "axios", "reuters", )
 
-search_terms <- "covid learning loss"
+search_terms <- 
 
 
-results <- get_everything_all(query = search_terms,
+results <- get_everything_all(query = "student learning loss",
                               language = "en",
                               sort_by = "relevancy",
                               #sources = publications
 )
 
 articles <- results$results_df
-view(articles)
+View(articles)
 
 
 metadata <- results$metadata
