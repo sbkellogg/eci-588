@@ -88,13 +88,10 @@ concepts and skills:
     about documents to improve the assignment of words to "topics" in a
     corpus and examine relationships between topics and covariates. 
 4.  **Explore**: To further explore the results of our topic model, we
-    use two handy functions included the `stm` package. The
-    `findThoughts` function for viewing documents assigned to a given
-    topic and the `toLDAvis` function for exploring topic and word
-    distributions using topic browser from the `LDAvis` package.
-5.  **Communicate:** Finally, we'll create a basic presentation, report,
-    or other data product for sharing findings and insights from our
-    analysis.
+    use several handy functions from the `topicmodels` and `stm`
+    packages, including the `findThoughts` function for viewing
+    documents assigned to a given topic and the `toLDAvis` function for
+    exploring topic and word distributions.
 
 ------------------------------------------------------------------------
 
@@ -258,6 +255,8 @@ library(tidytext)
 library(SnowballC)
 library(topicmodels)
 library(stm)
+library(ldatuning)
+library(knitr)
 library(LDAvis)
 ```
 
@@ -767,6 +766,18 @@ documents to improve the assignment of words to topics in a corpus and
 that can be used to examine relationships between covariates and
 documents. 
 
+Also, since Julia Silge has indicated that STM is, "my current favorite
+implementation of topic modeling in R" and has built supports in the
+`tidytext` package for building structural topic models, this package
+definitely is worth discussing in this walkthrough. I also highly
+recommend her own walkthrough of the `stm` package: [The game is afoot!
+Topic modeling of Sherlock Holmes
+stories](https://juliasilge.com/blog/sherlock-holmes-stm/) as well as
+her follow up post, [Training, evaluating, and interpreting topic
+models](https://juliasilge.com/blog/evaluating-stm/).
+
+#### The `stm` Package
+
 As we've seen above, STM produced an unusual `temp` textProcessor output
 that is unique to the `stm` package. And as you've probably already
 guessed, the `stm()` function for fitting a structural topic model does
@@ -827,7 +838,77 @@ Note that you can also just use `plot()` as well:
 plot(forums_stm, n = 5)
 ```
 
+##### ✅ Comprehension Check
+
+Fitting a model for both LDA and STM using a different values for K and
+answer the following questions:
+
+1.  What topics appear to be similar to those using 20 topics for K?
+2.  Knowing that you don't have as much context as I do, how might you
+    interpret one of these latent topics or themes using the key terms
+    assigned?
+3.  What topic emerged that seem dramatically different and how might
+    you interpret this topic?
+
 ### 3c. Finding *K*
+
+As alluded to earlier, selecting the number of topics for your model is
+a non-trivial decision and can dramatically impact your results. Bail
+(2018) notes that
+
+> *The results of topic models should not be over-interpreted unless the
+> researcher has strong theoretical apriori about the number of topics
+> in a given corpus, or if the researcher has carefully validated the
+> results of a topic model using both the quantitative and qualitative
+> techniques described above.*
+
+There are several approaches to estimating a value for K and we'll take
+a quick look at one from the `ldatuning` package and one from our `stm`
+package.
+
+#### The FindTopicsNumber Function
+
+The `ldatuning` package has functions for both calculating and plotting
+different metrics that can be used to estimate the most preferable
+number of topics for LDA model. It also conveniently takes the standard
+document term matrix object that we created from out tidy text and has
+the added benefit of running fairly quickly, especially compared to the
+function for finding K from the `stm` package.
+
+Let's use the defaults specified in the `?FindTopicNumber` documentation
+and modify slightly get metrics for a sequence of topics from 10-75
+counting by 5 and plot the output we saved using the
+`FindTopicsNumber_plot()` function:
+
+```{r, eval=FALSE}
+k_metrics <- FindTopicsNumber(
+  forums_dtm,
+  topics = seq(10, 75, by = 5),
+  metrics = "Griffiths2004",
+  method = "Gibbs",
+  control = list(),
+  mc.cores = NA,
+  return_models = FALSE,
+  verbose = FALSE,
+  libpath = NULL
+)
+
+FindTopicsNumber_plot(k_metrics)
+```
+
+Note that the `FindTopicNumbers()` function contains three additional
+metrics for calculating metrics that can be used to estimate the most
+preferable number of topics for LDA model. We used the Griffiths2004
+metrics included in the default example and I've also found this to
+produce the most interpretable results as show in the figure below:
+
+![](img/k_metrics.png){width="90%"}
+
+As a general rule of thumb and overly simplistic heuristic, we're
+looking for an inflection point in our plot which indicates that at that
+value of K,
+
+#### The findingK() Function
 
 Finally, Bail (2018) notes that the`stm` package has a useful function
 called `searchK` which allows us to specify a range of values for `k`
@@ -843,26 +924,42 @@ arguments. In the code below, we search all values of `k` between 10 and
 ```{r, eval=FALSE}
 findingk <- searchK(docs, 
                     vocab, 
-                    K = c(10:30),
+                    K = c(5:15),
                     data = meta, 
                     verbose=FALSE)
+
+plot(findingk)
 ```
 
 Note that Running `searchK()` function on this corpus took all night on
-a pretty powerful Macbook Pro, so I do not expect you to run this for
-the walkthrough.
+a pretty powerful Macbook Pro and crashed a few time as well, so I do
+not expect you to run this for the walkthrough. I ran a couple
+iterations and landed on between 5 and 15 with an optimal number of
+topics somewhere around 14:
 
-##### ✅ Comprehension Check
+![](img/searchk_results.png){width="90%"}
 
-Fitting a model for both LDA and STM using a different values for K and
-answer the following questions:
+Given the somewhat conflicting results, also somewhat selfishly and for
+the same of simplicity for this walkthrough, I'm just going to stick
+with the rather arbitrary selection of 20 topics for the remainder of
+this Unit.
 
-1.  What topics appear to be similar to those using 20 topics for K?
-2.  Knowing that you don't have as much context as I do, how might you
-    interpret one of these latent topics or themes using the key terms
-    assigned?
-3.  What topic emerged that seem dramatically different and how might
-    you interpret this topic?
+#### The LDAvis Explorer
+
+One final tool that I want to introduce from the `stm` package is the
+`toLDAvis()` function which provides a great visualizations for
+exploring topic and word distributions using `LDAvis` topic browser:
+
+```{r}
+toLDAvis(mod = forums_stm, docs = docs)
+```
+
+As you can see from the browser screen shot below, our current stm model
+of 20 topics is resulting in a lot of overlap among topics and suggest
+that 20 may not be an optimal number of topics, as the other approaches
+for finding k also suggests:
+
+![](img/ldavis.png)
 
 ## 4. EXPLORE
 
@@ -878,8 +975,10 @@ Bail (2018) cautions, however, that:
 > finding meaning in patterns that are in fact quite arbitrary or even
 > random.*
 
+### 4a. Exploring Beta Values
+
 Hidden within this `forums_lda` topic model object we created are
-per-topic-per-word probabilities, called β ("beta"). It is basically the
+per-topic-per-word probabilities, called β ("beta"). It is the
 probability of a term (word) belonging to a topic. 
 
 Let's take a look at the 5 most likely terms assigned to each topic,
@@ -890,8 +989,129 @@ the `topicmodels` package:
 terms(forums_lda, 5)
 ```
 
-The `tidytext` package has a handy
+Even though we've somewhat arbitrarily selected the number of topics for
+our corpus, some these topics or themes are fairly intuitive to
+interpret. For example:
+
+-   Topic 11 (technology, students, software, program, excel) seems to
+    be about students use of technology including software programs like
+    excel;
+
+-    Topic 9 (questions, kids, love, gapminder, sharing) seems to be
+    about the gapminder activity from the MOOC-Ed and kids enjoyment of
+    it; and
+
+-   Topic 18 (data, students, collect, real, sets) seems to be about
+    student collection and use of real world data sets.
+
+Not surprisingly, the `tidytext` package has a handy function
+conveniently name `tidy()` to convert our lda model to a tidy data frame
+containing these beta values for each term:
 
 ```{r}
+tidy_lda <- tidy(forums_lda)
+
+tidy_lda
+```
+
+Obviously, it's not very easy to interpret what the topics are about
+from a data frame like this so let's borrow code again from [Chapter
+8.4.3 Interpreting the topic
+model](https://www.tidytextmining.com/nasa.html?q=beta#interpreting-the-topic-model)
+in Text Mining with R to examine the top 5 terms for each topic and then
+look at this information visually:
+
+```{r}
+top_terms <- tidy_lda %>%
+  group_by(topic) %>%
+  slice_max(beta, n = 5, with_ties = FALSE) %>%
+  ungroup() %>%
+  arrange(topic, -beta)
+
+top_terms %>%
+  mutate(term = reorder_within(term, beta, topic)) %>%
+  group_by(topic, term) %>%    
+  arrange(desc(beta)) %>%  
+  ungroup() %>%
+  ggplot(aes(beta, term, fill = as.factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  scale_y_reordered() +
+  labs(title = "Top 5 terms in each LDA topic",
+       x = expression(beta), y = NULL) +
+  facet_wrap(~ topic, ncol = 4, scales = "free")
+```
+
+### 4b. Exploring Gamma Values
+
+Now that we have a sense of the most common words associated with each
+topic, let's take a look at the topic prevalence in our MOOC-Ed
+discussion forum corpus, including the words that contribute to each
+topic we examined above.
+
+Also, hidden within our `forums_lda` topic model object we created are
+per-document-per-topic probabilities, called γ ("gamma"). This provides
+the probabilities that each document is generated from each topic, that
+gamma matrix. We can combine our beta and gamma values to understand the
+topic prevalence in our corpus, and which words contribute to each
+topic.
+
+To do this, we're going to borrow some code from the Silge (2018) post,
+[Training, evaluating, and interpreting topic
+models](https://juliasilge.com/blog/evaluating-stm/).
+
+First, let's create two tidy data frames for our beta and gamma values
+
+```{r}
+td_beta <- tidy(forums_lda)
+
+td_gamma <- tidy(forums_lda, matrix = "gamma")
+
+td_beta
+td_gamma
 
 ```
+
+Next, we'll adopt Julia's code wholesale to create a filtered data frame
+of our `top_terms`, join this to a new data frame for `gamma-terms` and
+create a nice clean table using the `kabel()` function `knitr` package:
+
+```{r}
+top_terms <- td_beta %>%
+  arrange(beta) %>%
+  group_by(topic) %>%
+  top_n(7, beta) %>%
+  arrange(-beta) %>%
+  select(topic, term) %>%
+  summarise(terms = list(term)) %>%
+  mutate(terms = map(terms, paste, collapse = ", ")) %>% 
+  unnest()
+
+gamma_terms <- td_gamma %>%
+  group_by(topic) %>%
+  summarise(gamma = mean(gamma)) %>%
+  arrange(desc(gamma)) %>%
+  left_join(top_terms, by = "topic") %>%
+  mutate(topic = paste0("Topic ", topic),
+         topic = reorder(topic, gamma))
+
+gamma_terms %>%
+  select(topic, gamma, terms) %>%
+  kable(digits = 3, 
+        col.names = c("Topic", "Expected topic proportion", "Top 7 terms"))
+```
+
+And let's also compare this to the most prevalent topics and terms from
+our `forums_stm` model that we created using the `plot()` and :
+
+```{r}
+plot(forums_stm, n = 7)
+```
+
+#### Reading the Tea Leaves
+
+Recognizing that topic modeling is best used as a "tool for reading"
+does not reveal the "true" answer to our overarching question of what
+our documents are about, the results do suggest some potential areas for
+following up with
+
+### 4c. Examining Documents and Topic-Course Relationships

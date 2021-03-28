@@ -282,6 +282,8 @@ temp<-textProcessor(ts_forum_data$post_content,
                     customstopwords=NULL)
 
 
+out <- prepDocuments(processed$documents, processed$vocab, processed$meta)
+
 meta<-temp$meta
 vocab<-temp$vocab
 docs<-temp$documents
@@ -403,3 +405,18 @@ forum_topics_5 <-stm(stemmed_dtm,
                       max.em.its=25,
                       verbose = FALSE)
 
+library(ldatuning)
+
+k_metrics <- FindTopicsNumber(
+  forums_dtm,
+  topics = seq(10, 75, by = 5),
+  metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+  method = "Gibbs",
+  control = list(),
+  mc.cores = NA,
+  return_models = FALSE,
+  verbose = FALSE,
+  libpath = NULL
+)
+
+FindTopicsNumber_plot(k_metrics)
