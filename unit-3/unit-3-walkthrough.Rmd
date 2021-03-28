@@ -701,8 +701,9 @@ is a **"mixture" model**, which in our context means that:
     algorithms like k-means, LDA treats each document as a mixture of
     topics, which allows documents to "overlap" each other in terms of
     content, rather than being separated into discrete groups. So in
-    practice, this means that a discussion forum post could be mostly
-    about a Topic 1, but also be partly about Topic 2.
+    practice, this means that a discussion forum post could have an
+    estimated topic proportion of 70% for Topic 1 (e.g. be mostly about
+    a Topic 1), but also be partly about Topic 2.
 2.  **Every [topic]{.ul} contains a mixture of words.** For example, if
     we specified in our LDA model just 2 topics for our discussion
     posts, we might find that one topic seems to be about pedagogy while
@@ -840,8 +841,8 @@ plot(forums_stm, n = 5)
 
 ##### ✅ Comprehension Check
 
-Fitting a model for both LDA and STM using a different values for K and
-answer the following questions:
+Fit a model for both LDA and STM using different values for K and answer
+the following questions:
 
 1.  What topics appear to be similar to those using 20 topics for K?
 2.  Knowing that you don't have as much context as I do, how might you
@@ -932,10 +933,10 @@ plot(findingk)
 ```
 
 Note that Running `searchK()` function on this corpus took all night on
-a pretty powerful Macbook Pro and crashed a few time as well, so I do
-not expect you to run this for the walkthrough. I ran a couple
-iterations and landed on between 5 and 15 with an optimal number of
-topics somewhere around 14:
+a pretty powerful MacBook Pro and crashed once as well, so I do not
+expect you to run this for the walkthrough. I ran a couple iterations
+and landed on between 5 and 15 with an optimal number of topics
+somewhere around 14:
 
 ![](img/searchk_results.png){width="90%"}
 
@@ -956,8 +957,8 @@ toLDAvis(mod = forums_stm, docs = docs)
 
 As you can see from the browser screen shot below, our current stm model
 of 20 topics is resulting in a lot of overlap among topics and suggest
-that 20 may not be an optimal number of topics, as the other approaches
-for finding k also suggests:
+that 20 may not be an optimal number of topics, as other approaches for
+finding k also suggests:
 
 ![](img/ldavis.png)
 
@@ -997,7 +998,7 @@ interpret. For example:
     be about students use of technology including software programs like
     excel;
 
--    Topic 9 (questions, kids, love, gapminder, sharing) seems to be
+-   Topic 9 (questions, kids, love, gapminder, sharing) seems to be
     about the gapminder activity from the MOOC-Ed and kids enjoyment of
     it; and
 
@@ -1008,7 +1009,8 @@ Not surprisingly, the `tidytext` package has a handy function
 conveniently name `tidy()` to convert our lda model to a tidy data frame
 containing these beta values for each term:
 
-```{r}
+```{r tidy_lda}
+
 tidy_lda <- tidy(forums_lda)
 
 tidy_lda
@@ -1021,7 +1023,8 @@ model](https://www.tidytextmining.com/nasa.html?q=beta#interpreting-the-topic-mo
 in Text Mining with R to examine the top 5 terms for each topic and then
 look at this information visually:
 
-```{r}
+```{r top_terms}
+
 top_terms <- tidy_lda %>%
   group_by(topic) %>%
   slice_max(beta, n = 5, with_ties = FALSE) %>%
@@ -1061,7 +1064,7 @@ models](https://juliasilge.com/blog/evaluating-stm/).
 
 First, let's create two tidy data frames for our beta and gamma values
 
-```{r}
+```{r beta_gamma}
 td_beta <- tidy(forums_lda)
 
 td_gamma <- tidy(forums_lda, matrix = "gamma")
@@ -1075,7 +1078,7 @@ Next, we'll adopt Julia's code wholesale to create a filtered data frame
 of our `top_terms`, join this to a new data frame for `gamma-terms` and
 create a nice clean table using the `kabel()` function `knitr` package:
 
-```{r}
+```{r prevalence_table}
 top_terms <- td_beta %>%
   arrange(beta) %>%
   group_by(topic) %>%
@@ -1103,15 +1106,152 @@ gamma_terms %>%
 And let's also compare this to the most prevalent topics and terms from
 our `forums_stm` model that we created using the `plot()` and :
 
-```{r}
+```{r plot_stm}
 plot(forums_stm, n = 7)
 ```
 
-#### Reading the Tea Leaves
+### 4c. Reading the Tea Leaves
 
-Recognizing that topic modeling is best used as a "tool for reading"
-does not reveal the "true" answer to our overarching question of what
-our documents are about, the results do suggest some potential areas for
-following up with
+Recognizing that topic modeling is best used as a "tool for reading" and
+provides only an incomplete answer to our overarching, **"How do we
+quantify what a corpus is about?"**, the results do suggest some
+potential topics that have emerges as well as some areas worth following
+up on.
 
-### 4c. Examining Documents and Topic-Course Relationships
+Specifically, looking at some of the common clusters of words for the
+more prevalent topics suggest that some key topics or "latent themes"
+(renamed in bold) might include:
+
+-   **Teaching Statistics:** Unsurprising, given the course title, the
+    topics most prevalent in both the `forums_stm` and `forums_lda`
+    models contains the terms "teach", "students", "statistics". This
+    could be an "overarching theme" but more likely may simply be just
+    the residue of the course title though being sprinkled throughout
+    the forums and deserves some follow up. Topics 8 from the LDA model
+    may overlap with this topic as well.
+-   **Course Utility:** The second most prevalent Topics (13 and 2) in
+    the `lda` and `stm` models respectively, seem to potentially be
+    about the usefulness of course "resources" like lessons, tools,
+    videos, and activities. I'm wagering this might be a forum dedicated
+    to course feedback. Topic 15 from the STM model also suggest this
+    may be a broader theme.
+-   **Using Real-World Data:** Topics 18 & 12 from the LDA model
+    particularly intrigue me and I'm wagering this is pretty positive
+    sentiment among participants about the value and benefit of having
+    students collect and analyze real data sets (e.g. Census data in
+    Topic 1) and work on projects relevant to their real life. Will
+    definitely follow up on this one.
+-   **Technology Use:** Several topics (6 & 11 from LDA and 8 & 19 from
+    STM) appear to be about student use of technology and software like
+    calculators and Excel for teaching statistics and using simulations.
+    Topic 16 from LDA also suggest the use of the Common Online Data
+    Analysis Platform
+    ([CODAP](Common%20Online%20Data%20Analysis%20Platform%20(CODAP)%20Open-source%20software%20for%20dynamic%20data%20exploration)).
+-   **Student Struggle & Engagement:** Topic 15 from LDA and Topic 16
+    from STM also intrigue me and appear to be two opposite sides of
+    perhaps the same coin. The former includes "struggle" and "reading"
+    which suggests perhaps a barrier to teaching statistics while Topic
+    16 contains top stems like "engage", "activ", and "think" and may
+    suggest participants anticipate activities may engage students.
+
+To serve as a check on my tea leaf reading, I'm going to follow Bail's
+recommendation to examine some of these topics qualitatively. The `stm`
+package has another useful function though exceptionally fussy function
+called `findThoughts` which extracts passages from documents within the
+corpus associate with topics that you specify.
+
+The first line of code may not be necessary for your independent
+analysis, but because the `textProcessor()` function removed several
+documents during processing, the `findthoughts()` function can't
+properly index the processed docs. This [line of code found on
+stackoverflow](https://stackoverflow.com/questions/43492667/r-stm-number-of-provided-texts-and-number-of-documents-modeled-do-not-match)
+removes documents from original `ts_forum_data` source that were removed
+during processing so there is a one-to-one correspondence with
+`forums_stm` and so you can use the function to find posts associated
+with a given topic.
+
+Let's slightly reduce our original data set to match our STM model, pass
+both to the `findThoughts()` function, and set our arguments to return
+`n =10` posts from `topics = 2` (i.e. Topic 2) that have at least 50% or
+`thresh = 0.5` as a minimum threshold for the estimated topic
+proportion.
+
+```{r findThoughts_2}
+
+ts_forum_data_reduced <-ts_forum_data$post_content[-temp$docs.removed]
+
+findThoughts(forums_stm,
+             texts = ts_forum_data_reduced,
+             topics = 2, 
+             n = 10,
+             thresh = 0.5)
+```
+
+Duplicate posts aside, this **Course Utility** topic returns posts there
+were expected based on my interpretation of the key terms for Topic 2.
+It looks like I may have read those tea leaves correctly.
+
+Now let's take a look at Topic 16 that we thought might be related to
+student engagement:
+
+```{r findThoughts_16}
+
+findThoughts(forums_stm,
+             texts = ts_forum_data_reduced,
+             topics = 16, 
+             n = 10,
+             thresh = 0.5)
+```
+
+It looks like my tea reading was a partially correct for Topic 16,
+though the results seem to be about a specific "Pepsi challenge"
+activity to conduct with students.
+
+Finally, let's look at posts from Topic 3 which we though might be an
+overarching theme about teaching statistics:
+
+```{r findThoughts_3}
+
+ts_forum_data_reduced <-ts_forum_data$post_content[-temp$docs.removed]
+
+findThoughts(forums_stm,
+             texts = ts_forum_data_reduced,
+             topics = 3, 
+             n = 10,
+             thresh = 0.5)
+```
+
+Looking at just the 10 posts returned, perhaps a better name for this
+topic would be **Course Reflections on Teaching Statistics**.
+
+#### Unit Takeaway
+
+In addition to some useful R packages and functions for the actual
+process of topic modeling, hopefully there are two main lessons I'm
+hoping you take away from this walkthrough:
+
+1.  **Topic modeling requires a lot of decisions.** Beyond deciding on a
+    value for K, there are a number of key decisions that you have to
+    make that can dramatically affect your results. For example, to stem
+    or not to stem? What qualifies as a document? What flavor or topic
+    modeling is best suited to your data and research questions? How
+    many iterations to run?
+2.  **Topic modeling is as much art as (data) science.** As Bail (2018)
+    noted, the term "topic" is somewhat ambitious, and topic models do
+    not produce highly nuanced classification of texts. Once you've fit
+    your model, interpreting your model requires some mental gymnastics
+    and ideally some knowledge of the context from which the data came
+    to help with interpretation of your topics. Moreover, the
+    quantitative approaches for making the decisions highlighted above
+    are imperfect and a good deal of human judgment required.
+
+##### ✅ Comprehension Check
+
+Using the STM model you fit from the Section 3 [Comprehension Check]
+with a different value for K, use the approaches demonstrated in Section
+4 to explore and interpret your topics and terms and revisit the
+following question:
+
+1.  Now that you have a little more context, how might you revise your
+    initial interpretation of some of the latent topics or latent themes
+    from your model?
