@@ -382,3 +382,24 @@ forums_lda %>%
   geom_col(show.legend = FALSE) +
   facet_wrap(~ topic, ncol = 2, scales = "free") +
   scale_y_reordered()
+
+
+
+
+
+# testing dtm from tidy
+
+stemmed_dtm <- ts_forum_data %>%
+  unnest_tokens(output = word, input = post_content) %>%
+  anti_join(stop_words, by = "word") %>%
+  mutate(stem = wordStem(word)) %>%
+  count(post_id, stem, sort = TRUE) %>%
+  cast_dtm(post_id, stem, n)
+
+stemmed_dtm
+
+forum_topics_5 <-stm(stemmed_dtm, 
+                      K=5,
+                      max.em.its=25,
+                      verbose = FALSE)
+
