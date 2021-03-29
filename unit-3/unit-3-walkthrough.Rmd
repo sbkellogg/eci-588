@@ -906,8 +906,8 @@ produce the most interpretable results as show in the figure below:
 ![](img/k_metrics.png){width="90%"}
 
 As a general rule of thumb and overly simplistic heuristic, we're
-looking for an inflection point in our plot which indicates that at that
-value of K,
+looking for an inflection point in our plot which indicates an optimal
+number of topics to select for a value of K.
 
 #### The findingK() Function
 
