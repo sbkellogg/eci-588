@@ -249,7 +249,7 @@ or create an entirely new project for Unit 2. However, after you've
 created your project open up a new R script, and load the following
 packages that we'll be needing for this walkthrough:
 
-```{r, message=FALSE}
+```{r load-packages, message=FALSE}
 library(tidyverse)
 library(tidytext)
 library(SnowballC)
@@ -307,7 +307,7 @@ Now let's read our data into our Environment using the `read_csv()`
 function and assign it to a variable name so we can work with it like
 any other object in R.
 
-```{r}
+```{r read-csv}
 ts_forum_data <- read_csv("data/ts_forum_data.csv", 
   col_types = cols(course_id = col_character(),
                    forum_id = col_character(), 
@@ -327,9 +327,24 @@ the column types from numeric to characters.
 
 Try importing directly from the ECI 588 Github repository. The data for
 Unit 3 is located in this folder:
-<https://github.com/sbkellogg/eci-588/tree/main/unit-3/data>
+<https://github.com/sbkellogg/eci-588/tree/main/unit-3/data>. When you
+locate the dataset file to read from the GitHub repository, you will see
+a "View raw" link in the file preview. Click on it and use this URL for
+reading in the .csv.
 
 **Hint**: Check the examples from the `?read_csv` help file.
+
+```{r GitHub, echo=FALSE}
+
+ts_forum_data1 <- read_csv("https://raw.githubusercontent.com/sbkellogg/eci-588/main/unit-3/data/ts_forum_data.csv", 
+  col_types = cols(course_id = col_character(),
+                   forum_id = col_character(), 
+                   discussion_id = col_character(), 
+                   post_id = col_character()
+                   )
+    )
+
+```
 
 ### 2b. Cast a Document Term Matrix
 
@@ -381,7 +396,7 @@ steps include:
 Let's tokenize our forum text and by using the familiar
 `unnest_tokens()` and remove stop words per usual:
 
-```{r}
+```{r tokenize-forums}
 forums_tidy <- ts_forum_data %>%
   unnest_tokens(output = word, input = post_content) %>%
   anti_join(stop_words, by = "word")
@@ -394,7 +409,7 @@ used throughout the forums. This should get a sense of what we're
 working with and later we'll need these word counts for creating our
 document term matrix for topic modeling:
 
-```{r}
+```{r count-words}
 forums_tidy %>%
   count(word, sort = TRUE)
 ```
@@ -420,7 +435,7 @@ your terms and answer the following questions:
 
 Your output should look something like this:
 
-```{r, echo=FALSE}
+```{r find-quotes, echo=FALSE}
 forum_quotes <- ts_forum_data %>%
   select(post_content) %>% 
   filter(grepl('time', post_content))
@@ -461,7 +476,7 @@ To create this document term matrix from our post counts, we'll use the
 `cast_dtm()` function like so and assign it to the variable
 `forums_dtm`:
 
-```{r}
+```{r cast-dtm}
 forums_dtm <- forums_tidy %>%
   count(post_id, word) %>%
   cast_dtm(post_id, word, n)
@@ -478,7 +493,7 @@ following question:
     data frame?
 4.  What exactly is meant by "sparsity"?
 
-```{r, echo=FALSE}
+```{r class-dtm, echo=FALSE}
 class(forums_dtm)
 
 forums_dtm
@@ -519,7 +534,7 @@ learn more by viewing the `?textProcessor` documentation.
 Let's go ahead and process our discussion forum `post_content` in
 preparation for structural topic modeling:
 
-```{r}
+```{r textProcessor}
 temp <- textProcessor(ts_forum_data$post_content, 
                     metadata = ts_forum_data,  
                     lowercase=TRUE, 
@@ -547,7 +562,7 @@ unique set of inputs that are specific to the package. The following
 code will pull elements from the `temp` list that was created that will
 be required for the `stm()` function we'll use in Section 4:
 
-```{r}
+```{r stm-inputs}
 meta <- temp$meta
 vocab <- temp$vocab
 docs <- temp$documents
@@ -592,7 +607,7 @@ include a stemming function, one approach would be to use the
 with our stemmed words. Let's do the latter and take a look at the
 original words and the stem that was produced:
 
-```{r}
+```{r wordStem}
 stemmed_forums <- ts_forum_data %>%
   unnest_tokens(output = word, input = post_content) %>%
   anti_join(stop_words, by = "word") %>%
@@ -620,7 +635,7 @@ Complete the following code using what we learned in the section on
 **Hint:** Make sure your code includes stem counts rather than word
 counts.
 
-```{r, eval=FALSE}
+```{r stem-practice, eval=FALSE}
 stemmed_dtm <- ts_forum_data %>%
   unnest_tokens(output = word, input = post_content) %>%
   anti_join(stop_words, by = "word") %>%
@@ -631,7 +646,7 @@ stemmed_dtm <- ts_forum_data %>%
 stemmed_dtm
 ```
 
-```{r, echo=FALSE}
+```{r stem-counts, echo=FALSE}
 stemmed_dtm <- ts_forum_data %>%
   unnest_tokens(output = word, input = post_content) %>%
   anti_join(stop_words, by = "word") %>%
@@ -723,7 +738,7 @@ that might exist in discussion forums, let's use the `n_distinct()`
 function from the `dplyr` package to find the number of unique forum
 names in our course data and run with that:
 
-```{r}
+```{r n-distinct}
 n_distinct(ts_forum_data$forum_name)
 ```
 
@@ -732,7 +747,7 @@ that as our value for the `k =` argument of the `LDA()`. Be patient
 while this runs, since the default setting of is to perform a large
 number of iterations.
 
-```{r}
+```{r LDA}
 n_distinct(ts_forum_data$forum_name)
 
 forums_lda <- LDA(forums_dtm, 
@@ -798,7 +813,7 @@ Before we fit our model, we'll have to extract the elements from the
 
 Let's go ahead and extract these elements:
 
-```{r}
+```{r stm-docs}
 docs <- temp$documents 
 meta <- temp$meta 
 vocab <- temp$vocab 
@@ -810,7 +825,7 @@ take advantage of the fact that we can include the `course_id` and
 `forum_id` covariates in the `prevealence =` argument to help improve,
 in theory, our model fit:
 
-```{r}
+```{r stm}
 forums_stm <- stm(documents=docs, 
          data=meta,
          vocab=vocab, 
@@ -829,13 +844,13 @@ words assigned to each topic.
 By default, it only shows the first 3 terms so let's change that to 5 to
 help with interpretation:
 
-```{r}
+```{r plot-stm}
 plot.STM(forums_stm, n = 5)
 ```
 
 Note that you can also just use `plot()` as well:
 
-```{r}
+```{r plot}
 plot(forums_stm, n = 5)
 ```
 
@@ -881,7 +896,7 @@ and modify slightly get metrics for a sequence of topics from 10-75
 counting by 5 and plot the output we saved using the
 `FindTopicsNumber_plot()` function:
 
-```{r, eval=FALSE}
+```{r find-k, eval=FALSE}
 k_metrics <- FindTopicsNumber(
   forums_dtm,
   topics = seq(10, 75, by = 5),
