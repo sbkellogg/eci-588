@@ -1,7 +1,7 @@
 ---
 title: "Unit 1 Walkthrough: Tidy Text & Word Counts"
 author: "Dr. Shaun Kellogg"
-date: "'r Sys.Date()"
+date: "`r Sys.Date()`"
 output: 
   html_document:
     toc: true
