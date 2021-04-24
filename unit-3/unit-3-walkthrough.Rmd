@@ -323,29 +323,6 @@ identifiers or names for out courses, forums, discussions, and posts.
 The `read_csv()` function has a handy `col_types =` argument changing
 the column types from numeric to characters.
 
-##### ✅ Comprehension Check
-
-Try importing directly from the ECI 588 Github repository. The data for
-Unit 3 is located in this folder:
-<https://github.com/sbkellogg/eci-588/tree/main/unit-3/data>. When you
-locate the dataset file to read from the GitHub repository, you will see
-a "View raw" link in the file preview. Click on it and use this URL for
-reading in the .csv.
-
-**Hint**: Check the examples from the `?read_csv` help file.
-
-```{r GitHub, echo=FALSE}
-
-ts_forum_data1 <- read_csv("https://raw.githubusercontent.com/sbkellogg/eci-588/main/unit-3/data/ts_forum_data.csv", 
-  col_types = cols(course_id = col_character(),
-                   forum_id = col_character(), 
-                   discussion_id = col_character(), 
-                   post_id = col_character()
-                   )
-    )
-
-```
-
 ### 2b. Cast a Document Term Matrix
 
 In this section we'll revisit some familiar `tidytext` functions used in
@@ -646,7 +623,7 @@ stemmed_dtm <- ts_forum_data %>%
 stemmed_dtm
 ```
 
-```{r stem-counts, echo=FALSE}
+```{r stem-counts, echo=FALSE, message=FALSE}
 stemmed_dtm <- ts_forum_data %>%
   unnest_tokens(output = word, input = post_content) %>%
   anti_join(stop_words, by = "word") %>%
@@ -896,7 +873,7 @@ and modify slightly get metrics for a sequence of topics from 10-75
 counting by 5 and plot the output we saved using the
 `FindTopicsNumber_plot()` function:
 
-```{r find-k, eval=FALSE}
+```{r find-topic, eval=FALSE}
 k_metrics <- FindTopicsNumber(
   forums_dtm,
   topics = seq(10, 75, by = 5),
@@ -937,7 +914,7 @@ used above, except that we specify a range for `k` as one of the
 arguments. In the code below, we search all values of `k` between 10 and
 30.
 
-```{r, eval=FALSE}
+```{r searck-k, eval=FALSE}
 findingk <- searchK(docs, 
                     vocab, 
                     K = c(5:15),
@@ -966,7 +943,7 @@ One final tool that I want to introduce from the `stm` package is the
 `toLDAvis()` function which provides a great visualizations for
 exploring topic and word distributions using `LDAvis` topic browser:
 
-```{r}
+```{r LDAvis}
 toLDAvis(mod = forums_stm, docs = docs)
 ```
 
@@ -1001,7 +978,7 @@ Let's take a look at the 5 most likely terms assigned to each topic,
 i.e. those with the largest β values using the `terms()` function from
 the `topicmodels` package:
 
-```{r}
+```{r terms}
 terms(forums_lda, 5)
 ```
 
@@ -1119,7 +1096,7 @@ gamma_terms %>%
 ```
 
 And let's also compare this to the most prevalent topics and terms from
-our `forums_stm` model that we created using the `plot()` and :
+our `forums_stm` model that we created using the `plot()` function:
 
 ```{r plot_stm}
 plot(forums_stm, n = 7)

@@ -38,6 +38,8 @@ View(ts_forum_data)
 
 glimpse(ts_forum_data)
 
+unique(ts_forum_data$course_name)
+
 ## Tidy Text ####
 
 forums_tidy <- ts_forum_data %>%
