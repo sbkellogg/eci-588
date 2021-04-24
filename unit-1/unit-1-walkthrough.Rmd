@@ -1,11 +1,12 @@
 ---
 title: "Unit 1 Walkthrough: Tidy Text & Word Counts"
 author: "Dr. Shaun Kellogg"
-date: "1/31/2021"
+date: "'r Sys.Date()"
 output: 
   html_document:
     toc: true
     toc_depth: 3
+    toc_float: yes
 editor_options: 
   markdown: 
     wrap: 72
@@ -290,16 +291,15 @@ data you are trying to import.
 Now let's read our data into our Environment and assign it to a variable
 name so we can work with it like any other object in R.
 
-```{r, eval = FALSE}
+```{r, echo = FALSE}
 opd_survey <- read_csv("data/opd_survey.csv")
 ```
 
-```{r, echo=FALSE}
+```{r, eval=FALSE, echo=FALSE}
 opd_survey <- read_csv("/Volumes/GoogleDrive/My Drive/College of Ed/Data/opd_survey.csv")
 ```
 
-Notice that `read_csv()` dealt with the issues of duplicate column names
-for us!!
+Notice that `read_csv()` dealt with the issues of duplicate column names for us!!
 
 If you happen to run into issues with data import, RStudio as has an
 Import Dataset feature for a point and click approach to adding data to
