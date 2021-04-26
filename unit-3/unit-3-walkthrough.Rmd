@@ -1,7 +1,7 @@
 ---
 title: "Unit 3 Walkthrough: Topic Modeling in MOOC-Eds"
 author: "Shaun Kellogg"
-date: "3/21/2021"
+date: "`r format(Sys.Date(),'%B %e, %Y')`"
 output: 
   html_document:
     toc: true
