@@ -291,7 +291,7 @@ data you are trying to import.
 Now let's read our data into our Environment and assign it to a variable
 name so we can work with it like any other object in R.
 
-```{r, echo = FALSE}
+```{r, echo = TRUE}
 opd_survey <- read_csv("data/opd_survey.csv")
 ```
 
@@ -299,7 +299,8 @@ opd_survey <- read_csv("data/opd_survey.csv")
 opd_survey <- read_csv("/Volumes/GoogleDrive/My Drive/College of Ed/Data/opd_survey.csv")
 ```
 
-Notice that `read_csv()` dealt with the issues of duplicate column names for us!!
+Notice that `read_csv()` dealt with the issues of duplicate column names
+for us!!
 
 If you happen to run into issues with data import, RStudio as has an
 Import Dataset feature for a point and click approach to adding data to
