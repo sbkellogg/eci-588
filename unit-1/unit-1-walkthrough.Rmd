@@ -689,14 +689,14 @@ interest to gather additional context, and use data visualization to
 identify patterns and trends that may not be obvious from our tables and
 numerical summaries. Topics addressed in Section 3 include:
 
-a.  **Summary Stats**. We focus primarily on the use of word counts and
+-   **Summary Stats**. We focus primarily on the use of word counts and
     calculating proportions to to help us identify common words used to
     describe the most valuable aspects of online professional
     development offerings.
-b.  **Word Search**. We learn about the global regular expression
+-   **Word Search**. We learn about the global regular expression
     parser, or `grep` package in R, to search for key words among our
     data set.
-c.  **Data Visualization**. Finally, we wrap up this walkthrough and
+-   **Data Visualization**. Finally, we wrap up this walkthrough and
     preview our work for next week by creating wordclouds, bar plots,
     and small multiple charts to explore patterns and trends that would
     be difficult to distinguish otherwise.
@@ -709,22 +709,27 @@ question guiding most of our efforts in this course, "How do we
 
 In this section, we introduce the following functions:
 
-[**`dplyr`**](https://dplyr.tidyverse.org) **functions** -
-[`count()`](https://dplyr.tidyverse.org/reference/count.html?q=count)
-lets you quickly count the unique values of one or more variables -
-[`group_by()`](https://dplyr.tidyverse.org/articles/grouping.html?q=group)
-takes a data frame and one or more variables to group by -
-[`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html) -
-[`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) adds new
-variables and preserves existing ones -
-[`left_join()`](https://dplyr.tidyverse.org/reference/mutate-joins.html?q=join)
-add columns from one dataset to another
+[**`dplyr`**](https://dplyr.tidyverse.org) **functions**
+
+-   [`count()`](https://dplyr.tidyverse.org/reference/count.html?q=count)
+    lets you quickly count the unique values of one or more variables
+
+-   [`group_by()`](https://dplyr.tidyverse.org/articles/grouping.html?q=group)
+    takes a data frame and one or more variables to group by
+
+-   [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)
+
+-   [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) adds
+    new variables and preserves existing ones
+
+-   [`left_join()`](https://dplyr.tidyverse.org/reference/mutate-joins.html?q=join)
+    add columns from one dataset to another
 
 [**`tidytext`**](https://cran.r-project.org/web/packages/tidytext/index.html)
-**functions** -
-[`bind_tf_idf()`](https://cran.r-project.org/web/packages/tidytext/tidytext.pdf)
-binds the term frequency and inverse document frequency of a tidy text
-dataset to the dataset
+**functions**
+
+-   bind_tf_idf() binds the term frequency and inverse document
+    frequency of a tidy text dataset to the dataset
 
 #### Word Counts
 
