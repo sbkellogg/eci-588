@@ -1,7 +1,7 @@
 The R Toolkit
 ========================================================
 date: Unit 1: Week 2 Code-Along
-author: ECI 588: Text Mining in Education
+author: ECI 589: Text Mining in Education
 autosize: false
 transition: linear
 font-family: 'Helvetica'
