@@ -1,0 +1,239 @@
+---
+title-block-banner: false
+title: "Course Syllabus"
+subtitle: "ECI 588: Text Mining in Education"
+author: "Dr. Shaun Kellogg"
+date: today
+format:
+  html:
+    toc: true
+theme: journal
+editor: visual
+---
+
+## Course Overview
+
+As the use of digital resources continues expand in education, an unprecedented amount of new data is becoming available to educational researchers and practitioners. Among these new data sources, unstructured data such as text represents a significant share. This introductory course to text mining is designed to prepare researchers and practitioners to use this data more efficiently, effectively, and ethically. This course will provide students with an overview of text mining as an analytic approach, examples of its use in educational contexts, and applied experience with widely adopted tools and techniques. As participants gain experience in the collection, analysis, and reporting of data throughout the course, they will be better prepared help educational organizations understand and improve both online and blended learning environments.
+
+**Number of Credits:** 3
+
+**Course Prerequisites/Co-requisites:** This course has no prerequisites but ECI 586: Introduction to Learning Analytics is highly recommended.
+
+## Time & Location
+
+**Meeting Time:** This distance education course is predominantly asynchronous. Online tools are utilized throughout the course for communication and interaction. In addition, we will use Zoom for synchronous virtual office hours, web conferencing, or whole class discussions. For optional live class meet-ups, I will send out a poll the first week of class to find a time that works for the majority of students and record these meetings for students who are not able to attend.
+
+**Virtual Class Locations:** All course materials and activities can be accessed online through NC State's Moodle course management platform. Access <http://wolfware.ncsu.edu/> and log-in with your Unity ID and password. After logging-in, locate and click on ECI 588 Text Mining in Education to access the course site.
+
+Students must have Internet access and access to a Web browser (e.g., Safari, Firefox, Chrome) to participate in this course. The Moodle course site and Web-based software required for completing course projects may only be accessed online. It is strongly recommended that students have high-speed Internet access.
+
+## Instructor Information
+
+**Name:** [Dr. Shaun Kellogg](https://www.fi.ncsu.edu/people/sbkellog)\
+**Email:** [shaun.kellogg\@ncsu.edu](shaun.kellogg@ncsu.edu)\
+**Office:** [Friday Institute for Educational Innovation](https://www.fi.ncsu.edu) (Room 223)\
+**Phone:** (919) 513-8563\
+**Hours:** Appointments by [Calendly](https://calendly.com/sbkellogg/analytics) Monday-Friday 8:00-4:00\
+**Social:** [LinkedIn](https://www.linkedin.com/in/shaunbkellogg/) \| [GitHub](https://github.com/settings/profile)
+
+## Course Texts
+
+There are several required textbooks for this course, all of which are freely available online or through the NCSU Library. Supplemental course readings and content (e.g. articles, videos) will also be provided at no cost through the Moodle course site. You will also be asked to locate articles of interest for our discussions and I highly recommend that you link Google Scholar to the NCSU Library: <https://www.lib.ncsu.edu/articles/google-scholar>.
+
+### Required
+
+1.  Hvitfeldt, E., & Silge, J. (2021). *Supervised machine learning for text analysis in R*. Chapman and Hall/CRC. <https://smltar.com>
+2.  Silge, J., & Robinson, D. (2017). *Text mining with R: A tidy approach*. O'Reilly Media, Inc. [https://www.tidytextmining.com](#0)
+3.  Researcher and Practitioner Articles (see References for potential readings). Provided through the Moodle course site.
+
+### Optional
+
+1.  Estrellado, R. A., Freer, E., Rosenberg, J. M., & Velásquez, I. C. (2020). Data science in education using R. Routledge. [https://datascienceineducation.com](https://datascienceineducation.com/)
+2.  Krumm, A., Means, B., & Bienkowski, M. (2018). *Learning analytics goes to school: A collaborative approach to improving education.* Routledge. <https://catalog.lib.ncsu.edu/catalog/NCSU4862134>
+3.  Lang, C., Siemens, G., Wise, A., & Gasevic, D. (Eds.). (2017). *Handbook of learning analytics (2nd Edition)*. New York, NY, USA: SOLAR, Society for Learning Analytics and Research. <https://www.solaresearch.org/publications/hla-22/>
+4.  Sclater, N. (2017). [*Learning analytics explained*](https://catalog.lib.ncsu.edu/catalog/NCSU4863297). Taylor & Francis.
+5.  Wickham, H., & Grolemund, G. (2016). *R for data science: import, tidy, transform, visualize, and model data (2e)*. " O'Reilly Media, Inc.". <https://r4ds.hadley.nz>
+6.  Healy, K. (2018). *Data visualization: a practical introduction*. Princeton University Press. <http://socviz.co/>
+7.  Cairo, A. (2016). [*The truthful art: Data, charts, and maps for communication*.](https://catalog.lib.ncsu.edu/catalog/NCSU3923006) New Riders. <https://catalog.lib.ncsu.edu/catalog/NCSU3923006>
+
+## Software
+
+Students should feel comfortable installing new software programs and navigating unfamiliar graphical user interfaces. It is also recommended that students in this class have some background knowledge of online learning environments (e.g. LMS, MOOCs, etc.).
+
+### Required Software
+
+Hands-on data analysis tutorials and experiences will make extensive use of R and R Studio. You will access Learning Analytics Case Study activities through Posit Cloud and will complete R tutorials to assist with these activities through DataCamp.
+
+1.  **Posit Cloud** (<https://posit.co/products/cloud/cloud/)> provides access to Posit's powerful set of data science tools, including:
+
+    -   **RStudio** ([https://posit.co/products/open-source/rstudio](https://posit.co/products/open-source/rstudio/)), an integrated development environment (IDE) for R and Python that includes a console and syntax-highlighting editor, as well as tools for plotting, history, debugging, and workspace management.
+
+    -   **Quarto** ([https://quarto.org](https://quarto.org/)), an open-source scientific and technical publishing system used for creating reproducible, production quality articles, presentations, dashboards, websites, blogs, and books in HTML, PDF, MS Word, ePub, and more.
+
+    -   First, register for a free Posit Cloud account at: <https://login.posit.cloud/register.>
+
+    -   Next, access our ECI 588: Text Mining workspace at:
+
+2.  **Quarto Pub** ([https://quartopub.com](https://quartopub.com/)) is a free and easy web publishing platform for Quarto docs. To publish the documents via Quarto Pub, however, you will first need to create an account.\
+    To create a Quarto Pub account, sign up here: <https://quartopub.com/sign-up> 
+
+3.  **DataCamp** ([https://www.datacamp.com](https://www.datacamp.com/)) is an online learning platform with a large catalog of video tutorials, coding activities, assessments and certifications for R, Python, data science, statistics & more.
+
+    -   Register for a free account using your \@ncsu.edu email address at: <https://www.datacamp.com/users/sign_up>
+
+    -   After registering with your NC State email, click the following link to access our [ECI 588: Text Mining in Education datacamp group](https://www.datacamp.com/groups/shared_links/788d70bb8c2f88b6e0ef99a2e071643b134d5c5963c867587385badce5cf5c21), which will provide you with free access to the full catalog of datacamp's tutorials and tools.
+
+### Optional Software (R)
+
+While we will be using RStudio through Posit Cloud for this course, I eventually recommend shifting to RStudio Desktop if you plan to use R and RStudio beyond this course.
+
+1.  **R** (<https://www.r-project.org>) is an open-source language and computing environment for data manipulation, analysis, and visualization. Installation files for Windows, Mac, and Linux can be found at the website for the Comprehensive R Archive Network, <http://cran.r-project.org/>.
+
+2.  **RStudio Desktop** (<https://posit.co/products/open-source/rstudio)> is a free desktop application of the RStudio IDE for R that runs on Windows, MacOS or Linux. Its advantages over Posit Cloud include offline access, full control over the local environment, customization options, data privacy and security, and the ability to leverage the full resources of your local machine, such as CPU, memory, and storage.
+
+3.  **R Pubs** (<https://rpubs.com)> is a free and easy web publishing platform for R. Throughout the course, you will be using using [R Markdown](https://rmarkdown.rstudio.com/)) and [Quarto](https://quarto.org) documents, which weave together narrative text and code to produce elegantly formatted, static and dynamic outputs formats including: [HTML](https://bookdown.org/yihui/rmarkdown/html-document.html), [PDF](https://bookdown.org/yihui/rmarkdown/pdf-document.html), [HTML5 slides](https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html), [Tufte-style handouts](https://bookdown.org/yihui/rmarkdown/tufte-handouts.html), [books](https://bookdown.org/), [dashboards](https://rmarkdown.rstudio.com/flexdashboard/), [shiny applications](https://bookdown.org/yihui/rmarkdown/shiny-documents.html), [research articles](https://github.com/rstudio/rticles), [websites](https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html), and more.\
+    To publish these documents via RPubs, however, you will first need to create an account here: <https://rpubs.com/users/new.>
+
+### Optional Software (Posit)
+
+1.  **Posit Recipes** (<https://posit.cloud/learn/recipes>) provide a collection of R code snippets and instructions featuring up-to-date best practices for coding in R.
+
+2.  **Posit** **Cheat Sheets** ([https://posit.co/resources/cheatsheets](https://posit.co/resources/cheatsheets/?_gl=1*12iba7w*_ga*MTE1MTYxMzc2NC4xNzE3ODQzNDU5*_ga_2C0WZ1JHG0*MTcxNzg1MTMwOS4zLjEuMTcxNzg1Mjk1Mi4wLjAuMA..)) also provide handy printable reference sheets to commonly used packages and their essential functions, including example code for testing them out. also provide handy reference to commonly used packages and their essential functions, including example code for testing them out.
+
+### Optional Software (Other)
+
+1.  **ChatGPT** (<https://openai.com/chatgpt/>) is an advanced AI language model developed by OpenAI and is **highly recommended for this course**. It's and excellent tool for learning analytics and can assist by explaining concepts, helping with code, offering analysis guidance, and troubleshooting, though it's important to verify its advice against reliable sources.\
+    Use with or without registering for an account at: <https://chatgpt.com>
+
+2.  **Git** is a free and open source distributed version control system. Jenny Bryan's very thorough installation and R Studio set up process for Mac and Windows can be found here: <http://happygitwithr.com>.
+
+3.  **GitHub** is a web-based hosting service for version control using Git. You can create an account here: <https://github.com>
+
+4.  **LinkedIn Learning** ([https://www.linkedin.com/learning)](https://www.linkedin.com/learning) offers tutorials and training courses on R, R Studio, and Tableau. LinkedIn Learning is [available at no charge to students](https://www.lib.ncsu.edu/faq/what-is-linkedin-learning).
+
+## Course Goals
+
+Goals for the Introduction to Learning Analytics course are guided by the North Carolina State University motto: ***Think and Do***. Specifically, goals for this course are twofold:
+
+-   **Disciplinary Knowledge.** Students will deepen their understanding of Learning Analytics as an emerging approach within the field of Learning Analytics, including its application in a wide range of education settings.
+
+-   **Technical Skills.** Scholars will develop proficiency with the processes, tools, and techniques necessary to efficiently, effectively, and ethically apply Learning Analytics for understanding and improving learning and the contexts in which learning occurs.
+
+## Student Learning Outcomes
+
+The following learning objectives are aligned with the overarching objectives of the Graduate Certificate in Learning Analytics program and are embedded in each unit of the course. Students who complete this course will be able to:
+
+-   **Conceptual Foundations:** Describe Learning Analytics as a discipline (e.g. history, concepts, theories, methodologies, stakeholders, legal and ethical issues) and how it has been applied to important problems, questions, and issues in education;
+
+-   **Data Sources & Measures:** Identify and appropriately use educational data sources (e.g. Student Information and Learning Management Systems) and key student metrics;
+
+-   **Tool Proficiency:** Efficiently and effectively apply up-to-date software and tools (i.e. R or Tableau) to implement Learning Analytics workflows for preparing, analyzing, and sharing data;
+
+-   **Processes & Techniques**: Understand and apply data visualization approaches and techniques (e.g. interactive visualization and data dashboards) in order to understand and improve learning and the contexts in which learning occurs; and,
+
+-   **Communication:** Clearly communicate methods, analyses, findings, and recommendations that can provide actionable insight into learning contexts for a range of education stakeholders.
+
+## Course Structure & Schedule
+
+This course is divided into four units focused on conceptualizing Learning Analytics as a research discipline and developing the foundational skills for data exploration using a range of digital data sources. The first week of each unit introduces terminology, core concepts, and applications of Learning Analytics through readings, course videos, and discussion. In the second week, we focus on developing essential technical skills necessary for data-intensive Research workflows through R software tutorials. In the third week of each unit, we apply these skills to conduct an analysis and create a data product using publicly available educational datasets.
+
+| **Schedule** | **Topics** |
+|------------------|------------------------------------------------------|
+| **WELCOME** | **OVERVIEW & INTRODUCTIONS** |
+| Week 1 | Introductions, syllabus review, and software setup |
+| **UNIT 1** | **WHAT IS LEARNING ANALYTICS?** |
+| Week 2 | **Readings & Discussion:** Introduction to Learning Analytics as a discipline, including a little history, key concepts, learning theories, methodologies, etc.) |
+| Week 3 | **R Tutorial**: Software tutorials on critical packages and key functions used to import, wrangle, explore, model, and report "tidy" data. |
+| Week 4 | **Case Study**: A look into student-level data from online classes provided by a state-wide virtual public school. |
+| **UNIT 2** | **PARTNERSHIPS & PREDICTIVE ANALYTICS** |
+| Week 5 | **Readings & Discussion:** An examination of the use of data visualization and dashboards in Learning Analytics to understand and improve student learning. |
+| Week 6 | **R Tutorial**: A deeper dive into the "grammar of graphics" and development of foundational skills for creating interactive data apps. |
+| Week 7 | **Case Study**: An exploration of aggregate student data to examine educational inequities and changes over time. |
+| **UNIT 3** | **TEXT AS DATA** |
+| Week 8 | **Readings & Discussion:** Introduction to text mining in education, including a key concepts and common techniques, and their application in educational settings. |
+| Week 9 | **R Tutorial**: An introduction to the Shiny package and development of interactive data apps. |
+| Week 10 | **Case Study**: A focus on text processing, word frequencies, and sentiment lexicons to examine public opinions on Twitter around the Common Core and Next Generation Science Standards. |
+| **UNIT 4** | **A NETWORK PERSPECTIVE** |
+| Week 11 | **Readings & Discussion:** Introduction to social network analysis in education, including a key concepts and common techniques, and applications in educational settings. |
+| Week 12 | **R Tutorial**: Software tutorials on critical packages and key functions used to import, wrangle, explore, model, and report relational data. |
+| Week 13 | **Case Study**: A focus on network data formats, descriptives, and sociograms to examine peer interaction in Massively Open Online Course for Educators (MOOC-Eds). |
+| **WRAP UP** | **MAKE UP & FINAL PROJECTS** |
+| Week 14 | **Make-up Week:** Final opportunity for students to complete any missing work. This week should also be used to make significant progress on your final project. |
+| Week 15 | **Final Project:** In lieu of a final exam, students will complete and Independent analysis and develop a data product (e.g. report, presentation, data dashboard, etc.) that demonstrates concepts learned throughout the course. |
+
+## Major Assignments & Assessment
+
+1.  **Housekeeping (4 pts)**: Students will review the syllabus and respond to the welcome announcement sent at the beginning of the course, post a brief introduction of themselves and respond to their peers. Student will also be required to access the required course texts and software and complete some basic tutorials.
+
+2.  **Reading & Discussion (24 pts)**: The first week of each unit introduces terminology, core concepts, and applications of an analytical approach through readings, course videos, and discussion. To help guide discussions, students are provided a set of essential questions to address and are also encouraged to explore their own areas of interest. The primary goal of course readings and discussion is to foster a deeper understanding of how Learning Analytics has been applied in educational contexts.
+
+3.  **R Tutorials (24 pts):** The second week of each unit, consists of tutorials for working with R packages and functions used import, wrangle, explore, and model data. The primary goal of these tutorials is to support familiarity and fluency with R syntax and key functions for data analysis.
+
+4.  **Case Studies (24 pts)**: In the third week of each unit, students will complete an interactive "case study" demonstrating how key data-intensive research workflow processes (i.e., wrangling, visualizing, summarizing, modeling, and communicating data) featured in exemplary education research studies are implemented in R. Coding case studies also provide a holistic setting to explore important foundational LA topics integral to data analysis such as reproducible research, use of APIs, ethical considerations, diversity and inclusion, and creation of useful data products.
+
+5.  **Final Project (24 pts)**: In lieu of a final exam, students will conduct and independent analysis using a data source of their choosing and create a "data product" (e.g. report, presentation, data dashboard, etc.) demonstrating the knowledge and skills gained throughout the semester.
+
+**Grading Scale:** The grading scale is based on 100 points:
+
+A+ (97-100), A (94-96), A- (90-93), B+ (87-89), B (84-86), B- (80-83)
+
+C+ (77-79), C (74-76), C- (70-73), D+ (67-69), D (64-66), D- (60-63), F (59 or less)
+
+Late work is accepted but may be penalized at 15% per week it is late. Assignments submitted by the due date, however, may be revised and resubmitted for a higher grade by the following week. Students experiencing unforeseen circumstances with a resulting excused absence (e.g., family medical emergency) are allowed to make up work without penalty.
+
+**Course Feedback Expectations:** Please contact your instructor via email (shaun.kellogg\@ncsu.edu) with any questions about the course project or other assignments. Your instructor will strive to answer any emails within 24 hours (M-F) and 48 hours on the weekend, and grade submitted assignments within 5-7 days of the due date. In addition, students will be provided ongoing opportunities, and are strongly encouraged, to provide course feedback to help improve the design of current and future course implementations.
+
+## Getting Support
+
+Learning new research methods and especially learning a programming language like R (or any new language for that matter) will inevitably be a bit frustrating at first. Even experienced R developers like Hadley Wickham [get frustrated](#0):
+
+> "It's easy when you start out programming to get really frustrated and think, 'Oh it's me, I'm really stupid,' or, 'I'm not made out to program.' But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It's just a natural part of programming. So, it happens to everyone and gets less and less over time. Don't blame yourself. Just take a break, do something fun, and then come back and try again later."
+
+When feeling stuck or like banging your head against your desk, there are several options for seeking out help within and beyond this course:
+
+1.  **Course Forums & Email**: Including this general software troubleshooting forum, we will have forums for each assignment. You'll likely have similar questions as your peers, and you'll likely be able to answer other peoples' questions too so I encourage you to use these forums. Unlike most of my apps and social media accounts, I actually have notifications enabled. Also, do not hesitate to email me directly as well.
+
+2.  **Learning Analytics Office Hours**: Some issues are much easier to troubleshoot in real time. To schedule a 1 on 1 meeting with me in person of via Zoom, use the following Calendly link: [https://calendly.com/sbkellogg/analytics](https://calendly.com/sbkellogg/analytics?back=1&month=2024-08)
+
+3.  **ChatGPT** (<https://openai.com/chatgpt/>) is an advanced AI language model developed by OpenAI and is **highly recommended for this course**. It's and excellent tool for learning analytics and can assist by explaining concepts, helping with code, offering analysis guidance, and troubleshooting, though it's important to verify its advice against reliable sources.\
+    Use with or without registering for an account at: <https://chatgpt.com>
+
+4.  **NCSU Library Services**: The [Data & Visualization](https://www.lib.ncsu.edu/services/data-visualization) group is an incredible asset for NC State students. Though the library's website, you can access and enroll in workshops, find resources, and chat or schedule a Zoom appointment to get R help. 
+
+5.  **Social Media**: If you use Twitter, you can also post R-related questions and content with the [#rstats](https://twitter.com/search?q=%23rstats&src=typed_query) hashtag. One of the things I most value about the R in general is that the R community is exceptionally helpful.
+
+6.  **The Interwebs**: Aside from Google of course, [StackOverflow](https://stackoverflow.com/) and the [RStudio Community](https://community.rstudio.com/) will likely become tried and true tools in your text mining toolkit. In fact, I'd wager that the majority of Google searcher will likely direct you to one of these two sites. Note that when search Google, it sometimes helps to include "rstats" in your query. 
+
+## NC State Policies
+
+**Academic Integrity:** Students are bound by the academic integrity policy as stated in the code of student conduct. Therefore, students are required to uphold the university pledge of honor and exercise honesty in completing any assignment. See the website for a full explanation: <http://www.ncsu.edu/policies/student_services/student_discipline/POL11.35.1.php>
+
+**N.C. State University Policies, Regulations, and Rules (PRR)**: Students are responsible for reviewing the PRRs which pertain to their course rights and responsibilities. These include:
+
+-   <http://policies.ncsu.edu/policy/pol-04-25-05> (Equal Opportunity and Non-Discrimination Policy Statement),
+
+-   <http://oied.ncsu.edu/oied/policies.php>  (Office for Institutional Equity and Diversity),
+
+-   <http://policies.ncsu.edu/policy/pol-1135-01> (Code of Student Conduct), and
+
+-   <http://policies.ncsu.edu/regulation/reg-02-50-03> (Grades and Grade Point Average).
+
+**University Non-Discrimination Policies:** It is the policy of the State of North Carolina to provide equality of opportunity in education and employment for all students and employees. Accordingly, the university does not practice or condone unlawful discrimination in any form against students, employees or applicants on the grounds of race, color, religion, creed, sex, national origin, age, disability, or veteran status. In addition, North Carolina State University regards discrimination based on sexual orientation to be inconsistent with its goal of providing a welcoming environment in which all its students, faculty, and staff may learn and work up to their full potential.
+
+**Disabilities**: Reasonable accommodations will be made for students with verifiable disabilities. In order to take advantage of available accommodations, students must register with the Disability Resource Office at Holmes Hall, Suite 304, Campus Box 7509, 919-515-7653. For more information on NC State's policy on working with students with disabilities, please see the Academic Accommodations for Students with Disabilities Regulation (REG02.20.01).
+
+## Other Important Resources
+
+-   **Keep Learning:** <https://dasa.ncsu.edu/students/keep-learning/>
+
+-   **Protect the Pack FAQs:** <https://www.ncsu.edu/coronavirus/frequently-asked-question>
+
+-   **NC State Protect the Pack Resources for Students:** [Resources for Students \| Protect the Pack](https://www.ncsu.edu/coronavirus/reactivating-campus/resources-for-students/)
+
+-   **NC State Keep Learning, tips for students opting to take courses remotely:** [Keep Learning Tips for Remote Learning](https://dasa.ncsu.edu/students/keep-learning/)
+
+-   **Introduction to Zoom for students:** <https://youtu.be/5LbPzzPbYEw>
+
+-   **Learning with Moodle, a student's guide to using Moodle:** <https://moodle-projects.wolfware.ncsu.edu/course/view.php?id=226>
+
+-   **NC State Libraries** [Technology Lending Program](https://www.lib.ncsu.edu/devices)

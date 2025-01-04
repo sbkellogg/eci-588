@@ -26,11 +26,10 @@ Virtual Office Hours: Weekdays and weekends by appointment: <https://calendly.co
 
 [**Required Course Texts**]{.underline}**:**
 
-1.     *Text Mining with R* is available free online at [https://www.tidytextmining.com](https://www.tidytextmining.com/)
-
-2.     *Data Science in Education Using R* is available free online at [https://datascienceineducation.com](https://datascienceineducation.com/)
-
-3.     Researcher and Practitioner Articles (see References for potential readings). Provided through Moodle course site.
+1.  *Text Mining with R* is available free online at [https://www.tidytextmining.com](#0)
+2.  *Data Science in Education Using R* is available free online at [https://datascienceineducation.com](https://datascienceineducation.com/)
+3.  
+4.  Researcher and Practitioner Articles (see References for potential readings). Provided through Moodle course site.
 
 [**Required and Recommended Software:**]{.underline} This course requires R and R Studio, which will be used to provide hands-on experience with the concepts and skills addressed in course readings. R and R studio can be installed on computers running Windows, MacOS, and Linux operating systems.
 
@@ -140,7 +139,7 @@ Introductory Readings (Choose 2)
 
 1.  Bail, C. (2018). [Strengths and weaknesses of text as data](https://cbail.github.io/textasdata/strengths-weaknesses/rmarkdown/Strengths_and_Weaknesses.html). Retrieved from <https://cbail.github.io/textasdata/strengths-weaknesses/rmarkdown/Strengths_and_Weaknesses.html>
 
-2.  Gupta, V., & Lehal, G. S. G. S. (2009). [A Survey of Text Mining Techniques and Applications](http://www.jetwi.us/uploadfile/2014/1230/20141230112729939.pdf). Journal of Emerging Technologies in Web Intelligence, 1(1), 60–76. doi:10.4304/jetwi.1.1.60-76
+2.  Gupta, V., & Lehal, G. S. G. S. (2009). [A Survey of Text Mining Techniques and Applications](http://www.jetwi.us/uploadfile/2014/1230/20141230112729939.pdf). Journal of Emerging Technologies in Web Intelligence, 1(1), 60–76. <doi:10.4304/jetwi.1.1.60-76>
 
 3.  Hotho, A., Nürnberger, A., & Forum, G. P. L. (2005). [A brief survey of text mining](https://moodle-courses1819.wolfware.ncsu.edu/pluginfile.php/801758/mod_forumng/introduction/Hotho%20%20A%20brief%20survey%20of%20text%20mining.pdf).
 
@@ -156,11 +155,11 @@ Text Mining in Education (Optional)
 
 1.  Galyardt, A., Aleahmad, T., Fienberg, S., Junker, B., & Hargadon, S. (2009). [Analysis of a Web-based Network of Educators](https://moodle-courses1819.wolfware.ncsu.edu/pluginfile.php/801759/mod_forumng/introduction/Galyardt%20%282009%29%20-%20Analysis%20of%20a%20Web-based%20Network%20of%20Educators%20Advanced%20Data%20Analysis%20Project%20-%20annotated.pdf), 1–31. Retrieved from <http://www.stat.cmu.edu/tr/tr878/tr878.pdf>
 
-2.  Abdous, M., & He, W. (2011). [Using text mining to uncover students' technology-related problems in live video streaming](https://moodle-courses1819.wolfware.ncsu.edu/pluginfile.php/801759/mod_forumng/introduction/Abdous%202011%20Using%20text%20mining%20to%20uncover%20students%20technology-related%20problems%20in%20live%20video%20streaming.pdf). *British Journal of Educational Technology*, 42(1), 40–49. doi:10.1111/j.1467-8535.2009.00980.x
+2.  Abdous, M., & He, W. (2011). [Using text mining to uncover students' technology-related problems in live video streaming](https://moodle-courses1819.wolfware.ncsu.edu/pluginfile.php/801759/mod_forumng/introduction/Abdous%202011%20Using%20text%20mining%20to%20uncover%20students%20technology-related%20problems%20in%20live%20video%20streaming.pdf). *British Journal of Educational Technology*, 42(1), 40–49. <doi:10.1111/j.1467-8535.2009.00980.x>
 
-3.  Leong, C. K., Lee, Y. H., & Mak, W. K. (2012). [Mining sentiments in SMS texts for teaching evaluation](https://moodle-courses1819.wolfware.ncsu.edu/pluginfile.php/801759/mod_forumng/introduction/Leong%202012%20Mining%20sentiments%20in%20SMS%20texts%20for%20teaching%20evaluation.pdf). *Expert Systems with Applications*, 39(3), 2584–2589. doi:10.1016/j.eswa.2011.08.113
+3.  Leong, C. K., Lee, Y. H., & Mak, W. K. (2012). [Mining sentiments in SMS texts for teaching evaluation](https://moodle-courses1819.wolfware.ncsu.edu/pluginfile.php/801759/mod_forumng/introduction/Leong%202012%20Mining%20sentiments%20in%20SMS%20texts%20for%20teaching%20evaluation.pdf). *Expert Systems with Applications*, 39(3), 2584–2589. <doi:10.1016/j.eswa.2011.08.113>
 
-4.  Cheon, J., Lee, S., Smith, W., Song, J., & Kim, Y. (2013). [The Determination of children's knowledge of global lunar patterns from online essays using text mining analysis](https://moodle-courses1819.wolfware.ncsu.edu/pluginfile.php/801759/mod_forumng/introduction/Cheon%202012%20The%20Determination%20of%20Childrens%20Knowledge%20of%20Global%20Lunar%20Patterns%20from%20Online%20Essays%20Using%20Text%20Mining%20Analysis.pdf). *Research in Science Education*, 43(2), 667–686. doi:10.1007/s11165-012-9282-5
+4.  Cheon, J., Lee, S., Smith, W., Song, J., & Kim, Y. (2013). [The Determination of children's knowledge of global lunar patterns from online essays using text mining analysis](https://moodle-courses1819.wolfware.ncsu.edu/pluginfile.php/801759/mod_forumng/introduction/Cheon%202012%20The%20Determination%20of%20Childrens%20Knowledge%20of%20Global%20Lunar%20Patterns%20from%20Online%20Essays%20Using%20Text%20Mining%20Analysis.pdf). *Research in Science Education*, 43(2), 667–686. <doi:10.1007/s11165-012-9282-5>
 
 5.  Anderson, T., Upton, L., Dron, J., Malone, J., & Poelhuber, B. (2015). [Social Interaction in self-paced distance education](https://moodle-courses1819.wolfware.ncsu.edu/pluginfile.php/801759/mod_forumng/introduction/Anderson%202015%20Social%20Interaction%20in%20Self-paced%20Distance%20Education.pdf). *Open Praxis*, 7(1), 7–23.
 
