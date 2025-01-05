@@ -82,7 +82,7 @@ c.  **Project Setup** We revisit Chapter 6 from DSIEUR to set up a
 
 ### 1a. Some Context
 
-#### RTT Online Professional Development Evaluation
+#### RTTT Online Professional Development Evaluation
 
 ![](img/opd.png){width="30%"}
 
