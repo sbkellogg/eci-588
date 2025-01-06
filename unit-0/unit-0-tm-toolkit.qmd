@@ -1,6 +1,6 @@
 ---
 title-block-banner: false
-title: "Learning Analytics Toolkit"
+title: "Text Mining Toolkit"
 subtitle: "ECI 586 Intro to Learning Analytics"
 author: "Dr. Shaun Kellogg"
 date: today
@@ -11,27 +11,20 @@ theme: journal
 editor: visual
 ---
 
-Your final task this week is to prepare your Learning Analytics Toolkit by setting up and getting familiar with the required texts and software we'll be using throughout the course.
+Your final task is to prepare your Learning Analytics Toolkit by setting up and getting familiar with the required texts and software we'll be using throughout the course.
 
 ## Part 1: Text & Software
 
-The first step in preparing your toolkit is making sure you can access the required course texts and data analysis software. These required texts and software, as well as optional but recommended software and texts, are describe in more detail in our [ECI 586 Course Syllabus](https://sbkellogg.github.io/eci-586/unit-0/unit-0-syllabus.html).
+The first step in preparing your toolkit is making sure you can access the required course texts and data analysis software. These required texts and software, as well as optional but recommended software and texts, are describe in more detail in our [ECI 588 Course Syllabus](https://sbkellogg.github.io/eci-588/unit-0/unit-0-syllabus.html).
 
 ### **Course Texts**
 
-There are several required textbooks for this course, all of which are freely available online or through the NCSU Library. Supplemental course readings and content (e.g. articles, videos) will also be provided at no cost through the Moodle course site. You will also be asked to locate articles of interest for our discussions and I highly recommend that you link Google Scholar to the NCSU Library: <https://www.lib.ncsu.edu/articles/google-scholar>.
+There are several required textbooks for this course, all of which are freely available online or through the NCSU Library. Supplemental course readings and content (e.g. articles, videos) will also be provided at no cost through the Moodle course site. You will also be asked to locate articles of interest for our discussions and I highly recommend that you link Google Scholar to the NCSU Library: [https://www.lib.ncsu.edu/articles/google-scholar](#0){.uri}.
 
 Course readings will draw heavily from the following resources:  
 
-1.  Krumm, A., Means, B., & Bienkowski, M. (2018). [*Learning analytics goes to school: A collaborative approach to improving education.*](https://catalog.lib.ncsu.edu/catalog/NCSU4862134) Routledge.
-
-2.  Estrellado, R. A., Freer, E. A., Mostipak, J., Rosenberg, J. M., & Velásquez, I. C. (2020). [*Data science in education using R*.](https://datascienceineducation.com/) Routledge.
-
-3.  Lang, C., Siemens, G., Wise, A., & Gasevic, D. (Eds.). (2017). [*Handbook of learning analytics (1st Edition)*.](https://www.solaresearch.org/publications/hla-17/) New York, NY, USA: SoLAR, Society for Learning Analytics and Research.
-
-4.  Lang, C., Siemens, G., Wise, A., & Gasevic, D., Merceron, A. (Eds.). (2022). [*Handbook of learning analytics (2nd. ed.)*.](https://www.solaresearch.org/publications/hla-22/ "https://www.solaresearch.org/publications/hla-22/") Vancouver, BC. SoLAR, Society for Learning Analytics and Research. DOI: 10.18608/hla22
-
-5.  Carolan, B. V. (2013). [*Social network analysis and education: Theory, methods & applications*.](https://catalog.lib.ncsu.edu/catalog/NCSU2803782) Sage Publications.
+1.  Silge, J., & Robinson, D. (2017). *Text mining with R: A tidy approach*. O'Reilly Media, Inc. [https://www.tidytextmining.com](#0)
+2.  Researcher and Practitioner Articles (see References). Provided through the Moodle course site.
 
 ### Data Analysis Software
 
@@ -41,7 +34,7 @@ Hands-on data analysis tutorials and experiences will make extensive use of R an
 
     -   First, register for a free Posit Cloud account at: <https://login.posit.cloud/register.>
 
-    -   Next, access our ECI 586 Intro to Learning Analytics workspace at: <https://posit.cloud/spaces/399154/join?access_code=0VTsUSIXKD1knmHEZZerH6aYg0Q-_e-TKV-a94Bp>
+    -   Next, access our ECI 588: Text Mining in Education workspace at: <https://posit.cloud/spaces/597706/join?access_code=weMxPiHe3BsKRsQOtUOnlD9NwbNG3L1G7NsuBanV>
 
 2.  **DataCamp** ([https://www.datacamp.com](https://www.datacamp.com/)) is an online learning platform with a large catalog of video tutorials, coding activities, assessments and certifications for R, Python, data science, statistics & more.
 
@@ -49,7 +42,7 @@ Hands-on data analysis tutorials and experiences will make extensive use of R an
 
     -   After registering with your NC State email, click the following link to access our [Learning Analytics DataCamp group space](https://www.datacamp.com/groups/shared_links/b6b84feb66a4f045585bb4dbe7eb154418aef1136ccef4450d5eb3f453b0e136) where you will complete required assignments during Week 2 of each unit.
 
-## Part 2: Introduction to R DataCamp Assignment 
+## Part 2: Introduction to R DataCamp Assignment
 
 The second step in preparing your Learning Analytics Toolkit is to join our Learning Analytics group on DataCamp and complete your first assignment: Introduction to R.
 
@@ -99,7 +92,7 @@ If you haven't done so already, be sure to sign up for a free Posit account. You
 
 ### Join Space
 
-Next, access our [ECI 586 Intro to Learning Analytics (2023)](https://posit.cloud/spaces/399154/join?access_code=0VTsUSIXKD1knmHEZZerH6aYg0Q-_e-TKV-a94Bp) workspace. This space is part of my paid plan and will provide you unlimited use of Posit Cloud during the semester. You should see a prompt to "Join Space?" like the one below:
+Next, access our [ECI 588 Text Mining in Education (2025)](https://posit.cloud/spaces/597706/join?access_code=weMxPiHe3BsKRsQOtUOnlD9NwbNG3L1G7NsuBanV) workspace. This space is part of my paid plan and will provide you unlimited use of Posit Cloud during the semester. You should see a prompt to "Join Space?" like the one below:
 
 ![](img/join-space.png){width="100%"}
 
@@ -135,7 +128,7 @@ Complete the assignment by reading through the document and completing coding ac
 
 Learning a programming language like R (or any new language for that matter) will inevitably be a little frustrating at first. Even experienced R developers like Hadley Wickham [get frustrated](#0):
 
-> "It's easy when you start out programming to get really frustrated and think, 'Oh it's me, I'm really stupid,' or, 'I'm not made out ![](images/Screenshot 2024-08-18 at 3.53.24 PM.png)to program.' But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It's just a natural part of programming. So, it happens to everyone and gets less and less over time. Don't blame yourself. Just take a break, do something fun, and then come back and try again later."
+> "It's easy when you start out programming to get really frustrated and think, 'Oh it's me, I'm really stupid,' or, 'I'm not made out to program.' But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It's just a natural part of programming. So, it happens to everyone and gets less and less over time. Don't blame yourself. Just take a break, do something fun, and then come back and try again later."
 
 When feeling stuck or like banging your head against your desk, there are several options for seeking out help within and beyond this course:
 
@@ -150,4 +143,4 @@ When feeling stuck or like banging your head against your desk, there are severa
 
 5.  **Social Media**: If you use Twitter, you can also post R-related questions and content with the [#rstats](https://twitter.com/search?q=%23rstats&src=typed_query) hashtag. One of the things I most value about the R in general is that the R community is exceptionally helpful.
 
-6.  **The Interwebs**: Aside from Google of course, [StackOverflow](https://stackoverflow.com/) and the [RStudio Community](https://community.rstudio.com/) will likely become tried and true tools in your text mining toolkit. In fact, I'd wager that the majority of Google searcher will likely direct you to one of these two sites. Note that when search Google, it sometimes helps to include "rstats" in your query. 
+6.  **The Interwebs**: Aside from Google of course, [StackOverflow](https://stackoverflow.com/) and the [RStudio Community](https://community.rstudio.com/) will likely become tried and true tools in your text mining toolkit. In fact, I'd wager that the majority of Google searcher will likely direct you to one of these two sites. Note that when search Google, it sometimes helps to include "rstats" in your query.

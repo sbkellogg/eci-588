@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Shaun Kellogg">
+<meta name="dcterms.date" content="2025-01-06">
+
+<title>Text Mining Toolkit</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="unit-0-tm-toolkit_files/libs/clipboard/clipboard.min.js"></script>
+<script src="unit-0-tm-toolkit_files/libs/quarto-html/quarto.js"></script>
+<script src="unit-0-tm-toolkit_files/libs/quarto-html/popper.min.js"></script>
+<script src="unit-0-tm-toolkit_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="unit-0-tm-toolkit_files/libs/quarto-html/anchor.min.js"></script>
+<link href="unit-0-tm-toolkit_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="unit-0-tm-toolkit_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="unit-0-tm-toolkit_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="unit-0-tm-toolkit_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="unit-0-tm-toolkit_files/libs/bootstrap/bootstrap-3119dc400b02922c27171a4b76b1a7ff.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#part-1-text-software" id="toc-part-1-text-software" class="nav-link active" data-scroll-target="#part-1-text-software">Part 1: Text &amp; Software</a>
+  <ul class="collapse">
+  <li><a href="#course-texts" id="toc-course-texts" class="nav-link" data-scroll-target="#course-texts"><strong>Course Texts</strong></a></li>
+  <li><a href="#data-analysis-software" id="toc-data-analysis-software" class="nav-link" data-scroll-target="#data-analysis-software">Data Analysis Software</a></li>
+  </ul></li>
+  <li><a href="#part-2-introduction-to-r-datacamp-assignment" id="toc-part-2-introduction-to-r-datacamp-assignment" class="nav-link" data-scroll-target="#part-2-introduction-to-r-datacamp-assignment">Part 2: Introduction to R DataCamp Assignment</a>
+  <ul class="collapse">
+  <li><a href="#sign-up" id="toc-sign-up" class="nav-link" data-scroll-target="#sign-up">Sign Up</a></li>
+  <li><a href="#join-group" id="toc-join-group" class="nav-link" data-scroll-target="#join-group">Join Group</a></li>
+  <li><a href="#visit-dashboard" id="toc-visit-dashboard" class="nav-link" data-scroll-target="#visit-dashboard">Visit Dashboard</a></li>
+  <li><a href="#start-assignment" id="toc-start-assignment" class="nav-link" data-scroll-target="#start-assignment">Start Assignment</a></li>
+  </ul></li>
+  <li><a href="#part-3-getting-started-with-posit-cloud" id="toc-part-3-getting-started-with-posit-cloud" class="nav-link" data-scroll-target="#part-3-getting-started-with-posit-cloud">Part 3: Getting Started with Posit Cloud</a>
+  <ul class="collapse">
+  <li><a href="#sign-up-1" id="toc-sign-up-1" class="nav-link" data-scroll-target="#sign-up-1">Sign Up</a></li>
+  <li><a href="#join-space" id="toc-join-space" class="nav-link" data-scroll-target="#join-space">Join Space</a></li>
+  <li><a href="#view-content" id="toc-view-content" class="nav-link" data-scroll-target="#view-content">View Content</a></li>
+  <li><a href="#start-assignment-1" id="toc-start-assignment-1" class="nav-link" data-scroll-target="#start-assignment-1">Start Assignment</a></li>
+  <li><a href="#open-case-study" id="toc-open-case-study" class="nav-link" data-scroll-target="#open-case-study">Open Case Study</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your Turn</a></li>
+  </ul></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Text Mining Toolkit</h1>
+<p class="subtitle lead">ECI 586 Intro to Learning Analytics</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Shaun Kellogg </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 6, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Your final task is to prepare your Learning Analytics Toolkit by setting up and getting familiar with the required texts and software we’ll be using throughout the course.</p>
+<section id="part-1-text-software" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-text-software">Part 1: Text &amp; Software</h2>
+<p>The first step in preparing your toolkit is making sure you can access the required course texts and data analysis software. These required texts and software, as well as optional but recommended software and texts, are describe in more detail in our <a href="https://sbkellogg.github.io/eci-588/unit-0/unit-0-syllabus.html">ECI 588 Course Syllabus</a>.</p>
+<section id="course-texts" class="level3">
+<h3 class="anchored" data-anchor-id="course-texts"><strong>Course Texts</strong></h3>
+<p>There are several required textbooks for this course, all of which are freely available online or through the NCSU Library. Supplemental course readings and content (e.g.&nbsp;articles, videos) will also be provided at no cost through the Moodle course site. You will also be asked to locate articles of interest for our discussions and I highly recommend that you link Google Scholar to the NCSU Library: <a href="#0" class="uri">https://www.lib.ncsu.edu/articles/google-scholar</a>.</p>
+<p>Course readings will draw heavily from the following resources: &nbsp;</p>
+<ol type="1">
+<li>Silge, J., &amp; Robinson, D. (2017). <em>Text mining with R: A tidy approach</em>. O’Reilly Media, Inc.&nbsp;<a href="#0">https://www.tidytextmining.com</a></li>
+<li>Researcher and Practitioner Articles (see References). Provided through the Moodle course site.</li>
+</ol>
+</section>
+<section id="data-analysis-software" class="level3">
+<h3 class="anchored" data-anchor-id="data-analysis-software">Data Analysis Software</h3>
+<p>Hands-on data analysis tutorials and experiences will make extensive use of R and R Studio during the semester. You will access Learning Analytics Case Study activities through Posit Cloud and will complete R tutorials to assist with these activities through DataCamp.</p>
+<ol type="1">
+<li><p><strong>Posit Cloud</strong> (<a href="https://posit.co/products/cloud/cloud/)" class="uri">https://posit.co/products/cloud/cloud/)</a> provides access to Posit’s powerful set of data science tools, including <strong>RStudio</strong> (<a href="https://posit.co/products/open-source/rstudio/">https://posit.co/products/open-source/rstudio</a>), an integrated development environment (IDE) for R and Python that includes a console and syntax-highlighting editor, as well as tools for plotting, history, debugging, and workspace management. As part of our Case Studies, we’ll also be making extensive use of <strong>Quarto</strong> (<a href="https://quarto.org/">https://quarto.org</a>), an open-source scientific and technical publishing system used for creating reproducible, production quality articles, presentations, dashboards, websites, blogs, and books in HTML, PDF, MS Word, ePub, and more.</p>
+<ul>
+<li><p>First, register for a free Posit Cloud account at: <a href="https://login.posit.cloud/register." class="uri">https://login.posit.cloud/register.</a></p></li>
+<li><p>Next, access our ECI 588: Text Mining in Education workspace at: <a href="https://posit.cloud/spaces/597706/join?access_code=weMxPiHe3BsKRsQOtUOnlD9NwbNG3L1G7NsuBanV" class="uri">https://posit.cloud/spaces/597706/join?access_code=weMxPiHe3BsKRsQOtUOnlD9NwbNG3L1G7NsuBanV</a></p></li>
+</ul></li>
+<li><p><strong>DataCamp</strong> (<a href="https://www.datacamp.com/">https://www.datacamp.com</a>) is an online learning platform with a large catalog of video tutorials, coding activities, assessments and certifications for R, Python, data science, statistics &amp; more.</p>
+<ul>
+<li><p>Register for a free account using your @ncsu.edu email address at: <a href="https://www.datacamp.com/users/sign_up" class="uri">https://www.datacamp.com/users/sign_up</a></p></li>
+<li><p>After registering with your NC State email, click the following link to access our <a href="https://www.datacamp.com/groups/shared_links/b6b84feb66a4f045585bb4dbe7eb154418aef1136ccef4450d5eb3f453b0e136">Learning Analytics DataCamp group space</a> where you will complete required assignments during Week 2 of each unit.</p></li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="part-2-introduction-to-r-datacamp-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-introduction-to-r-datacamp-assignment">Part 2: Introduction to R DataCamp Assignment</h2>
+<p>The second step in preparing your Learning Analytics Toolkit is to join our Learning Analytics group on DataCamp and complete your first assignment: Introduction to R.</p>
+<section id="sign-up" class="level3">
+<h3 class="anchored" data-anchor-id="sign-up">Sign Up</h3>
+<p>First, sign up for a DataCamp account using your NC State email.</p>
+<p><img src="img/datacamp-signup.png" class="img-fluid"></p>
+</section>
+<section id="join-group" class="level3">
+<h3 class="anchored" data-anchor-id="join-group">Join Group</h3>
+<p>Next, click the following link to access our <a href="https://www.datacamp.com/groups/shared_links/b6b84feb66a4f045585bb4dbe7eb154418aef1136ccef4450d5eb3f453b0e136">Learning Analytics DataCamp group space</a>. You will be informed that you have been invited to join the space and should see something like below. Click “Join” to accept the invite to our group and then the “Getting Started” button on the page that follows.</p>
+<p><img src="img/datacamp-join.png" class="img-fluid"></p>
+<p>Next you’ll be prompted to “Start with the course that Shaun Kellogg has assigned to you” or “Go to the Dashboard -&gt;” instead. You’re welcome to get started immediately on the <strong>Introduction to R</strong> course, but I recommend taking a quick visit to the group dashboard first. <img src="img/datacamp-start.png" class="img-fluid"></p>
+</section>
+<section id="visit-dashboard" class="level3">
+<h3 class="anchored" data-anchor-id="visit-dashboard">Visit Dashboard</h3>
+<p>The DataCamp Dashboard is where you can access DataCamp courses, tutorials, assessments, certifications, etc. As part of the educator group I set up for this course and for my <a href="https://fi.ncsu.edu/projects/laser-institute/">LASER Institute</a>, you have free access to the full suite of DataCamp instructional resources for the fall semester!</p>
+<p><img src="img/datacamp-dashboard.png" class="img-fluid"></p>
+<p>Feel free to explore the dashboard board and click around to check out the resources available to you. To get back to this page, click the “Learn” button in the menu bar at the top of the page.</p>
+</section>
+<section id="start-assignment" class="level3">
+<h3 class="anchored" data-anchor-id="start-assignment">Start Assignment</h3>
+<p>You should see the <strong>Introduction to R</strong> course assignment on your dashboard. Click on that to get started on the assignment. Once, you do you should the see the course landing page picture below.</p>
+<p><img src="img/datacamp-course.png" class="img-fluid"></p>
+<p>Click “Start’ to get started on the assignment. Once you do, you’ll see an exercise with a set of instructions on the left, and on the right you’ll see a code editor and R Console for writing and runing code and viewing the outputs of the R code you run.</p>
+<p><img src="img/datacamp-assignment.png" class="img-fluid"></p>
+<p>Good luck and don’t hesitate to reach out if you have any questions or run into any issues!</p>
+</section>
+</section>
+<section id="part-3-getting-started-with-posit-cloud" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-getting-started-with-posit-cloud">Part 3: Getting Started with Posit Cloud</h2>
+<p>Your final step in preparing your toolkit is to complete our introductory Case Study designed to help get you up and running with RStudio and working with Quarto. This brief activity is designed to orient you to the data analysis assignments during the final week of each unit, including the use of R, RStudio, and Quarto.</p>
+<section id="sign-up-1" class="level3">
+<h3 class="anchored" data-anchor-id="sign-up-1">Sign Up</h3>
+<p>If you haven’t done so already, be sure to sign up for a free Posit account. You can access the free plan directly using this link: <a href="https://posit.cloud/plans/free" class="uri">https://posit.cloud/plans/free</a>.</p>
+<p><img src="img/posit-signup.png" class="img-fluid"></p>
+</section>
+<section id="join-space" class="level3">
+<h3 class="anchored" data-anchor-id="join-space">Join Space</h3>
+<p>Next, access our <a href="https://posit.cloud/spaces/597706/join?access_code=weMxPiHe3BsKRsQOtUOnlD9NwbNG3L1G7NsuBanV">ECI 588 Text Mining in Education (2025)</a> workspace. This space is part of my paid plan and will provide you unlimited use of Posit Cloud during the semester. You should see a prompt to “Join Space?” like the one below:</p>
+<p><img src="img/join-space.png" class="img-fluid" style="width:100.0%"></p>
+</section>
+<section id="view-content" class="level3">
+<h3 class="anchored" data-anchor-id="view-content">View Content</h3>
+<p>After joining the space, you may see a description of the space like in the screenshot below. Click the “Content” menu tab next.</p>
+<p><img src="img/about-space.png" class="img-fluid"></p>
+</section>
+<section id="start-assignment-1" class="level3">
+<h3 class="anchored" data-anchor-id="start-assignment-1">Start Assignment</h3>
+<p>Once you have accessed the content section of our workspace, click on the assignment labeled <strong>Unit 0 - Getting Started</strong>, which will create a copy of the R Project for your individual use.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/getting-started.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt=""></p>
+</figure>
+</div>
+</section>
+<section id="open-case-study" class="level3">
+<h3 class="anchored" data-anchor-id="open-case-study">Open Case Study</h3>
+<p>Next, click on the <code>unit-0-case-study.qmd</code> file located in the Files tab of your R Studio cloud project. This will open the <strong>Unit 0: Getting Started Case Study</strong> assignment. This assignment is created using a Quarto document, which allows</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/files-pane.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Finally, if the document opens in “Source” mode and looks like unformatted text, click on the “Visual” button in the toolbar of the file you just opened and follow the direction to complete the assignment.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/visual-editor.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="your-turn" class="level3">
+<h3 class="anchored" data-anchor-id="your-turn">Your Turn</h3>
+<p>Complete the assignment by reading through the document and completing coding activities and reflection questions where you see the <span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong> signal. Be sure to complete all your the activities or your document will not “render” to an HTML webpage when you have completed the assignment.</p>
+<p><img src="img/posit-assignment.png" class="img-fluid"> Good luck and don’t hesitate to reach out if you have any questions or run into any issues!</p>
+</section>
+</section>
+<section id="troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
+<p>Learning a programming language like R (or any new language for that matter) will inevitably be a little frustrating at first. Even experienced R developers like Hadley Wickham <a href="#0">get frustrated</a>:</p>
+<blockquote class="blockquote">
+<p>“It’s easy when you start out programming to get really frustrated and think, ‘Oh it’s me, I’m really stupid,’ or, ‘I’m not made out to program.’ But, that is absolutely not the case. Everyone gets frustrated. I still get frustrated occasionally when writing R code. It’s just a natural part of programming. So, it happens to everyone and gets less and less over time. Don’t blame yourself. Just take a break, do something fun, and then come back and try again later.”</p>
+</blockquote>
+<p>When feeling stuck or like banging your head against your desk, there are several options for seeking out help within and beyond this course:</p>
+<ol type="1">
+<li><p><strong>Course Forums &amp; Email</strong>: Including this general software troubleshooting forum, we will have forums for each assignment. You’ll likely have similar questions as your peers, and you’ll likely be able to answer other peoples’ questions too so I encourage you to use these forums. Unlike most of my apps and social media accounts, I actually have notifications enabled. Also, do not hesitate to email me directly as well.</p></li>
+<li><p><strong>Learning Analytics Office Hours</strong>: Some issues are much easier to troubleshoot in real time. To schedule a 1 on 1 meeting with me in person of via Zoom, use the following Calendly link: <a href="https://calendly.com/sbkellogg/analytics?back=1&amp;month=2024-08">https://calendly.com/sbkellogg/analytics</a></p></li>
+<li><p><strong>ChatGPT</strong> (<a href="https://openai.com/chatgpt/" class="uri">https://openai.com/chatgpt/</a>) is an advanced AI language model developed by OpenAI and is <strong>highly recommended for this course</strong>. It’s and excellent tool for learning analytics and can assist by explaining concepts, helping with code, offering analysis guidance, and troubleshooting, though it’s important to verify its advice against reliable sources.<br>
+Use with or without registering for an account at: <a href="https://chatgpt.com" class="uri">https://chatgpt.com</a></p></li>
+<li><p><strong>NCSU Library Services</strong>: The&nbsp;<a href="https://www.lib.ncsu.edu/services/data-visualization">Data &amp; Visualization</a>&nbsp;group is an incredible asset for NC State students. Though the library’s website, you can access and enroll in workshops, find resources, and chat or schedule a Zoom appointment to get R help.&nbsp;</p></li>
+<li><p><strong>Social Media</strong>:&nbsp;If you use Twitter, you can also post R-related questions and content with the&nbsp;<a href="https://twitter.com/search?q=%23rstats&amp;src=typed_query">#rstats</a>&nbsp;hashtag. One of the things I most value about the R in general is that the R community is exceptionally helpful.</p></li>
+<li><p><strong>The Interwebs</strong>: Aside from Google of course,&nbsp;<a href="https://stackoverflow.com/">StackOverflow</a>&nbsp;and the&nbsp;<a href="https://community.rstudio.com/">RStudio Community</a>&nbsp;will likely become tried and true tools in your text mining toolkit. In fact, I’d wager that the majority of Google searcher will likely direct you to one of these two sites. Note that when search Google, it sometimes helps to include “rstats” in your query.</p></li>
+</ol>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

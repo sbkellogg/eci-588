@@ -43,7 +43,7 @@ There are several required textbooks for this course, all of which are freely av
 ### Required
 
 1.  Silge, J., & Robinson, D. (2017). *Text mining with R: A tidy approach*. O'Reilly Media, Inc. [https://www.tidytextmining.com](#0)
-2.  Researcher and Practitioner Articles (see References for potential readings). Provided through the Moodle course site.
+2.  Researcher and Practitioner Articles (see References). Provided through the Moodle course site.
 
 ### Optional
 
@@ -140,7 +140,7 @@ The following learning objectives are aligned with the overarching learning obje
 
 ## Course Structure & Schedule
 
-This course is divided into four **Units** introducing common and progressively advanced text mining techniques, including their applications in educational contexts. Each unit last three weeks. The first week introduces terminology, core concepts, and applications of Text Mining through course **Readings & Discussion**. The second week of each unit focuses on developing the technical skills necessary for exploratory analysis through a guided **Case Study** that illustrates a text mining analytic workflow in R using data from an educational context. During the third week, students in the GLCA program will apply these skills by conducting a simple, self-directed **Independent Analysis** while students new to R will further develop their fluency with text mining techniques through datacamp **R Tutorials.**
+This course is divided into four **Units** introducing common and progressively advanced text mining techniques, including their applications in educational contexts. Each unit last three weeks. The first week introduces terminology, core concepts, and applications of Text Mining through course **Readings & Discussion**. The second week of each unit focuses on developing the technical skills necessary for exploratory analysis through a guided **Case Study** that illustrates a text mining analytic workflow in R using data from an educational context. During the third week, students in the GLCA program will apply these skills by conducting a simple, self-directed **Independent Analysis** while students new to R will further develop their fluency with text mining techniques through datacamp **R Tutorials.** In lieu of a final exam, students will develop a **Data Product** (e.g. report, presentation, data dashboard, etc.) that demonstrates their ability to independently analyze text as data.
 
 +----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Schedule**   | **Topics**                                                                                                                                                                                               |
@@ -198,7 +198,7 @@ This course is divided into four **Units** introducing common and progressively 
 
 ## Major Assignments & Assessment
 
-1.  **Housekeeping (4 pts)**: Students will review the syllabus and respond to the welcome announcement sent at the beginning of the course, post a brief introduction of themselves and respond to their peers. Student will also be required to access the required course texts and software. For students who have not completed ECI 586: Intro to Learning Analytics, they will be also be required complete some introductory R tutorials via Datacamp.
+1.  **Housekeeping (6 pts)**: Students will review the syllabus and respond to the welcome announcement sent at the beginning of the course, post a brief introduction of themselves and respond to their peers. Student will also be required to access the required course texts and software. For students who have not completed ECI 586: Intro to Learning Analytics, they will be also be required complete some introductory R tutorials via Datacamp.
 
 2.  **Reading & Discussion (24 pts)**: The first week of each unit introduces terminology, core concepts, and applications of an analytical approach through readings, course videos, and discussion. To help guide discussions, students are provided a set of essential questions to address and are also encouraged to explore their own areas of interest. The primary goal of course readings and discussion is to foster a deeper understanding of how Learning Analytics has been applied in educational contexts.
 
@@ -206,7 +206,7 @@ This course is divided into four **Units** introducing common and progressively 
 
 4.  **Case Studies (24 pts)**: In the third week of each unit, students will complete an interactive "case study" demonstrating how key data-intensive research workflow processes (i.e., wrangling, visualizing, summarizing, modeling, and communicating data) featured in exemplary education research studies are implemented in R. Coding case studies also provide a holistic setting to explore important foundational LA topics integral to data analysis such as reproducible research, use of APIs, ethical considerations, diversity and inclusion, and creation of useful data products.
 
-5.  **Final Project (24 pts)**: In lieu of a final exam, students will conduct an independent analysis using a data source of their choosing and create a "data product" (e.g. report, presentation, data dashboard, etc.) demonstrating the knowledge and skills gained throughout the semester.
+5.  **Final Project (22 pts)**: In lieu of a final exam, students will conduct an independent analysis using a data source of their choosing and create a "data product" (e.g. report, presentation, data dashboard, etc.) demonstrating the knowledge and skills gained throughout the semester.
 
 **Grading Scale:** The grading scale is based on 100 points:
 
@@ -238,9 +238,23 @@ When feeling stuck or like banging your head against your desk, there are severa
 
 6.  **The Interwebs**: Aside from Google of course, [StackOverflow](https://stackoverflow.com/) and the [RStudio Community](https://community.rstudio.com/) will likely become tried and true tools in your text mining toolkit. In fact, I'd wager that the majority of Google searcher will likely direct you to one of these two sites. Note that when search Google, it sometimes helps to include "rstats" in your query. 
 
-## Use of Generative AI
+## Generative AI Course Policy
 
 ChatGPT and other generative artificial intelligence (GenAI) tools have been growing rapidly. ChatGPT, and most of instances of GenAI, are large language models (LLM)s that has been trained on billions or trillions of pages of information (articles, books, or parts of the Internet), and are very good at guessing a likely logical answer to any question or text based prompt. However, it’s not truly “thinking” as it gives each answer. A good analogy is a young child who remains a toddler, who can mimic words but has no clue what they are actually saying. Even worse, the system–like toddlers–may outright invent (“hallucinate”) facts, names, quotes, and book/journal/article titles and sound confident as it does.
+
+### Acceptable Uses
+
+In this course, you are welcome to collaborate with GenAI systems on projects or assignments, but remember that ***the primary goal is to enhance your understanding of course materials and concepts.*** It is crucial to consider the ethical implications of AI technologies and avoid over reliance on AI to complete tasks without actively engaging with the subject matter. Ensure that your use of AI aligns with NC State's ethical guidelines, respects privacy, avoids bias, and promotes fairness and transparency.
+
+Below are the acceptable uses of AI in this course:
+
+-   **Course Readings & Discussion:** You are encouraged to leverage AI-based tools and platforms to enhance your understanding of our course readings. These tools can provide explanations and examples of key concepts introduced in our readings, summaries of key points,
+
+-   **Case Studies:** You are welcome to utilize GenAI tools to assist in generating, interpreting, and troubleshooting code and its output. However, it is essential to ensure that you understand the underlying code and interpret the results critically.
+
+-   **Independent Analyses:** You may use GenAI in creative projects, such as generating art, music, or creative writing. However, it is important to maintain your creative input and provide proper attribution if AI-generated content is used in your work.
+
+### Unacceptable Uses
 
 ## NC State Policies
 
@@ -275,3 +289,116 @@ ChatGPT and other generative artificial intelligence (GenAI) tools have been gro
 -   **Learning with Moodle, a student's guide to using Moodle:** <https://moodle-projects.wolfware.ncsu.edu/course/view.php?id=226>
 
 -   **NC State Libraries** [Technology Lending Program](https://www.lib.ncsu.edu/devices)
+
+## References & Readings
+
+### Unit 1 
+
+#### Introductory Readings (Choose 2)
+
+1.  Bail, C. (2018). Strengths and weaknesses of text as data. Retrieved from <https://cbail.github.io/textasdata/strengths-> weaknesses/rmarkdown/Strengths_and_Weaknesses.html
+
+2.  Gupta, V., & Lehal, G. S. G. S. (2009). A Survey of Text Mining Techniques and Applications. Journal of Emerging Technologies in Web Intelligence, 1(1), 60–76. doi:10.4304/jetwi.1.1.60-76 3. 4.
+
+3.  Hotho, A., Nürnberger, A., & Forum, G. P. L. (2005). A brief survey of text mining. JISC. (2008).
+
+4.  Text mining: Briefing paper. Retrieved from <http://www.jisc.ac.uk/publications/briefingpapers/2008/bptextminingv2.aspx> 5.
+
+5.  Kwartler, T. (2016). R tutorial: What is text mining? Retrieved from <https://youtu.be/mmz95b1k0J0>
+
+6.  Kwartler, T. (2016). Cleaning and preprocessing text. Retrieved from <https://youtu.be/3putwMZpt1E>
+
+7.  Prato, S. (2013). What is text mining? Retrieved from <http://infospace.ischool.syr.edu/2013/04/23/what-is-text-mining/>
+
+#### Text Mining in Education (Optional) 
+
+1.  Galyardt, A., Aleahmad, T., Fienberg, S., Junker, B., & Hargadon, S. (2009). Analysis of a Web- based Network of Educators, 1–31. Retrieved from <http://www.stat.cmu.edu/tr/tr878/tr878.pdf>
+
+2.  Abdous, M., & He, W. (2011). Using text mining to uncover students' technology-related problems in live video streaming. British Journal of Educational Technology, 42(1), 40–49. doi:10.1111/j.1467-8535.2009.00980.x
+
+3.  Leong, C. K., Lee, Y. H., & Mak, W. K. (2012). Mining sentiments in SMS texts for teaching evaluation. Expert Systems with Applications, 39(3), 2584–2589. doi:10.1016/j.eswa.2011.08.113
+
+4.  Cheon, J., Lee, S., Smith, W., Song, J., & Kim, Y. (2013). The Determination of children's knowledge of global lunar patterns from online essays using text mining analysis. Research in Science Education, 43(2), 667–686. doi:10.1007/s11165-012-9282-5
+
+5.  Anderson, T., Upton, L., Dron, J., Malone, J., & Poelhuber, B. (2015). Social Interaction in self- paced distance education. Open Praxis, 7(1), 7–23.
+
+6.  Ai, H., Sionti, M., Wang, Y.-C., & Rose, C. P. (2010). Finding transactive contributions in whole group classroom discussions. In Proceedings of the 2010 International Conference of the Learning Sciences (Vol. 1, pp. 976–983).
+
+7.  Ezen-Can, A., Kellogg, S., Boyer, K. E., & Booth, S. (2015). Unsupervised modeling for understanding MOOC discussion forums: A learning analytics approach. In LAK15: 5th International Conference on Learning Analytics & Knowledge
+
+8.  Rosé, C. P. (2014). Exploration of student attitudes in MOOCs. Retrieved March 18, 2015, from <https://youtu.be/LFT5IhiPZB8>
+
+9.  Wen, M., Yang, D., & Rosé, C. (2014). Sentiment analysis in MOOC discussion forums: What does it tell us? Proceedings of Educational Data Mining, (Edm), 1–8. Retrieved from <http://www.cs.cmu.edu/~mwen/papers/edm2014-camera-ready.pdf>
+
+10. Gtech.edu Edu Research Group. (2011). Educational text mining
+
+11. Straumsheim, Carl. (2016). Detecting more than plagiarism. Inside Higher Ed. Retrieved from <https://www.insidehighered.com/news/2016/01/21/turnitin-expanding-beyond-plagiarism-> detection-launches-revision-assistant
+
+12. Turnitin. (2014). Turnitin Revision Assistant results from the classroom : Pilot study review. 6
+
+### Unit 2 
+
+#### Dictionary Methods (Chose 1)
+
+1.  Grimmer, J., & Stewart, B. M. (2013). Text as data: The promise and pitfalls of automatic content analysis methods for political texts. Political Analysis, 21(03), 267–297. <http://doi.org/10.1093/pan/mps028>
+
+2.  Bail, C. (n.d.). Dictionary-based text analysis in r. Retrieved from <https://cbail.github.io/SICSS_Dictionary-Based_Text_Analysis.html#dictionary-based-> quantitative-text-analysis
+
+3.  Bail, C. (2017). SICSS 2017 - dictionary-based text analysis. Retrieved from <https://youtu.be/4xv1ccEUleA>
+
+4.  Gupta, S. (2018). Reasons to replace dictionary based text mining with machine learning techniques. Retrieved from <https://hackernoon.com/reasons-to-replace-dictionary-based-text-> mining-with-machine-learning-techniques-27537835e1bf
+
+#### Sentiment Analysis & LIWC (Optional) 
+
+1.  MonkeyLearn. (n.d.). Sentiment analysis: Nearly Everything you need to know. Retrieved February 3, 2019, from <https://monkeylearn.com/sentiment-analysis>
+
+2.  Berkowitz, R. (2017). Introduction to sentiment analysis. Retrieved from <https://youtu.be/65RP29Jll80>
+
+3.  Raval, S. (2019). Sentiment analysis - Data Lit #1. Retrieved from <https://youtu.be/3Pzni2yfGUQ?t=92>
+
+4.  LIWC. (n.d.). LIWC: How it works. Retrieved February 3, 2019, from <https://liwc.wpengine.com/how-it-works/>
+
+5.  Tausczik, Y. R., & Pennebaker, J. W. (2009). The psychological meaning of words: LIWC and computerized text analysis methods. Journal of Language and Social Psychology, 29(1), 24–54. <http://doi.org/10.1177/0261927x09351676>
+
+6.  Johar, I. (2016). LIWC Text Analysis Tutorial. Retrieved from <https://youtu.be/lzuMukv8Ql4>
+
+### Unit 3 
+
+#### Introductory Readings & Resources (All required) 
+
+1.  Brett, M. R. (2012). Topic modeling: A basic introduction. *Journal of digital humanities*, *2*(1), 2-1. <https://journalofdigitalhumanities.org/2-1/topic-modeling-a-basic-introduction-by-megan-r-brett/>
+
+2.  Knispelis, A. (2016). LDA Topic Models \[Video\]. YouTube. <https://www.youtube.com/watch?v=3mHy4OSyRf0>
+
+3.  The "Secret” Recipe for Topic Modeling Themes Matthew Jocker's blog post highlights the importance of preprocessing text and provides some very practical guidelines for topic modeling.
+
+#### Supplementary Readings on Topic Modeling (Choose at least 1) 
+
+1.  [Probabilistic Topic Models](https://www.cs.columbia.edu/~blei/papers/Blei2012.pdf) \
+    Article by David Blei explains some of the basic concepts of topic modeling, including some underlying math and some great visuals.
+
+2.  [Finding structure in xkcd comics with Latent Dirichlet Allocation](https://projects.cpsievert.me/615/xkcd/) \
+    Quick intro and fun example of applying to LDA to a favorite comic of mine
+
+3.  [The LDA Buffet is Now Open](https://www.matthewjockers.net/2011/09/29/the-lda-buffet-is-now-open-or-latent-dirichlet-allocation-for-english-majors/) \
+    Short, whimsical blog post by Matthew Jocker explaining LDA for English Marjors Topic Modeling and Figurative Language Lisa M. Rhody explores the productive failure of topic modeling.
+
+4.  Choose your own! Google Scholar or Duck Duck Go
+
+#### Researcher and Practitioner Readings on Topic Modeling in Education (Choose at least 1): 
+
+1.  [“Twitter Archeology” of Learning Analytics and Knowledge](https://dl.acm.org/doi/10.1145/2723576.2723584) \
+    Conferences Paper exploring the conference tweets through multiple methods including: topic modeling, and descriptive, network, and hashtag analysis.
+
+2.  [Computer-Assisted Reading and Discovery for Student Generated Text in Massive Open Online Courses](https://scholar.harvard.edu/files/dtingley/files/educationwriteup.pdf)\
+    This paper introduces the Structural Topic Model with applications to self-reported students’ motivations, identifying discussion themes, and patterns of feedback in course evaluations.
+
+3.  [Unsupervised Modeling for Understanding MOOC Discussion Forums](https://dl.acm.org/doi/10.1145/2723576.2723589)\
+    Paper exploring three different approaches to text classification: manual coding, LDA, and the k-medoids clustering algorithm
+
+4.  [Using a Learner-Topic Model for Mining Learner Interests in Open Learning Environments](https://www.jstor.org/stable/26388396)\
+    A study that applies topic modeling to automatically discover learner interests in open learning environments.
+
+#### Unit 4 
+
+Coming soon!
