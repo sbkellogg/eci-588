@@ -70,11 +70,11 @@ Feel free to explore the dashboard board and click around to check out the resou
 
 ### Start Assignment
 
-You should see the **Introduction to R** course assignment on your dashboard. Click on that to get started on the assignment. Once, you do you should the see the course landing page picture below.
+You should see the **Introduction to R**, **Introduction to the Tidyverse**, and an optional **Introduction to ChatGPT** assignment on your dashboard. Click on Introduction to R to get started on your first tutorial. Once, you do you should the see the course landing page picture below.
 
 ![](img/datacamp-course.png)
 
-Click "Start' to get started on the assignment. Once you do, you'll see an exercise with a set of instructions on the left, and on the right you'll see a code editor and R Console for writing and runing code and viewing the outputs of the R code you run.
+Click "Start' to get started on the assignment. You'll then see an exercise with a set of instructions on the left, and on the right you'll see a code editor and R Console for writing and running code and viewing the outputs of the R code you run.
 
 ![](img/datacamp-assignment.png)
 
