@@ -19,7 +19,7 @@ bibliography: lit/references.bib
 
 ### Background
 
-Welcome to using **ECI 586: An Introduction to Learning Analytics**! During the third week of each unit, we'll complete a basic research workflow, or data analysis process, modeled after an actual learning analytics study. This getting started task is designed to orient you to both our data analysis assignments and to R, RStudio, and/or Quarto, which we'll be using to complete those assignments.
+Welcome to using **ECI 588: Text Mining in Education**! During the third week of each unit, we'll complete a basic research workflow, or data analysis process, modeled after an actual learning analytics study. This getting started task is designed to orient you to both our data analysis assignments and to R, RStudio, and/or Quarto, which we'll be using to complete those assignments.
 
 We'll be using Posit Cloud, which has all of the functionality of the RStudio Desktop, and some additional benefits for the those new to R, such as the pre-installation of packages and the simplification of file directories. If you're new to R, I highly recommend it.
 
