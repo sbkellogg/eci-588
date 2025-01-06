@@ -240,21 +240,29 @@ When feeling stuck or like banging your head against your desk, there are severa
 
 ## Generative AI Course Policy
 
-ChatGPT and other generative artificial intelligence (GenAI) tools have been growing rapidly. ChatGPT, and most of instances of GenAI, are large language models (LLM)s that has been trained on billions or trillions of pages of information (articles, books, or parts of the Internet), and are very good at guessing a likely logical answer to any question or text based prompt. However, it’s not truly “thinking” as it gives each answer. A good analogy is a young child who remains a toddler, who can mimic words but has no clue what they are actually saying. Even worse, the system–like toddlers–may outright invent (“hallucinate”) facts, names, quotes, and book/journal/article titles and sound confident as it does.
+ChatGPT and other generative artificial intelligence (GenAI) tools have been growing rapidly. ChatGPT, and most of instances of GenAI, are large language models (LLM)s that has been trained on billions or trillions of pages of information (articles, books, or parts of the Internet), and are very good at guessing a likely logical answer to any question or text based prompt. However, it’s not truly “thinking” as it gives each answer. Like a precocious toddler, GenAI can mimic words but has no clue what they are actually saying. Even worse, the system - like toddlers - may outright invent (“hallucinate”) facts, names, quotes, and book/journal/article titles and sound confident as it does.
 
 ### Acceptable Uses
 
-In this course, you are welcome to collaborate with GenAI systems on projects or assignments, but remember that ***the primary goal is to enhance your understanding of course materials and concepts.*** It is crucial to consider the ethical implications of AI technologies and avoid over reliance on AI to complete tasks without actively engaging with the subject matter. Ensure that your use of AI aligns with NC State's ethical guidelines, respects privacy, avoids bias, and promotes fairness and transparency.
+In this course, you are welcome to collaborate with GenAI systems on projects or assignments, but remember that ***the primary goal is to enhance your understanding of course materials and concepts.*** It is crucial to consider the ethical implications of AI technologies and avoid over reliance on AI to complete tasks without actively engaging with the course content. Ensure that your use of AI aligns with NC State's ethical guidelines, respects privacy, avoids bias, and promotes fairness and transparency (See NC State Policies section below).
 
 Below are the acceptable uses of AI in this course:
 
--   **Course Readings & Discussion:** You are encouraged to leverage AI-based tools and platforms to enhance your understanding of our course readings. These tools can provide explanations and examples of key concepts introduced in our readings, summaries of key points,
+-   **Course Readings & Discussion:** You are encouraged to leverage AI-based tools and platforms to enhance your understanding of our course readings. These tools can provide explanations and examples of key concepts introduced in our readings, summaries of key points, and even recommendations for further readings or resources.
 
 -   **Case Studies:** You are welcome to utilize GenAI tools to assist in generating, interpreting, and troubleshooting code and its output. However, it is essential to ensure that you understand the underlying code and interpret the results critically.
 
--   **Independent Analyses:** You may use GenAI in creative projects, such as generating art, music, or creative writing. However, it is important to maintain your creative input and provide proper attribution if AI-generated content is used in your work.
+-   **Independent Analyses & Final Project:** You may use GenAI in support of independent analyses and your final course project. GenAI can be useful for brainstorming ideas, offering a different perspective or provide constructive feedback, organize content ideas into a cohesive structure, proofreading or summarizing content. However, it is important to maintain your creative input and provide proper attribution if AI-generated content is used in your work.
 
 ### Unacceptable Uses
+
+While I encourage the integration of GenAI in your learning experience, there are certain uses that are not permitted in this course:
+
+-   **Course Readings & Discussion:** Please to do **NOT** use GenAI tools to craft written responses to discussion prompts. Using GenAI to generate a response to each unit's discussion questions will not help you think through the materials. Although the text it generates may sound plausible, there’s an official philosophical term for this kind of writing: [bulls\*\*t](https://doi.org/10.1007/s10676-024-09775-5), i.e. "“speech or text produced without concern for its truth” (Hicks, Humphries, and Slater 2024).
+
+-   **Case Studies:** Although you are welcome to utilize GenAI tools to assist in generating, interpreting, and troubleshooting code and its output. However, using GenAI without ensuring that you understand the underlying code and interpreting the results critically is actually really detrimental to learning, especially if you just copy/paste directly from what it spits out. In addition, please do **NOT** use GenAI to generate responses to open-ended questions and prompts.
+
+-   **Independent Analyses & Final Project:** While you You may use GenAI for independent analyses and your final course project, AI tools are not encrypted or private. Do not enter proprietary data or personal information about study participants. Also, GenAI tools should **NOT** be used to create entire pieces of written content. It can be used for tasks such as brainstorming, drafting headlines or assisting with code, but fully AI-generated content is prohibited at this time.
 
 ## NC State Policies
 

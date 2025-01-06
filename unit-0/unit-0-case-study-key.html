@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Shaun Kellogg">
+<meta name="dcterms.date" content="2025-01-06">
+
+<title>Unit 0: Getting Started Case Study</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="unit-0-case-study-key_files/libs/clipboard/clipboard.min.js"></script>
+<script src="unit-0-case-study-key_files/libs/quarto-html/quarto.js"></script>
+<script src="unit-0-case-study-key_files/libs/quarto-html/popper.min.js"></script>
+<script src="unit-0-case-study-key_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="unit-0-case-study-key_files/libs/quarto-html/anchor.min.js"></script>
+<link href="unit-0-case-study-key_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="unit-0-case-study-key_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="unit-0-case-study-key_files/libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="unit-0-case-study-key_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="unit-0-case-study-key_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="unit-0-case-study-key_files/libs/bootstrap/bootstrap-00d65cf21f174b4516a2e66297fda939.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="unit-0-case-study-key_files/libs/bootstrap/bootstrap-dark-c849bbedd074e1c235909309894d6680.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">0. INTRODUCTION</a>
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#organization" id="toc-organization" class="nav-link" data-scroll-target="#organization">Organization</a></li>
+  <li><a href="#how-to-use-this-quarto-document" id="toc-how-to-use-this-quarto-document" class="nav-link" data-scroll-target="#how-to-use-this-quarto-document">How to use this Quarto document</a>
+  <ul class="collapse">
+  <li><a href="#source-vs.-visual-editor" id="toc-source-vs.-visual-editor" class="nav-link" data-scroll-target="#source-vs.-visual-editor">Source vs.&nbsp;Visual Editor</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></a></li>
+  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks">Code Chunks</a></li>
+  <li><a href="#your-turn-1" id="toc-your-turn-1" class="nav-link" data-scroll-target="#your-turn-1"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></a></li>
+  </ul></li>
+  <li><a href="#the-data-intensive-research-workflow" id="toc-the-data-intensive-research-workflow" class="nav-link" data-scroll-target="#the-data-intensive-research-workflow">The Data-Intensive Research Workflow</a></li>
+  </ul></li>
+  <li><a href="#prepare" id="toc-prepare" class="nav-link" data-scroll-target="#prepare">1. PREPARE</a>
+  <ul>
+  <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question">Research Question</a></li>
+  <li><a href="#r-projects-packages" id="toc-r-projects-packages" class="nav-link" data-scroll-target="#r-projects-packages">R Projects &amp; Packages 📦</a></li>
+  <li><a href="#the-tidyverse-package" id="toc-the-tidyverse-package" class="nav-link" data-scroll-target="#the-tidyverse-package">The tidyverse Package</a>
+  <ul class="collapse">
+  <li><a href="#your-turn-2" id="toc-your-turn-2" class="nav-link" data-scroll-target="#your-turn-2"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></a></li>
+  </ul></li>
+  <li><a href="#loading-or-reading-in-data" id="toc-loading-or-reading-in-data" class="nav-link" data-scroll-target="#loading-or-reading-in-data">Loading (or reading in) data</a>
+  <ul class="collapse">
+  <li><a href="#your-turn-3" id="toc-your-turn-3" class="nav-link" data-scroll-target="#your-turn-3"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></a></li>
+  </ul></li>
+  <li><a href="#viewing-or-inspecting-data" id="toc-viewing-or-inspecting-data" class="nav-link" data-scroll-target="#viewing-or-inspecting-data">Viewing or inspecting data</a>
+  <ul class="collapse">
+  <li><a href="#your-turn-4" id="toc-your-turn-4" class="nav-link" data-scroll-target="#your-turn-4"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></a></li>
+  <li><a href="#your-turn-5" id="toc-your-turn-5" class="nav-link" data-scroll-target="#your-turn-5"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#wrangle" id="toc-wrangle" class="nav-link" data-scroll-target="#wrangle">2. WRANGLE</a>
+  <ul>
+  <li><a href="#selecting-variables" id="toc-selecting-variables" class="nav-link" data-scroll-target="#selecting-variables">Selecting variables</a>
+  <ul class="collapse">
+  <li><a href="#your-turn-6" id="toc-your-turn-6" class="nav-link" data-scroll-target="#your-turn-6"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></a></li>
+  </ul></li>
+  <li><a href="#filtering-variables" id="toc-filtering-variables" class="nav-link" data-scroll-target="#filtering-variables">Filtering variables</a>
+  <ul class="collapse">
+  <li><a href="#your-turn-7" id="toc-your-turn-7" class="nav-link" data-scroll-target="#your-turn-7"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></a></li>
+  </ul></li>
+  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange">Arrange</a>
+  <ul class="collapse">
+  <li><a href="#your-turn-8" id="toc-your-turn-8" class="nav-link" data-scroll-target="#your-turn-8"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#explore" id="toc-explore" class="nav-link" data-scroll-target="#explore">3. EXPLORE</a>
+  <ul>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">Summary Statistics</a>
+  <ul class="collapse">
+  <li><a href="#your-turn-9" id="toc-your-turn-9" class="nav-link" data-scroll-target="#your-turn-9"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></a></li>
+  </ul></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data Visualization</a></li>
+  <li><a href="#the-graphing-workflow" id="toc-the-graphing-workflow" class="nav-link" data-scroll-target="#the-graphing-workflow">The Graphing Workflow</a>
+  <ul class="collapse">
+  <li><a href="#your-turn-10" id="toc-your-turn-10" class="nav-link" data-scroll-target="#your-turn-10"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></a></li>
+  </ul></li>
+  <li><a href="#scatterplots" id="toc-scatterplots" class="nav-link" data-scroll-target="#scatterplots">Scatterplots</a>
+  <ul class="collapse">
+  <li><a href="#your-turn-11" id="toc-your-turn-11" class="nav-link" data-scroll-target="#your-turn-11"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">4. MODEL</a>
+  <ul>
+  <li><a href="#your-turn-12" id="toc-your-turn-12" class="nav-link" data-scroll-target="#your-turn-12"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></a></li>
+  </ul></li>
+  <li><a href="#communicate" id="toc-communicate" class="nav-link" data-scroll-target="#communicate">5. COMMUNICATE</a>
+  <ul>
+  <li><a href="#render-document" id="toc-render-document" class="nav-link" data-scroll-target="#render-document">Render Document</a>
+  <ul class="collapse">
+  <li><a href="#your-turn-13" id="toc-your-turn-13" class="nav-link" data-scroll-target="#your-turn-13">👉 Your Turn ⤵</a></li>
+  </ul></li>
+  <li><a href="#publish-file" id="toc-publish-file" class="nav-link" data-scroll-target="#publish-file">Publish File</a>
+  <ul class="collapse">
+  <li><a href="#your-turn-14" id="toc-your-turn-14" class="nav-link" data-scroll-target="#your-turn-14">👉 Your Turn ⤵</a></li>
+  <li><a href="#publishing-with-quarto-pub" id="toc-publishing-with-quarto-pub" class="nav-link" data-scroll-target="#publishing-with-quarto-pub">Publishing with Quarto Pub</a></li>
+  <li><a href="#publishing-with-r-pubs" id="toc-publishing-with-r-pubs" class="nav-link" data-scroll-target="#publishing-with-r-pubs">Publishing with R Pubs</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Unit 0: Getting Started Case Study</h1>
+<p class="subtitle lead">ECI 588: Text Mining in Education</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr.&nbsp;Shaun Kellogg </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 6, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">0. INTRODUCTION</h2>
+<section id="background" class="level3">
+<h3 class="anchored" data-anchor-id="background">Background</h3>
+<p>Welcome to using <strong>ECI 586: An Introduction to Learning Analytics</strong>! During the third week of each unit, we’ll complete a basic research workflow, or data analysis process, modeled after an actual learning analytics study. This getting started task is designed to orient you to both our data analysis assignments and to R, RStudio, and/or Quarto, which we’ll be using to complete those assignments.</p>
+<p>We’ll be using Posit Cloud, which has all of the functionality of the RStudio Desktop, and some additional benefits for the those new to R, such as the pre-installation of packages and the simplification of file directories. If you’re new to R, I highly recommend it.</p>
+<p>You are also welcome to use RStudio Desktop, and you can download this project on our course workspace by clicking the “Export” button shown in the following screenshot:</p>
+<p><img src="img/project-export.png" class="img-fluid" style="width:80.0%"></p>
+</section>
+<section id="organization" class="level3">
+<h3 class="anchored" data-anchor-id="organization">Organization</h3>
+<p>This independent practice is really a warm-up. It is a chance to become familiar with how RStudio works. In the context of doing so, we’ll focus on three things:</p>
+<ol type="1">
+<li>Reading data into R (in the <strong>Prepare</strong> section)</li>
+<li>Preparing and “wrangling” data in table (think spreadsheet!) format (in the <strong>Wrangle</strong> section)</li>
+<li>Creating some plots (in the <strong>Explore</strong> section)</li>
+<li>Running a model - specifically, a regression model (in the <strong>Model</strong> section)</li>
+<li>Finally, creating a reproducible report of your work you can share with others (in the <strong>Communicate</strong> section)</li>
+</ol>
+</section>
+<section id="how-to-use-this-quarto-document" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-use-this-quarto-document">How to use this Quarto document</h3>
+<p>What you are working in now is an <strong>Q</strong>uarto <strong>m</strong>ark<strong>d</strong>own file as indicated by the .<strong>qmd</strong> file name extension. Quarto documents are fully reproducible and use a productive notebook interface to combine formatted text and “chunks” of code to produce a range of <a href="https://quarto.org/docs/guide/">static and dynamic output formats</a> including: HTML, PDF, Word, HTML5 slides, Tufte-style handouts, books, dashboards, shiny applications, scientific articles, websites, and more.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quarto docs can include specially formatted <strong>callout boxes</strong> like this one to draw special attention to provide notes, tips, cautions, warnings, and important information.</p>
+<p><strong>Pro tip</strong>: Quarto documents also have a handy Outline feature that allow you to easily navigate the entire document. If the outline is not currently visible, click the Outline button located on the right of the toolbar at the top of this document.</p>
+</div>
+</div>
+<section id="source-vs.-visual-editor" class="level4">
+<h4 class="anchored" data-anchor-id="source-vs.-visual-editor">Source vs.&nbsp;Visual Editor</h4>
+<p>Following best practices for reproducible research <span class="citation" data-cites="gandrud2021">(<a href="#ref-gandrud2021" role="doc-biblioref">Gandrud 2021</a>)</span>, Quarto files store information in plain text <a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html">markdown</a> syntax. You are currently viewing this Quarto document using the visual editor, The visual editor is set as the default view in the <a href="https://quarto.org/docs/get-started/hello/rstudio.html#yaml-header">Quarto YAML header</a> at the top of this document. Basically, a <a href="https://monashdatafluency.github.io/r-rep-res/yaml-header.html#">YAML header</a> is:</p>
+<blockquote class="blockquote">
+<p>a short blob of text that… not only dictates the final file format, but a style and feel for our final document.</p>
+</blockquote>
+<p>The visual editor allows you to view formatted headers, text and code chunks and is a bit more “human readable” than markdown syntax but there will be many occasions where you will want to take a look at the plain text source code underlying this document. This can be viewed at any point by switching to source mode for editing. You can toggle back and forth between these two modes by clicking on <strong>Source</strong> and <strong>Visual</strong> in the editor toolbar.</p>
+<p>You may have noticed a special kind of link in the text above. Specifically, a link citing Reproducible Research with R and R Studio by Chris Gandrud. The YAML header includes a bibliography option and points to our <code>reference.bib</code> file in the <code>lit</code> folder of this project, which produces a nice tooltip for linked references and a bibliography when our doc is <a href="https://quarto.org/docs/get-started/hello/rstudio.html#rendering">rendered</a> and <a href="https://quarto.org/docs/get-started/authoring/rstudio.html#publishing">published</a>. Click the following link to learn more about <a href="https://quarto.org/docs/authoring/citations.html">citations in Quarto</a>.</p>
+</section>
+<section id="your-turn" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></h4>
+<p>Learning Analytics case studies include many interactive elements in which you are asked to perform an action, answer some questions, or write some code. These are indicated by the <span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong> header. Now it’s your turn to do something.</p>
+<p>Take a look at the markdown syntax used to create this document by viewing with the source editor. To do so, click the “Source” button in the toolbar at the top of this file. After you’ve had a look, click back to the visual editor to continue.</p>
+<p><img src="img/source-view.png" class="img-fluid"></p>
+<p>Great job! Let’s continue!</p>
+</section>
+<section id="code-chunks" class="level4">
+<h4 class="anchored" data-anchor-id="code-chunks">Code Chunks</h4>
+<p>In addition to including formatted text hyperlinks, and embedded images like above, Quarto documents can also include a specially formatted text box called a “<a href="https://quarto.org/docs/get-started/hello/rstudio.html#code-chunks">code chunk</a>.” These chunks allows you to run code from multiple languages including R, Python, and SQL. For example, the code chunk below is intended to run R code as specified by “r” inside the curly brackets <code>{}</code>. It also contains a contains a code “comment” as indicted by the # hashtag and line of R code. You may have also noticed a set of buttons in the upper right corner of the code chunk which are used to execute the code.</p>
+</section>
+<section id="your-turn-1" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-1"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></h4>
+<p>You may have noticed a set of buttons in the upper right corner for running the code. Click the green arrow <img src="https://d33wubrfki0l68.cloudfront.net/18153fb9953057ee5cff086122bd26f9cee8fe93/3aba9/images/notebook-run-chunk.png" class="img-fluid">icon on the right side of the code chunk to run the R code and view the image file name <code>research-workflow.png</code> stored in the <code>img</code> folder in your files pane. Quarto will execute the code and its output and any related messages are displayed below the chunk.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"img/research-workflow.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="img/research-workflow.png" class="img-fluid figure-img" width="596"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Nice work! For this case study, don’t stress too much about understanding the code. We’ll spend a lot of time doing that in the other modules. For now, take a look at the image displayed and answer the question that follows by typing your response directly in this document.</p>
+<p>In case studies, you will often see as part of “Your Turns” a prompt to answer a question. Type your response to the following question by deleting “YOUR RESPONSE HERE” and adding your own response:</p>
+<p>What do you think this image is intended to illustrate?</p>
+<ul>
+<li>YOUR RESPONSE HERE</li>
+</ul>
+</section>
+</section>
+<section id="the-data-intensive-research-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="the-data-intensive-research-workflow">The Data-Intensive Research Workflow</h3>
+<p>You may have noticed that the words in this diagram correspond to the sections outlined at the beginning of this document. These terms, or processes, are part of a framework called the data-intensive research workflow and comes from the book <a href="https://www.routledge.com/Learning-Analytics-Goes-to-School-A-Collaborative-Approach-to-Improving/Krumm-Means-Bienkowski/p/book/9781138121836">Learning Analytics Goes to School</a> <span class="citation" data-cites="krumm2018">(<a href="#ref-krumm2018" role="doc-biblioref">Krumm, Means, and Bienkowski 2018</a>)</span><em>.</em> You can check that out (literally, it’s available online through the NCSU Library), but don’t feel any need to dive deep for now - we’ll be spending more time on this process throughout the course. For now, know that this document and our unit case studies are organized around these five components of the Data-Intensive Research Workflow.</p>
+<p>Now, let’s get started!</p>
+</section>
+</section>
+<section id="prepare" class="level2">
+<h2 class="anchored" data-anchor-id="prepare">1. PREPARE</h2>
+<p>First and foremost, data-intensive research involves defining and refining a research question and developing an understanding of where your data comes from <span class="citation" data-cites="krumm2018">(<a href="#ref-krumm2018" role="doc-biblioref">Krumm, Means, and Bienkowski 2018</a>)</span>. This part of the process also involves setting up a reproducible research environment <span class="citation" data-cites="gandrud2021">(<a href="#ref-gandrud2021" role="doc-biblioref">Gandrud 2021</a>)</span> so your work can be understood and replicated by other researchers or analysts. For now, we’ll focus on just a few parts of this process, diving in much more deeply into these components in later learning labs.</p>
+<section id="research-question" class="level3">
+<h3 class="anchored" data-anchor-id="research-question">Research Question</h3>
+<p>In this getting started case study, we’ll be working with data come from an unpublished research study, which utilized a number of different data sources to understand high school students’ motivation within the context of online courses. For the purpose of this case study, our analysis will be driven by the following research question:</p>
+<blockquote class="blockquote">
+<p><em>Is there a relationship between the time students spend on a course (as measured through their learning management system) and their final course grade?</em></p>
+</blockquote>
+</section>
+<section id="r-projects-packages" class="level3">
+<h3 class="anchored" data-anchor-id="r-projects-packages">R Projects &amp; Packages 📦</h3>
+<p>As highlighted in <a href="https://datascienceineducation.com/c06.html">Chapter 6 of Data Science in Education Using R</a> <span class="citation" data-cites="estrellado2020e">(<a href="#ref-estrellado2020e" role="doc-biblioref">Estrellado et al. 2020</a>)</span>, one of the first steps of every workflow should be to set up a “Project” within RStudio.</p>
+<blockquote class="blockquote">
+<p>A <strong>Project</strong> is the home for all of the files, images, reports, and code that are used in any given project.</p>
+</blockquote>
+<p>We are working in Posit Cloud with an R project <a href="https://github.com/laser-institute/laser-orientation">cloned from GitHub</a>, so a project has already been set up for you as indicated by the <code>.Rproj</code> file in the main directory. Locate the Files tab lower right hand window pane and see if you can find the file named <code>laser-orientation.Rproj</code>.</p>
+<p>Since a project already set up for us, we will instead focus on loading the required packages we’ll need for analysis.</p>
+<blockquote class="blockquote">
+<p><strong>Packages</strong>, sometimes referred to as libraries, are shareable collections of R code that can contain functions, data, and/or documentation and extend the functionality of R.</p>
+</blockquote>
+<p>You can always check to see which packages have already been installed and loaded into RStudio by looking at the Packages tab in the same pane as the Files tab. Click the packages tab to see which packages have already been installed for this project.</p>
+</section>
+<section id="the-tidyverse-package" class="level3">
+<h3 class="anchored" data-anchor-id="the-tidyverse-package">The tidyverse Package</h3>
+<p><img src="img/tidyverse.png" class="img-fluid" style="width:40.0%"></p>
+<p>One package that we’ll be using extensively in our learning labs is the {tidyverse} package. The {tidyverse} is actually a <a href="https://www.tidyverse.org/packages">collection of R packages</a> designed for wrangling and exploring data (sound familiar?) and which all share an underlying design philosophy, grammar, and data structures. These shared features are sometimes referred to as “<a href="https://r4ds.had.co.nz/tidy-data.html">tidy data principles</a>” <span class="citation" data-cites="wickham2016r">(<a href="#ref-wickham2016r" role="doc-biblioref">Wickham and Grolemund 2016</a>)</span>.</p>
+<p>Before we can begin using these packages, we will need to install them using the <code>install.packages()</code> function built into R.</p>
+<p>Click the green arrow in the right corner of the block-or “chunk”-of code that follows and see if you can identify which packages have been installed in the console below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once these packages have been installed, we will need to load them using the <code>library()</code> function in order to use the handy functions they contain.</p>
+<p>To load the tidyverse, click the green arrow in the right corner of the block-or “chunk”-of code that follows. Notice that we do not need to use the quotation marks again because the {tidyverse} package and packages it contains are now a part of our package library!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<p>Please do not worry if you saw a number of messages. Those probably mean that the tidyverse loaded just fine. If you see an error, though, try to interpret or search via your search engine the contents of the error, or reach out to us for assistance.</p>
+<section id="your-turn-2" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-2"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></h4>
+<p>As we noted in the beginning, these case studies are meant to be interactive. Throughout each case study, you’ll see Your Turn headings like the one above that will ask to you apply some of your R skills to help with the analysis. These Your Turns are intended to help you practice newly introduced functions or R code and reinforce R skills you have already learned.</p>
+<p>Complete the code chunk below to load the {skimr} package into our environment as well. <strong><code>Skimr</code></strong> is a handy package that provides summary statistics that you can skim quickly to understand your data. We’ll be using this later in the Explore section of this case study.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the {skimr} package below</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="loading-or-reading-in-data" class="level3">
+<h3 class="anchored" data-anchor-id="loading-or-reading-in-data">Loading (or reading in) data</h3>
+<p>The data we’ll explore in this case study were originally collected for a unpublished research study and utilized a number of different data sources to understand students’ course-related motivation. These courses were designed and taught by instructors through a state-wide online course provider designed to supplement—but not replace—students’ enrollment in their local school.</p>
+<p>The data used in this case study has already been “wrangled” quite a bit, but the original datasets included:</p>
+<ol type="1">
+<li><p>A self-report survey assessing three aspects of students’ motivation</p></li>
+<li><p>Log-trace data, such as data output from the learning management system (LMS)</p></li>
+<li><p>Discussion board data</p></li>
+<li><p>Academic achievement data</p></li>
+</ol>
+<p>If you are interested in learning more about these datasets, you can visit Chapter 7 of the excellent book, <a href="https://datascienceineducation.com/c07.html#data-sources"><em>Data Science in Education Using R</em></a><span class="citation" data-cites="estrellado2020e">(<a href="#ref-estrellado2020e" role="doc-biblioref">Estrellado et al. 2020</a>)</span>.</p>
+<p>Next, we’ll load data - specifically, a CSV file, the kind that you can export from Microsoft Excel or Google Sheets - into R, using the <code>read_csv()</code> function in the next chunk.</p>
+<p>Again, clicking the green arrow runs the code; do that next.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sci_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/sci-online-classes.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 603 Columns: 30
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (6): course_id, subject, semester, section, Gradebook_Item, Gender
+dbl (23): student_id, total_points_possible, total_points_earned, percentage...
+lgl  (1): Grade_Category
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>Notice that we “assigned” our data set to a new object in R named <code>sci_data</code> that will now be saved in your “Environment” pane in the upper right corner of RStudio. Go ahead and take a look to make sure it’s there.</p>
+<p><img src="img/environment-pane.png" class="img-fluid" style="width:80.0%"></p>
+<section id="your-turn-3" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-3"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></h4>
+<p>Why do you think we included <code>data/</code> before our <code>sci-online-classes.csv</code> file? Why quotation marks?</p>
+<p>Add your responses after the dashes below:</p>
+<ul>
+<li>YOUR RESPONSE HERE</li>
+</ul>
+<p>Hint: check the files pane in the lower right corner of RStudio.</p>
+</section>
+</section>
+<section id="viewing-or-inspecting-data" class="level3">
+<h3 class="anchored" data-anchor-id="viewing-or-inspecting-data">Viewing or inspecting data</h3>
+<p>Last, let’s check that the code worked as we intended; run the next chunk and look at the results, tabbing left or right with the arrows, or scanning through the rows by clicking the numbers at the bottom of the pane with the print-out of the data you loaded:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sci_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 603 × 30
+   student_id course_id     total_points_possible total_points_earned
+        &lt;dbl&gt; &lt;chr&gt;                         &lt;dbl&gt;               &lt;dbl&gt;
+ 1      43146 FrScA-S216-02                  3280                2220
+ 2      44638 OcnA-S116-01                   3531                2672
+ 3      47448 FrScA-S216-01                  2870                1897
+ 4      47979 OcnA-S216-01                   4562                3090
+ 5      48797 PhysA-S116-01                  2207                1910
+ 6      51943 FrScA-S216-03                  4208                3596
+ 7      52326 AnPhA-S216-01                  4325                2255
+ 8      52446 PhysA-S116-01                  2086                1719
+ 9      53447 FrScA-S116-01                  4655                3149
+10      53475 FrScA-S116-02                  1710                1402
+# ℹ 593 more rows
+# ℹ 26 more variables: percentage_earned &lt;dbl&gt;, subject &lt;chr&gt;, semester &lt;chr&gt;,
+#   section &lt;chr&gt;, Gradebook_Item &lt;chr&gt;, Grade_Category &lt;lgl&gt;,
+#   FinalGradeCEMS &lt;dbl&gt;, Points_Possible &lt;dbl&gt;, Points_Earned &lt;dbl&gt;,
+#   Gender &lt;chr&gt;, q1 &lt;dbl&gt;, q2 &lt;dbl&gt;, q3 &lt;dbl&gt;, q4 &lt;dbl&gt;, q5 &lt;dbl&gt;, q6 &lt;dbl&gt;,
+#   q7 &lt;dbl&gt;, q8 &lt;dbl&gt;, q9 &lt;dbl&gt;, q10 &lt;dbl&gt;, TimeSpent &lt;dbl&gt;,
+#   TimeSpent_hours &lt;dbl&gt;, TimeSpent_std &lt;dbl&gt;, int &lt;dbl&gt;, pc &lt;dbl&gt;, uv &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<section id="your-turn-4" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-4"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></h4>
+<p>What do you notice about this dataset? What do you wonder? Add one or two thoughts after the dash below:</p>
+<ul>
+<li>YOUR RESPONSE HERE</li>
+</ul>
+<p>There are other ways to inspect your data; the <code>glimpse()</code> function provides one such way. Run the code below to take a glimpse at your data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sci_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 603
+Columns: 30
+$ student_id            &lt;dbl&gt; 43146, 44638, 47448, 47979, 48797, 51943, 52326,…
+$ course_id             &lt;chr&gt; "FrScA-S216-02", "OcnA-S116-01", "FrScA-S216-01"…
+$ total_points_possible &lt;dbl&gt; 3280, 3531, 2870, 4562, 2207, 4208, 4325, 2086, …
+$ total_points_earned   &lt;dbl&gt; 2220, 2672, 1897, 3090, 1910, 3596, 2255, 1719, …
+$ percentage_earned     &lt;dbl&gt; 0.6768293, 0.7567261, 0.6609756, 0.6773345, 0.86…
+$ subject               &lt;chr&gt; "FrScA", "OcnA", "FrScA", "OcnA", "PhysA", "FrSc…
+$ semester              &lt;chr&gt; "S216", "S116", "S216", "S216", "S116", "S216", …
+$ section               &lt;chr&gt; "02", "01", "01", "01", "01", "03", "01", "01", …
+$ Gradebook_Item        &lt;chr&gt; "POINTS EARNED &amp; TOTAL COURSE POINTS", "ATTEMPTE…
+$ Grade_Category        &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ FinalGradeCEMS        &lt;dbl&gt; 93.45372, 81.70184, 88.48758, 81.85260, 84.00000…
+$ Points_Possible       &lt;dbl&gt; 5, 10, 10, 5, 438, 5, 10, 10, 443, 5, 12, 10, 5,…
+$ Points_Earned         &lt;dbl&gt; NA, 10.00, NA, 4.00, 399.00, NA, NA, 10.00, 425.…
+$ Gender                &lt;chr&gt; "M", "F", "M", "M", "F", "F", "M", "F", "F", "M"…
+$ q1                    &lt;dbl&gt; 5, 4, 5, 5, 4, NA, 5, 3, 4, NA, NA, 4, 3, 5, NA,…
+$ q2                    &lt;dbl&gt; 4, 4, 4, 5, 3, NA, 5, 3, 3, NA, NA, 5, 3, 3, NA,…
+$ q3                    &lt;dbl&gt; 4, 3, 4, 3, 3, NA, 3, 3, 3, NA, NA, 3, 3, 5, NA,…
+$ q4                    &lt;dbl&gt; 5, 4, 5, 5, 4, NA, 5, 3, 4, NA, NA, 5, 3, 5, NA,…
+$ q5                    &lt;dbl&gt; 5, 4, 5, 5, 4, NA, 5, 3, 4, NA, NA, 5, 4, 5, NA,…
+$ q6                    &lt;dbl&gt; 5, 4, 4, 5, 4, NA, 5, 4, 3, NA, NA, 5, 3, 5, NA,…
+$ q7                    &lt;dbl&gt; 5, 4, 4, 4, 4, NA, 4, 3, 3, NA, NA, 5, 3, 5, NA,…
+$ q8                    &lt;dbl&gt; 5, 5, 5, 5, 4, NA, 5, 3, 4, NA, NA, 4, 3, 5, NA,…
+$ q9                    &lt;dbl&gt; 4, 4, 3, 5, NA, NA, 5, 3, 2, NA, NA, 5, 2, 2, NA…
+$ q10                   &lt;dbl&gt; 5, 4, 5, 5, 3, NA, 5, 3, 5, NA, NA, 4, 4, 5, NA,…
+$ TimeSpent             &lt;dbl&gt; 1555.1667, 1382.7001, 860.4335, 1598.6166, 1481.…
+$ TimeSpent_hours       &lt;dbl&gt; 25.91944500, 23.04500167, 14.34055833, 26.643610…
+$ TimeSpent_std         &lt;dbl&gt; -0.18051496, -0.30780313, -0.69325954, -0.148446…
+$ int                   &lt;dbl&gt; 5.0, 4.2, 5.0, 5.0, 3.8, 4.6, 5.0, 3.0, 4.2, NA,…
+$ pc                    &lt;dbl&gt; 4.50, 3.50, 4.00, 3.50, 3.50, 4.00, 3.50, 3.00, …
+$ uv                    &lt;dbl&gt; 4.333333, 4.000000, 3.666667, 5.000000, 3.500000…</code></pre>
+</div>
+</div>
+<p>Generally, rows typically represent “cases,” the units that we measure, or the units on which we collect data. What counts as a “case” (and therefore what is represented as a row) varies by (and within) fields. There may be multiple types or levels of units studied in your field; listing more than one is fine! Also, please consider what columns - which usually represent variables - represent in your area of work and/or research.</p>
+</section>
+<section id="your-turn-5" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-5"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></h4>
+<p>How many “cases” or observations are in this data set?</p>
+<ul>
+<li>YOUR RESPONSE HERE</li>
+</ul>
+<p>Pick two columns (or more) and write what you think it represents:</p>
+<ul>
+<li>YOUR RESPONSE HERE</li>
+</ul>
+<p>Next, we’ll use a few functions that are handy for preparing data in table form.</p>
+</section>
+</section>
+</section>
+<section id="wrangle" class="level2">
+<h2 class="anchored" data-anchor-id="wrangle">2. WRANGLE</h2>
+<p>By wrangle, we refer to the process of cleaning and processing data, and, in some cases, merging (or joining) data from multiple sources. Often, this part of the process is very (surprisingly) time-intensive! Wrangling your data into shape can itself be an important accomplishment! And documenting your code using R scripts or Markdown files will save yourself and others a great deal of time wrangling data in the future! There are great tools in R for data wrangling, especially through the use of the {<a href="https://dplyr.tidyverse.org">dplyr</a>} R package which is part of the tidyverse.</p>
+<section id="selecting-variables" class="level3">
+<h3 class="anchored" data-anchor-id="selecting-variables">Selecting variables</h3>
+<p>Recall from our Prepare section that we are interested the relationship between the time students spend on a course and their final course grade.</p>
+<p>Let’s practice selecting a few variables by introducing a very powerful <code>|&gt;</code> operator called a <strong>pipe</strong>. Pipes are a powerful tool for combining a sequence of functions or processes.</p>
+<p>Run the following code chunk to “pipe” our <code>sci_data</code> to the <code>select()</code> function include the following two variables as arguments:</p>
+<ul>
+<li><p><code>FinalGradeCEMS</code> (i.e., students’ final grades on a 0-100 point scale)</p></li>
+<li><p><code>TimeSpent</code> (i.e., the number of minutes they spent in the course’s learning management system)</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sci_data <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(FinalGradeCEMS, TimeSpent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 603 × 2
+   FinalGradeCEMS TimeSpent
+            &lt;dbl&gt;     &lt;dbl&gt;
+ 1           93.5   1555.  
+ 2           81.7   1383.  
+ 3           88.5    860.  
+ 4           81.9   1599.  
+ 5           84     1482.  
+ 6           NA        3.45
+ 7           83.6   1322.  
+ 8           97.8   1390.  
+ 9           96.1   1479.  
+10           NA       NA   
+# ℹ 593 more rows</code></pre>
+</div>
+</div>
+<p>Notice how the number of columns (variables) is now different!</p>
+<p>Let’s <em>include one additional variable</em> in the select function that you think might be a predictor of students’ final course grade or useful in addressing our research question.</p>
+<p>First, we need to figure out what variables exist in our dataset (or be reminded of this - it’s very common in R to be continually checking and inspecting your data)!</p>
+<p>In addition to <code>glimpse()</code> function, you can use a function named <code>View()</code> to do this. Try it out and see what happens!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(sci_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="your-turn-6" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-6"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></h4>
+<p>In the code chunk below, add a new variable, being careful to type the new variable name as it appears in the data. We’ve added some code to get you started. Consider how the names of the other variables are separated as you think about how to add an additional variable to this code.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sci_data <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(FinalGradeCEMS, TimeSpent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 603 × 2
+   FinalGradeCEMS TimeSpent
+            &lt;dbl&gt;     &lt;dbl&gt;
+ 1           93.5   1555.  
+ 2           81.7   1383.  
+ 3           88.5    860.  
+ 4           81.9   1599.  
+ 5           84     1482.  
+ 6           NA        3.45
+ 7           83.6   1322.  
+ 8           97.8   1390.  
+ 9           96.1   1479.  
+10           NA       NA   
+# ℹ 593 more rows</code></pre>
+</div>
+</div>
+<p>Once added, the output should be different than in the code above - there should now be an additional variable included in the print-out.</p>
+<p><strong>A quick footnote about pipes</strong>: The original pipe operator, <code>%&gt;%</code>, comes from the {<a href="https://magrittr.tidyverse.org">magrittr</a>} package but all packages in the tidyverse load <code>%&gt;%</code> for you automatically, so you don’t usually load magrittr explicitly. The pipe has become such a useful and much used operator in R that it is now baked into R using the new and simpler native pipe <code>|&gt;</code> operator. You can use both fairly interchangeably but there are a few <a href="https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/">differences between pipe operators</a>.</p>
+</section>
+</section>
+<section id="filtering-variables" class="level3">
+<h3 class="anchored" data-anchor-id="filtering-variables">Filtering variables</h3>
+<p>Next, let’s explore filtering variables. Check out and run the next chunk of code, imagining that we wish to filter our data to view only the rows associated with students who earned a final grade (as a percentage) of 70 - 70% - or higher.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sci_data <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(FinalGradeCEMS <span class="sc">&gt;</span> <span class="dv">70</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 438 × 30
+   student_id course_id     total_points_possible total_points_earned
+        &lt;dbl&gt; &lt;chr&gt;                         &lt;dbl&gt;               &lt;dbl&gt;
+ 1      43146 FrScA-S216-02                  3280                2220
+ 2      44638 OcnA-S116-01                   3531                2672
+ 3      47448 FrScA-S216-01                  2870                1897
+ 4      47979 OcnA-S216-01                   4562                3090
+ 5      48797 PhysA-S116-01                  2207                1910
+ 6      52326 AnPhA-S216-01                  4325                2255
+ 7      52446 PhysA-S116-01                  2086                1719
+ 8      53447 FrScA-S116-01                  4655                3149
+ 9      53475 FrScA-S216-01                  1209                 977
+10      54066 OcnA-S116-01                   4641                3429
+# ℹ 428 more rows
+# ℹ 26 more variables: percentage_earned &lt;dbl&gt;, subject &lt;chr&gt;, semester &lt;chr&gt;,
+#   section &lt;chr&gt;, Gradebook_Item &lt;chr&gt;, Grade_Category &lt;lgl&gt;,
+#   FinalGradeCEMS &lt;dbl&gt;, Points_Possible &lt;dbl&gt;, Points_Earned &lt;dbl&gt;,
+#   Gender &lt;chr&gt;, q1 &lt;dbl&gt;, q2 &lt;dbl&gt;, q3 &lt;dbl&gt;, q4 &lt;dbl&gt;, q5 &lt;dbl&gt;, q6 &lt;dbl&gt;,
+#   q7 &lt;dbl&gt;, q8 &lt;dbl&gt;, q9 &lt;dbl&gt;, q10 &lt;dbl&gt;, TimeSpent &lt;dbl&gt;,
+#   TimeSpent_hours &lt;dbl&gt;, TimeSpent_std &lt;dbl&gt;, int &lt;dbl&gt;, pc &lt;dbl&gt;, uv &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<section id="your-turn-7" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-7"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></h4>
+<p>In the next code chunk, change the cut-off from 70% to some other value - larger or smaller (maybe much larger or smaller - feel free to play around with the code a bit!).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sci_data <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(FinalGradeCEMS <span class="sc">&gt;</span> <span class="dv">70</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 438 × 30
+   student_id course_id     total_points_possible total_points_earned
+        &lt;dbl&gt; &lt;chr&gt;                         &lt;dbl&gt;               &lt;dbl&gt;
+ 1      43146 FrScA-S216-02                  3280                2220
+ 2      44638 OcnA-S116-01                   3531                2672
+ 3      47448 FrScA-S216-01                  2870                1897
+ 4      47979 OcnA-S216-01                   4562                3090
+ 5      48797 PhysA-S116-01                  2207                1910
+ 6      52326 AnPhA-S216-01                  4325                2255
+ 7      52446 PhysA-S116-01                  2086                1719
+ 8      53447 FrScA-S116-01                  4655                3149
+ 9      53475 FrScA-S216-01                  1209                 977
+10      54066 OcnA-S116-01                   4641                3429
+# ℹ 428 more rows
+# ℹ 26 more variables: percentage_earned &lt;dbl&gt;, subject &lt;chr&gt;, semester &lt;chr&gt;,
+#   section &lt;chr&gt;, Gradebook_Item &lt;chr&gt;, Grade_Category &lt;lgl&gt;,
+#   FinalGradeCEMS &lt;dbl&gt;, Points_Possible &lt;dbl&gt;, Points_Earned &lt;dbl&gt;,
+#   Gender &lt;chr&gt;, q1 &lt;dbl&gt;, q2 &lt;dbl&gt;, q3 &lt;dbl&gt;, q4 &lt;dbl&gt;, q5 &lt;dbl&gt;, q6 &lt;dbl&gt;,
+#   q7 &lt;dbl&gt;, q8 &lt;dbl&gt;, q9 &lt;dbl&gt;, q10 &lt;dbl&gt;, TimeSpent &lt;dbl&gt;,
+#   TimeSpent_hours &lt;dbl&gt;, TimeSpent_std &lt;dbl&gt;, int &lt;dbl&gt;, pc &lt;dbl&gt;, uv &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>What happens when you change the cut-off from 70 to something else? Add a thought (or more):</p>
+<ul>
+<li>YOUR RESPONSE HERE</li>
+</ul>
+</section>
+</section>
+<section id="arrange" class="level3">
+<h3 class="anchored" data-anchor-id="arrange">Arrange</h3>
+<p>The last function we’ll use for preparing tables is arrange. We’ll again use the <code>|&gt;</code> to combine this <code>arrange()</code> function with a function we used already - <code>select()</code>. We do this so we can view only time spent and final grades.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sci_data <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(FinalGradeCEMS, TimeSpent) <span class="sc">|&gt;</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(FinalGradeCEMS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 603 × 2
+   FinalGradeCEMS TimeSpent
+            &lt;dbl&gt;     &lt;dbl&gt;
+ 1          0          13.9
+ 2          0.535     306. 
+ 3          0.903      88.5
+ 4          1.80       44.7
+ 5          2.93       57.7
+ 6          3.01      571. 
+ 7          3.06        0.7
+ 8          3.43      245. 
+ 9          5.04      202. 
+10          5.2        11.0
+# ℹ 593 more rows</code></pre>
+</div>
+</div>
+<p>Note that arrange works by sorting values in ascending order (from lowest to highest); you can change this by using the <code>desc()</code> function as an argument with arrange, like the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sci_data <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(FinalGradeCEMS, TimeSpent) <span class="sc">|&gt;</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(FinalGradeCEMS))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 603 × 2
+   FinalGradeCEMS TimeSpent
+            &lt;dbl&gt;     &lt;dbl&gt;
+ 1          100       2689.
+ 2           99.8     2921.
+ 3           99.3      965.
+ 4           99.1      879.
+ 5           99.0     1770.
+ 6           98.6     1138.
+ 7           98.6     1270.
+ 8           98.6     1273.
+ 9           98.2     1902.
+10           98.2     5373.
+# ℹ 593 more rows</code></pre>
+</div>
+</div>
+<p>Just at a quick cursory glance at our two variables, it does appear that students with higher grades also tend to have spent more time in the online course.</p>
+<section id="your-turn-8" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-8"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></h4>
+<p>In the code chunk below, replace <code>FinalGradeCEMS</code> that is used with both the <code>select()</code> and <code>arrange()</code> functions with a different variable in the data set. Consider returning to the code chunk above in which you glimpsed at the names of all of the variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sci_data <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(TimeSpent, FinalGradeCEMS) <span class="sc">|&gt;</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(FinalGradeCEMS))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 603 × 2
+   TimeSpent FinalGradeCEMS
+       &lt;dbl&gt;          &lt;dbl&gt;
+ 1     2689.          100  
+ 2     2921.           99.8
+ 3      965.           99.3
+ 4      879.           99.1
+ 5     1770.           99.0
+ 6     1138.           98.6
+ 7     1270.           98.6
+ 8     1273.           98.6
+ 9     1902.           98.2
+10     5373.           98.2
+# ℹ 593 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="explore" class="level2">
+<h2 class="anchored" data-anchor-id="explore">3. EXPLORE</h2>
+<p>Exploratory data analysis, or exploring your data, involves processes of <em>describing</em> your data (such as by calculating the means and standard deviations of numeric variables, or counting the frequency of categorical variables) and, often, visualizing your data. As we’ll learn in later case studies, the explore phase can also involve the process of “feature engineering,” or creating new variables within a dataset <span class="citation" data-cites="krumm2018">(<a href="#ref-krumm2018" role="doc-biblioref">Krumm, Means, and Bienkowski 2018</a>)</span>.</p>
+<p>In this section, we’ll quickly pull together some basic stats using a handy function from the {skimr} package, and introduce you to a basic data visualization “code template” for the {ggplot} package from the tidyverse.</p>
+<section id="summary-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="summary-statistics">Summary Statistics</h3>
+<p>Let’s repurpose what we learned from our wrangle section to select just a few variables and quickly gather some descriptive stats using the <code>skim()</code> function from the {skimr} package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sci_data <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(TimeSpent, FinalGradeCEMS) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">select(sci_data, TimeSpen…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">603</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TimeSpent</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">1799.75</td>
+<td style="text-align: right;">1354.93</td>
+<td style="text-align: right;">0.45</td>
+<td style="text-align: right;">851.90</td>
+<td style="text-align: right;">1550.91</td>
+<td style="text-align: right;">2426.09</td>
+<td style="text-align: right;">8870.88</td>
+<td style="text-align: left;">▇▅▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FinalGradeCEMS</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">77.20</td>
+<td style="text-align: right;">22.23</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">71.25</td>
+<td style="text-align: right;">84.57</td>
+<td style="text-align: right;">92.10</td>
+<td style="text-align: right;">100.00</td>
+<td style="text-align: left;">▁▁▁▃▇</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="your-turn-9" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-9"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></h4>
+<p>Copy the code from the chunk from above and use it as a template to explore some other variables of interest from our <code>sci_data</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use skim() to summarize other variables of your choosing</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What happens if simply feed the skim function the entire <code>sci_data</code> object? Give it a try!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use skim() on the entire data frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="data-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="data-visualization">Data Visualization</h3>
+<p>Data visualization is an extremely common practice in Learning Analytics, especially in the use of data dashboards. Data visualization involves graphically representing one or more variables with the goal of discovering patterns in data. These patterns may help us to answer research questions or generate new questions about our data, to discover relationships between and among variables, and to create or select features for data modeling.</p>
+<p>In this section we’ll focus on using a basic code template for the {<a href="https://ggplot2.tidyverse.org">ggplot2</a>} package from the tidyverse. <code>ggplot2</code> is a system for declaratively creating graphics, based on <a href="https://ggplot2-book.org/introduction.html#what-is-the-grammar-of-graphics">the grammar of graphics</a> <span class="citation" data-cites="Wickham">(<a href="#ref-Wickham" role="doc-biblioref">Wickham 2016</a>)</span>. You provide the data, tell ggplot2 how to map variables to <a href="https://ggplot2.tidyverse.org/reference/aes.html">aesthetics</a>, what graphical elements to use, and it takes care of the details.</p>
+</section>
+<section id="the-graphing-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="the-graphing-workflow">The Graphing Workflow</h3>
+<p>At it’s core, you can create some very simple but attractive graphs with just a couple lines of code. {<a href="https://ggplot2.tidyverse.org">ggplot2</a>} follows the common workflow for making graphs. To make a graph, you simply:</p>
+<ol type="1">
+<li><p>Start the graph with <code>ggplot()</code> and include your data as an argument;</p></li>
+<li><p>“Add” elements to the graph using the <code>+</code> operator a&nbsp;<a href="https://ggplot2.tidyverse.org/reference/#geoms"><code>geom_()</code> function</a>;</p></li>
+<li><p>Select variables to graph on each axis with the <code>aes()</code> argument.</p></li>
+</ol>
+<p>Let’s give it a try by creating a simple histogram of our <code>FinalGradeCEMS</code> variable. The code below creates a histogram, or a distribution of the values, in this case for students’ final grades. Go ahead and run it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sci_data) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> FinalGradeCEMS))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 30 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="unit-0-case-study-key_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that the first function, <code>ggplot()</code>, creates a coordinate system that you can “add” layers to using additional functions and <code>+</code> operator. The first argument of <code>ggplot()</code> is the dataset, in our case <code>sci_data</code>, to use for the graph.</p>
+<p>By itself, <code>ggplot(sci_data)</code> just creates an empty graph. But when you add a required <code>geom_()</code> function like <code>geom_histogram()</code>, you tell it which type of graph you want to make, in our case a histogram. A <strong>geom</strong> is the geometrical object that a plot uses to represent observations. People often describe plots by the type of geom that the plot uses. For example, bar charts use bar geoms, line charts use line geoms, boxplots use boxplot geoms, and so on. Scatterplots, which we’ll see a in bit, break the trend; they use the point geom.</p>
+<p>The final required element for any graph is a <code>mapping =</code> argument that defines which variables in your dataset are mapped to which axes in your graph. The <code>mapping</code> argument is always paired with the function <code>aes()</code>, which you use to gather together all of the mappings that you want to create. In our case, since we just created a simple histogram, we only had to specify what variable to place on the x axis, which in our case was <code>FinalGradeCEMS</code>.</p>
+<p>We won’t spend a lot of time on it in this case study, but you can also add a wide range of <a href="https://ggplot2.tidyverse.org/reference/index.html#aesthetics">aesthetic arguments</a> to each geom, like changing the color of the histogram bars by adding an argument to specify color. Let’s give that a try using the <code>fill =</code> argument:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sci_data) <span class="sc">+</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> FinalGradeCEMS), <span class="at">fill =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 30 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="unit-0-case-study-key_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="your-turn-10" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-10"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></h4>
+<p>Now use the code chunk below to visualize the distribution of another variable in the data, specifically <code>TimeSpent</code>. You can do so by swapping out the variable <code>FinalGradeCEMS</code> with our new variable. Also, change the color to one of your choosing; consider this list of valid color names here: <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf" class="uri">http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a histogram of TimeSpent using a different color</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Tip:</strong> There is no shame in copying and pasting code from above. Remember, reproducible research is also intended to help you save time!</p>
+</section>
+</section>
+<section id="scatterplots" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplots">Scatterplots</h3>
+<p>Finally, let’s create a scatter plot for the relationship between these two variables. Scatterplots use the point geom, i.e., the <code>geom_point()</code> function, and are most useful for displaying the relationship between two continuous variables.</p>
+<section id="your-turn-11" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-11"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></h4>
+<p>Complete the code chunk below to create a simple scatterplot with <code>TimeSpent</code> on the x axis and <code>FinalGradeCEMS</code> on the y axis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sci_data) <span class="sc">+</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> TimeSpent, </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> FinalGradeCEMS))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 30 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="unit-0-case-study-key_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Well done! As you can see, there appears to be a positive relationship between the time students spend in the online course and their final grade!</p>
+<p>To learn more about using {ggplot2} for data visualization, we highly recommend the following Posit Cloud Primers:</p>
+<ol type="1">
+<li><a href="https://posit.cloud/learn/primers/1.1">Visualization Basics</a>: Start here to begin making plots with R. Plots are one of the most important tools for data science; they are also one of the most fun!</li>
+<li><a href="https://posit.cloud/learn/primers/3">Visualize Data</a>: Learn how to use ggplot2 to make any type of plot with your data. Then learn the best ways to visualize patterns within values and relationships between variables.</li>
+</ol>
+</section>
+</section>
+</section>
+<section id="model" class="level2">
+<h2 class="anchored" data-anchor-id="model">4. MODEL</h2>
+<p>“Model” is one of those terms that has many different meanings. For our purpose, we refer to the process of simplifying and summarizing our data. Thus, models can take many forms; calculating means represents a legitimate form of modeling data, as does estimating more complex models, including linear regressions, and models and algorithms associated with machine learning tasks. For now, we’ll run a base linear regression model to further examine the relationship between <code>TimeSpent</code> and <code>FinalGradeCEMS</code>.</p>
+<p>We’ll dive much deeper into modeling in subsequent learning labs, but for now let’s see if there is a statistically significant relationship between students’ final grades, <code>FinaGradeCEMS</code>, and the <code>TimeSpent</code> on the course:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(FinalGradeCEMS <span class="sc">~</span> TimeSpent, <span class="at">data =</span> sci_data)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = FinalGradeCEMS ~ TimeSpent, data = sci_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-67.136  -7.805   4.723  14.471  30.317 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 6.581e+01  1.491e+00   44.13   &lt;2e-16 ***
+TimeSpent   6.081e-03  6.482e-04    9.38   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 20.71 on 571 degrees of freedom
+  (30 observations deleted due to missingness)
+Multiple R-squared:  0.1335,    Adjusted R-squared:  0.132 
+F-statistic: 87.99 on 1 and 571 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>There is a lot to unpack in this output, but for now the most important values to look at are those for <code>TimeSpent</code>. Note that the estimate for <code>TimeSpent</code> is positive and statistically significant indicating that students who spent more time in the LMS also earned higher grades.</p>
+<section id="your-turn-12" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-12"><span style="color: green;"><strong>Your Turn</strong></span> <strong>⤵</strong></h4>
+<p>Now let’s “add” <em>another</em> variable to the regression model. Specifically, use the <code>+</code> operator after <code>TimeSpent</code> to add the course <code>subject</code> variable, or another variable of your choosing, as a predictor of students’ final grades.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(FinalGradeCEMS <span class="sc">~</span> TimeSpent <span class="sc">+</span> subject, <span class="at">data =</span> sci_data)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = FinalGradeCEMS ~ TimeSpent + subject, data = sci_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-70.378  -8.836   4.816  12.855  36.047 
+
+Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  57.3931739  2.3382193  24.546  &lt; 2e-16 ***
+TimeSpent     0.0071098  0.0006516  10.912  &lt; 2e-16 ***
+subjectBioA  -1.5596482  3.6053075  -0.433    0.665    
+subjectFrScA 11.7306546  2.2143847   5.297 1.68e-07 ***
+subjectOcnA   1.0974545  2.5771474   0.426    0.670    
+subjectPhysA 16.0357213  3.0712923   5.221 2.50e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 19.8 on 567 degrees of freedom
+  (30 observations deleted due to missingness)
+Multiple R-squared:  0.213, Adjusted R-squared:  0.2061 
+F-statistic: 30.69 on 5 and 567 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>What do you notice about the results? Add a comment or two below:</p>
+<ul>
+<li>YOUR RESPONSE HERE</li>
+</ul>
+</section>
+</section>
+<section id="communicate" class="level2">
+<h2 class="anchored" data-anchor-id="communicate">5. COMMUNICATE</h2>
+<p>The final step in the workflow/process is sharing the results of your analysis with wider audience. Krumm et al. <span class="citation" data-cites="krumm2018">Krumm, Means, and Bienkowski (<a href="#ref-krumm2018" role="doc-biblioref">2018</a>)</span> have outlined the following 3-step process for communicating with education stakeholders findings from an analysis:</p>
+<ol type="1">
+<li><p><strong>Select.</strong>&nbsp;Communicating what one has learned involves selecting among those analyses that are most important and most useful to an intended audience, as well as selecting a form for displaying that information, such as a graph or table in static or interactive form, i.e.&nbsp;a “data product.”</p></li>
+<li><p><strong>Polish</strong>. After creating initial versions of data products, research teams often spend time refining or polishing them, by adding or editing titles, labels, and notations and by working with colors and shapes to highlight key points.</p></li>
+<li><p><strong>Narrate.</strong>&nbsp;Writing a narrative to accompany the data products involves, at a minimum, pairing a data product with its related research question, describing how best to interpret the data product, and explaining the ways in which the data product helps answer the research question and might be used to inform new analyses or a “change idea” for improving student learning.</p></li>
+</ol>
+<p>In later modules, you will have an opportunity to create a “data product” designed to illustrate some insights gained from your analysis and ideally highlight an action step or change idea that can be used to improve learning or the contexts in which learning occurs.</p>
+<p>For example, imagine that as part of a grant to improve student performance in online courses, your are working with the instructors who taught for this online course provider. As part of some early exploratory work to identify factors influencing performance, you are interested in sharing some of your findings about hours logged in the LMS and their final grades. One way we might communicate these findings is through a simple <a href="https://sbkellogg.quarto.pub/final-grades-and-hours-logged/#plots">data dashboard</a> like the one shown below. Dashboards are a very common reporting tool and their use, for better or worse, has become ubiquitous in the field of Learning Analytics.</p>
+<p><img src="img/data-dashboard.png" class="img-fluid"></p>
+<section id="render-document" class="level3">
+<h3 class="anchored" data-anchor-id="render-document">Render Document</h3>
+<p>For now, we will wrap up this case study by converting your work to an HTML file that can be published and used to communicate your learning and demonstrate some of your new R skills. To do so, you will need to “render” your document. Rendering a document does two important things, namely when you render a document it:</p>
+<ol type="1">
+<li><p>checks through all your code for any errors; and,</p></li>
+<li><p>creates a file in your project directory that you can use to share you work.</p></li>
+</ol>
+<section id="your-turn-13" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-13">👉 Your Turn ⤵</h4>
+<p>Now that you’ve finished your first case study, let’s render this document by clicking the <img src="img/render.png" class="img-fluid" style="width:2.0%"> Render button in the toolbar at that the top of this file. Rendering will covert this Quarto document to a HTML web page as specified in our YAML header. Web pages are just one of <a href="https://quarto.org/docs/output-formats/all-formats.html">the many publishing formats you can create with Quarto</a> documents.</p>
+<p>If the files rendered correctly, you should now see a new file named <code>orientation-case-study-R.html</code> in the Files tab located in the bottom right corner of R Studio. If so, congratulations, you just completed the getting started activity! You’re now ready for the unit Case Studies that we will complete during the third week of each unit.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you encounter errors when you try to render, first check the case study answer key located in the files pane and has the suggested code for the Your Turns. If you are still having difficulties, try copying and pasting the error into Google or ChatGPT to see if you can resolve the issue. Finally, contact your instructor to debug the code together if you’re still having issues.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="publish-file" class="level3">
+<h3 class="anchored" data-anchor-id="publish-file">Publish File</h3>
+<p>There are a wide variety of ways to publish documents, presentations, and websites created using Quarto. Since content rendered with Quarto uses standard formats (HTML, PDFs, MS Word, etc.) it can be published anywhere. Additionally, there is a <code>quarto publish</code> command available for easy publishing to various popular services such as <a href="#0">Quarto Pub</a>, <a href="#0">Posit Cloud</a>, <a href="#0">RPubs</a> , <a href="#0">GitHub Pages</a>, or <a href="#0">other services</a>.</p>
+<section id="your-turn-14" class="level4">
+<h4 class="anchored" data-anchor-id="your-turn-14">👉 Your Turn ⤵</h4>
+<p>Choose of of the following methods described below for publishing your completed case study.</p>
+</section>
+<section id="publishing-with-quarto-pub" class="level4">
+<h4 class="anchored" data-anchor-id="publishing-with-quarto-pub">Publishing with Quarto Pub</h4>
+<p>Quarto Pub is a free publishing service for content created with Quarto. Quarto Pub is ideal for blogs, course or project websites, books, reports, presentations, and personal hobby sites.</p>
+<p>It’s important to note that all documents and sites published to Quarto Pub are <strong>publicly visible</strong>. You should only publish content you wish to share publicly.</p>
+<p>To publish to Quarto Pub, you will use the&nbsp;<code>quarto publish</code>&nbsp;command to publish content rendered on your local machine or via Posit Cloud.</p>
+<p>Before attempting your first publish, be sure that you have created a free&nbsp;<a href="https://quartopub.com/">Quarto Pub</a>&nbsp;account.</p>
+<p>The <code>quarto publish</code>&nbsp;command provides a very straightforward way to publish documents to Quarto Pub.</p>
+<p>For example, here is the Terminal command to publish a generic Quarto <code>document.qmd</code> to each of this service:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb43" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish quarto-pub document.qmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can access your the terminal from directly <strong>Terminal Pane</strong> in the lower left corner as shown below:</p>
+<p><img src="img/terminal.png" class="img-fluid" style="width:100.0%"></p>
+<p>The actual command you will enter into your terminal to publish your getting started case study is:</p>
+<p><code>quarto publish quarto-pub unit-0-case-study.qmd</code></p>
+<p>When you publish to Quarto Pub using <code>quarto publish</code> an access token is used to grant permission for publishing to your account. The first time you publish to Quarto Pub the Quarto CLI will automatically launch a browser to authorize one as shown below.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb44" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> quarto publish quarto-pub</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="ex">?</span> Authorize <span class="er">(</span><span class="ex">Y/n</span><span class="kw">)</span> <span class="ex">›</span> </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="ex">❯</span> In order to publish to Quarto Pub you need to</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">authorize</span> your account. Please be sure you are</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">logged</span> into the correct Quarto Pub account in </span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">your</span> default web browser, then press Enter or </span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Y'</span> to authorize.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Authorization will launch your default web browser to confirm that you want to allow publishing from Quarto CLI. An access token will be generated and saved locally by the Quarto CLI.</p>
+<p>Once you’ve authorized Quarto Pub and published your case study, it should take you immediately to the published document. See my example Orientation Case Study complete with answer key here: <a href="https://sbkellogg.quarto.pub/laser-orientation-case-study-key/">https://sbkellogg.quarto.pub/laser-orientation-case-study-key</a>.</p>
+<p>After you’ve published your first document, you can continue adding more documents, slides, books and even publish entire websites!</p>
+<p><img src="img/quarto-pub.png" class="img-fluid"></p>
+</section>
+<section id="publishing-with-r-pubs" class="level4">
+<h4 class="anchored" data-anchor-id="publishing-with-r-pubs">Publishing with R Pubs</h4>
+<p>An alternative, and perhaps the easiest way to quickly publish your file online is to publish directly from RStudio using Posit Cloud or RPubs. You can do so by clicking the “Publish” button located in the Viewer Pane after you render your document and as illustrated in the screenshot below.</p>
+<p><img src="img/publish.png" class="img-fluid" style="width:100.0%"></p>
+<p>Similar to Quarto Pub, be sure that you have created a free Posit Cloud or R Pub account before attempting your first publish. You may also need to add your Posit Cloud or R Pub account before being able to publish.</p>
+<p>See below for an example of my published Orientation Case Study complete with answer key here using:</p>
+<ul>
+<li><p><strong>R Pubs</strong>: <a href="https://rpubs.com/sbkellogg/orientation-case-study-key" class="uri">https://rpubs.com/sbkellogg/orientation-case-study-key</a></p></li>
+<li><p><strong>Posit Cloud</strong>: <a href="https://posit.cloud/content/8432811" class="uri">https://posit.cloud/content/8432811</a></p></li>
+</ul>
+<p><img src="img/posit-cloud-pub.png" class="img-fluid" style="width:100.0%"></p>
+</section>
+</section>
+<section id="references" class="level3 unnumbered">
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-estrellado2020e" class="csl-entry" role="listitem">
+Estrellado, Ryan A., Emily A. Freer, Jesse Mostipak, Joshua M. Rosenberg, and Isabella C. Velásquez. 2020. <em>Data Science in Education Using r</em>. Routledge. <a href="https://doi.org/10.4324/9780367822842">https://doi.org/10.4324/9780367822842</a>.
+</div>
+<div id="ref-gandrud2021" class="csl-entry" role="listitem">
+Gandrud, Christopher. 2021. <em>Reproducible Research with r and r Studio (3rd Edition)</em>. CRC Press. <a href="http://github.com/christophergandrud/Rep-Res-Book">http://github.com/christophergandrud/Rep-Res-Book</a>.
+</div>
+<div id="ref-krumm2018" class="csl-entry" role="listitem">
+Krumm, Andrew, Barbara Means, and Marie Bienkowski. 2018. <em>Learning Analytics Goes to School</em>. Routledge. <a href="https://doi.org/10.4324/9781315650722">https://doi.org/10.4324/9781315650722</a>.
+</div>
+<div id="ref-Wickham" class="csl-entry" role="listitem">
+Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-wickham2016r" class="csl-entry" role="listitem">
+Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. " O’Reilly Media, Inc.". <a href="https://r4ds.had.co.nz">https://r4ds.had.co.nz</a>.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
