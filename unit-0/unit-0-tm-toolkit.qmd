@@ -1,7 +1,7 @@
 ---
 title-block-banner: false
 title: "Text Mining Toolkit"
-subtitle: "ECI 586 Intro to Learning Analytics"
+subtitle: "ECI 588: Text Mining in Education"
 author: "Dr. Shaun Kellogg"
 date: today
 format:
