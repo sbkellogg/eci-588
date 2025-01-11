@@ -85,15 +85,15 @@ Reflecting on the course text and your self-selected reading, answer one or more
 
 #### Topic 4: Text-Based Data Sources
 
-Provide a brief overview of your self-selected resource that includes the following:
+Reflecting on the course text and your self-selected reading, answer one or more of the following questions:
 
--   What sources of data are commonly used in text mining, particularly in educational contexts?
+1.  What sources of data are commonly used in text mining, particularly in educational contexts?
 
--   Are some data sources more suitable or appropriate for text mining purposes than others?
+2.  Are some data sources more suitable or appropriate for text mining purposes than others?
 
--   What data sources in education are publicly available for analysis?
+3.  What data sources in education are publicly available for analysis?
 
--   What sources of data are you interested in potentially exploring for an independent analysis or final course project?
+4.  What sources of data are you interested in potentially exploring for an independent analysis or final course project?
 
 ## ASSESSMENT
 
