@@ -231,23 +231,31 @@ write_csv(opd_survey, "data/opd_survey_copy.csv")
 
 Note that the first argument is the data frame you created earlier and the second argument is the file name you plan to give it, including (if necessary) the file path for where it should go.
 
-#### Comprehension Check
+#### ❓Question 
 
-Throughout this case study, you will be asked to respond to questions or short tasks to check your comprehension of the content covered. For section 2a. Read, View, and Write Data, please respond to these questions by commenting out a line or lines in your R script like so:
+The `read_csv` and `write_csv` functions from the \[readr\] package are a powerful combination of tidyverse functions. In the pane below, type `?read_csv` into the Console and click Enter or Return to get more information on this function and then respond to following questions:
 
-```{r, eval = F}
-# 1. What argument would you add to `read_csv()` if my file did not not have column names or headers? 
+1.  What argument would you add to `read_csv()` if my file did not not have column names or headers?
 
-# I would need to add the ____ argument and set it to equal ____ to prevent R from setting the first row as column names. 
+    -   YOUR RESPONSE HERE
 
-```
-
-1.  What argument would you add to `read_csv()` if my file did not not have column names or headers? You can type `?read_csv` to get help on this function or check this handy [cheatsheet for the readr package](https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf) from the `readr` website at <https://readr.tidyverse.org/index.html>
 2.  What is the first argument that `read_csv()` always expects and what happens if you don't include in quotes?
-3.  What package would I need if I wanted to read a Microsoft Excel file into R? Hint: Check the cheatsheet.
-4.  What are some of the pros and cons of `view()` compared to other functions for viewing your data?
-5.  What happens if you use `write_csv(opd_survey, "opd_survey_copy.csv")` and just specify the file name instead including the folder?
-6.  What immediate data wrangling issues do you anticipate we'll have to deal with now that you've looked at our data?
+
+    -   YOUR RESPONSE HERE
+
+3.  What package would I need if I wanted to read a Microsoft Excel file into R? Hint: Check the cheatsheet below.
+
+    -   YOUR RESPONSE HERE
+
+4.  What happens if you use `write_csv(opd_survey, "opd_survey_copy.csv")` and just specify the file name instead including the folder? Try it out in the Console below.
+
+    -   YOUR RESPONSE HERE
+
+5.  What immediate data wrangling issues do you anticipate we'll have to deal with now that you've looked at our data?
+
+    -   YOUR RESPONSE HERE
+
+For more information about check this handy cheatsheet for the readr package from the readr website at <https://readr.tidyverse.org/index.html>
 
 ### 2b. Reduce Data
 
