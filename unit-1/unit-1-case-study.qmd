@@ -126,15 +126,15 @@ For a more comprehensive introduction to the tidytext package, I cannot recommen
 
 ## 2. WRANGLE
 
-In general, data wrangling involves some combination of cleaning, reshaping, transforming, and merging data (Wickham & Grolemund, 2017). The importance of data wrangling is difficult to overstate, as it involves the initial steps of going from raw data to a dataset that can be explored and modeled (Krumm et al, 2018).
+In general, data wrangling involves some combination of cleaning, reshaping, transforming, and merging data [@wickham2023r]. The importance of data wrangling is difficult to overstate, as it involves the initial steps of going from raw data to a dataset that can be explored and modeled [@krumm2018].
 
-a.  **Reading Data**. Before working with data, we need to "read" it into R. It also helps to inspect your data
-b.  **Data Reduction**. We focus on tools from the `dplyr` package to view, `rename`, select, slice, and filter our data in preparation for analysis.
+a.  **Reading Data**. Before working with data, we need to "read" it into R. It also helps to inspect your data and we'll review different functions for doing so.
+b.  **Data Reduction**. We focus on tools from the `dplyr` package to `view`, `rename`, `select`, `slice`, and `filter` our data in preparation for analysis.
 c.  **Tidy Text**. We'll learn how to use the `tidytext` package to both "tidy" and tokenize our text in order to create a data frame to use for analysis.
 
 ### 2a. Read, View, Write Data
 
-The Reading Data section introduces the following functions for reading data into R and inspecting it's contents:
+This section introduces the following functions for reading data into R and inspecting the contents of a data frame:
 
 -   `dplyr::read_csv()` Reading .csv files into R.
 -   `base::print()` View your data frame in the Console Pane
@@ -144,16 +144,29 @@ The Reading Data section introduces the following functions for reading data int
 -   `utils::tail()` View last 6 rows of your data.
 -   `dplyr::write_csv()` writing .csv files to directory.
 
-Remember, the name before the double colon indicates the package the function comes from. For example, `read_csv` comes from the \`readr\`\` package.
+::: callout-tip
+The name before the double colon indicates the package the function comes from. For example, `read_csv` comes from the \`readr\`\` package. In practice, we do not typically need to name the package when we call a function. If there are packages that use a function with the same name, it will default to the package that last loaded.
+:::
 
 #### Reading Data into R
 
-To get started, we need to import, or "read", our data into R. The function used to import your data will depend on the file format of the data you are trying to import.
+To get started, we need to import, or "read", our data into R. The function used to import your data will depend on the file format of the data you are trying to import. The RttT Online PD survey data is stored in a CSV file named `opd_survey.csv` which is located in the `data` folder of this project.
 
-1.  Download the `opd_survey.csv` file we'll be using for this Unit from our NCSU Moodle course site.
-2.  Create a folder in directory on your computer where you stored your R Project and name it "data".
-3.  Add the file to your data folder.
-4.  Check your Files tab in R Studio to verify that your file is indeed in your data folder.
+#### **👉 Your Turn ⤵**
+
+Before loading our data, locate survey data file under the Files tab in the bottom right pane of RStudio by clicking on the `data` folder. Now click on the name of the file, click "Import Dataset," and write a few observations of what you see in the space below:
+
+1.  YOUR RESPONSE HERE
+
+2.  YOUR RESPONSE HERE
+
+3.  YOUR RESPONSE HERE
+
+::: callout-tip
+Using the Import Dataset feature is just one of several ways to import data into R. There is also an Import Dataset feature under the Environment tab in the upper right pane of RStudio. Depending on the packages you have install, it will provide you with options for importing Excel, Stata, SAS, SPSS files and more. If you happen to run into issues with data import, the Import Dataset feature provides a point and click approach to adding data to your environment.
+
+![](img/import.png){width="100%"}
+:::
 
 Now let's read our data into our Environment and assign it to a variable name so we can work with it like any other object in R.
 
@@ -161,21 +174,23 @@ Now let's read our data into our Environment and assign it to a variable name so
 opd_survey <- read_csv("data/opd_survey.csv")
 ```
 
-```{r, eval=FALSE, echo=FALSE}
-opd_survey <- read_csv("/Volumes/GoogleDrive/My Drive/College of Ed/Data/opd_survey.csv")
-```
+Well done! The message not only communcates the number of rows and columns, but also indicates that the `read_csv()` dealt with an issue of duplicate column names for us!!
 
-Notice that `read_csv()` dealt with the issues of duplicate column names for us!!
+#### **👉 Your Turn ⤵**
 
-If you happen to run into issues with data import, RStudio as has an Import Dataset feature for a point and click approach to adding data to your environment. Be sure to pay attention to the
+Before moving on, you may have noticed that after runing the code to read in our data, an `opd_survey` object appeared in the Environment tab in the upper right pane of RStudio. Click on the name of the data object to view the imported data and write a few observations about what you see:
 
-![](img/import.png){width="70%"}
+1.  YOUR RESPONSE HERE
+
+2.  YOUR RESPONSE HERE
+
+3.  YOUR RESPONSE HERE
 
 #### Viewing Data in RStudio
 
-Once your data is in R, there are many different ways you can view it. Give each of the following at try:
+Once your data is in R, there are many different ways you can view it as shown by the code below:
 
-```{r, eval=F}
+``` R
 # enter the name of your data frame and view directly in console 
 opd_survey 
 
@@ -193,6 +208,14 @@ names(opd_survey)
 
 # or view in source pane
 view(opd_survey) 
+```
+
+#### **👉 Your Turn ⤵**
+
+Use the code chunk below to give each method a try:
+
+```{r, eval=F}
+# YOUR CODE HERE
 
 ```
 
