@@ -271,7 +271,7 @@ For more information about check this handy cheatsheet for the readr package fro
 
 ### 2b. Reduce Data
 
-As you've probably already noticed from viewing our dataset, we clearly have more data than we need to answer our rather basic research question. For this part of our workflow we focus on the following functions from the [`dplyr` package](https://dplyr.tidyverse.org) for wrangling our data:
+As you've probably already noticed from viewing our dataset, we clearly have more data than we need to answer our rather basic research question. For this part of our workflow we focus on the following functions from the tidyverse [`dplyr` package](https://dplyr.tidyverse.org) for wrangling our data:
 
 [**`dplyr`**](https://dplyr.tidyverse.org) **functions**
 
@@ -286,13 +286,30 @@ As you've probably already noticed from viewing our dataset, we clearly have mor
 
 #### Subset Columns
 
-To begin, let's `select()` Role, Resources, and Q21 columns and store as new data frame since those respectively pertain to educator role, OPD resource they are evaluating, and, as illustrated by the second row,
+Recall that our research questions are focused on understanding aspects of online professional development offerings that *teachers* find most valuable and how these resources may differ in the value they offer teachers. To help address our research question, let's first reduce our dataset to only the columns needed.
+
+To begin, we'll `select()` the columns `Role`, `Resource`, and `Q21` columns since those respectively pertain to educator role, OPD resource they are evaluating, and, as illustrated by the second row of column Q21, their response to the survey question, "What was the most beneficial/ aspect of the professional development resource?"
+
+We'll also assigned these selected columns to a new data frame named `opd_selected` by using the `<-` assignment operator.
+
+Run the following code:
 
 ```{r}
 opd_selected <- select(opd_survey, Role, Resource, Q21)
 ```
 
-Notice that like the bulk of all tidyverse functions, the first input `select()` expects is a data frame, followed by the columns you'd like to select.
+Notice that, like the bulk of tidyverse functions we'll be using throughout our case studies, the first argument that the `select()` fuction expects is a data frame, which in our case is `opd_survey`. The select() function the expects the specific columns you'd like to select.
+
+Another common approach to providing tidyverse functions a data frame is to use the `%>%` pipe operator from the {maggitr\] package, which is used to "pipe" inputs and outputs from one function to another. This operator is used so frequently in R, that it has now built into R with the new `|>` pipe operator.
+
+Run the following code to select the columns `Role`, `Resource`, and `Q21` columns and assign these columns to a new data frame named `opd_selected`:
+
+```{r}
+opd_selected <- opd_survey |>
+  select(Role, Resource, Q21)
+```
+
+This code produces the same result as the previous code, but is a common way in R of providing data to a function.
 
 Let's take a look at our newly created data frame that should have dramatically fewer variables:
 
