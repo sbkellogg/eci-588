@@ -290,7 +290,7 @@ Recall that our research questions are focused on understanding aspects of onlin
 
 To begin, we'll `select()` the columns `Role`, `Resource`, and `Q21` columns since those respectively pertain to educator role, OPD resource they are evaluating, and, as illustrated by the second row of column Q21, their response to the survey question, "What was the most beneficial/ aspect of the professional development resource?"
 
-We'll also assigned these selected columns to a new data frame named `opd_selected` by using the `<-` assignment operator.
+We'll also assigne these selected columns to a new data frame named `opd_selected` by using the `<-` assignment operator.
 
 Run the following code:
 
@@ -298,9 +298,19 @@ Run the following code:
 opd_selected <- select(opd_survey, Role, Resource, Q21)
 ```
 
+#### **👉 Your Turn ⤵**
+
+Suppose we were interested instead in analyzing how educators are are using the online resources instead of the most beneficial aspects.
+
+Change the code below to select the correct columns and then run the code:
+
+```{r}
+opd_use <- select(opd_survey, Role, Resource, Q20)
+```
+
 Notice that, like the bulk of tidyverse functions we'll be using throughout our case studies, the first argument that the `select()` fuction expects is a data frame, which in our case is `opd_survey`. The select() function the expects the specific columns you'd like to select.
 
-Another common approach to providing tidyverse functions a data frame is to use the `%>%` pipe operator from the {maggitr\] package, which is used to "pipe" inputs and outputs from one function to another. This operator is used so frequently in R, that it has now built into R with the new `|>` pipe operator.
+Another common approach to providing tidyverse functions a data frame is to use the `|>` pipe operator from the {maggitr\] package, which is used to "pipe" inputs and outputs from one function to another. This operator is used so frequently in R, that it has now built into R with the new `|>` pipe operator.
 
 Run the following code to select the columns `Role`, `Resource`, and `Q21` columns and assign these columns to a new data frame named `opd_selected`:
 
@@ -319,12 +329,16 @@ head(opd_selected)
 
 #### Rename Columns
 
-Notice that Q21 is not a terribly informative variable name. Let's now take our `opd_selected` data frame and use the `rename()` function along with the `=` assignment operator introduced last week to change the name from Q21 to "text" and save it as `opd_renamed`.
+Notice that Q21 is not a terribly informative variable name. Let's now take our `opd_selected` data frame and use the `rename()` function along with the `=` assignment operator introduced last week to change the name from Q21 to `text` and save it as `opd_renamed`.
 
-This naming is somewhat intentional because not only is it the text we are interested in analyzing, but also mirrors the naming conventions in our \[Text Mining with R\]<https://www.tidytextmining.com/tidytext.html> course book and will make it easier to follow the examples there.
+This naming is somewhat intentional because not only is it the text we are interested in analyzing, but also mirrors the naming conventions in our Text Mining with R [@silge2017text] course book and will make it easier to follow the examples there.
+
+Run the following code to rename the column and print the updated data frame:
 
 ```{r}
 opd_renamed <- rename(opd_selected, text = Q21)
+
+opd_renamed
 ```
 
 #### Subset Rows
@@ -332,15 +346,17 @@ opd_renamed <- rename(opd_selected, text = Q21)
 Now let's deal with the legacy rows that Qualtrics outputs by default, which are effectively 3 sets of headers. We will use the `slice()` function, which is basically the same as the `select()` function but for rows instead of columns, to carve out those two rows.
 
 ```{r}
-opd_sliced <- slice(opd_renamed, -1, -2) # the - sign indicates to NOT keep rows 1 and 2
+opd_sliced <- slice(opd_renamed, -1, -2) # the - operator tells the slice function to NOT keep rows 1 and 2
 
-head(opd_sliced)
+opd_sliced
 ```
 
-Now let's take our `opd_sliced` and remove any rows that are missing data, as indicated by an `NA`.
+Now let's take our `opd_sliced` and remove any rows that are missing data, as indicated by an `NA`, by using the `drop_na` tidyverse function:
 
 ```{r}
-opd_complete <- na.omit(opd_sliced)
+opd_complete <- drop_na(opd_sliced)
+
+opd_complete
 ```
 
 Finally, since we are only interested in the feedback from teachers, let's also filter our dataset for only participants who indicated their `Role` as "Teacher".
@@ -348,8 +364,34 @@ Finally, since we are only interested in the feedback from teachers, let's also 
 ```{r}
 opd_teacher <- filter(opd_complete, Role == "Teacher")
 
-head(opd_teacher)
+opd_teacher
 ```
+
+::: callout-note
+When we used two `==` signs to filter for rows when Role is equal to Teacher. This was different than when we used just on = sign to rename our column.
+
+In R, the single `=` sign is used for creating new variables, object or value, while the double == sign is used to test if two values are equal.
+
+The single `=` can also be used used for assigning the output of a function to a new objects, like so:
+
+`opd_complete = drop_na(opd_sliced)`
+
+However, using and == for comparisons and the `<-` operator for assignment avoids ambiguity and makes the code easier to read and maintain.
+:::
+
+#### **👉 Your Turn ⤵**
+
+Suppose we were interested instead in analyzing School Executive responses instead of teachers.
+
+Change the code below to filter the correct rows and then run the code:
+
+```{r}
+opd_executive <- filter(opd_complete, Role == "Teacher")
+
+opd_executive
+```
+
+#### Summary
 
 That was a lot of code we just wrote to end up with `opd_teacher`. Let's review:
 
@@ -359,6 +401,8 @@ opd_renamed <- rename(opd_selected, text = Q21)
 opd_sliced <- slice(opd_renamed, -1, -2)
 opd_complete <- na.omit(opd_sliced)
 opd_teacher <- filter(opd_complete, Role == "Teacher")
+
+opd_teacher
 ```
 
 Note that we could have reused `opd_teacher` and simply overwritten it each time to prevent creating new objects:
@@ -369,30 +413,40 @@ opd_teacher <- rename(opd_teacher, text = Q21)
 opd_teacher <- slice(opd_teacher, -1, -2)
 opd_teacher <- na.omit(opd_teacher)
 opd_teacher <- filter(opd_teacher, Role == "Teacher")
+
+opd_teacher
 ```
 
 #### Code Reduction
 
-Fortunately, we can use the Pipe Operator `%>%` introduced in [Chapter 6 of Data Science in Education Using R (DSIEUR)](https://datascienceineducation.com/c06.html) to dramatically simplify these cleaning steps and reduce the code written
+Fortunately, we can use the Pipe Operator `|>` introduced in [Chapter 6 of Data Science in Education Using R (DSIEUR)](https://datascienceineducation.com/c06.html) to dramatically simplify these cleaning steps and reduce the amount of code written:
 
 ```{r}
-opd_teacher <- opd_survey %>%
-  select(Role, Resource, Q21) %>%
-  rename(text = Q21) %>%
-  slice(-1, -2) %>%
-  na.omit() %>%
+opd_teacher <- opd_survey |>
+  select(Role, Resource, Q21) |>
+  rename(text = Q21) |>
+  slice(-1, -2) |>
+  drop_na() |>
   filter(Role == "Teacher")
 
-head(opd_teacher)
+opd_teacher
 ```
 
-Our dataset is now ready to be tidied!!!
+#### **👉 Your Turn ⤵** 
 
-#### Comprehension Check
+Use the code chunk below to rewrite the piped code above for an additional analysis. The data frame should includes all Roles, not just teachers, but excludes the `Resource` column. Assign it to `opd_benefits` using the `<-` operator for later use.
 
-1.  How would you change the code in the Subset Columns section if you wanted to analyze how educators are are using the online resources instead of the most beneficial aspects?
-2.  How would you rewrite the code in the Subset Rows section if you were interested in looking at School Executive responses instead of teachers?
-3.  Rewrite the piped code in the Code Reduction section to prepare a data frame for tidying that includes all Roles, not just teachers, but excludes the Resource column. Assign it to `opd_benefits` for later use.
+```{r}
+opd_benefits <- opd_survey |>
+  select(Role, Q21) |>
+  rename(text = Q21) |>
+  slice(-1, -2) |>
+  drop_na()
+
+opd_benefits
+```
+
+Well done! Our text is now ready to be tidied!!!
 
 ### 2c. Tidy Text
 
@@ -448,12 +502,12 @@ head(opd_tidy)
 Note that we also could have just added `unnest_tokens(word, text)` to our previous piped chain of functions like so:
 
 ```{r}
-opd_tidy <- opd_survey %>%
-  select(Role, Resource, Q21) %>%
-  rename(text = Q21) %>%
-  slice(-1, -2) %>%
-  na.omit() %>%
-  filter(Role == "Teacher") %>%
+opd_tidy <- opd_survey |>
+  select(Role, Resource, Q21) |>
+  rename(text = Q21) |>
+  slice(-1, -2) |>
+  na.omit() |>
+  filter(Role == "Teacher") |>
   unnest_tokens(word, text)
 
 head(opd_tidy)
@@ -537,9 +591,9 @@ Now that we have our original survey data in a tidy text format, we can use the 
 ```{r}
 opd_counts <- count(opd_clean, word, sort = TRUE)
 
-# alternatively, we could have use the %>% operator to yield the same result.
+# alternatively, we could have use the |> operator to yield the same result.
 
-opd_counts <- opd_clean %>% 
+opd_counts <- opd_clean |> 
   count(word, sort = TRUE)
 
 opd_counts
@@ -560,7 +614,7 @@ One notable distinction between word counts and more traditional qualitative ana
 The `count()` function can also be used with more than one column to count the frequency a word occurs for a select `Resource` in our dataset.
 
 ```{r}
-opd_resource_counts <- opd_clean %>%
+opd_resource_counts <- opd_clean |>
   count(Resource, word, sort = TRUE)
 
 view(opd_resource_counts)
@@ -576,12 +630,12 @@ One common approach to facilitate comparison across documents or groups of text,
 
 For example, let's create counts for each `Resource` and `word` paring, and then create a new column using the `mutate()` function that calculations the proportion that word makes up among all words.
 
-To do this a little more efficiently, I'm going to use the %\>% operator:
+To do this a little more efficiently, I'm going to use the \|\> operator:
 
 ```{r}
-opd_frequencies <- opd_clean %>%
-  count(Resource, word, sort = TRUE) %>%
-  group_by(Resource) %>%
+opd_frequencies <- opd_clean |>
+  count(Resource, word, sort = TRUE) |>
+  group_by(Resource) |>
   mutate(proportion = n / sum(n))
 
 opd_frequencies
@@ -606,8 +660,8 @@ Because tf-idf can account through weighting for "too common" words like "and" o
 First, let's recycle our `opd_teacher` data frame and calculate counts for each word again, but this time instead of word counts for the total data set, we'll calculate word counts for each 'Resource'.
 
 ```{r}
-opd_words <- opd_teacher %>%
-  unnest_tokens(word, text) %>%
+opd_words <- opd_teacher |>
+  unnest_tokens(word, text) |>
   count(Resource, word, sort = TRUE)
 
 head(opd_words)
@@ -616,8 +670,8 @@ head(opd_words)
 Next, let's calculate the total words per `Resource` type:
 
 ```{r}
-total_words <- opd_words %>%
-  group_by(Resource) %>%
+total_words <- opd_words |>
+  group_by(Resource) |>
   summarise(total = sum(n))
 
 total_words
@@ -634,7 +688,7 @@ opd_totals
 Finally, we're ready to use the `bind_tf_idf()` function to calculate a tf-idf statistic for each word and assess it's relative importance to a given online resource type:
 
 ```{r}
-opd_tf_idf <- opd_totals %>%
+opd_tf_idf <- opd_totals |>
   bind_tf_idf(word, Resource, n)
 
 opd_tf_idf
@@ -668,8 +722,8 @@ Let's use our reduced opd_teacher survey data frame that contains the complete t
 We can view all quotes in the source pane, or use the `sample_n()`, yes from the `dplyr` package, to select any number of random quotes. In this case 20:
 
 ```{r}
-opd_quotes <- opd_teacher %>%
-  select(text) %>% 
+opd_quotes <- opd_teacher |>
+  select(text) |> 
   filter(grepl('online', text))
 
 view(opd_quotes)
@@ -682,8 +736,8 @@ In some cases, we can see that the use of the word "online" was simply repetitio
 Note that you can also use regular express operators with `grep` like the `*` operator to search for word stems. For example using `inform*` in our search will return quotes with "inform", "informative", "information", etc.
 
 ```{r}
-opd_quotes <- opd_teacher %>%
-  select(text) %>% 
+opd_quotes <- opd_teacher |>
+  select(text) |> 
   filter(grepl('inform*', text))
 
 view(opd_quotes)
@@ -716,9 +770,9 @@ Once installed, I recommend using `?wordclouds2` to view the various arguments f
 The bar chart is the workhorse for data viz and is pretty effective for comparing two or more values. Given the unique aspect of our tidy text data frame, however, we are looking at upwards of over 5,000 values (i.e. words and their counts) to compare with our `opd_counts` data frame and will need some way to limit the number of words to display.
 
 ```{r}
-opd_counts %>%
-  filter(n > 500) %>% # keep rows with word counts greater than 500
-  mutate(word = reorder(word, n)) %>% #reorder the word variable by n and replace with new variable called word
+opd_counts |>
+  filter(n > 500) |> # keep rows with word counts greater than 500
+  mutate(word = reorder(word, n)) |> #reorder the word variable by n and replace with new variable called word
   ggplot(aes(n, word)) + # create a plot with n on x axis and word on y axis
   geom_col() # make it a bar plot
 ```
@@ -734,11 +788,11 @@ Let's use the example illustrated in Text Mining with R to create a small multip
 ```{r}
 library(forcats)
 
-opd_frequencies %>%
-  filter(Resource != "Calendar") %>% # remove Calendar responses, too few. 
-  group_by(Resource) %>%
-  slice_max(proportion, n = 5) %>%
-  ungroup() %>%
+opd_frequencies |>
+  filter(Resource != "Calendar") |> # remove Calendar responses, too few. 
+  group_by(Resource) |>
+  slice_max(proportion, n = 5) |>
+  ungroup() |>
   ggplot(aes(proportion, fct_reorder(word, proportion), fill = Resource)) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~Resource, ncol = 3, scales = "free")
@@ -824,9 +878,9 @@ For my bar chart, I did some minor clean up, including editing the x-axis title,
 
 ```{r}
 
-opd_counts %>%
-  filter(n > 500) %>%
-  mutate(word = reorder(word, n)) %>%
+opd_counts |>
+  filter(n > 500) |>
+  mutate(word = reorder(word, n)) |>
   ggplot(aes(n, word)) +
   geom_col() + 
   labs(x = "Word Counts", y = NULL, title = "20 Most Frequently Used Words to Describe the Value of Online Resources") + 
@@ -842,16 +896,16 @@ First, I'll reuse my `opd_clean` data frame which had my stop words removed to c
 
 ```{r}
 
-opd_resource_counts <- opd_clean %>%
+opd_resource_counts <- opd_clean |>
   count(Resource, word)
 
-total_words <- opd_resource_counts %>%
-  group_by(Resource) %>%
+total_words <- opd_resource_counts |>
+  group_by(Resource) |>
   summarize(total = sum(n))
 
 opd_words <- left_join(opd_resource_counts, total_words)
 
-opd_tf_idf <- opd_words %>%
+opd_tf_idf <- opd_words |>
   bind_tf_idf(word, Resource, n)
 ```
 
@@ -860,13 +914,13 @@ Then I'll use the `filter()` function to remove any response pertaining to Calen
 Finally, with the help of [Soraya Campbell](https://twitter.com/sorayaworldwide), I've fixed the pesky issue with the charts not ordering by tf-idf value properly by changing `Resource` from a character to a factor and using the `reorder_within` function.
 
 ```{r}
-opd_tf_idf %>%
-  filter(Resource != "Calendar") %>%
-  group_by(Resource) %>%
-  slice_max(tf_idf, n = 5) %>%
-  ungroup() %>%
+opd_tf_idf |>
+  filter(Resource != "Calendar") |>
+  group_by(Resource) |>
+  slice_max(tf_idf, n = 5) |>
+  ungroup() |>
   mutate(Resource=as.factor(Resource),
-         word=reorder_within(word, tf_idf, Resource)) %>%
+         word=reorder_within(word, tf_idf, Resource)) |>
   ggplot(aes(word, tf_idf, fill = Resource)) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~Resource, ncol = 3, scales = "free") +
