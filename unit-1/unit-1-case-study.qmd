@@ -827,19 +827,15 @@ opd_frequencies |>
 
 1.  Create a word cloud, bar chart, and/or small multiple using your `opd_benefits` data.
 
-------------------------------------------------------------------------
-
 ## 4. MODEL
 
 As highlighted in [Chapter 3 of Data Science in Education Using R](https://datascienceineducation.com/c03.html), the **Model** step of the data science process entails "using statistical models, from simple to complex, to understand trends and patterns in the data." The authors note that while descriptive statistics and data visualization during the **Explore** step can help us to identify patterns and relationships in our data, statistical models can be used to help us determine if relationships, patterns and trends are actually meaningful.
 
 In [Learning Analytics Goes to School](https://catalog.lib.ncsu.edu/catalog/NCSU4862134), the authors describe modeling as simply developing a mathematical summary of a dataset and note that there are two general types to modeling: unsupervised and supervised learning. Unsupervised learning algorithms, which will be the focus in this course, are used to explore the structure of a dataset, while supervised models "help to quantify relationships between features and a known outcome."
 
-We will not explore the use of models for text mining until Unit 3, but if you are interested in looking ahead to see how they might be applied to text as data, I recommend taking a look at [Chapter 6 Topic Modeling](https://www.tidytextmining.com/topicmodeling.html) from Text Mining with R: A Tidy Approach. Chris Bail in his Text as Data course also provides a nice introduction to Topic Modeling, including Structural Topic Modeling, which we will explore using the `stm` package in Unit 3.
+We will not explore the use of models for text mining until Unit 2, but if you are interested in looking ahead to see how they might be applied to text as data, I recommend taking a look at [Chapter 6 Topic Modeling](https://www.tidytextmining.com/topicmodeling.html) from Text Mining with R: A Tidy Approach. Chris Bail in his Text as Data course also provides a nice [introduction to Topic Modeling](https://cbail.github.io/textasdata/topic-modeling/rmarkdown/Topic_Modeling.html), including Structural Topic Modeling, which we will explore using the `stm` package in Unit 3. He also has this [excellent video on topic modeling](https://youtu.be/oos4q_3eLU4?si=MWy-HdD9NkHqnNSP).
 
-Finally, if you have not already done so, I ask that at minimum you read Chapter 3 of DSIEUR as well as the section on the Data-Intensive Research Workflow from Chapter 2 of Learning Analytics Goes to school.
-
-------------------------------------------------------------------------
+Finally, if you have not already done so, I recommend taking a look at [Chapter 3 of DSIEUR](https://datascienceineducation.com/c03) as well as the section on the Data-Intensive Research Workflow from Chapter 2 of Learning Analytics Goes to school.
 
 ## 5. COMMUNICATE
 
