@@ -214,10 +214,17 @@ view(opd_survey)
 
 Use the code chunk below to give each method a try:
 
-```{r, eval=F}
+```{r, eval=FALSE}
+
 # YOUR CODE HERE
 
 ```
+
+::: callout-warning
+The `view()` function is a very useful function for displaying a data frame in an interactive spreadsheet-like interface within RStudio. However, it causes issues when rendering Quarto or knitting R Markdown documents because it does not produce an output or modify the environment as expected when rendering documents.
+
+Notice that in the code chunk above that the `eval=FALSE` option as been included in the header. This will prevent Quarto from evaluating this code chunk and including it in the rendered HTML file. If you use the `view()` function in later code chunks, be sure to include this option. Alternatively, you can use the view function directly in the console.
+:::
 
 #### Writing Data to your Project Folder
 
@@ -259,7 +266,7 @@ For more information about check this handy cheatsheet for the readr package fro
 
 ### 2b. Reduce Data
 
-As you've probably already noticed from viewing our dataset, we clearly have more data than we need to answer our rather basic research question. For this part of our workflow we focus on the following functions from the tidyverse [`dplyr` package](https://dplyr.tidyverse.org) for wrangling our data:
+As you've probably already noticed from viewing our dataset, we clearly have more data than we need to answer our rather basic research question. For this part of our workflow we focus on the following functions from the tidyverse `dplyr` and `tidyr` packages for wrangling our data:
 
 [**`dplyr`**](https://dplyr.tidyverse.org) **functions**
 
@@ -268,9 +275,9 @@ As you've probably already noticed from viewing our dataset, we clearly have mor
 -   `rename()` changes the names of individual variables using new_name = old_name syntax
 -   `filter()` picks cases, or rows, based on their values in a specified column.
 
-[**`stats`**]() **functions**
+[**`tidyr`**](https://tidyr.tidyverse.org) **functions**
 
--   `na.omit()` a handy little function from the `stats` package for removing rows with missing values, i.e. NA.
+-   `drop_na()` removes rows with missing values, i.e. NA
 
 #### Subset Columns
 
@@ -389,7 +396,7 @@ That was a lot of code we just wrote to end up with `opd_teacher`. Let's review:
 opd_selected <- select(opd_survey, Role, Resource, Q21)
 opd_renamed <- rename(opd_selected, text = Q21)
 opd_sliced <- slice(opd_renamed, -1, -2)
-opd_complete <- na.omit(opd_sliced)
+opd_complete <- drop_na(opd_sliced)
 opd_teacher <- filter(opd_complete, Role == "Teacher")
 
 opd_teacher
@@ -401,7 +408,7 @@ Note that we could have reused `opd_teacher` and simply overwritten it each time
 opd_teacher <- select(opd_survey, Role, Resource, Q21)
 opd_teacher <- rename(opd_teacher, text = Q21)
 opd_teacher <- slice(opd_teacher, -1, -2)
-opd_teacher <- na.omit(opd_teacher)
+opd_teacher <- drop_na(opd_teacher)
 opd_teacher <- filter(opd_teacher, Role == "Teacher")
 
 opd_teacher
@@ -460,7 +467,7 @@ Text data, by it's very nature is ESPECIALLY untidy. In [Chapter 1 of Text Minin
 
 > a table with **one-token-per-row**. A token is a meaningful unit of text, such as a word, that we are interested in using for analysis, and tokenization is the process of splitting text into tokens.
 
-In this section, our goal is to transform our `opd_teacher` data from this:
+In this section, our goal is to transform our `opd_teacher` text data from this:
 
 ![](img/untidy-text.png)
 
@@ -468,7 +475,7 @@ to this:
 
 ![](img/tidy-text.png)
 
-This one-token-per-row structure is in contrast to the ways text is often stored in current analyses, perhaps as strings or in a document-term matrix. For tidy text mining, the **token** that is stored in each row is most often a single word, but can also be an n-gram, sentence, or paragraph. In the tidytext package, we provide functionality to tokenize by commonly used units of text like these and convert to a one-term-per-row format.
+This one-token-per-row structure differs from how text is often stored, perhaps as strings or in a [document-term matrix](https://en.wikipedia.org/wiki/Document-term_matrix#:~:text=A%20document%2Dterm%20matrix%20is,and%20columns%20correspond%20to%20terms.). The **token** that is stored in each row is most often a single word, but can also be an n-gram (e.g., a sequence of 2 or 3 words), a sentence, or even a whole paragraph. Conveniently, the tidytext package, provides functionality for tokenizing text by common units like these into a one-term-per-row format.
 
 #### Tokenize Text
 
@@ -491,27 +498,32 @@ opd_tidy <- opd_survey |>
   select(Role, Resource, Q21) |>
   rename(text = Q21) |>
   slice(-1, -2) |>
-  na.omit() |>
+  drop_na() |>
   filter(Role == "Teacher") |>
   unnest_tokens(word, text)
 
 head(opd_tidy)
 ```
 
-There is A LOT to unpack with this function. First notice that `unnest_tokens` expects a data frame as the first argument, followed by two column names. The first is an output column name that doesn't currently exist but will be created as the text is unnested into it (`word`, in this case). This if followed by the input column that the text comes from which we uncreatively named `text`. Also notice:
+There is A LOT to unpack with this function. First notice that `unnest_tokens` expects a data frame as the first argument, followed by two column names. The first is an output column name that doesn't currently exist (`word`, in this case) but will be created as the text is unnested into the new column. This if followed by the input column that the text comes from which we uncreatively named `text`. Also notice:
 
 -   Other columns, such as `Role` and `Resource`, are retained.
 -   All punctuation has been removed.
--   Tokens have been changed to lowercase, which makes them easier to compare or combine with other datasets. However, we can use the `to_lower = FALSE` argument to turn off this behavior).
+-   Tokens have been changed to lowercase, which makes them easier to compare or combine with other datasets. However, we can use the `to_lower = FALSE` argument to turn off this behavior if desired.
 
 #### Remove Stop Words
 
 One final step in tidying our text is to remove words that don't add much value to our analysis (at least when using this approach) such as "and", "the", "of", "to" etc. The `tidytext` package contains a `stop_words` dataset derived from three different lexicons that we'll use to remove rows that match words in this dataset.
 
-Let's take a look at these common stop words so we know what we're getting rid of from our `opd_tidy` dataset.
+Let's take a look at the first 20 stop words so we know what we're getting rid of from our `opd_tidy` dataset.
 
 ```{r}
-head(stop_words)
+head(stop_words, 20)
+```
+
+Now run the following code to view all stop words in each lexicon:
+
+```{r, eval=FALSE}
 
 view(stop_words)
 ```
@@ -528,14 +540,42 @@ opd_clean <- anti_join(opd_tidy, stop_words)
 head(opd_clean)
 ```
 
-#### Comprehension Check
+#### **👉 Your Turn ⤵** 
 
-1.  How would you include the `anti_join()` function in our previous chain that uses the pipe operator? Give it a try and see what happens.
-2.  Why do you think the console provided the message "Joining, by = 'word'"?
-3.  How would you use `anti_join()` if we had named the output column from `unnest_tokens()` "tokens" instead? Hint: Check ?anti_join documentation.
-4.  Tidy your opd_benefits data by tokenizing your text and removing stop words.
+In the code chunk below, use the pipe operator to add the `anti_join()` function to our chain of data wrangling functions as our final text preprocessing step. Also, add a short comment to each line of code explaining each data wrangling step. The first had been done for you.
 
-------------------------------------------------------------------------
+```{r}
+opd_clean <- opd_survey |>
+  select(Role, Resource, Q21) |> # Select only columns Role, Resource, and Q21
+  rename(text = Q21) |> 
+  slice(-1, -2) |>
+  drop_na() |>
+  filter(Role == "Teacher") |>
+  unnest_tokens(word, text) |>
+  anti_join(stop_words)
+```
+
+Well done!!
+
+Now complete and run the following code tidy your `opd_survey` data and save to a new `opd_benefits` data frame by adding functions for out data wrangling pipeline for tokenizing your text and removing stop words.
+
+```{r}
+opd_benefits <- opd_survey |>
+  select(Role, Q21) |>
+  rename(text = Q21) |>
+  slice(-1, -2) |>
+  drop_na() |>
+  
+
+head(opd_benefits, 10)
+```
+
+#### ❓Question
+
+1.  Why do you think the console provided the message "Joining, by = 'word'"?
+    -   YOUR RESPONSE HERE
+
+Congratulations, we're not ready to begin exploring our wrangled data!
 
 ## 3. EXPLORE
 
