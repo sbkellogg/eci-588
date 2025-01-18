@@ -243,7 +243,7 @@ write_csv(opd_survey, "data/opd_survey_copy.csv")
 
 Note that the first argument is the data frame you imported earlier and the second argument is the file name you plan to give it, including (if necessary) the file path for where it should go.
 
-#### ❓Questions 
+#### ❓Question 
 
 The `read_csv` and `write_csv` functions from the \[readr\] package are a powerful combination of tidyverse functions. In the pane below, type `?read_csv` into the Console and click Enter or Return to get more information on this function and then respond to following questions:
 
@@ -457,33 +457,33 @@ For this part of our workflow we focus on the following functions from the [`tid
 
 #### Tidy Data Principles
 
-Not surprisingly, the Tidyverse set of packages including packages like `dplyr` adhere "tidy" data principles [(Wickham 2014)](https://www.jstatsoft.org/article/view/v021i12). Tidy data has a specific structure:
+Not surprisingly, the Tidyverse set of packages including packages like `dplyr` adhere "tidy" data principles [@wickham2023r]. Tidy data has a specific structure:
 
 -   Each variable is a column
 -   Each observation is a row
 -   Each type of observational unit is a table
 
-Why would this data be considered "untidy"?
+#### ❓Question
+
+According to [tidy data](https://r4ds.hadley.nz/data-tidy.html#sec-tidy-data) principles, why do you think the data frame below would be considered "untidy"?
+
+-   YOUR RESPONSE HERE
 
 ![](img/untidy.png){width="100%"}
 
-Text data, by it's very nature is ESPECIALLY untidy. In [Chapter 1 of Text Mining with R](https://www.tidytextmining.com/tidytext.html), Silge and Robinson define the tidy text format as
+Text data, by it's very nature is ESPECIALLY untidy. In [Chapter 1 of Text Mining with R](https://www.tidytextmining.com/tidytext.html), Silge and Robinson define the tidy text format as:
 
-> <small>**a table with one-token-per-row**. A token is a meaningful unit of text, such as a word, that we are interested in using for analysis, and tokenization is the process of splitting text into tokens. This one-token-per-row structure is in contrast to the ways text is often stored in current analyses, perhaps as strings or in a document-term matrix. For tidy text mining, the **token** that is stored in each row is most often a single word, but can also be an n-gram, sentence, or paragraph. In the tidytext package, we provide functionality to tokenize by commonly used units of text like these and convert to a one-term-per-row format.</small>
+> a table with **one-token-per-row**. A token is a meaningful unit of text, such as a word, that we are interested in using for analysis, and tokenization is the process of splitting text into tokens.
 
-In this section, our goals is to transform our `opd_teacher` data from this:
+In this section, our goal is to transform our `opd_teacher` data from this:
 
-```{r, echo=F}
-head(opd_teacher)
-```
+![](img/untidy-text.png)
 
 to this:
 
-```{r, echo=F}
-opd_tidy <- unnest_tokens(opd_teacher, word, text)
+![](img/tidy-text.png)
 
-head(opd_tidy)
-```
+This one-token-per-row structure is in contrast to the ways text is often stored in current analyses, perhaps as strings or in a document-term matrix. For tidy text mining, the **token** that is stored in each row is most often a single word, but can also be an n-gram, sentence, or paragraph. In the tidytext package, we provide functionality to tokenize by commonly used units of text like these and convert to a one-term-per-row format.
 
 #### Tokenize Text
 
