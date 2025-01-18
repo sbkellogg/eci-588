@@ -1,5 +1,5 @@
 ---
-title: "Unit 1 Case Study: Tidy Text & Word Counts"
+title: "Unit 1 Case Study: Tidy Text, Tokenization & Term Frequency"
 subtitle: "ECI 588: Text Mining in Education"
 author: "Dr. Shaun Kellogg"
 date: today
@@ -316,11 +316,15 @@ opd_selected <- opd_survey |>
 
 This code produces the same result as the previous code, but is a common way in R of providing data to a function.
 
-Let's take a look at our newly created data frame that should have dramatically fewer variables:
+#### **👉 Your Turn ⤵**
+
+Use one of the data viewing functions that we introduced above to take a look at our newly created data frame:
 
 ```{r}
 head(opd_selected)
 ```
+
+Great job! You probably notice that the data frame now has dramatically fewer variables.
 
 #### Rename Columns
 
@@ -575,19 +579,21 @@ head(opd_benefits, 10)
 1.  Why do you think the console provided the message "Joining, by = 'word'"?
     -   YOUR RESPONSE HERE
 
-Congratulations, we're not ready to begin exploring our wrangled data!
+Congratulations, we're now ready to begin exploring our wrangled data!
 
 ## 3. EXPLORE
 
-As highlighted in both DSEIUR and Learning Analytics Goes to School, calculating summary statistics, data visualization, and feature engineering (the process of creating new variables from a dataset) are a key part of exploratory data analysis. One goal in this phase is explore questions that drove the original analysis and develop new questions and hypotheses to test in later stages. In Section 3, we will calculate some very basic summary statistics from our tidied text, explore key words of interest to gather additional context, and use data visualization to identify patterns and trends that may not be obvious from our tables and numerical summaries. Topics addressed in Section 3 include:
+As highlighted in both DSEIUR and Learning Analytics Goes to School, calculating summary statistics, data visualization, and feature engineering (the process of creating new variables from a dataset) are a key part of exploratory data analysis [@estrellado2020data; @krumm2018]. One goal in this phase is to explore questions that drove the original analysis and develop new questions and hypotheses to test in later stages. In Section 3, we will calculate some very basic summary statistics from our tidied text, explore key words of interest to gather additional context, and use data visualization to identify patterns and trends that may not be obvious from our tables and numerical summaries.
+
+Topics addressed in Section 3 include:
 
 -   **Summary Stats**. We focus primarily on the use of word counts and calculating proportions to to help us identify common words used to describe the most valuable aspects of online professional development offerings.
 -   **Word Search**. We learn about the global regular expression parser, or `grep` package in R, to search for key words among our data set.
--   **Data Visualization**. Finally, we wrap up this case study and preview our work for next week by creating wordclouds, bar plots, and small multiple charts to explore patterns and trends that would be difficult to distinguish otherwise.
+-   **Data Visualization**. Finally, we wrap up this case study and by creating wordclouds, bar plots, and small multiple charts to explore patterns and trends that would be difficult to distinguish otherwise.
 
 ### 3a. Summary Stats
 
-Prior to making any data visualization, we revisit our or overarching question guiding most of our efforts in this course, "How do we **quantify** what a text is about?"
+Prior to making any data visualization, we revisit the overarching question guiding most of our efforts in this course, "How do we **quantify** what a text is about?"
 
 In this section, we introduce the following functions:
 
@@ -605,7 +611,7 @@ In this section, we introduce the following functions:
 
 [**`tidytext`**](https://cran.r-project.org/web/packages/tidytext/index.html) **functions**
 
--   bind_tf_idf() binds the term frequency and inverse document frequency of a tidy text dataset to the dataset
+-   [bind_tf_idf()](https://juliasilge.github.io/tidytext/reference/bind_tf_idf.html) binds the term frequency and inverse document frequency of a tidy text dataset to the dataset
 
 #### Word Counts
 
@@ -624,7 +630,9 @@ opd_counts <- opd_clean |>
 opd_counts
 ```
 
-Going back to findings from the original report, a strategy as simple basic word counts resulted in key words consistent with findings from the qualitative analysis of focus-group transcripts and open-ended survey responses:
+Going back to findings from the original report, a strategy as simple basic word counts resulted in key words consistent with findings from the qualitative analysis of focus-group transcripts and open-ended survey responses.
+
+For example:
 
 > Educators frequently cited that the **information and resources** provided through the modules improved their understanding of the new standards and the teacher evaluation process.
 
@@ -632,7 +640,7 @@ See also this finding around video clips:
 
 > Webinar participants appreciated the useful, updated information presented through a combination of PowerPoint slides and **video clips**.
 
-One notable distinction between word counts and more traditional qualitative analysis is that broader themes like "convenience" often are not immediately apparent in words counts, but rather emerges from responses containing words like "pace", "format", "online", "ease", and "access".
+One notable distinction between word counts and traditional qualitative analysis is that broader themes like "convenience" often are not immediately apparent in words counts, but rather emerges from responses containing words like "pace", "format", "online", "ease", and "access".
 
 > A common theme from focus groups and open-ended survey responses was the **convenience** of online professional development. One teacher in a focus group stated, "I liked the format. And the way that it was given, it was at your own pace, which works well for our schedules..."
 
@@ -642,20 +650,20 @@ The `count()` function can also be used with more than one column to count the f
 opd_resource_counts <- opd_clean |>
   count(Resource, word, sort = TRUE)
 
-view(opd_resource_counts)
+opd_resource_counts
 ```
 
 In this case, we see that "information" was the most common word for Online Learning Modules but did not even make the top 5 for Recorded Webinar:
 
-![](img/webinar.png){width="80%"}
+![](img/webinar.png){width="100%"}
 
 #### Word Frequencies
 
-One common approach to facilitate comparison across documents or groups of text, in our case responses by Online Resource type, is by looking at the frequency that each word occurs among all words for that document group. This also helps to better gauge how prominent the same word is across different groups.
+One common approach to facilitate comparison of responses across Online Resource type is by looking at the **frequency** that each word occurs among all words for that document group. This also helps to better gauge how prominent the same word is across different groups.
 
-For example, let's create counts for each `Resource` and `word` paring, and then create a new column using the `mutate()` function that calculations the proportion that word makes up among all words.
+For example, let's create counts for each `Resource` and `word` paring, and then create a new column using the `mutate()` function that calculates the proportion that word makes up among all words.
 
-To do this a little more efficiently, I'm going to use the \|\> operator:
+To do this a little more efficiently, let's use the \|\> operator again:
 
 ```{r}
 opd_frequencies <- opd_clean |>
@@ -670,7 +678,7 @@ Using the `view()` function we can see that "information" makes up about 2.3% of
 
 #### Term Frequency-Inverse Document Frequency
 
-Term frequency-inverse document frequency (tf-idf) is an approach that takes this approach one step further.
+Term frequency-inverse document frequency (tf-idf) is an approach that takes this one step further.
 
 As noted in [Tidy Text Mining with R](https://www.tidytextmining.com/tfidf.html):
 
@@ -689,7 +697,7 @@ opd_words <- opd_teacher |>
   unnest_tokens(word, text) |>
   count(Resource, word, sort = TRUE)
 
-head(opd_words)
+opd_words
 ```
 
 Next, let's calculate the total words per `Resource` type:
