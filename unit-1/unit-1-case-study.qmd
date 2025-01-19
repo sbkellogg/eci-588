@@ -546,37 +546,46 @@ head(opd_clean)
 
 #### **👉 Your Turn ⤵** 
 
-In the code chunk below, use the pipe operator to add the `anti_join()` function to our chain of data wrangling functions as our final text preprocessing step. Also, add a short comment to each line of code explaining each data wrangling step. The first had been done for you.
+In the code chunk below, add the `anti_join()` function to our chain of data wrangling functions as our final text preprocessing step. Don't forget to include in the function the stop words you are trying to remove.
+
+Also, add a short comment to each line of code explaining each data wrangling step. The first had been done for you.
 
 ```{r}
-opd_clean <- opd_survey |>
+wrangled_teacher <- opd_survey |>
   select(Role, Resource, Q21) |> # Select only columns Role, Resource, and Q21
   rename(text = Q21) |> 
   slice(-1, -2) |>
   drop_na() |>
   filter(Role == "Teacher") |>
   unnest_tokens(word, text) |>
-  anti_join(stop_words)
+
+wrangled_teacher
 ```
 
-Well done!!
+If you did this correctly, you should now see a `wrangled_teacher` data frame in the Environment pane that has 78,675 observations and 3 variables.
 
-Now complete and run the following code tidy your `opd_survey` data and save to a new `opd_benefits` data frame by adding functions for out data wrangling pipeline for tokenizing your text and removing stop words.
+#### **👉 Your Turn ⤵** 
+
+Finally, let's wrangle a data set that includes tokens not just for teachers, but for all educators who particiated in the online professional development offerings.
+
+Complete and run the following code to wrangle and tidy your `opd_survey` data for all survey respondents.
 
 ```{r}
-opd_benefits <- opd_survey |>
-  select(Role, Q21) |>
-  rename(text = Q21) |>
-  slice(-1, -2) |>
-  drop_na() |>
+wrangled_all <- opd_survey |>
+  
+  
+  
+  
   
 
-head(opd_benefits, 10)
+wrangled_all
 ```
 
-#### ❓Question
+#### ❓Questions
 
-1.  Why do you think the console provided the message "Joining, by = 'word'"?
+1.  How many observations are in the data frame with all educators?
+    -   YOUR RESPONSE HERE
+2.  Why do you think the console provided the message "Joining, by = 'word'"?
     -   YOUR RESPONSE HERE
 
 Congratulations, we're now ready to begin exploring our wrangled data!
@@ -613,21 +622,21 @@ In this section, we introduce the following functions:
 
 -   [bind_tf_idf()](https://juliasilge.github.io/tidytext/reference/bind_tf_idf.html) binds the term frequency and inverse document frequency of a tidy text dataset to the dataset
 
-#### Word Counts
+#### Term Frequency
 
-As highlighted in [Word Counts are Amazing](https://tedunderwood.com/2013/02/20/wordcounts-are-amazing/), one simple but powerful approach to text analysis is counting the frequency in which words occur in a given collection of documents, or corpus.
+As highlighted in [Word Counts are Amazing](https://tedunderwood.com/2013/02/20/wordcounts-are-amazing/), one simple but powerful approach to text analysis is counting the frequency in which words, or terms, occur in a given collection of documents, or corpus.
 
-Now that we have our original survey data in a tidy text format, we can use the `count()` function from the `dplyr` package to find the most common words used by teachers when asked, "What was the most beneficial/valuable aspect of this online resource?"
+Now that we have our original survey data in a tidy text format, we can use the `count()` function from the `dplyr` package to find the words used most frequently by teachers when asked, "What was the most beneficial/valuable aspect of this online resource?"
 
 ```{r}
-opd_counts <- count(opd_clean, word, sort = TRUE)
+teacher_counts <- count(wrangled_teacher, word, sort = TRUE)
 
 # alternatively, we could have use the |> operator to yield the same result.
 
-opd_counts <- opd_clean |> 
+teacher_counts <- wrangled_teacher |> 
   count(word, sort = TRUE)
 
-opd_counts
+teacher_counts
 ```
 
 Going back to findings from the original report, a strategy as simple basic word counts resulted in key words consistent with findings from the qualitative analysis of focus-group transcripts and open-ended survey responses.
@@ -657,24 +666,44 @@ In this case, we see that "information" was the most common word for Online Lear
 
 ![](img/webinar.png){width="100%"}
 
-#### Word Frequencies
+#### **👉 Your Turn ⤵** 
 
-One common approach to facilitate comparison of responses across Online Resource type is by looking at the **frequency** that each word occurs among all words for that document group. This also helps to better gauge how prominent the same word is across different groups.
+Complete the following code to obtain word counts across all OPD resources and within resources for all educators:
+
+```{r}
+all_counts <- 
+
+all_counts
+
+all_resource_counts <- 
+  
+all_resource_counts
+```
+
+#### ❓Question
+
+1.  What differences in word counts do you notice when we include all educators? Share at least two observations.
+    -   YOUR RESPONSE HERE
+    -   YOUR RESPONSE HERE
+
+#### Term Percentages
+
+One common approach to facilitate comparison of responses across Online Resource type is by looking at the percentage that each word, or term, occurs among all words for that document group. This also helps to better gauge how prominent the same word is across different groups.
 
 For example, let's create counts for each `Resource` and `word` paring, and then create a new column using the `mutate()` function that calculates the proportion that word makes up among all words.
 
 To do this a little more efficiently, let's use the \|\> operator again:
 
 ```{r}
-opd_frequencies <- opd_clean |>
+teacher_frequencies <- wrangled_teacher |>
   count(Resource, word, sort = TRUE) |>
   group_by(Resource) |>
-  mutate(proportion = n / sum(n))
+  mutate(proprtion = n / sum(n))
 
-opd_frequencies
+teacher_frequencies
 ```
 
-Using the `view()` function we can see that "information" makes up about 2.3% of words in responses about the Online Modules, and about 1.7% for Recorded Webinars.
+We can see that "information" makes up about 2.3% of words in responses about the Online Modules, and about 1.7% for Recorded Webinars.
 
 #### Term Frequency-Inverse Document Frequency
 
@@ -722,16 +751,31 @@ Finally, we're ready to use the `bind_tf_idf()` function to calculate a tf-idf s
 
 ```{r}
 opd_tf_idf <- opd_totals |>
-  bind_tf_idf(word, Resource, n)
+  bind_tf_idf(word, Resource, n) |>
+  arrange(desc(idf))
 
 opd_tf_idf
-
-view(opd_tf_idf)
 ```
 
-Notice that idf and thus tf-idf are zero for these extremely common words (typically stop words). These are all words that appear in teacher responses for all online resource types, so the idf term (which will then be the natural log of 1) is zero. The inverse document frequency (and thus tf-idf) is very low (near zero) for words that occur in many of the documents in a collection; this is how this approach decreases the weight for common words. The inverse document frequency will be a higher number for words that occur in fewer of the documents in the collection.
+Notice that idf and thus tf-idf are zero for these extremely common words (typically stop words). These are all words that appear in teacher responses for all online resource types, so the idf term is zero. The inverse document frequency (and thus tf-idf) is very low (near zero) for words that occur in many of the documents in a collection; this is how this approach decreases the weight for common words.
 
-On one final note, while it has proved useful in text mining, search engines, etc., its theoretical foundations are considered less than firm by information theory experts..."
+For words that occur in fewer of the documents in the collection, or in our case survey responses by resource type, the inverse document frequency will be a higher number.
+
+Let's take a look at the top five most unique words for each resource type:
+
+```{r}
+opd_tf_idf |>
+  group_by(Resource) |>          
+  arrange(Resource, desc(idf)) |>
+  slice_head(n = 5) |>
+  ungroup()      
+```
+
+While some of these words make sense for each resource, like "reflection" for Online Learning Modules or "interface" for Calendar, it's obvious many of these words were only identified as unique simply because they were misspelled words. Clearly something we would attend to for a more rigorous analysis.
+
+::: callout-caution
+While tf-idf has proved useful in text mining, search engines, etc., its theoretical foundations are considered less than firm by information theory experts..."
+:::
 
 In the next section, we'll use some data visualization strategies to help us interpret and find patterns in these rather dense output tables.
 
