@@ -686,9 +686,9 @@ all_resource_counts
     -   YOUR RESPONSE HERE
     -   YOUR RESPONSE HERE
 
-#### Term Percentages
+#### Relative Frequency
 
-One common approach to facilitate comparison of responses across Online Resource type is by looking at the percentage that each word, or term, occurs among all words for that document group. This also helps to better gauge how prominent the same word is across different groups.
+One common approach to facilitate comparison of responses across Online Resource type is by looking at the **relative frequency (percent)** that each word, or term, occurs among all words for that document group. This also helps to better gauge how prominent the same word is across different groups.
 
 For example, let's create counts for each `Resource` and `word` paring, and then create a new column using the `mutate()` function that calculates the proportion that word makes up among all words.
 
@@ -703,7 +703,40 @@ teacher_frequencies <- wrangled_teacher |>
 teacher_frequencies
 ```
 
-We can see that "information" makes up about 2.3% of words in responses about the Online Modules, and about 1.7% for Recorded Webinars.
+We can quicly see that "information" makes up about 2.3% of words in responses about the Online Modules and is the most frequently used word, but what about the other online resources?
+
+#### **👉 Your Turn ⤵** 
+
+One way to quickly take a look at the relative frequency of "information" across all resources is to use the handy `filter()` function like we did when we previsouly filtered our data set for only Roles with the value of teacher.
+
+Complete and run the following code chunk to filter the `word` column for only rows rows that contain the word "information".
+
+```{r}
+teacher_percentages |>
+  filter(word == "information")
+```
+
+::: callout-tip
+By using the `view()` function or clicking on the data frame in your Environment pane to view the data, you can also manually apply filters to your data like so:
+
+![](img/filter-column.png)
+:::
+
+Before moving on, let's take a look at the top 5 words for each resource:
+
+```{r}
+teacher_percentages |>
+  group_by(Resource) |>          
+  arrange(Resource, desc(percent)) |>
+  slice_head(n = 5) |>
+  ungroup()  
+```
+
+#### ❓Questions
+
+1.  What similarities and/or differences in most frequently occurring words do you notice across resources? Share at least two observations.
+    -   YOUR RESPONSE HERE
+    -   YOUR RESPONSE HERE
 
 #### Term Frequency-Inverse Document Frequency
 
@@ -711,82 +744,100 @@ Term frequency-inverse document frequency (tf-idf) is an approach that takes thi
 
 As noted in [Tidy Text Mining with R](https://www.tidytextmining.com/tfidf.html):
 
-> The statistic tf-idf is intended to measure how important a word is to a document in a collection (or corpus) of documents, for example, to one novel in a collection of novels or to one website in a collection of websites.
+> The statistic **tf-idf** is intended to measure how important a word is to a document in a collection (or corpus) of documents, for example, to one novel in a collection of novels or to one website in a collection of websites.
 
-Silge and Robinson note that, "The idea of tf-idf is to find the important words for the content of each document by decreasing the weight for commonly used words and increasing the weight for words that are not used very much in a collection or corpus of document... That is, tf-idf attempts to find the words that are important (i.e., common) in a text, but not too common."
+Silge and Robinson note that tf-idf aims to identify the most significant words in a document by reducing the emphasis on frequently used words and amplifying the importance of words that are relatively rare across a collection or corpus. In other words, **tf-idf highlights terms that are important within a group but not overly common across groups**.
 
 The `tidytext` package has a function called `bind_tf_idf()` that takes a tidy text dataset as input with one row per token (term), per document. One column (word here) contains the terms/tokens, one column contains the documents (book in this case), and the last necessary column contains the counts, how many times each document contains each term (n in this example).
 
-Because tf-idf can account through weighting for "too common" words like "and" or "but", when calculating tf-idf it is not necessary to remove stop words. However, we will need add a column for total words for each `Resource` type which can be accomplished in a couple of steps.
+Because tf-idf can account for "too common" words like "and" or "but" through weighting, when calculating tf-idf it is not necessary to remove stop words. However, we will need add a column for total words for each `Resource` type, which can be accomplished in a couple of steps.
 
-First, let's recycle our `opd_teacher` data frame and calculate counts for each word again, but this time instead of word counts for the total data set, we'll calculate word counts for each 'Resource'.
+First, let's recycle our `opd_teacher` data frame from above, tokenize teacher responses while retaining stop words, and calculate counts for each word again. However, this time instead of word counts for the total data set, we'll calculate word counts by `Resource`.
 
 ```{r}
-opd_words <- opd_teacher |>
+teacher_words <- opd_teacher |>
   unnest_tokens(word, text) |>
   count(Resource, word, sort = TRUE)
 
-opd_words
+teacher_words
 ```
 
 Next, let's calculate the total words per `Resource` type:
 
 ```{r}
-total_words <- opd_words |>
+teacher_sum <- teacher_words |>
   group_by(Resource) |>
   summarise(total = sum(n))
 
-total_words
+teacher_sum
 ```
 
 Now let's append the `total` column from `total_words` to our `opd_words` data frame:
 
 ```{r}
-opd_totals <- left_join(opd_words, total_words)
+teacher_totals <- left_join(teacher_words, teacher_sum)
 
-opd_totals
+teacher_totals
 ```
 
-Finally, we're ready to use the `bind_tf_idf()` function to calculate a tf-idf statistic for each word and assess it's relative importance to a given online resource type:
+Now that we have both the frequency and the total words for each resource, we're ready to use the `bind_tf_idf()` function to calculate a tf-idf statistic for each word and assess it's relative importance to a given online resource type:
 
 ```{r}
-opd_tf_idf <- opd_totals |>
+teacher_tf_idf <- teacher_totals |>
   bind_tf_idf(word, Resource, n) |>
   arrange(desc(idf))
 
-opd_tf_idf
+teacher_tf_idf
 ```
 
-Notice that idf and thus tf-idf are zero for these extremely common words (typically stop words). These are all words that appear in teacher responses for all online resource types, so the idf term is zero. The inverse document frequency (and thus tf-idf) is very low (near zero) for words that occur in many of the documents in a collection; this is how this approach decreases the weight for common words.
+Notice that idf and thus tf-idf are zero for extremely common words (typically stop words). These are all words that appear in teacher responses across many or even all online resource types.
+
+![](img/idf-zero.png)
+
+The inverse document frequency (and thus tf-idf) is very low (near zero) for words that occur in many of the documents in a collection; this is how this approach decreases the weight for common words.
 
 For words that occur in fewer of the documents in the collection, or in our case survey responses by resource type, the inverse document frequency will be a higher number.
 
 Let's take a look at the top five most unique words for each resource type:
 
 ```{r}
-opd_tf_idf |>
+teacher_tf_idf |>
   group_by(Resource) |>          
   arrange(Resource, desc(idf)) |>
   slice_head(n = 5) |>
   ungroup()      
 ```
 
-While some of these words make sense for each resource, like "reflection" for Online Learning Modules or "interface" for Calendar, it's obvious many of these words were only identified as unique simply because they were misspelled words. Clearly something we would attend to for a more rigorous analysis.
+While some of these words make sense and are useful for for distinguishing the unique value of a resource, like "reflection" for Online Learning Modules or "interface" for Calendar, it's obvious many of these words were only identified as unique simply because they were misspelled words. Clearly something we would attend to for a more rigorous analysis.
 
 ::: callout-caution
-While tf-idf has proved useful in text mining, search engines, etc., its theoretical foundations are considered less than firm by information theory experts..."
+While tf-idf has proved useful in text mining, search engines, etc., its theoretical foundations are considered less than firm by information theory experts.
 :::
 
 In the next section, we'll use some data visualization strategies to help us interpret and find patterns in these rather dense output tables.
 
-#### Comprehension Questions
+#### **👉 Your Turn ⤵** 
 
-1.  Looking back at the Word Counts section, what other aspects of the online professional development resources to our word counts suggest teachers find valuable or beneficial?
-2.  Instead of using the view() function for `opd_resource_counts` and searching in the source how, how might you use the `filter()` function to find return the most common words for Recorded Webinars?
-3.  How many total resources were actually evaluated and which resource received the most feedback? How do you know?
-4.  What are some obvious limitations to tf-idf, at least for this dataset, based on the initial `opd_tf_idf` data frame we created?
-5.  Calculate word counts, frequencies, and tf-idf for you `opd_benefits` data frame. For frequencies and tf-idf, group by Role instead of Resource.
-6.  What differences, if any, do you notice between teachers and other roles?
+Before moving on, let's return to the previous dataset you wrangled for all educators responses and take a look at the most common words across all educators.
+
+Use the code chunk below to calculate word counts and relative frequencies for your `wrangled_all` data frame.
+
+```{r}
+# YOUR CODE HERE
+
+
+
+
+
+
+
+```
+
+#### ❓Questions
+
+1.  What similarities and/or differences in most frequently occurring words do you notice across all educators? Share at least two observations.
+    -   YOUR RESPONSE HERE
+    -   YOUR RESPONSE HERE
 
 ### 3b. Word Search
 
@@ -794,7 +845,7 @@ This section is a really quick aside and primarily meant to introduce the `grep`
 
 A quick word count actually resulted in findings fairly consistent with some of the qualitative findings reported, but also lacked some nuance, unsurprisingly, and left some questions about what some of the more frequent words were in reference to.
 
-Let's use our reduced opd_teacher survey data frame that contains the complete teacher responses and use the handy `filter()`, `select()` and `grepl()` function to select just our `text` column and filter out responses that contain key words of interest. For example, what aspects of "online" made it beneficial.
+Let's again use our `opd_teacher` survey data frame that contains the complete teacher responses and apply the handy `filter()`, `select()` and `grepl()` function to select just our `text` column and filter out responses that contain key words of interest. For example, what aspects of "online" made it beneficial.
 
 We can view all quotes in the source pane, or use the `sample_n()`, yes from the `dplyr` package, to select any number of random quotes. In this case 20:
 
@@ -802,8 +853,6 @@ We can view all quotes in the source pane, or use the `sample_n()`, yes from the
 opd_quotes <- opd_teacher |>
   select(text) |> 
   filter(grepl('online', text))
-
-view(opd_quotes)
 
 sample_n(opd_quotes, 20)
 ```
@@ -817,10 +866,25 @@ opd_quotes <- opd_teacher |>
   select(text) |> 
   filter(grepl('inform*', text))
 
-view(opd_quotes)
-
 sample_n(opd_quotes, 20)
 ```
+
+#### **👉 Your Turn ⤵** 
+
+Repurpose the code from above to examine responses for another word or word stem of interest:
+
+```{r}
+# YOUR CODE HERE
+
+
+
+```
+
+#### ❓Questions
+
+1.  What do you notice? Share at least two observations.
+    -   YOUR RESPONSE HERE
+    -   YOUR RESPONSE HERE
 
 ### 3c. Data Visualization
 
@@ -828,19 +892,35 @@ We covered data visualization pretty extensively in ECI 586: Introduction to Lea
 
 #### Word Clouds
 
-The `wordcloud2` packages is pretty dead simple for generating HTML based word clouds.
+The [`wordcloud2`](https://cran.r-project.org/web/packages/wordcloud2/vignettes/wordcloud.html) package is pretty dead simple for generating HTML based word clouds.
 
-For example, let's load our installed `wordclouds2` library, and run the `wordcloud2()` function on our `opd_counts` data frame:
+For example, let's load our installed `wordclouds2` library, and run the `wordcloud2()` function on our `teacher_counts` data frame:
 
 ```{r}
 library(wordcloud2)
 
-wordcloud2(opd_counts)
+wordcloud2(teacher_counts)
 ```
 
-I use wordclouds pretty sparingly in evaluation reports, but typically include them for open ended items in online Qualtrics survey reports to provide education partners I work with a quick snapshot of the response.
+I use wordclouds pretty sparingly in articles or reports, but typically include them for open ended items in online Qualtrics survey reports to provide education partners I work with a quick snapshot of the response.
 
-Once installed, I recommend using `?wordclouds2` to view the various arguments for cleaning up the default view.
+Once installed, I recommend using `?wordcloud2` to view the various arguments for cleaning up the default view. For example:
+
+```{r}
+wordcloud2(teacher_counts, color = "random-light", backgroundColor = "black")
+```
+
+#### **👉 Your Turn ⤵** 
+
+Create a word cloud for all survey responses using the `all_counts` data frame you created previously:
+
+```{r}
+# YOUR CODE HERE
+
+
+```
+
+#### 
 
 #### Basic Bar Chart
 
