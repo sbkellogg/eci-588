@@ -1,0 +1,4 @@
+- source: unit-1-data-product.qmd
+  quarto-pub:
+    - id: 32bba9c6-aa8c-45b5-8377-228502be4a02
+      url: https://sbkellogg.quarto.pub/what-do-teachers-value-about-online-pd

@@ -1151,7 +1151,7 @@ Regardless of whether you plan to talk us through your analysis and findings wit
 
 #### Examples and Templates
 
-You can view my example presentation here: <https://sbkellogg.github.io/eci-588/unit-1/unit-1-product.html>
+You can view my example presentation here: <https://sbkellogg.quarto.pub/what-do-teachers-value-about-online-pd>
 
 I've also provide you with the Quarto file used to create this slide deck in our Posit Cloud Workspace.
 
