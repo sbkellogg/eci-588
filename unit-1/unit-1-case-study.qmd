@@ -285,7 +285,7 @@ Recall that our research questions are focused on understanding aspects of onlin
 
 To begin, we'll `select()` the columns `Role`, `Resource`, and `Q21` since those respectively pertain to educator role, OPD resource they are evaluating, and, as illustrated by the second row of column Q21, their response to the survey question, "What was the most beneficial/ aspect of the professional development resource?"
 
-We'll also assigne these selected columns to a new data frame named `opd_selected` by using the `<-` assignment operator.
+We'll also assign these selected columns to a new data frame named `opd_selected` by using the `<-` assignment operator.
 
 Run the following code:
 
@@ -303,7 +303,7 @@ Change the code below to select the correct columns and then run the code:
 opd_use <- select(opd_survey, Role, Resource, Q21)
 ```
 
-Notice that, like the bulk of tidyverse functions we'll be using throughout our case studies, the first argument that the `select()` fuction expects is a data frame, which in our case is `opd_survey`. The select() function the expects the specific columns you'd like to select.
+Notice that, like the bulk of tidyverse functions we'll be using throughout our case studies, the first argument that the `select()` function expects is a data frame, which in our case is `opd_survey`. The `select()` function the expects the specific columns you'd like to select.
 
 Another common approach to providing tidyverse functions a data frame is to use the `|>` pipe operator from the {maggitr\] package, which is used to "pipe" inputs and outputs from one function to another. This operator is used so frequently in R, that it has now built into R with the new `|>` pipe operator.
 
@@ -347,7 +347,7 @@ Now let's deal with the legacy rows that Qualtrics outputs by default, which are
 ```{r}
 opd_sliced <- slice(opd_renamed, -1, -2) # the - operator tells the slice function to NOT keep rows 1 and 2
 
-head(opd_sliced)
+opd_sliced
 ```
 
 Now let's take our `opd_sliced` and remove any rows that are missing data, as indicated by an `NA`, by using the `drop_na` tidyverse function:
@@ -389,8 +389,6 @@ opd_executive <- filter(opd_complete, Role == "Teacher")
 
 opd_executive
 ```
-
-Notice
 
 #### Summary
 
@@ -453,7 +451,7 @@ For this part of our workflow we focus on the following functions from the [`tid
 
 #### Tidy Data Principles
 
-Not surprisingly, the Tidyverse set of packages including packages like `dplyr` adhere ["tidy" data](https://r4ds.hadley.nz/data-tidy.html#sec-tidy-data) principles [@wickham2023r]. Tidy data has a specific structure:
+Not surprisingly, the Tidyverse set of packages including packages like `dplyr` adhere "tidy" data principles [@wickham2023r]. Tidy data has a specific structure:
 
 -   Each variable is a column
 -   Each observation is a row
@@ -487,12 +485,12 @@ In order to tidy our text, we need to break the text into individual tokens (a p
 
 After all the work we did prepping our data, this is going to feel a little anticlimactic.
 
-Let's go ahead and tidy our text and save it as `opd_tidy`:
+Run the following code to tidy our text and save it as a new data frame named `opd_tidy`:
 
 ```{r}
 opd_tidy <- unnest_tokens(opd_teacher, word, text)
 
-head(opd_tidy)
+opd_tidy
 ```
 
 Note that we also could have just added `unnest_tokens(word, text)` to our previous piped chain of functions like so:
@@ -506,7 +504,7 @@ opd_tidy <- opd_survey |>
   filter(Role == "Teacher") |>
   unnest_tokens(word, text)
 
-head(opd_tidy)
+opd_tidy
 ```
 
 There is A LOT to unpack with this function. First notice that `unnest_tokens` expects a data frame as the first argument, followed by two column names. The first is an output column name that doesn't currently exist (`word`, in this case) but will be created as the text is unnested into the new column. This if followed by the input column that the text comes from which we uncreatively named `text`. Also notice:
@@ -541,7 +539,7 @@ Let's remove rows from our `opd_tidy` data frame that contain matches in the `wo
 ```{r}
 opd_clean <- anti_join(opd_tidy, stop_words)
 
-head(opd_clean)
+opd_clean
 ```
 
 #### **👉 Your Turn ⤵** 
@@ -572,7 +570,6 @@ Complete and run the following code to wrangle and tidy your `opd_survey` data f
 
 ```{r}
 wrangled_all <- opd_survey |>
-  
   
   
   
@@ -656,10 +653,10 @@ One notable distinction between word counts and traditional qualitative analysis
 The `count()` function can also be used with more than one column to count the frequency a word occurs for a select `Resource` in our dataset.
 
 ```{r}
-opd_resource_counts <- opd_clean |>
+teacher_resource_counts <- wrangled_teacher |>
   count(Resource, word, sort = TRUE)
 
-opd_resource_counts
+teacher_resource_counts
 ```
 
 In this case, we see that "information" was the most common word for Online Learning Modules but did not even make the top 5 for Recorded Webinar:
@@ -668,7 +665,7 @@ In this case, we see that "information" was the most common word for Online Lear
 
 #### **👉 Your Turn ⤵** 
 
-Complete the following code to obtain word counts across all OPD resources and within resources for all educators:
+Complete the following code to obtain word counts across all OPD resources and within resources for all educators using the `wrangled_all` data frame you created earlier:
 
 ```{r}
 all_counts <- 
@@ -695,12 +692,12 @@ For example, let's create counts for each `Resource` and `word` paring, and then
 To do this a little more efficiently, let's use the \|\> operator again:
 
 ```{r}
-teacher_frequencies <- wrangled_teacher |>
+teacher_percentages <- wrangled_teacher |>
   count(Resource, word, sort = TRUE) |>
   group_by(Resource) |>
-  mutate(proprtion = n / sum(n))
+  mutate(percent = n / sum(n))
 
-teacher_frequencies
+teacher_percentages
 ```
 
 We can quicly see that "information" makes up about 2.3% of words in responses about the Online Modules and is the most frequently used word, but what about the other online resources?
@@ -772,7 +769,7 @@ teacher_sum <- teacher_words |>
 teacher_sum
 ```
 
-Now let's append the `total` column from `total_words` to our `opd_words` data frame:
+Now let's join the `total` column from `teacher_sum` to our `teacher_words` data frame:
 
 ```{r}
 teacher_totals <- left_join(teacher_words, teacher_sum)
@@ -831,6 +828,10 @@ Use the code chunk below to calculate word counts and relative frequencies for y
 
 
 
+
+
+
+
 ```
 
 #### ❓Questions
@@ -878,6 +879,7 @@ Repurpose the code from above to examine responses for another word or word stem
 
 
 
+
 ```
 
 #### ❓Questions
@@ -916,6 +918,7 @@ Create a word cloud for all survey responses using the `all_counts` data frame y
 
 ```{r}
 # YOUR CODE HERE
+
 
 
 ```

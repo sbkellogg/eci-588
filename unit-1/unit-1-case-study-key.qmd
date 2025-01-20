@@ -39,7 +39,7 @@ While we won't investigate approaches to **Model** our data until Unit 3 when we
 Prior to analysis, it's critical to understand the research context and data sources available so you can formulate useful questions that can be feasibly addressed by your data. For this section, we'll focus on the following topics:
 
 a.  **Context**. We learn a little bit about the North Carolina Race to the Top grant and the evaluation of the online professional development work, including questions and findings from the 2012 report.
-b.  **Questions** What aspects of online professional development offerings do **teachers** find most valuable?
+b.  **Questions.** What aspects of online professional development offerings do **teachers** find most valuable?
 c.  **Libraries.** We revisit the \[tidyverse\] package and are introduced to the \[tidytext\] companion packages for text processing the "tidy" way.
 
 ### 1a. Some Context
@@ -208,6 +208,8 @@ names(opd_survey)
 view(opd_survey) 
 ```
 
+#### **👉 Your Turn ⤵**
+
 Use the code chunk below to give each method a try:
 
 ```{r, eval=F}
@@ -247,7 +249,7 @@ Using the following code to create a copy of the opd_survey.csv file in your dat
 write_csv(opd_survey, "data/opd_survey_copy.csv")
 ```
 
-Note that the first argument is the data frame you imported earlier and the second argument is the file name you plan to give it, including (if necessary) the file path for where it should go.
+Note that the first argument is the data frame you created earlier and the second argument is the file name you plan to give it, including (if necessary) the file path for where it should go.
 
 #### ❓Question 
 
@@ -294,9 +296,9 @@ As you've probably already noticed from viewing our dataset, we clearly have mor
 
 Recall that our research questions are focused on understanding aspects of online professional development offerings that *teachers* find most valuable and how these resources may differ in the value they offer teachers. To help address our research question, let's first reduce our dataset to only the columns needed.
 
-To begin, we'll `select()` the columns `Role`, `Resource`, and `Q21` columns since those respectively pertain to educator role, OPD resource they are evaluating, and, as illustrated by the second row of column Q21, their response to the survey question, "What was the most beneficial/ aspect of the professional development resource?"
+To begin, we'll `select()` the columns `Role`, `Resource`, and `Q21` since those respectively pertain to educator role, OPD resource they are evaluating, and, as illustrated by the second row of column Q21, their response to the survey question, "What was the most beneficial/ aspect of the professional development resource?"
 
-We'll also assigne these selected columns to a new data frame named `opd_selected` by using the `<-` assignment operator.
+We'll also assign these selected columns to a new data frame named `opd_selected` by using the `<-` assignment operator.
 
 Run the following code:
 
@@ -314,7 +316,7 @@ Change the code below to select the correct columns and then run the code:
 opd_use <- select(opd_survey, Role, Resource, Q20)
 ```
 
-Notice that, like the bulk of tidyverse functions we'll be using throughout our case studies, the first argument that the `select()` fuction expects is a data frame, which in our case is `opd_survey`. The select() function the expects the specific columns you'd like to select.
+Notice that, like the bulk of tidyverse functions we'll be using throughout our case studies, the first argument that the `select()` function expects is a data frame, which in our case is `opd_survey`. The `select()` function the expects the specific columns you'd like to select.
 
 Another common approach to providing tidyverse functions a data frame is to use the `|>` pipe operator from the {maggitr\] package, which is used to "pipe" inputs and outputs from one function to another. This operator is used so frequently in R, that it has now built into R with the new `|>` pipe operator.
 
@@ -684,7 +686,7 @@ In this case, we see that "information" was the most common word for Online Lear
 
 #### **👉 Your Turn ⤵** 
 
-Complete the following code to obtain word counts across all OPD resources and within resources for all educators:
+Complete the following code to obtain word counts across all OPD resources and within resources for all educators using the `wrangled_all` data frame you created earlier:
 
 ```{r}
 all_counts <- wrangled_all |> 
@@ -790,7 +792,7 @@ teacher_sum <- teacher_words |>
 teacher_sum
 ```
 
-Now let's append the `total` column from `teacher_sum` to our `teacher_word` data frame:
+Now let's join the `total` column from `teacher_sum` to our `teacher_words` data frame:
 
 ```{r}
 teacher_totals <- left_join(teacher_words, teacher_sum)
