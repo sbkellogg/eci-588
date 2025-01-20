@@ -902,7 +902,7 @@ library(wordcloud2)
 wordcloud2(teacher_counts)
 ```
 
-I use wordclouds pretty sparingly in articles or reports, but typically include them for open ended items in online Qualtrics survey reports to provide education partners I work with a quick snapshot of the response.
+I use wordclouds pretty sparingly in articles or reports, but typically include them for open ended items in online survey reports to provide education partners a quick snapshot of item responses.
 
 Once installed, I recommend using `?wordcloud2` to view the various arguments for cleaning up the default view. For example:
 
@@ -920,44 +920,86 @@ Create a word cloud for all survey responses using the `all_counts` data frame y
 
 ```
 
-#### 
-
 #### Basic Bar Chart
 
-The bar chart is the workhorse for data viz and is pretty effective for comparing two or more values. Given the unique aspect of our tidy text data frame, however, we are looking at upwards of over 5,000 values (i.e. words and their counts) to compare with our `opd_counts` data frame and will need some way to limit the number of words to display.
+The bar chart is the workhorse for data viz and is pretty effective for comparing two or more values. Given the unique aspect of our tidy text data frame, however, we are looking at upwards of over 5,000 values (i.e. words and their counts) to compare.
+
+So let's first limit our data set to only words with over 500 or more occurrence using the hand `filter()` function and the greater than or equal to `>=` operator:
 
 ```{r}
-opd_counts |>
-  filter(n > 500) |> # keep rows with word counts greater than 500
-  mutate(word = reorder(word, n)) |> #reorder the word variable by n and replace with new variable called word
-  ggplot(aes(n, word)) + # create a plot with n on x axis and word on y axis
-  geom_col() # make it a bar plot
+teacher_chart <- teacher_counts |>
+  filter(n >= 500)
+
+teacher_chart
 ```
 
-#### Small Multiples
+In our teacher data frame, it looks like we have 23 words that occur 500 or more times.
 
-Word clouds and bar charts are pretty effective for highlighting the most common words in an entire corpus, or in our case, all teacher survey responses, regarless of resource type being reviewed.
+For most standard data visualizations, we'll use the {[ggplot2](https://ggplot2.tidyverse.org)} package which is part of the tidyverse suite of packages. All charts in {ggplot2} use the following basic code template:
 
-One limitation we ran into earlier when we started looking at word frequencies and tf-idf stats was that it was difficult to easily compare the most common or unique words for each resource type. That is where small multiples come. A small multiple is basically a series of similar graphs or charts using the same scale and axes that make it easier to compare across different document collections of interest, in our case, word counts by resource type.
+```{r, eval=FALSE}
+ggplot(data) + # ggplot sets up a plot and specifies data used for chart
+  geom_<type>(aes(x, y)) # geom_<type> specifies the plot type and aes() specifies data for each axis 
+```
 
-Let's use the example illustrated in Text Mining with R to create a small multiple for our `opd_frequencies` data set instead of the `opd_tf_idf`
+Let's use the minimal ggplot code template to make a very basic bar chart:
 
 ```{r}
-library(forcats)
-
-opd_frequencies |>
-  filter(Resource != "Calendar") |> # remove Calendar responses, too few. 
-  group_by(Resource) |>
-  slice_max(proportion, n = 5) |>
-  ungroup() |>
-  ggplot(aes(proportion, fct_reorder(word, proportion), fill = Resource)) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(~Resource, ncol = 3, scales = "free")
+ggplot(teacher_chart) +
+  geom_col(aes(x = n, y = word))
 ```
 
-#### Comprehension Check
+Excellent. However it would be much easier to read and interpret if our bars were ordered by count. Let's fix that by using the `reorder()` function to reorder words by their `n` count:
 
-1.  Create a word cloud, bar chart, and/or small multiple using your `opd_benefits` data.
+```{r}
+ggplot(teacher_chart) +
+  geom_col(aes(x = n, y = reorder(word, n)))
+```
+
+Similar to how we chained functions together by using the `|>` operator earlier, `ggplot()` can be customized by "adding" functions, or layers, using the `+` operator.
+
+Let's give that a try by adding a new layer for changing our axis labels into something more meaningful and adding a title:
+
+```{r}
+ ggplot(teacher_chart) +
+  geom_col(aes(x = n, y = reorder(word, n))) +
+  labs(
+    x = "Frequency",             
+    y = "Words",                 
+    title = "Mosts Beneficial Aspects of Online PD"
+  )
+```
+
+Better! The {ggplot2} package has a countless number of elements that can be added for customizing a graph.
+
+One additional advantage of ggplot2 is that it can also be used with pipes, so if we wanted to produce a quick graph with minimal code, we could have written our code like so:
+
+```{r}
+teacher_counts |>
+  filter(n >= 500) |>
+  ggplot() +
+  geom_col(aes(x = n, y = reorder(word, n))) +
+  labs(
+    x = "Frequency",             
+    y = "Words",                 
+    title = "Mosts Beneficial Aspects of Online PD"
+  )
+```
+
+#### **👉 Your Turn ⤵** 
+
+Use the code chunk below to create a basic bar chart for all survey responses using the `all_counts` data frame. Feel free to experiement with different [graph elements](https://ggplot2.tidyverse.org/articles/ggplot2.html#scales) such as color [scales](https://ggplot2.tidyverse.org/articles/ggplot2.html#scales) or [built-in themes](https://ggplot2-book.org/themes#sec-themes).
+
+```{r}
+# YOUR CODE HERE
+
+
+
+```
+
+Well done!!
+
+In the Communicate section, I'll illustrate one one particularly useful graph element called "[facets](https://ggplot2.tidyverse.org/articles/ggplot2.html#facets)."
 
 ## 4. MODEL
 
@@ -971,15 +1013,15 @@ Finally, if you have not already done so, I recommend taking a look at [Chapter 
 
 ## 5. COMMUNICATE
 
-The final(ish) step in our workflow/process is sharing the results of analysis with wider audience. Krumm et al. (2018) have outline the following 3-step process for communicating with education stakeholders what you have learned through analysis:
+The final(ish) step in our workflow/process is sharing the results of analysis with a wider audience. Krumm et al. (2018) have outline the following 3-step process for communicating with education stakeholders what you have learned through analysis:
 
 1.  **Select**. Communicating what one has learned involves selecting among those analyses that are most important and most useful to an intended audience, as well as selecting a form for displaying that information, such as a graph or table in static or interactive form, i.e. a "data product."
 2.  **Polish**. After creating initial versions of data products, research teams often spend time refining or polishing them, by adding or editing titles, labels, and notations and by working with colors and shapes to highlight key points.
 3.  **Narrate**. Writing a narrative to accompany the data products involves, at a minimum, pairing a data product with its related research question, describing how best to interpret the data product, and explaining the ways in which the data product helps answer the research question.
 
-In this particular case study, our target audience is developers of online professional learning opportunities who are looking to receive feedback on what's working well and potential areas for improvement. This lets us assume a good deal of prior knowledge on their end about the context of the evaluation, a high level of familiarly with the online professional development resources being assessed, and fairly literate at reading and interpreting data and charts. This also lets us simplify our data products and narrative and reduce the level of detail needed to communicate useful information.
+In this particular case study, our target audience is developers of online professional learning opportunities who are looking to receive feedback on what's working well and potential areas for improvement. This allows us assume a good deal of prior knowledge on their end about the context of the evaluation, a high level of familiarly with the online professional development resources being assessed, and fairly literate at reading and interpreting data and charts. This also allows us simplify our data products and narrative and reduce the level of detail needed to communicate useful information.
 
-For summative evaluation, typically at the end of a school year or grant period when the emphasis is on assessing program outcomes and impact, our audience would extend to those less familiar with the program but with a vested interest in program's success, such as the NC State Board of Education or those directly impacted by the program including NC educators is general. In that case, our data product would need to include much more narrative to provide context and greater detail in charts and graphs in order to help interpret the data presented.
+For summative evaluation, typically at the end of a school year or grant period when the emphasis is on assessing program outcomes and impact, our audience would extend to those less familiar with the program but with a vested interest in program's success, such as this [report to NC State Board of Education](https://fi.ncsu.edu/wp-content/uploads/sites/175/2024/11/ATR-Evaluation-Report-2024-FINAL.pdf) or those directly impacted by the program including NC educators is general. In that case, our data product would need to include much more narrative to provide context and greater detail in charts and graphs in order to help interpret the data presented.
 
 ### 5a. Select
 
@@ -989,9 +1031,7 @@ For analyses to present, I'm going to focus primarily on:
 
 1.  **Word Counts**. One of the first things I'll share with my audience is my analysis of word counts since these are very easy to interpret will provide online PD developers with some instant insight.
 2.  **Word Search**. I also think it's important to include some actual participant responses for select key words in order to provide additional information about how those words are being used on context. I may handpick some select quotes or present a random selection of quotes.
-3.  **TF-IDF**. Finally, as a way to potentially help them weed through words unique to specific resources, as well as potentially identify some areas for potential follow-up and to dig deeper, I'll discuss
-
-I've decided to exclude analyses of just term frequency because I feel like simply counts are easier to quickly interpret while tf-idf provides more nuance. I also want to be careful not to overwhelm my audience.
+3.  **Relative Frequency**. Finally, as a way to potentially help them weed through words unique to specific resources, as well as potentially identify some areas for potential follow-up and to dig deeper, I'll include words with the highest percentage of occurrence for each resource.
 
 #### **Data Products**
 
@@ -1000,30 +1040,28 @@ In terms of "data products" and form, and because this is a simple demonstration
 1.  **Word Cloud**. This is really as much decorative as it is a means to communicate key findings. I'll probably include this on my title slide as a way to immediately engage my audience and provide a preview of findings I'll share. It's also a way to include common words that may not make the cut in my bar chart.
 2.  **Bar Chart**. I'll definitely share with them the bar chart I created earlier as a means to focus on the most common words used by teachers across all resources. Also, this is a little less busy than a word cloud and allows them to quickly see the top words in order.
 3.  **Quotes**. As noted above, I also feel it's important to provide some participants responses that help explain how the common words are being used in context.
-4.  **Small Multiples**. Although at this point a little skeptical about how meaningful the tf-idf analysis was due to issues such as spelling as well as the limited number of responses for many resources, I think the small multiples chart will help to spark discussion among PD developers about specific aspects of each resource type that teachers' value.
+4.  **Small Multiples**. I think the small multiples chart of high-percentage words would help to spark discussion among PD developers about specific aspects of each resource type and what teachers' found most valuable.
 
 #### Sharing Format
 
-For Unit 1 we'll be using [R Markdown](https://rmarkdown.rstudio.com) to create a slide deck or short report that documents our independent analysis. R Markdown files can also be used to create a [wide range of outputs and formats](https://rmarkdown.rstudio.com/gallery.html), including polished PDF or Word documents, websites, web apps, journal articles, online books, interactive tutorials and more. And to make this process even more user-friendly, R Studio now includes [a visual editor](https://rstudio.github.io/visual-markdown-editing/#/)! This lets you create R Markdown files like you would with a standard word processing tool.
+For Unit 1 we'll be using [Quarto](https://quarto.org) to create a `revealjs` [slide deck](https://quarto.org/docs/presentations/) or short report that documents our independent analysis. Quarto files can also be used to create a [wide range of outputs and formats](https://quarto.org/docs/guide/), including polished PDF or Word documents, websites, web apps, journal articles, online books, interactive tutorials and more. And to make this process even more user-friendly, Quarto includes [a visual editor](https://rstudio.github.io/visual-markdown-editing/#/) that lets you create files like you would with a standard word processing tool.
 
-An additional advantage of R Markdown compared to the alternative of copying and pasting tables and charts created from an R script to Word or PowerPoint is that you can embed your R code directly in your R Markdown file making it easy to updated your charts as needed and share your R Markdown file with others so they can inspect your code and reproduce your analysis, i.e. [reproducible research](https://vickysteeves.gitlab.io/repro-papers/r-markdown-in-reproducible-research.html).
-
-I'll also be providing an R Markdown template for your Unit 1 Independent Analysis assignment and you can choose to create a presentation to share and walk us through at one of our optional meetings during Week 5 or create a report that includes information and details you would have shared with us in person. If you'd like to extend your knowledge and skills beyond what we'll cover in Unit 1, I recommend taking a look at [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/).
+An additional advantage of Quarto compared to the alternative of copying and pasting tables and charts created from an R script to Word or PowerPoint is that you can embed your R code directly in your file making it easy to update your charts as needed and share your file with others so they can inspect your code and reproduce your analysis, i.e. [reproducible research](https://vickysteeves.gitlab.io/repro-papers/r-markdown-in-reproducible-research.html).
 
 ### 5b. Polish
 
 #### Word Cloud
 
-To make the word cloud a little less busy and a little more useful, I removed the multitude of colors from the default setting, and using some modified code form the `?wordclouds2` help file, I've included an argument in the `wordclouds2( )` function to use the color black for words that occur more than 1000 times, and gray for the rest.
+To make the word cloud a little less busy and a little more useful, I removed the multitude of colors from the default setting, and using some modified code form the `?wordclouds2` help file. I've included an argument in the `wordclouds2( )` function to use the red hex color `#CC0000` for words that occur more than 1000 times, and gray for the rest.
 
 ```{r, eval=F}
 library(wordcloud2)
 
-wordcloud2(opd_counts,
-           color = ifelse(opd_counts[, 2] > 1000, 'black', 'gray'))
+wordcloud2(teacher_counts,
+           color = ifelse(teacher_counts[, 2] > 1000, '#CC0000', 'gray'))
 ```
 
-![](img/cloud-clean.png){width="70%"}
+![](img/cloud-clean.png){width="100%"}
 
 #### Bar Chart
 
@@ -1031,7 +1069,7 @@ For my bar chart, I did some minor clean up, including editing the x-axis title,
 
 ```{r}
 
-opd_counts |>
+teacher_counts |>
   filter(n > 500) |>
   mutate(word = reorder(word, n)) |>
   ggplot(aes(n, word)) +
@@ -1043,49 +1081,33 @@ opd_counts |>
 
 #### Small Multiples
 
-Finally, two related issues that I want to clean up a little with respect to tf-idf before sharing with an outside audience are the appearance of stop words and too few responses for the Calendar online learning resources.
+Word clouds and bar charts are pretty effective for highlighting the most common words in an entire corpus, or in our case, all teacher survey responses, regadrless of resource type being reviewed.
 
-First, I'll reuse my `opd_clean` data frame which had my stop words removed to create my new `opd_tf_idf` data frame.
+One limitation we ran into earlier when we started looking at word frequencies and tf-idf stats was that it was difficult to easily compare the most common or unique words for each resource type. That is where small multiples can assist. A small multiple is basically a series of similar graphs or charts that make it easier to compare across different document collections of interest, in our case, word counts by resource type.
 
-```{r}
-
-opd_resource_counts <- opd_clean |>
-  count(Resource, word)
-
-total_words <- opd_resource_counts |>
-  group_by(Resource) |>
-  summarize(total = sum(n))
-
-opd_words <- left_join(opd_resource_counts, total_words)
-
-opd_tf_idf <- opd_words |>
-  bind_tf_idf(word, Resource, n)
-```
-
-Then I'll use the `filter()` function to remove any response pertaining to Calendar and add some labels using the `labs()` function. Again, if this were a chart destined for a more formal report, I'd also clean up the Resource names to make them more readable and fit properly on each bar plot.
-
-Finally, with the help of [Soraya Campbell](https://twitter.com/sorayaworldwide), I've fixed the pesky issue with the charts not ordering by tf-idf value properly by changing `Resource` from a character to a factor and using the `reorder_within` function.
+For this faceted chart, I'll focus on word frequencies, which I think are more useful that our tf-idf findings. I'll also adapt the example illustrated in [Text Mining with R](https://www.tidytextmining.com/tfidf#the-bind_tf_idf-function) to create a similar chart for our `teacher_percentages` data frame:
 
 ```{r}
-opd_tf_idf |>
-  filter(Resource != "Calendar") |>
-  group_by(Resource) |>
-  slice_max(tf_idf, n = 5) |>
-  ungroup() |>
-  mutate(Resource=as.factor(Resource),
-         word=reorder_within(word, tf_idf, Resource)) |>
-  ggplot(aes(word, tf_idf, fill = Resource)) +
+teacher_percentages |>
+  filter(Resource != "Calendar") |> 
+  group_by(Resource) |> 
+  slice_max(order_by = percent, n = 5, with_ties = FALSE) |> 
+  ungroup() |>  
+  mutate(word = reorder_within(word, percent, Resource)) |>  
+  ggplot(aes(percent, word, fill = Resource)) + 
   geom_col(show.legend = FALSE) +
-  facet_wrap(~Resource, ncol = 3, scales = "free") +
-  coord_flip() +
-  scale_x_reordered() +
-  labs(title = "Words Unique to Each Online Learning Resurcecs", x = "tf-idf value", y = NULL)
-
+  facet_wrap(~Resource, ncol = 3, scales = "free_y") +  
+  scale_y_reordered() +
+  labs(
+    x = "Percentage",
+    y = "Top Words",
+    title = "Top 5 Words by Percentage for Each Resource"
+  )
 ```
 
 ### 5c. Narrate
 
-With our "data products" cleanup complete, we'll start pulling together a quick presentation to share with our education partners. We've already seen what a more formal report looks like in the PREPARE section of this case study. For your Independent Analysis assignment for Unit 1, we'll be creating either a simple report or slide deck to share out some key findings from our analysis.
+With our "data products" cleanup complete, we'll start pulling together a quick presentation to share with our education partners. We've already seen what a more formal report looks like in the PREPARE section of this case study. For your Unit 1 Independent Analysis assignment, you'll be creating either a simple report or slide deck to share out some key findings from our analysis.
 
 Regardless of whether you plan to talk us through your analysis and findings with a presentation or walk us through with a brief written report, your assignment should address the following questions:
 
@@ -1098,6 +1120,24 @@ Regardless of whether you plan to talk us through your analysis and findings wit
 
 You can view my example presentation here: <https://sbkellogg.github.io/eci-588/unit-1/unit-1-product.html>
 
-And use my R Markdown presentation file as a template: <https://github.com/sbkellogg/eci-588/blob/main/unit-1/unit-1-product.Rmd>
+I've also provide you with the Quarto file used to create this slide deck in our Posit Cloud Workspace.
 
-You can also find an example of a brief written report here: <https://moodle-courses2021.wolfware.ncsu.edu/pluginfile.php/1719158/mod_forum/intro/Vandenberg%20Summary.pdf>
+#### Render Document
+
+For now, we will wrap up this case study by converting your work to an HTML file that can be published and used to communicate your learning and demonstrate some of your new R skills. To do so, you will need to "render" your document. Rendering a document does two important things, namely when you render a document it:
+
+1.  checks through all your code for any errors; and,
+
+2.  creates a file in your project directory that you can use to share you work.
+
+#### 👉 Your Turn ⤵
+
+Now that you've finished your case study, let's render this document by clicking the ![](img/render.png){width="2%"} Render button in the toolbar at that the top of this file. Rendering will covert this Quarto document to a HTML web page as specified in our YAML header. Web pages are just one of [the many publishing formats you can create with Quarto](https://quarto.org/docs/output-formats/all-formats.html) documents.
+
+If the files rendered correctly, you should now see a new file named `unit-1-case-study.html` in the Files tab located in the bottom right corner of R Studio. If so, congratulations, you just completed the getting started activity! You're now ready for the unit Case Studies that we will complete during the third week of each unit.
+
+::: callout-important
+If you encounter errors when you try to render, first check the case study answer key located in the files pane and has the suggested code for the Your Turns. If you are still having difficulties, try copying and pasting the error into Google or ChatGPT to see if you can resolve the issue. Finally, contact your instructor to debug the code together if you're still having issues.
+:::
+
+## References
