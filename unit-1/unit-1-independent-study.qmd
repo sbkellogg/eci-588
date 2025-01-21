@@ -51,7 +51,15 @@ For your independent analysis, you will demonstrate your ability to formulate a 
 
 4.  **Create a data product.** When you feel you've wrangled and analyzed the data to your satisfaction, create an Quarto file that includes a polished sociogram and/or data table and a narrative highlighting your research question, data source, and key findings and potential implications. Your file should include a polished graph and/or table, a title and narrative, and all code necessary to read, wrangle, and explore your data.
 
-5.  **Share your findings.** Render your data product to a desired output format. I recommend using the example data product I've included in the project folder to great an HTML slide deck, but you are welcome to experiment with other formats as well.
+5.  **Share your findings.** Render your data product to a desired output format. I recommend using the example data product I've included in the project folder to create an HTML slide deck like [this example](https://sbkellogg.quarto.pub/what-do-teachers-value-about-online-pd/#/title-slide), but you are welcome to experiment with other formats as well.
+
+### Student Examples
+
+To help provide some inspiration for you analysis, here are a few examples form past students:
+
+1.  **Meghann Martinez**: [Teacher Recommendations for Online PD: A Text Analysis of Open-Ended Survey Responses](https://rpubs.com/meghannmm/teacherrecs)
+2.  **Soraya Campbell**: [Winter Breakaway Student Survey Responses](https://sorayaworldwide.github.io/Rmarkdown.html#1)
+3.  **Jennifer Houchins**: ["A Little Birdie Told Me" Examining Tweets About Education](https://jennhouchins.github.io/EdTweets/EdTweets.html#/)
 
 ### Assessment
 
