@@ -18,7 +18,7 @@ The final week of each unit is designed to provide you some space for gaining pr
 
 1.  **Independent Analysis**: For students who have completed ECI 586 or are comfortable with R basics, you will be required to create a simple "data product" designed to illustrate your ability to apply basic text mining techniques demonstrated in the case study.
 
-2.  **Datacamp Tutorials**: For students new to R or have not completed ECI 586: Intro to Learning Analytics, you will be required to complete two Datacamp tutorials focused on the basics [data visualization](https://www.datacamp.com/courses/introduction-to-data-visualization-with-ggplot2), and [wrangling and visualizing text](https://app.datacamp.com/learn/courses/introduction-to-text-analysis-in-r).
+2.  **Datacamp Tutorials**: For students new to R or have not completed ECI 586: Intro to Learning Analytics, you will be required to complete two Datacamp tutorials focused on the basics [data visualization](#0), and [wrangling and visualizing text](#0).
 
 ## Datacamp Tutorials (R Beginners)
 
