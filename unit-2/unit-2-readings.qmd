@@ -1,5 +1,5 @@
 ---
-title: "Unit 2 Readings: What is Text Mining?"
+title: "Unit 2 Readings: Dictionary-Based Methods"
 subtitle: "ECI 588: Text Mining in Education"
 author: "Dr. Shaun Kellogg"
 date: today
@@ -91,51 +91,61 @@ With the exception of the Self-Selected resource, **you are not required to post
 
 ### Guiding Questions
 
-#### Topic 1: Text Mining Terminology
+#### Topic 1: Definitions & Key Terminology
 
 Reflecting on the course text and your self-selected reading, answer one or more of the following questions:
 
-1.  What exactly is text mining?
+1.  What exactly are "dictionary methods"?
 
-2.  How is it defined or described in your readings?
+2.  What types of dictionary-based methods were described in your readings?
 
-3.  What alternative terms or phrases are used? How would you explain it to someone with no background in text mining?
+3.  What are some new terms, words, concepts that you have come across in the resources that were unfamiliar to you, or that you had come across before but feel you have a better understanding of after this week?
 
-4.  What are some other new terms, words, concepts that you have come across in the resources that were unfamiliar to you, or that you had come across before but feel you have a better understanding of after this week?
-
-#### Topic 2: Methods, Techniques & Educational Applications
+#### Topic 2: Applications in Education
 
 Reflecting on the course text and your self-selected reading, answer one or more of the following questions:
 
-1.  What text mining methods or techniques are commonly used in analyzing text and for what purpose?
+1.  How has text mining be applied to educational contexts, or in other fields that might be relevant to education? 
 
-2.  How has text mining be applied to educational contexts, or in other fields that might be relevant to education?
+2.  How have/could these methods be applied to better understand and improve student learning and the contexts in which learning occurs?  
 
-3.  How might text mining be applied in your own professional context?
+3.  How might text mining be applied in your professional context?
 
 4.  How has/could text mining be applied to address systemic issues or persistent problems in Education?
 
-#### Topic 3: Affordances, Limitations, & Ethical Issues
+#### Topic 3: Lexicons and Measures
+
+1.  What kinds of dictionaries or lexicons were described in your reading and how are these dictionaries created?
+
+2.  How can lexicons be used to classify, quantify, and/or measure a collection of documents? 
+
+3.  How have/could these lexicons or measures be used to better understand and improve teaching and learning?
+
+4.  Under what conditions or contexts are lexicons and/or associated measures more or less trustworthy?
+
+5.  What lexicon might be useful to create in your own professional context?
+
+#### Topic 4: Affordances, Limitations, & Ethical Issues
 
 Reflecting on the course text and your self-selected reading, answer one or more of the following questions:
 
-1.  What are some of the advantages of text mining over more traditional approaches to analyzing text as data?
+1.  What are some of the advantages of dictionary-based approaches compared to approaches we examined in Unit 1?
 
-2.  What are some of the challenges and limitations of text mining in comparison to traditional qualitative analysis?
+2.  What are some of the advantages compared to more traditional qualitative approaches to coding, classifying, or labeling text?
 
-3.  What ethical issues should be considered when mining text for educational purposes or in general?
+3.  What are some of the issues, challenges, and limitations of dictionary-based methods?
 
-#### Topic 4: Text-Based Data Sources
+#### Topic 5: Text-Based Data Sources
 
 Reflecting on the course text and your self-selected reading, answer one or more of the following questions:
 
-1.  What sources of data are commonly used in text mining, particularly in educational contexts?
+1.  What data sources were described in your readings or selections?
 
-2.  Are some data sources more suitable or appropriate for text mining purposes than others?
+2.  Are some data sources more suitable or appropriate for dictionary-based methods than others?
 
-3.  What data sources in education are publicly available for analysis?
+3.  What data sources in education might be particularly suitable for dictionary-based approaches to analysis?
 
-4.  What sources of data are you interested in potentially exploring for an independent analysis or final course project?
+4.  What sources of data are you interested in potentially exploring for an independent analysis in this Unit or for a final course project?
 
 #### Student-Selected Resources
 
@@ -145,7 +155,7 @@ Provide a brief overview of your self-selected resource that includes the follow
 
 -   What was the **purpose** of your article?
 
--   How was Text Mining **defined** and/or characterized?
+-   How were Text Mining methods **defined** and/or characterized?
 
 -   What **data source(s)** were analyzed or discussed?
 
