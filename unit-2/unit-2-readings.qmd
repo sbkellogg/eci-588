@@ -51,7 +51,7 @@ These curated readings and videos offer a broad overview of sentiment analysis a
 
 ### 3. Self-Selected Resource
 
-Use the [NCSU Library](#0), [Google Scholar](#0) or search engine of your choice to locate a journal article, presentation, website or other scholarly resource. Your selection should also address one or more of the discussion topics/questions provided below. In addition, you are welcome to find less formal resources such as videos or shorter online articles to share with the class and that help us better understand this week's topics for discussion.
+Use the [NCSU Library](#0), [Google Scholar](#0) or search engine of your choice to locate a journal article, presentation, website or other scholarly resource. **Your selection should discuss some form of dictionary-based text mining method and address one or more of the discussion topics/questions provided below**. In addition, you are welcome to find less formal resources such as videos or shorter online articles to share with the class and that help us better understand this week's topics for discussion.
 
 You are also free to choose from one of the curated resources on Sentiment Analysis and LIWC that I've included below.
 
