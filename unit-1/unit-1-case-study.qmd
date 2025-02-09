@@ -190,7 +190,7 @@ Before moving on, you may have noticed that after runing the code to read in our
 
 Once your data is in R, there are many different ways you can view it as shown by the code below:
 
-``` R
+``` r
 # enter the name of your data frame and view directly in console 
 opd_survey 
 
@@ -238,7 +238,7 @@ write_csv(opd_survey, "data/opd_survey_copy.csv")
 
 Note that the first argument is the data frame you created earlier and the second argument is the file name you plan to give it, including (if necessary) the file path for where it should go.
 
-#### ❓Question 
+#### ❓Question
 
 The `read_csv` and `write_csv` functions from the \[readr\] package are a powerful combination of tidyverse functions. In the pane below, type `?read_csv` into the Console and click Enter or Return to get more information on this function and then respond to following questions:
 
@@ -431,7 +431,7 @@ opd_teacher <- opd_survey |>
 opd_teacher
 ```
 
-#### **👉 Your Turn ⤵** 
+#### **👉 Your Turn ⤵**
 
 Use the code chunk below to rewrite the piped code above for an additional analysis. The data frame should includes all Roles, not just teachers, but excludes the `Resource` column. Assign it to `opd_benefits` using the `<-` operator for later use.
 
@@ -542,7 +542,7 @@ opd_clean <- anti_join(opd_tidy, stop_words)
 opd_clean
 ```
 
-#### **👉 Your Turn ⤵** 
+#### **👉 Your Turn ⤵**
 
 In the code chunk below, add the `anti_join()` function to our chain of data wrangling functions as our final text preprocessing step. Don't forget to include in the function the stop words you are trying to remove.
 
@@ -562,7 +562,7 @@ wrangled_teacher
 
 If you did this correctly, you should now see a `wrangled_teacher` data frame in the Environment pane that has 78,675 observations and 3 variables.
 
-#### **👉 Your Turn ⤵** 
+#### **👉 Your Turn ⤵**
 
 Finally, let's wrangle a data set that includes tokens not just for teachers, but for all educators who particiated in the online professional development offerings.
 
@@ -663,7 +663,7 @@ In this case, we see that "information" was the most common word for Online Lear
 
 ![](img/webinar.png){width="100%"}
 
-#### **👉 Your Turn ⤵** 
+#### **👉 Your Turn ⤵**
 
 Complete the following code to obtain word counts across all OPD resources and within resources for all educators using the `wrangled_all` data frame you created earlier:
 
@@ -702,7 +702,7 @@ teacher_percentages
 
 We can quicly see that "information" makes up about 2.3% of words in responses about the Online Modules and is the most frequently used word, but what about the other online resources?
 
-#### **👉 Your Turn ⤵** 
+#### **👉 Your Turn ⤵**
 
 One way to quickly take a look at the relative frequency of "information" across all resources is to use the handy `filter()` function like we did when we previsouly filtered our data set for only Roles with the value of teacher.
 
@@ -813,7 +813,7 @@ While tf-idf has proved useful in text mining, search engines, etc., its theoret
 
 In the next section, we'll use some data visualization strategies to help us interpret and find patterns in these rather dense output tables.
 
-#### **👉 Your Turn ⤵** 
+#### **👉 Your Turn ⤵**
 
 Before moving on, let's return to the previous dataset you wrangled for all educators responses and take a look at the most common words across all educators.
 
@@ -870,7 +870,7 @@ opd_quotes <- opd_teacher |>
 sample_n(opd_quotes, 20)
 ```
 
-#### **👉 Your Turn ⤵** 
+#### **👉 Your Turn ⤵**
 
 Repurpose the code from above to examine responses for another word or word stem of interest:
 
@@ -912,7 +912,7 @@ Once installed, I recommend using `?wordcloud2` to view the various arguments fo
 wordcloud2(teacher_counts, color = "random-light", backgroundColor = "black")
 ```
 
-#### **👉 Your Turn ⤵** 
+#### **👉 Your Turn ⤵**
 
 Create a word cloud for all survey responses using the `all_counts` data frame you created previously:
 
@@ -989,7 +989,7 @@ teacher_counts |>
   )
 ```
 
-#### **👉 Your Turn ⤵** 
+#### **👉 Your Turn ⤵**
 
 Use the code chunk below to create a basic bar chart for all survey responses using the `all_counts` data frame. Feel free to experiement with different [graph elements](https://ggplot2.tidyverse.org/articles/ggplot2.html#scales) such as color [scales](https://ggplot2.tidyverse.org/articles/ggplot2.html#scales) or [built-in themes](https://ggplot2-book.org/themes#sec-themes).
 
