@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dr.&nbsp;Shaun Kellogg">
-<meta name="dcterms.date" content="2025-02-09">
+<meta name="dcterms.date" content="2025-02-10">
 
 <title>Unit 2 Case Study: Twitter Sentiment &amp; School Reform</title>
 <style>
@@ -158,7 +158,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 9, 2025</p>
+      <p class="date">February 10, 2025</p>
     </div>
   </div>
   
@@ -206,7 +206,7 @@ div.csl-indent {
 <h4 class="anchored" data-anchor-id="twitter-and-the-next-generation-science-standards"><strong>Twitter and the Next Generation Science Standards</strong></h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://doi.org/10.1177/23328584211024261"><img src="images/rosenberg.jpg" class="img-fluid figure-img" style="width:50.0%" alt="Full Paper (AERA Open)"></a></p>
+<p><a href="https://doi.org/10.1177/23328584211024261"><img src="img/rosenberg.jpg" class="img-fluid figure-img" style="width:50.0%" alt="Full Paper (AERA Open)"></a></p>
 <figcaption>Rosenberg, J., Borchers, C., Dyer, E., Anderson, D., &amp; Fischer, C. (2021). Understanding Public Sentiment About Educational Reforms: The Next Generation Science Standards on Twitter. <em>AERA Open, 7</em>. &lt;https://doi.org/10.1177/23328584211024261&gt;</figcaption>
 </figure>
 </div>
@@ -296,7 +296,7 @@ div.csl-indent {
 </div>
 <section id="the-scales-package" class="level4">
 <h4 class="anchored" data-anchor-id="the-scales-package">The scales Package 📦</h4>
-<p><img src="images/scales.png" class="img-fluid" style="width:30.0%"></p>
+<p><img src="img/scales.png" class="img-fluid" style="width:30.0%"></p>
 <p>The {<a href="https://scales.r-lib.org">scales</a>} package in R provides tools for working with numeric data, especially in data visualization contexts. It includes functions to:</p>
 <ul>
 <li><p>Format axis labels (e.g., add thousands separators, percentages, currency symbols).</p></li>
@@ -325,7 +325,7 @@ Attaching package: 'scales'</code></pre>
 </section>
 <section id="the-textdata-package" class="level4">
 <h4 class="anchored" data-anchor-id="the-textdata-package">The textdata Package 📦</h4>
-<p><img src="images/textdata.png" class="img-fluid" style="width:30.0%"></p>
+<p><img src="img/textdata.png" class="img-fluid" style="width:30.0%"></p>
 <p>The {<a href="https://cran.r-project.org/web/packages/textdata/readme/README.html">textdata</a>} package integrates nicely with the {tidytext} package and provides streamlined access to various text-based datasets, which are commonly used for text mining, natural language processing, and sentiment analysis. Some examples of datasets accessible via textdata include sentiment lexicons (e.g., sentiment lexicons like AFINN, NRC, or Bing), specialized word lists, and linguistic resources.</p>
 <p>Run the following code chunk to load the {textdata} package:</p>
 <div class="cell">
@@ -334,7 +334,7 @@ Attaching package: 'scales'</code></pre>
 </section>
 <section id="the-vader-package" class="level4">
 <h4 class="anchored" data-anchor-id="the-vader-package">The vader Package 📦</h4>
-<p><img src="images/vader.jpeg" class="img-fluid" style="width:30.0%"></p>
+<p><img src="img/vader.jpeg" class="img-fluid" style="width:30.0%"></p>
 <p>The {vader} package is for the <strong>V</strong>alence <strong>A</strong>ware <strong>D</strong>ictionary for s<strong>E</strong>ntiment <strong>R</strong>easoning (VADER), a rule-based model for general sentiment analysis of social media text and specifically attuned to measuring sentiment in microblog-like contexts.</p>
 <p>To learn more about the {vader} package and its development, take a look at the article by Hutto and Gilbert (2014), <a href="https://ojs.aaai.org/index.php/ICWSM/article/view/14550">VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text</a>.</p>
 </section>
@@ -486,26 +486,26 @@ Note
 <pre><code># A tibble: 20 × 8
    text               created_at          author_id id    conversation_id source
    &lt;chr&gt;              &lt;dttm&gt;              &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt; 
- 1 "@Timcast Ah, com… 2021-04-16 18:16:46 36761090  1383… 13827552412218… Twitt…
- 2 "@DBrogno67 @tony… 2021-03-03 19:15:07 11689248… 1367… 13670797366572… Twitt…
- 3 "@news10nbc How a… 2021-01-27 06:13:12 13517172… 1354… 13542855049975… Twitt…
- 4 "On 12 May 2021 (… 2021-05-10 07:01:30 12814163… 1391… 13916495823926… Twitt…
- 5 "@myuea We had 33… 2021-05-06 01:14:44 12945034… 1390… 12280110929844… Twitt…
- 6 "Special Educatio… 2021-05-25 21:05:04 66263683  1397… 13972976887779… dlvr.…
- 7 "@CNBC Did he say… 2021-01-15 01:04:31 31946046… 1349… 13498845490571… Twitt…
- 8 "@FluffykinsT @Ju… 2021-01-27 11:16:00 162175778 1354… 13542606918767… Twitt…
- 9 "@yuggy52 @Jordan… 2021-01-26 21:18:39 470001691 1354… 13541631003590… Twitt…
-10 "@cam550 @SusanMi… 2021-01-09 04:43:22 11422435… 1347… 13476947537862… Twitt…
-11 "@MatthewJshow Co… 2021-02-07 02:52:09 82355593… 1358… 13582445985822… Twitt…
-12 "@HMHCo can you h… 2021-05-06 23:06:00 18888625  1390… 13904427552230… Twitt…
-13 "Common Core math… 2021-04-25 00:22:43 27559129… 1386… 13861134081356… Twitt…
-14 "Why Common Core … 2021-03-18 15:30:26 344075523 1372… 13725711013945… Micro…
-15 "@trduckworth @Ja… 2021-01-03 07:49:46 12774925… 1345… 13454246408234… Twitt…
-16 "Review Online Co… 2021-05-17 14:21:04 13919388… 1394… 13942969153495… Twitt…
-17 "New post from ht… 2021-02-16 11:05:39 95501488… 1361… 13616328303469… NextS…
-18 "@nate_bukaty Tha… 2021-01-25 02:56:48 28484448  1353… 13535365337568… Twitt…
-19 "#CommonCore #Com… 2021-01-06 15:38:03 72793168… 1346… 13468434786769… Tweet…
-20 "@JeffreyASachs T… 2021-02-04 18:05:01 29812092… 1357… 13573609816015… Twitt…
+ 1 "1,900,000,000,00… 2021-03-07 04:43:46 13212872  1368… 13684220980714… Twitt…
+ 2 "@NTampio It tota… 2021-05-01 17:34:39 26035485  1388… 13885437883443… Twitt…
+ 3 "FREE RESOURCE | … 2021-01-19 13:31:01 70945601… 1351… 13515225537481… Sprou…
+ 4 "@OGKevinBacon It… 2021-05-14 13:27:59 364610061 1393… 13931876568053… Twitt…
+ 5 "@thewesbrewer @A… 2021-01-04 00:17:32 22411686… 1345… 13457770872195… Twitt…
+ 6 "@GovBillLee Haha… 2021-04-23 00:23:52 18542123  1385… 13853391498766… Twitt…
+ 7 "Brainwashing Ame… 2021-04-19 23:20:34 13291954… 1384… 13842858257566… FS Po…
+ 8 "Standardized tes… 2021-04-06 13:45:53 571180553 1379… 13794301591161… Twitt…
+ 9 "@bridgetteANjax … 2021-01-20 17:19:49 10277967… 1351… 13519316093275… Twitt…
+10 "@kylegriffin1 Ri… 2021-05-11 23:44:50 26916606… 1392… 13921852371788… Twitt…
+11 "i like when peop… 2021-02-16 13:44:53 12389715… 1361… 13616729019345… Cheap…
+12 "@sirena_lamar @F… 2021-04-23 03:18:42 13475041… 1385… 13853740968552… Twitt…
+13 "They do now but … 2021-01-24 20:42:28 12794553… 1353… 13534430716486… Twitt…
+14 "@conorsen @TimDu… 2021-05-30 14:23:38 159904799 1399… 13989943281234… Twitt…
+15 "Civics Ed Is on … 2021-05-03 14:34:34 22825831… 1389… 13892268859812… Twitt…
+16 "@pgessing @bobkk… 2021-05-07 22:09:04 12925720… 1390… 13907796820904… Twitt…
+17 "i play jumpstart… 2021-04-25 15:52:28 13748625… 1386… 13863473872670… Cheap…
+18 "@NShrubs It's wh… 2021-05-17 13:17:09 94809283  1394… 13942732632079… Twitt…
+19 "@DepMelinda @Che… 2021-03-20 22:13:40 213682797 1373… 13731635852417… Twitt…
+20 "@KirstinElaine1 … 2021-03-10 02:28:46 84102393… 1369… 13693859183150… Twitt…
 # ℹ 2 more variables: possibly_sensitive &lt;lgl&gt;, in_reply_to_user_id &lt;chr&gt;</code></pre>
 </div>
 </div>
@@ -521,26 +521,26 @@ Note
 <pre><code># A tibble: 20 × 8
    text               created_at          author_id id    conversation_id source
    &lt;chr&gt;              &lt;dttm&gt;              &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt; 
- 1 "@Afro_Herper @it… 2021-05-15 05:45:51 23493111… 1393… 13934202627128… Twitt…
- 2 "@kveety The Savv… 2021-02-04 03:53:03 15240788  1357… 13570533491414… Twitt…
- 3 "Explore-before-e… 2021-05-14 21:07:26 33690429… 1393… 13933120171387… Twitt…
- 4 "@philiplbell @NG… 2021-02-21 19:28:48 111375576 1363… 13635561488974… Twitt…
- 5 "Special dedicati… 2021-03-30 17:00:43 257762014 1376… 13769424789563… Twitt…
- 6 "The method behin… 2021-01-30 00:01:01 83733268… 1355… 13553049783410… Twitt…
- 7 "Today my living … 2021-01-15 19:35:40 10319064… 1350… 13501647687332… Twitt…
- 8 "Q7. I lay out th… 2021-04-16 01:59:11 718793815 1382… 13828761918545… Tweet…
- 9 "@NGSS_tweeps We … 2021-03-11 12:36:53 28263131… 1369… 13696952826911… Twitt…
-10 "Freshman #citsci… 2021-05-13 15:08:36 89859520  1392… 13928511843571… Twitt…
-11 "Using curriculum… 2021-01-30 15:05:12 25920738… 1355… 13555325206249… Hoots…
-12 "@johannabrown We… 2021-01-22 02:09:52 14493822… 1352… 13524372662416… Tweet…
-13 "The New Meridian… 2021-02-16 21:01:09 99937756… 1361… 13617826926401… Agora…
-14 "Your students ot… 2021-03-31 19:02:04 99688098… 1377… 13773354048026… Buffer
-15 "Why chemistry im… 2021-03-31 12:45:04 37738266… 1377… 13772405275238… Twitt…
-16 "@NGSS_tweeps @JR… 2021-05-18 12:22:44 61829645  1394… 13946234069188… Twitt…
-17 "6.1 OSE light bo… 2021-03-04 16:33:07 58503767  1367… 13675134478822… Twitt…
-18 "@NGSS_tweeps Hum… 2021-03-10 19:21:58 735865352 1369… 13697195595323… Twitt…
-19 "It is such an ho… 2021-05-03 17:10:31 33179602… 1389… 13892661316183… Twitt…
-20 "@paulandersen I'… 2021-03-11 15:39:27 17086012… 1370… 13700366549043… Twitt…
+ 1 "@TerryContant My… 2021-05-21 01:38:29 31936962… 1395… 13955538691411… Tweet…
+ 2 "This makes me mi… 2021-01-12 23:20:35 32799077… 1349… 13491342075581… Twitt…
+ 3 "A7. So many conn… 2021-05-21 02:01:27 32626308… 1395… 13955603382470… Twitt…
+ 4 "Obtaining and co… 2021-04-12 18:03:55 13068182… 1381… 13816694232626… Twitt…
+ 5 "How can a Granny… 2021-03-19 21:41:01 346818681 1373… 13730267509223… Canva 
+ 6 "I need ideas for… 2021-04-13 22:00:47 10048561… 1382… 13820914201613… Twitt…
+ 7 "A1 b) my advice … 2021-02-05 02:13:15 40062074  1357… 13575125799045… Tweet…
+ 8 "Happy Earth Day … 2021-04-20 16:38:59 83020498… 1384… 13845471519890… Twitt…
+ 9 "Are you ready to… 2021-02-01 01:01:00 838387248 1356… 13560448470529… Tweet…
+10 "Coming tomorrow … 2021-05-27 01:30:31 33179602… 1397… 13977268803803… Twitt…
+11 "We’ve been busy … 2021-01-28 17:10:17 10103246… 1354… 13548392236989… Hoots…
+12 ".@TeachPASci, @N… 2021-01-06 14:29:17 838387248 1346… 13468261764515… Tweet…
+13 "@ngss_official @… 2021-04-26 11:06:57 600827345 1386… 13854957922872… Twitt…
+14 "#NGSSchat archiv… 2021-05-21 01:34:42 89859520  1395… 13955536075718… Twitt…
+15 "Growing a plant … 2021-05-23 23:44:43 13487424… 1396… 13966130924113… Twitt…
+16 "@Tina_Cheuk @NGS… 2021-01-19 20:42:56 83733268… 1351… 13515913541330… Twitt…
+17 "Yes!!  Just fini… 2021-05-19 16:49:14 13466505… 1395… 13950589819372… Twitt…
+18 "A5: we use googl… 2021-03-05 02:52:36 32232136… 1367… 13676693440633… Twitt…
+19 "A1. How are my s… 2021-05-07 01:17:16 12248643… 1390… 13904757884961… Twitt…
+20 "@ThePracticalSc1… 2021-03-06 22:10:12 38152655… 1368… 13385224198925… Twitt…
 # ℹ 2 more variables: possibly_sensitive &lt;lgl&gt;, in_reply_to_user_id &lt;chr&gt;</code></pre>
 </div>
 </div>
@@ -1646,16 +1646,16 @@ dttm (1): created_at
 <pre><code># A tibble: 500 × 8
    text             created_at          author_id      id conversation_id source
    &lt;chr&gt;            &lt;dttm&gt;                  &lt;dbl&gt;   &lt;dbl&gt;           &lt;dbl&gt; &lt;chr&gt; 
- 1 "Schools Test-D… 2021-03-23 08:50:02   1.52e 8 1.37e18         1.37e18 Curre…
- 2 "@BuckBond4 Yea… 2021-01-15 18:15:18   1.33e18 1.35e18         1.35e18 Twitt…
- 3 "@Jules31415 Th… 2021-03-22 21:07:06   1.36e18 1.37e18         1.37e18 Twitt…
- 4 "⚘ PDF Download… 2021-05-20 02:44:07   1.39e18 1.40e18         1.40e18 Twitt…
- 5 "@BrendaRefshaw… 2021-01-04 23:58:59   1.24e18 1.35e18         1.35e18 Twitt…
- 6 "@MalloryGates1… 2021-04-24 23:39:15   1.20e 9 1.39e18         1.39e18 Twitt…
- 7 "@BuzzPatterson… 2021-01-22 08:25:07   1.17e18 1.35e18         1.35e18 Twitt…
- 8 "\"This isn't C… 2021-05-05 22:27:11   4.84e 7 1.39e18         1.39e18 Twitt…
- 9 "@eigenrobot It… 2021-02-24 07:06:17   4.08e 6 1.36e18         1.36e18 Twitt…
-10 "@anthony_eanes… 2021-04-22 18:04:09   1.08e 8 1.39e18         1.39e18 Twitt…
+ 1 "“Common Core p… 2021-03-09 19:31:28   8.08e17 1.37e18         1.37e18 Twitt…
+ 2 "Have #Common-C… 2021-01-04 21:45:22   4.07e 7 1.35e18         1.35e18 Dynam…
+ 3 "Review Online … 2021-04-24 21:13:22   1.39e18 1.39e18         1.39e18 Twitt…
+ 4 "@MSNBC @HayesB… 2021-04-05 13:53:38   1.21e18 1.38e18         1.38e18 Twitt…
+ 5 "@lil_mz_snarky… 2021-02-10 16:27:57   4.29e 9 1.36e18         1.36e18 Twitt…
+ 6 "@russvought We… 2021-04-29 17:44:18   9.85e17 1.39e18         1.39e18 Twitt…
+ 7 "@RKempNewsDail… 2021-04-12 12:39:37   2.14e 8 1.38e18         1.38e18 Twitt…
+ 8 "zoology belong… 2021-05-15 17:18:19   2.82e 9 1.39e18         1.39e18 Twitt…
+ 9 "So, in Califor… 2021-04-18 02:08:20   2.50e 9 1.38e18         1.38e18 Twitt…
+10 "The fact that … 2021-05-04 04:43:38   2.26e 9 1.39e18         1.39e18 Twitt…
 # ℹ 490 more rows
 # ℹ 2 more variables: possibly_sensitive &lt;lgl&gt;, in_reply_to_user_id &lt;dbl&gt;</code></pre>
 </div>
@@ -1685,7 +1685,7 @@ dttm (1): created_at
 <div class="cell">
 <div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(vader_ccss<span class="sc">$</span>compound)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.037744</code></pre>
+<pre><code>[1] -0.008706</code></pre>
 </div>
 </div>
 </section>
@@ -1714,8 +1714,8 @@ dttm (1): created_at
 <span id="cb109-8"><a href="#cb109-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb109-9"><a href="#cb109-9" aria-hidden="true" tabindex="-1"></a>vader_ccss_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  positive negative neutral     ratio
-1      184      148     168 0.8043478</code></pre>
+<pre><code>  positive negative neutral    ratio
+1      155      165     180 1.064516</code></pre>
 </div>
 </div>
 <p>Not quite as bleak as we might have expected according to VADER! But then again, VADER brings an entirely different perspective coming from the dark side</p>
@@ -1752,7 +1752,7 @@ dttm (1): created_at
 <span id="cb113-12"><a href="#cb113-12" aria-hidden="true" tabindex="-1"></a>vader_ngss_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  positive negative neutral     ratio
-1      356       27     117 0.0758427</code></pre>
+1      319       43     138 0.1347962</code></pre>
 </div>
 </div>
 </section>

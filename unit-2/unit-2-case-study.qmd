@@ -12,8 +12,6 @@ theme:
   dark: cyborg
 editor: visual
 bibliography: lit/references.bib
-execute:
-  eval: false
 ---
 
 ## 0. INTRODUCTION
@@ -46,7 +44,7 @@ c.  **Twitter API.** We describe the process used to pull data from old Twitter 
 
 #### **Twitter and the Next Generation Science Standards**
 
-[![Rosenberg, J., Borchers, C., Dyer, E., Anderson, D., & Fischer, C. (2021). Understanding Public Sentiment About Educational Reforms: The Next Generation Science Standards on Twitter. *AERA Open, 7*. <https://doi.org/10.1177/23328584211024261>](images/rosenberg.jpg){fig-alt="Full Paper (AERA Open)" width="50%"}](https://doi.org/10.1177/23328584211024261)
+[![Rosenberg, J., Borchers, C., Dyer, E., Anderson, D., & Fischer, C. (2021). Understanding Public Sentiment About Educational Reforms: The Next Generation Science Standards on Twitter. *AERA Open, 7*. <https://doi.org/10.1177/23328584211024261>](img/rosenberg.jpg){fig-alt="Full Paper (AERA Open)" width="50%"}](https://doi.org/10.1177/23328584211024261)
 
 **Abstract**
 
@@ -138,7 +136,7 @@ library(tidytext)
 
 #### The scales Package 📦
 
-![](images/scales.png){width="30%"}
+![](img/scales.png){width="30%"}
 
 The {[scales](https://scales.r-lib.org)} package in R provides tools for working with numeric data, especially in data visualization contexts. It includes functions to:
 
@@ -158,7 +156,7 @@ library(scales)
 
 #### The textdata Package 📦
 
-![](images/textdata.png){width="30%"}
+![](img/textdata.png){width="30%"}
 
 The {[textdata](https://cran.r-project.org/web/packages/textdata/readme/README.html)} package integrates nicely with the {tidytext} package and provides streamlined access to various text-based datasets, which are commonly used for text mining, natural language processing, and sentiment analysis. Some examples of datasets accessible via textdata include sentiment lexicons (e.g., sentiment lexicons like AFINN, NRC, or Bing), specialized word lists, and linguistic resources.
 
@@ -170,7 +168,7 @@ library(textdata)
 
 #### The vader Package 📦
 
-![](images/vader.jpeg){width="30%"}
+![](img/vader.jpeg){width="30%"}
 
 The {vader} package is for the **V**alence **A**ware **D**ictionary for s**E**ntiment **R**easoning (VADER), a rule-based model for general sentiment analysis of social media text and specifically attuned to measuring sentiment in microblog-like contexts.
 
