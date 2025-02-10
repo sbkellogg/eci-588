@@ -12,6 +12,8 @@ theme:
   dark: cyborg
 editor: visual
 bibliography: lit/references.bib
+execute:
+  eval: false
 ---
 
 ## 0. INTRODUCTION
@@ -179,7 +181,9 @@ To learn more about the {vader} package and its development, take a look at the 
 Use the code chunk below to load the VADER library:
 
 ```{r}
-library(vader)
+# YOUR CODE HERE
+
+
 ```
 
 ::: callout-note
@@ -227,13 +231,9 @@ Note the addition of the `col_types =` argument for changing some of the column 
 Complete the following code chunk to import the NGSS tweets located in the same data folder as our common core tweets and named `ngss-tweets.csv`. By default, R will treat numerical IDs in our dataset as numeric values but we will need to convert these to characters like demonstrated above for the purpose of analysis. Also, feel free to repurpose the code from above.
 
 ```{r}
-ngss_tweets <- read_csv(#YOUR CODE HERE, 
-  col_types = cols(author_id = col_character(), 
-                   id = col_character(),
-                   conversation_id = col_character(), 
-                   in_reply_to_user_id = col_character()
-                   )
-          )
+ngss_tweets <- # YOUR CODE HERE
+  
+  
 
 ngss_tweets
 ```
@@ -309,7 +309,7 @@ As you may have noticed, we have more data than we need for our analysis and sho
 
 Let's start with the CCSS tweets first. And since this is a family friendly case study, let's use the `filter()` function introduced in previous labs to keep only those rows containing "possibly sensitive" language:
 
-```{r, eval=TRUE}
+```{r}
 ccss_tweets_1 <- ccss_tweets |> 
   filter(possibly_sensitive == "FALSE")
 ```
@@ -322,7 +322,7 @@ Now let's use the `select()` function to select the following columns from our `
 4.  `conversation_id` for examining sentiment by conversations
 5.  `id` for the unique reference id for each tweet and useful for counts
 
-```{r select-variables, eval=TRUE}
+```{r}
 ccss_tweets_2 <- ccss_tweets_1 |> 
   select(text,
          author_id,
@@ -823,23 +823,10 @@ The `nrc` lexicon contains "positive" and "negative" values just like bing, but 
 :::
 
 ```{r, echo=F, message=F}
-summary_nrc <- sentiment_nrc |> 
-  filter(sentiment %in% c("positive", "negative")) |>
-  group_by(standards) |> 
-  count(sentiment, sort = TRUE) |> 
-  mutate(method = "nrc")  |>
-  spread(sentiment, n) |>
-  mutate(sentiment = positive/negative)
+# YOUR CODE HERE
 
-summary_nrc
 
-summary_afinn <- sentiment_afinn |> 
-  group_by(standards) |> 
-  summarise(sentiment = sum(value)) |>
-  mutate(lexicon = "AFINN") |>
-  relocate(lexicon)
 
-summary_afinn
 ```
 
 #### ❓Question
