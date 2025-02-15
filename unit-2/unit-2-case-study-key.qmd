@@ -44,7 +44,7 @@ c.  **Twitter API.** We describe the process used to pull data from old Twitter 
 
 #### **Twitter and the Next Generation Science Standards**
 
-[![Rosenberg, J., Borchers, C., Dyer, E., Anderson, D., & Fischer, C. (2021). Understanding Public Sentiment About Educational Reforms: The Next Generation Science Standards on Twitter. *AERA Open, 7*. <https://doi.org/10.1177/23328584211024261>](img/rosenberg.jpg){alt="Rosenberg, J. M., Borchers, C., Dyer, E. B., Anderson, D., & Fischer, C. (2021). Understanding Public Sentiment About Educational Reforms: The Next Generation Science Standards on Twitter. AERA Open, 7. https://doi.org/10.1177/23328584211024261" fig-alt="Full Paper (AERA Open)" width="50%"}](https://doi.org/10.1177/23328584211024261)
+[![Rosenberg, J., Borchers, C., Dyer, E., Anderson, D., & Fischer, C. (2021). Understanding Public Sentiment About Educational Reforms: The Next Generation Science Standards on Twitter. AERA Open, 7. \<https://doi.org/10.1177/23328584211024261\>](img/rosenberg.jpg){alt="Rosenberg, J. M., Borchers, C., Dyer, E. B., Anderson, D., & Fischer, C. (2021). Understanding Public Sentiment About Educational Reforms: The Next Generation Science Standards on Twitter. AERA Open, 7. https://doi.org/10.1177/23328584211024261" fig-alt="Full Paper (AERA Open)" width="50%"}](https://doi.org/10.1177/23328584211024261)
 
 #### **Abstract**
 
