@@ -142,7 +142,7 @@ This course is divided into four **Units** introducing common and progressively 
 +----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Week 2         | **Readings & Discussion:** Introduction to text mining data sources, basic concepts and applications in educational contexts.                                                                           |
 +----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Week 3         | **Case Study**: An introduction to "tidy" text, performing basic word counts, and examining words unique to specific document groups.                                                                   |
+| Week 3         | **Case Study**: An introduction to “tidy” text, performing basic word counts, and examining words unique to specific document groups.                                                                   |
 +----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Week 4         | **Independent Analysis (GCLA)**: A demonstration of your ability to tokenize text, perform basic analyses, and summarize findings.                                                                      |
 |                |                                                                                                                                                                                                         |
@@ -160,7 +160,7 @@ This course is divided into four **Units** introducing common and progressively 
 +----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **UNIT 3**     | **TOPIC MODELING**                                                                                                                                                                                      |
 +----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Week 8         | **Readings & Discussion:** Introduction to "bag-of-words" and topic modeling techniques, including applications in educational contexts.                                                                |
+| Week 8         | **Readings & Discussion:** Introduction to “bag-of-words” and topic modeling techniques, including applications in educational contexts.                                                                |
 +----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Week 9         | **Case Study**: An introduction to Topic Modeling with R, an automated approach to classifying texts or documents.                                                                                      |
 +----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -182,8 +182,9 @@ This course is divided into four **Units** introducing common and progressively 
 +----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Week 14        | **Project Planning:** Planning week to identify a text-based data set for analysis and conceptualize how you will analyze and share findings from your analysis.                                        |
 +----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Week 15        | **Data Product:** In lieu of a final exam, students will develop a data product (e.g. report, presentation, data dashboard, etc.) that demonstrates your ability to independently analyze text as data. |
+| Week 15        | **Data Product:** In lieu of a final exam, students will develop a data product (e.g. report, presentation, data dashboard, etc.) that demonstrates your ability to independently analyze text as data. |
 +----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
 
 ## Major Assignments & Assessment
 
