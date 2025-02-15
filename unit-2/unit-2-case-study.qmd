@@ -1,5 +1,5 @@
 ---
-title: "Unit 2 Case Study: Twitter Sentiment & School Reform"
+title: "Unit 2 Case Study: Twitter Sentiment Toward State Standards"
 subtitle: "ECI 588: Text Mining in Education"
 author: "Dr. Shaun Kellogg"
 date: today
