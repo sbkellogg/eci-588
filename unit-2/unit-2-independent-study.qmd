@@ -16,7 +16,7 @@ bibliography: lit/references.bib
 
 The final week of each unit is designed to provide you some space for gaining proficiency with R and conducting an independent analysis. Depending on your prior experience with R, there are two assignment options this week:
 
-1.  **Independent Analysis**: For students who have completed ECI 586 or are comfortable with R basics, you will have the options this week to create a simple "data product" designed to illustrate your ability to apply basic sentiment analysis techniques demonstrated in the case study.
+1.  **Independent Analysis**: For students who have completed ECI 586 or are comfortable with R basics, you will have the option to create a simple "data product" designed to illustrate your ability to apply basic sentiment analysis techniques demonstrated in the case study.
 
 2.  **Datacamp Tutorials**: For students who have not completed ECI 586: Intro to Learning Analytics or would like to dive deeper into Sentiment Analysis using R, you will have the option to complete three Datacamp tutorials focused on the use of the {[qdap](https://trinker.github.io/qdap/)} package for text mining and sentiment analysis in R, and dive deeper into [sentiment analysis the tidyverse way](https://www.tidytextmining.com/sentiment).
 
