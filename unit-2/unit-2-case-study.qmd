@@ -1,5 +1,5 @@
 ---
-title: "Unit 2 Case Study: Twitter Sentiment Toward State Standards"
+title: "Unit 2 Case Study: Twitter Sentiment Towards State Standards"
 subtitle: "ECI 588: Text Mining in Education"
 author: "Dr. Shaun Kellogg"
 date: today
@@ -12,6 +12,8 @@ theme:
   dark: cyborg
 editor: visual
 bibliography: lit/references.bib
+execute: 
+  eval: false
 ---
 
 ## 0. INTRODUCTION
@@ -40,11 +42,11 @@ a.  **Context**. We take a quick look at the Rosenberg et al. @rosenberg2020 art
 b.  **Questions.** We'll formulate some basic questions that we'll use to guide our analysis, attempting to replicate some of the findings by Rosenberg et al.
 c.  **Twitter API.** We describe the process used to pull data from old Twitter API.
 
-### 1a. Reseach Context 
+### 1a. Reseach Context
 
 #### **Twitter and the Next Generation Science Standards**
 
-[![Rosenberg, J., Borchers, C., Dyer, E., Anderson, D., & Fischer, C. (2021). Understanding Public Sentiment About Educational Reforms: The Next Generation Science Standards on Twitter. *AERA Open, 7*. <https://doi.org/10.1177/23328584211024261>](img/rosenberg.jpg){fig-alt="Full Paper (AERA Open)" width="50%"}](https://doi.org/10.1177/23328584211024261)
+[![Rosenberg, J., Borchers, C., Dyer, E., Anderson, D., & Fischer, C. (2021). Understanding Public Sentiment About Educational Reforms: The Next Generation Science Standards on Twitter. AERA Open, 7. \<https://doi.org/10.1177/23328584211024261\>](img/rosenberg.jpg){fig-alt="Full Paper (AERA Open)" width="50%"}](https://doi.org/10.1177/23328584211024261)
 
 **Abstract**
 

@@ -1,6 +1,6 @@
 ---
-title: 'Text Mining Basics'
-subtitle: "ECI 588 Unit 1: Independent Study"
+title: 'Unit 2 Independent Study: Analyzing Sentiment'
+subtitle: "ECI 588: Text Mining in Education "
 author: "Dr. Shaun Kellogg"
 date: today
 format:
