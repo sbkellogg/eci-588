@@ -14,7 +14,7 @@ editor: visual
 bibliography: lit/references.bib
 ---
 
-The final week of each unit is designed to provide you some space for gaining proficiency with R and conducting an independent analysis. Depending on your prior experience with R, there are two assignment tracks this week:
+The final week of each unit is designed to provide you some space for gaining proficiency with R and conducting an independent analysis. Depending on your prior experience with R, there are two assignment options this week:
 
 1.  **Independent Analysis**: For students who have completed ECI 586 or are comfortable with R basics, you will have the options this week to create a simple "data product" designed to illustrate your ability to apply basic sentiment analysis techniques demonstrated in the case study.
 
