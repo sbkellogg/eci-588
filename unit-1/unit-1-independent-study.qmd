@@ -37,7 +37,7 @@ This is assignment is worth 6 points and you will receive full credit upon succe
 
 ## Independent Analysis (ECI 586 Students or R Users)
 
-For those who completed ECI 586 or are already comfortable with R, you will be required to conducted an independent analysis and create a simple "data product" designed to illustrate key insights about the student and/or teacher reported middle school friendship networks.
+For those who completed ECI 586 or are already comfortable with R, you will be required to conducted an independent analysis and create a simple "data product" designed to illustrate key insights about a text-based data set of your choosing.
 
 ### Assignment
 
