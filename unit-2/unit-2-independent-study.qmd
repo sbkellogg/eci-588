@@ -60,7 +60,7 @@ To help provide some inspiration for you analysis, here are a few examples form 
 
 1.  **Jennifer Houchins**: [Academic Mental Health on Twitter](https://jennhouchins.github.io/Sentiments/SentimentAnalysisinR.html#1) \[[code](https://github.com/jennhouchins/Sentiments)\]
 2.  **Tori Culler**: [NC Goes Back-2-School](https://cullerth.github.io/wk_7_indpndnt_analysis/wk_7_presentation.html#1) \[[code](https://github.com/cullerth/wk_7_indpndnt_analysis/blob/main/wk_7_presentation.Rmd)\]
-3.  **Soraya Campbell**: [Study Abroad and Covid Sentiment Analysis](https://sorayaworldwide.github.io/studyabroad_covid19.html#1) \[[code](https://github.com/sorayaworldwide/studyabroadcovid)\]
+3.  **Soraya Campbell**: [Study Abroad and COVID Sentiment](https://sorayaworldwide.github.io/studyabroad_covid19.html#1) \[[code](https://github.com/sorayaworldwide/studyabroadcovid)\]
 
 ### Assessment
 
