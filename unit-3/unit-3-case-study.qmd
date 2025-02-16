@@ -39,8 +39,6 @@ This week will be also be our first introduction to the "Model" process of the d
 3.  **Model**: We take a look at two different approaches to topic modeling: Latent Dirichlet Allocation (LDA) and Structural Topic Modeling (STM), which is very similar to LDA but can use metadata about documents to improve the assignment of words to "topics" in a corpus and examine relationships between topics and covariates. 
 4.  **Explore**: To further explore the results of our topic model, we use several handy functions from the `topicmodels` and `stm` packages, including the `findThoughts` function for viewing documents assigned to a given topic and the `toLDAvis` function for exploring topic and word distributions.
 
-------------------------------------------------------------------------
-
 ## 1. PREPARE
 
 To help us better understand the context, questions, and data sources we'll be using in Unit 3, this section will focus on the following topics:
@@ -116,8 +114,6 @@ library(LDAvis)
 ```
 
 At the end of this week, I'll ask that you share with me your R script as evidence that you have complete the case study. Although I highly recommend that that you manually type the code shared throughout this case study, for large blocks of text it may be easier to copy and paste.
-
-------------------------------------------------------------------------
 
 ## 2. WRANGLE
 
