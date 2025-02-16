@@ -1,5 +1,5 @@
 ---
-title: "Unit 3 Walkthrough: Topic Modeling in MOOC-Eds"
+title: "Unit 3 Case Study: Topic Modeling in MOOC-Eds"
 subtitle: "ECI 588: Text Mining in Education"
 author: "Dr. Shaun Kellogg"
 date: today
@@ -12,17 +12,15 @@ theme:
   dark: cyborg
 editor: visual
 bibliography: lit/references.bib
+execute: 
+  eval: false
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## 0. INTRODUCTION
 
-The Unit 3 walkthrough extends previous research and evaluation work by me and some of my colleagues at the Friday Institute for Educational Innovation at North Carolina State University. In addition to many other areas of inquiry, our work was aimed at understanding and improving peer interaction and discussion in the Friday Institute's Massively Open Online Courses for Educators (MOOC-Ed) and Online Professional Learning programs. To learn more about these courses and programs, visit: <https://place.fi.ncsu.edu>
+The Unit 3 case study extends previous research and evaluation work by me and some of my colleagues at the Friday Institute for Educational Innovation at North Carolina State University. In addition to many other areas of inquiry, our work was aimed at understanding and improving peer interaction and discussion in the Friday Institute's Massively Open Online Courses for Educators (MOOC-Ed) and Online Professional Learning programs. To learn more about these courses and programs, visit: <https://place.fi.ncsu.edu>
 
-### Walkthrough Focus
+### Case Study Focus
 
 Our focus this week will be on identifying "topics" by examining how words cohere into different latent, or hidden, themes based on patterns of co-occurrence of words within documents. With a bit of tongue-in-cheek, [Meeks and Weingart (2012)](http://journalofdigitalhumanities.org/2-1/dh-contribution-to-topic-modeling/) describe topic modeling as: 
 
@@ -49,7 +47,7 @@ To help us better understand the context, questions, and data sources we'll be u
 
 a.  **Context**. As context for our analysis this week, we'll review several related papers by me and some of my current and former colleagues relevant to our analysis of MOOC-Ed discussion forums.
 b.  **Questions.** We'll also examine what insight topic modeling can provide to a question that we asked participants answer in their professional learning teams (PLTs).
-c.  **Project Setup.** This should be very familiar by now, but we'll set up a new R project and install and load the required packages for the topic modeling walkthrough.
+c.  **Project Setup.** This should be very familiar by now, but we'll set up a new R project and install and load the required packages for the topic modeling case study.
 
 ### 1a. Context
 
@@ -65,7 +63,7 @@ Massive Open Online Courses for Educators (MOOC-Eds) provide opportunities for u
 
 **Data Source & Analysis**
 
-All peer interaction, including peer discussion, take place within discussion forums of MOOC-Eds, which are hosted using the Moodle Learning Management System. To build the dataset you'll be using for this walkthrough, I wrote a query for Moodle's MySQL database, which records participants' user-logs of activity in the online forums. This sql query combines separate database tables containing postings and comments including participant IDs, timestamps, discussion text and other attributes or "metadata."
+All peer interaction, including peer discussion, take place within discussion forums of MOOC-Eds, which are hosted using the Moodle Learning Management System. To build the dataset you'll be using for this case study, I wrote a query for Moodle's MySQL database, which records participants' user-logs of activity in the online forums. This sql query combines separate database tables containing postings and comments including participant IDs, timestamps, discussion text and other attributes or "metadata."
 
 For further description of the forums and data retrieval process, see also the following papers:
 
@@ -94,7 +92,7 @@ Dr. Hollylynne Lee and the TSDI team also developed a facilitation guide designe
 
 > What ideas or issues emerged in the discussion forums this past week?
 
-For this walkthrough, we will further examine that question through the use of topic modeling.
+For this case study, we will further examine that question through the use of topic modeling.
 
 And just to reiterate yet again from Unit 1, one overarching question we'll explore throughout this course, and that Silge and Robinson (2018) identify as a central question to text mining and natural language processing, is:
 
@@ -104,7 +102,7 @@ And just to reiterate yet again from Unit 1, one overarching question we'll expl
 
 As highlighted in [Chapter 6 of Data Science in Education Using R](https://datascienceineducation.com/c06.html) (DSIEUR), one of the first steps of every workflow should be to set up a "Project" within RStudio. This will be your "home" for any files and code used or created in Unit 2.
 
-You are welcome to continue using the same project created for Unit 1, or create an entirely new project for Unit 2. However, after you've created your project open up a new R script, and load the following packages that we'll be needing for this walkthrough:
+You are welcome to continue using the same project created for Unit 1, or create an entirely new project for Unit 2. However, after you've created your project open up a new R script, and load the following packages that we'll be needing for this case study:
 
 ```{r load-packages, message=FALSE}
 library(tidyverse)
@@ -117,7 +115,7 @@ library(knitr)
 library(LDAvis)
 ```
 
-At the end of this week, I'll ask that you share with me your R script as evidence that you have complete the walkthrough. Although I highly recommend that that you manually type the code shared throughout this walkthrough, for large blocks of text it may be easier to copy and paste.
+At the end of this week, I'll ask that you share with me your R script as evidence that you have complete the case study. Although I highly recommend that that you manually type the code shared throughout this case study, for large blocks of text it may be easier to copy and paste.
 
 ------------------------------------------------------------------------
 
@@ -415,7 +413,7 @@ And tying back to our work in Unit 1, Bail (2020) notes that topic assignments f
 
 Bail notes that LDA, while perhaps the most common approach to topic modeling, is just one of many different types, including Dynamic Topic Models, Correlated Topic Models, Hierarchical Topic Models, and more recently, Structural Topic Modeling (STM). He argues that one reason STM has rising in popularity and use is that it employs meta data about documents to improve the assignment of words to topics in a corpus and that can be used to examine relationships between covariates and documents. 
 
-Also, since Julia Silge has indicated that STM is, "my current favorite implementation of topic modeling in R" and has built supports in the `tidytext` package for building structural topic models, this package definitely is worth discussing in this walkthrough. I also highly recommend her own walkthrough of the `stm` package: [The game is afoot! Topic modeling of Sherlock Holmes stories](https://juliasilge.com/blog/sherlock-holmes-stm/) as well as her follow up post, [Training, evaluating, and interpreting topic models](https://juliasilge.com/blog/evaluating-stm/).
+Also, since Julia Silge has indicated that STM is, "my current favorite implementation of topic modeling in R" and has built supports in the `tidytext` package for building structural topic models, this package definitely is worth discussing in this case study. I also highly recommend her own case study of the `stm` package: [The game is afoot! Topic modeling of Sherlock Holmes stories](https://juliasilge.com/blog/sherlock-holmes-stm/) as well as her follow up post, [Training, evaluating, and interpreting topic models](https://juliasilge.com/blog/evaluating-stm/).
 
 #### The `stm` Package
 
@@ -523,11 +521,11 @@ findingk <- searchK(docs,
 plot(findingk)
 ```
 
-Note that Running `searchK()` function on this corpus took all night on a pretty powerful MacBook Pro and crashed once as well, so I do not expect you to run this for the walkthrough. I ran a couple iterations and landed on between 5 and 15 with an optimal number of topics somewhere around 14:
+Note that Running `searchK()` function on this corpus took all night on a pretty powerful MacBook Pro and crashed once as well, so I do not expect you to run this for the case study. I ran a couple iterations and landed on between 5 and 15 with an optimal number of topics somewhere around 14:
 
 ![](img/searchk_results.png){width="90%"}
 
-Given the somewhat conflicting results, also somewhat selfishly and for the same of simplicity for this walkthrough, I'm just going to stick with the rather arbitrary selection of 20 topics for the remainder of this Unit.
+Given the somewhat conflicting results, also somewhat selfishly and for the same of simplicity for this case study, I'm just going to stick with the rather arbitrary selection of 20 topics for the remainder of this Unit.
 
 #### The LDAvis Explorer
 
@@ -543,7 +541,7 @@ As you can see from the browser screen shot below, our current stm model of 20 t
 
 ## 4. EXPLORE
 
-Silge and Robinson (2018) note that fitting at topic model is the "easy part." The hard part is making sense of the model results and that the rest of the analysis involves exploring and interpreting the model using a variety of approaches which we'll walkthrough in in this section.
+Silge and Robinson (2018) note that fitting at topic model is the "easy part." The hard part is making sense of the model results and that the rest of the analysis involves exploring and interpreting the model using a variety of approaches which we'll case study in in this section.
 
 Bail (2018) cautions, however, that:
 
@@ -713,13 +711,13 @@ Looking at just the 10 posts returned, perhaps a better name for this topic woul
 
 #### Unit Takeaway
 
-In addition to some useful R packages and functions for the actual process of topic modeling, hopefully there are two main lessons I'm hoping you take away from this walkthrough:
+In addition to some useful R packages and functions for the actual process of topic modeling, hopefully there are two main lessons I'm hoping you take away from this case study:
 
 1.  **Topic modeling requires a lot of decisions.** Beyond deciding on a value for K, there are a number of key decisions that you have to make that can dramatically affect your results. For example, to stem or not to stem? What qualifies as a document? What flavor or topic modeling is best suited to your data and research questions? How many iterations to run?
 2.  **Topic modeling is as much art as (data) science.** As Bail (2018) noted, the term "topic" is somewhat ambitious, and topic models do not produce highly nuanced classification of texts. Once you've fit your model, interpreting your model requires some mental gymnastics and ideally some knowledge of the context from which the data came to help with interpretation of your topics. Moreover, the quantitative approaches for making the decisions highlighted above are imperfect and a good deal of human judgment required.
 
 ##### ✅ Comprehension Check
 
-Using the STM model you fit from the Section 3 [Comprehension Check] with a different value for K, use the approaches demonstrated in Section 4 to explore and interpret your topics and terms and revisit the following question:
+Using the STM model you fit from the Section 3 \[Comprehension Check\] with a different value for K, use the approaches demonstrated in Section 4 to explore and interpret your topics and terms and revisit the following question:
 
 1.  Now that you have a little more context, how might you revise your initial interpretation of some of the latent topics or latent themes from your model?

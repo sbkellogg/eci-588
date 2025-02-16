@@ -75,9 +75,11 @@ Reflecting on the course text and your self-selected reading, answer one or more
 
 2.  What is it trying to accomplish and how does it work? 
 
-3.  What are some other new terms, words, concepts that you have come across in the resources that were unfamiliar to you, or that you had come across before but feel you have a better understanding of after this week? 
+3.  What are some other new terms, words, concepts that you have come across in the resources that were unfamiliar to you, or that you had come across before but feel you have a better understanding of after this week?
 
 #### Topic 2: Applications in Education
+
+Reflecting on the course text and your self-selected reading, answer one or more of the following questions:
 
 1.  How has topic modeling been applied to educational contexts, or in other fields that might be relevant to education? 
 
@@ -123,11 +125,13 @@ Provide a brief overview of your self-selected resource that includes the follow
 
 -   What was the **purpose** of your article?
 
--   How were Text Mining methods **defined** and/or characterized?
+-   How was Topic Modeling **defined** and/or characterized?
 
 -   What **data source(s)** were analyzed or discussed?
 
 -   How, if at all, did your article touch upon the **application(s)** of text mining to "understand and improve learning and the contexts in which learning occurs?"
+
+-   What were some key **findings** from the analysis?
 
 -   Did your selection address any **ethical or legal considerations** of text mining?
 
